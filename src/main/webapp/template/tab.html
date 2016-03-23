@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="src/main/webapp/mobile/css/css.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
+    <script type="text/javascript" src="editor/kindeditor.js"></script>
+
+    <script type="text/javascript">
+        KE.show({
+            id : 'content7',
+            cssPath : './index.css'
+        });
+    </script>
+
+    
+</head>
+
+<body>
+
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">系统设置</a></li>
+    </ul>
+</div>
+
+<div class="formbody">
+
+
+    <div id="usual1" class="usual">
+
+        <div class="itab">
+            <ul>
+                <li><a href="#tab1" class="selected">发布通知</a></li>
+                <li><a href="#tab2">自定义</a></li>
+            </ul>
+        </div>
+
+        <div id="tab1" class="tabson">
+
+            <div class="formtext">Hi，<b>admin</b>，欢迎您试用信息发布功能！</div>
+
+            <ul class="forminfo">
+                <li><label>招聘企业<b>*</b></label><input name="" type="text" class="dfinput" value="请填写单位名称"  style="width:518px;"/></li>
+
+                <li><label>职位名称<b>*</b></label>
+
+
+                    <div class="vocation">
+                        <div class='diy_select'>
+                            <input type='hidden' name='' class='diy_select_input'/>
+                            <div class='diy_select_txt'>--请选择--</div>
+                            <div class='diy_select_btn'></div>
+                            <ul class='diy_select_list'>
+                                <li>UI设计师</li>
+                                <li>交互设计师</li>
+                                <li>前端设计师</li>
+                                <li>网页设计师</li>
+                                <li>Flash动画</li>
+                                <li>视觉设计师</li>
+                                <li>插画设计师</li>
+                                <li>美工</li>
+                                <li>其他</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </li>
+
+                <li><label>薪资待遇<b>*</b></label>
+
+                    <div class="vocation">
+                        <div class='diy_select'>
+                            <input type='hidden' name='' class='diy_select_input'/>
+                            <div class='diy_select_txt'>--请选择--</div>
+                            <div class='diy_select_btn'></div>
+                            <ul class='diy_select_list'>
+                                <li>3000-5000</li>
+                                <li>5000-8000</li>
+                                <li>8000-10000</li>
+                                <li>10000-15000</li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <li><label>通知内容<b>*</b></label>
+
+
+                    <textarea id="content7" name="content" style="width:700px;height:250px;visibility:hidden;"></textarea>
+
+                </li>
+                <li><label>&nbsp;</label><input name="" type="button" class="btn" value="马上发布"/></li>
+            </ul>
+
+        </div>
+
+
+        <div id="tab2" class="tabson">
+
+
+            <ul class="seachform">
+
+                <li><label>综合查询</label><input name="" type="text" class="scinput" /></li>
+                <li><label>指派</label>
+                    <div class="vocation">
+
+                        <select class="select3">
+                            <option>全部</option>
+                            <option>其他</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li><label>重点客户</label>
+                    <div class="vocation">
+                        <select class="select3">
+                            <option>全部</option>
+                            <option>其他</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li><label>客户状态</label>
+                    <div class="vocation">
+                        <select class="select3">
+                            <option>全部</option>
+                            <option>其他</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询"/></li>
+
+            </ul>
+
+
+            <table class="tablelist">
+                <thead>
+                <tr>
+                    <th><input name="" type="checkbox" value="" checked="checked"/></th>
+                    <th>编号<i class="sort"><img src="images/px.gif" /></i></th>
+                    <th>标题</th>
+                    <th>用户</th>
+                    <th>籍贯</th>
+                    <th>发布时间</th>
+                    <th>是否审核</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input name="" type="checkbox" value="" /></td>
+                    <td>20130908</td>
+                    <td>王金平幕僚：马英九声明字字见血 人活着没意思</td>
+                    <td>admin</td>
+                    <td>江苏南京</td>
+                    <td>2013-09-09 15:05</td>
+                    <td>已审核</td>
+                    <td><a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink"> 删除</a></td>
+                </tr>
+
+                <tr>
+                    <td><input name="" type="checkbox" value="" /></td>
+                    <td>20130907</td>
+                    <td>温州19名小学生中毒流鼻血续：周边部分企业关停</td>
+                    <td>uimaker</td>
+                    <td>山东济南</td>
+                    <td>2013-09-08 14:02</td>
+                    <td>未审核</td>
+                    <td><a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink">删除</a></td>
+                </tr>
+
+                <tr>
+                    <td><input name="" type="checkbox" value="" /></td>
+                    <td>20130906</td>
+                    <td>社科院:电子商务促进了农村经济结构和社会转型</td>
+                    <td>user</td>
+                    <td>江苏无锡</td>
+                    <td>2013-09-07 13:16</td>
+                    <td>未审核</td>
+                    <td><a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink">删除</a></td>
+                </tr>
+
+                <tr>
+                    <td><input name="" type="checkbox" value="" /></td>
+                    <td>20130905</td>
+                    <td>江西&quot;局长违规建豪宅&quot;：局长检讨</td>
+                    <td>admin</td>
+                    <td>北京市</td>
+                    <td>2013-09-06 10:36</td>
+                    <td>已审核</td>
+                    <td><a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink">删除</a></td>
+                </tr>
+
+                <tr>
+                    <td><input name="" type="checkbox" value="" /></td>
+                    <td>20130907</td>
+                    <td>温州19名小学生中毒流鼻血续：周边部分企业关停</td>
+                    <td>uimaker</td>
+                    <td>山东济南</td>
+                    <td>2013-09-08 14:02</td>
+                    <td>未审核</td>
+                    <td><a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink">删除</a></td>
+                </tr>
+
+                </tbody>
+            </table>
+
+
+
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        $("#usual1 ul").idTabs();
+    </script>
+
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+    </script>
+    <script type="text/javascript">
+        function diy_select(){this.init.apply(this,arguments)};
+        diy_select.prototype={
+            init:function(opt)
+            {
+                this.setOpts(opt);
+                this.o=this.getByClass(this.opt.TTContainer,document,'div');//容器
+                this.b=this.getByClass(this.opt.TTDiy_select_btn);//按钮
+                this.t=this.getByClass(this.opt.TTDiy_select_txt);//显示
+                this.l=this.getByClass(this.opt.TTDiv_select_list);//列表容器
+                this.ipt=this.getByClass(this.opt.TTDiy_select_input);//列表容器
+                this.lengths=this.o.length;
+                this.showSelect();
+            },
+            addClass:function(o,s)//添加class
+            {
+                o.className = o.className ? o.className+' '+s:s;
+            },
+            removeClass:function(o,st)//删除class
+            {
+                var reg=new RegExp('\\b'+st+'\\b');
+                o.className=o.className ? o.className.replace(reg,''):'';
+            },
+            addEvent:function(o,t,fn)//注册事件
+            {
+                return o.addEventListener ? o.addEventListener(t,fn,false):o.attachEvent('on'+t,fn);
+            },
+            showSelect:function()//显示下拉框列表
+            {
+                var This=this;
+                var iNow=0;
+                this.addEvent(document,'click',function(){
+                    for(var i=0;i<This.lengths;i++)
+                    {
+                        This.l[i].style.display='none';
+                    }
+                })
+                for(var i=0;i<this.lengths;i++)
+                {
+                    this.l[i].index=this.b[i].index=this.t[i].index=i;
+                    this.t[i].onclick=this.b[i].onclick=function(ev)
+                    {
+                        var e=window.event || ev;
+                        var index=this.index;
+                        This.item=This.l[index].getElementsByTagName('li');
+
+                        This.l[index].style.display= This.l[index].style.display=='block' ? 'none' :'block';
+                        This.o[index].style.zIndex = '999'
+
+                        for(var j=0;j<This.lengths;j++)
+                        {
+                            if(j!=index)
+                            {
+                                This.l[j].style.display='none';
+
+
+                                    This.o[j].style.zIndex = '1'
+                            }
+                        }
+                        This.addClick(This.item);
+                        e.stopPropagation ? e.stopPropagation() : (e.cancelBubble=true); //阻止冒泡
+                    }
+                }
+            },
+            addClick:function(o)//点击回调函数
+            {
+
+                if(o.length>0)
+                {
+                    var This=this;
+                    for(var i=0;i<o.length;i++)
+                    {
+                        o[i].onmouseover=function()
+                        {
+                            This.addClass(this,This.opt.TTFcous);
+                        }
+                        o[i].onmouseout=function()
+                        {
+                            This.removeClass(this,This.opt.TTFcous);
+                        }
+                        o[i].onclick=function()
+                        {
+                            var index=this.parentNode.index;//获得列表
+                            This.t[index].innerHTML=This.ipt[index].value=this.innerHTML.replace(/^\s+/,'').replace(/\s+&/,'');
+                            This.l[index].style.display='none';
+                        }
+                    }
+                }
+            },
+            getByClass:function(s,p,t)//使用class获取元素
+            {
+                var reg=new RegExp('\\b'+s+'\\b');
+                var aResult=[];
+                var aElement=(p||document).getElementsByTagName(t || '*');
+
+                for(var i=0;i<aElement.length;i++)
+                {
+                    if(reg.test(aElement[i].className))
+                    {
+                        aResult.push(aElement[i])
+                    }
+                }
+                return aResult;
+            },
+
+            setOpts:function(opt) //以下参数可以不设置  //设置参数
+            {
+                this.opt={
+                    TTContainer:'diy_select',//控件的class
+                    TTDiy_select_input:'diy_select_input',//用于提交表单的class
+                    TTDiy_select_txt:'diy_select_txt',//diy_select用于显示当前选中内容的容器class
+                    TTDiy_select_btn:'diy_select_btn',//diy_select的打开按钮
+                    TTDiv_select_list:'diy_select_list',//要显示的下拉框内容列表class
+                    TTFcous:'focus'//得到焦点时的class
+                }
+                for(var a in opt)  //赋值 ,请保持正确,没有准确判断的
+                {
+                    this.opt[a]=opt[a] ? opt[a]:this.opt[a];
+                }
+            }
+        }
+
+
+        var TTDiy_select=new diy_select({  //参数可选
+            TTContainer:'diy_select',//控件的class
+            TTDiy_select_input:'diy_select_input',//用于提交表单的class
+            TTDiy_select_txt:'diy_select_txt',//diy_select用于显示当前选中内容的容器class
+            TTDiy_select_btn:'diy_select_btn',//diy_select的打开按钮
+            TTDiv_select_list:'diy_select_list',//要显示的下拉框内容列表class
+            TTFcous:'focus'//得到焦点时的class
+        });//如同时使用多个时请保持各class一致.
+    </script>
+
+
+
+
+
+</div>
+
+
+</body>
+
+</html>
