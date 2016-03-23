@@ -70,13 +70,11 @@ public class RegistrationForm {
         this.form_type = form_type;
     }
 
-    public Boolean isMultidata() {
+    public Boolean getMultidata() {
         return multidata;
     }
 
-    public void setMultidata(Boolean multidata) {
-        this.multidata = multidata;
-    }
+    public void setMultidata(Boolean multidata) { this.multidata = multidata; }
 
     public Date getCreate_date() {
         return create_date;
