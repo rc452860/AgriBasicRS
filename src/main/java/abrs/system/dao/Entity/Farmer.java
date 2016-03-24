@@ -7,6 +7,8 @@ package abrs.system.dao.Entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 /**
  * 农户基本信息
  */
@@ -54,7 +56,20 @@ public class Farmer {
 
     private String note;//备注
 
-    private int flag;//标识用于标记删除、注销等状态
+    private int flag;//标识用于标记删除、注销等状态 10-在线；21-死亡注销；22-资格取消
+
+    //非表单显示信息
+    private String house_no;//门牌号
+    private String zip_code; //邮编
+    private String nation;//民族
+    private String education;//文化程度
+    private String political_affiliation;//政治面貌
+    private int insurance;//是否参保，0-否，1-是
+    private Date create_date = new Date();//创建时间
+    private Date record_date;//录入信息日期
+    private Date update_date;//修改信息日期
+    private String record_person;//录入人员
+    private String update_person;//修改人员
 
     public Farmer(){
 
@@ -314,5 +329,93 @@ public class Farmer {
 
     public void setFlag(int flag) {
         this.flag = flag;
+    }
+
+    public String getHouse_no() {
+        return house_no;
+    }
+
+    public void setHouse_no(String house_no) {
+        this.house_no = house_no;
+    }
+
+    public String getZip_code() {
+        return zip_code;
+    }
+
+    public void setZip_code(String zip_code) {
+        this.zip_code = zip_code;
+    }
+
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public String getPolitical_affiliation() {
+        return political_affiliation;
+    }
+
+    public void setPolitical_affiliation(String political_affiliation) {
+        this.political_affiliation = political_affiliation;
+    }
+
+    public int getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(int insurance) {
+        this.insurance = insurance;
+    }
+
+    public Date getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(Date create_date) {
+        this.create_date = create_date;
+    }
+
+    public Date getRecord_date() {
+        return record_date;
+    }
+
+    public void setRecord_date(Date record_date) {
+        this.record_date = record_date;
+    }
+
+    public Date getUpdate_date() {
+        return update_date;
+    }
+
+    public void setUpdate_date(Date update_date) {
+        this.update_date = update_date;
+    }
+
+    public String getRecord_person() {
+        return record_person;
+    }
+
+    public void setRecord_person(String record_person) {
+        this.record_person = record_person;
+    }
+
+    public String getUpdate_person() {
+        return update_person;
+    }
+
+    public void setUpdate_person(String update_person) {
+        this.update_person = update_person;
     }
 }
