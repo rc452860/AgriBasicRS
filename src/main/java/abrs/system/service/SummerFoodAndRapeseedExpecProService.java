@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 @Service
-public class SummerFoodAndRapeseedService {
+public class SummerFoodAndRapeseedExpecProService {
     private static Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
@@ -41,12 +41,12 @@ public class SummerFoodAndRapeseedService {
         return true;
     }
 
-    public boolean addItem(int survey_village_num,int survey_family_num,String food_itemid,String food_xiaomai_food_itemid,String rapeseed_food_itemid)
+    public boolean addItem(int survey_village_num,int survey_family_num,String food_itemid,String food_xiaomai_food_itemid,String rapeseed_youcaizi_itemid)
     {
         SummerFoodAndRapeseedExpecPro summerFoodAndRapeseed = new SummerFoodAndRapeseedExpecPro();
         summerFoodAndRapeseed.setFood_itemid(food_itemid);
         summerFoodAndRapeseed.setFood_xiaomai_food_itemid(food_xiaomai_food_itemid);
-        summerFoodAndRapeseed.setRapeseed_food_itemid(rapeseed_food_itemid);
+        summerFoodAndRapeseed.setRapeseed_youcaizi_itemid(rapeseed_youcaizi_itemid);
         summerFoodAndRapeseedDao.save(summerFoodAndRapeseed);
         logger.info("Add SummerFoodAndRapeseed: " + survey_village_num + "/" + survey_family_num);
         return true;

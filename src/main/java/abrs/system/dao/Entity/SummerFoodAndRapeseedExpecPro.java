@@ -22,7 +22,7 @@ public class SummerFoodAndRapeseedExpecPro {
 
     private String food_xiaomai_food_itemid;//ÆäÖÐ£ºÐ¡Âó(ItemID)
 
-    private String rapeseed_food_itemid; //ÓÍ²Ë×Ñ(ItemID)
+    private String rapeseed_youcaizi_itemid; //ÓÍ²Ë×Ñ(ItemID)
 
     public SummerFoodAndRapeseedExpecPro(){}
 
@@ -66,11 +66,11 @@ public class SummerFoodAndRapeseedExpecPro {
         this.food_xiaomai_food_itemid = food_xiaomai_food_itemid;
     }
 
-    public String getRapeseed_food_itemid() {
-        return rapeseed_food_itemid;
+    public String getRapeseed_youcaizi_itemid() {
+        return rapeseed_youcaizi_itemid;
     }
 
-    public void setRapeseed_food_itemid(String rapeseed_food_itemid) {
-        this.rapeseed_food_itemid = rapeseed_food_itemid;
+    public void setRapeseed_youcaizi_itemid(String rapeseed_youcaizi_itemid) {
+        this.rapeseed_youcaizi_itemid = rapeseed_youcaizi_itemid;
     }
 }
