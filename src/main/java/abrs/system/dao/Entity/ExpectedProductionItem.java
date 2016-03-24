@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * 夏粮、夏收油菜籽产量预计明细信息
+ * 产量预计明细信息
  */
 @Document(collection = "ExpectedProductionItem")
 public class ExpectedProductionItem {
