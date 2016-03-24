@@ -15,6 +15,8 @@ public class WholeYearPlantArea {
     @Id
     private String id;
 
+    private String farmer_id;//农户id
+
     private int form_tag;//当为0为意向调查 当为1预计调查
 
     private double plant_total;//农作物总面积
