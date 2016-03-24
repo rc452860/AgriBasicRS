@@ -1,9 +1,9 @@
 package abrs.system.service;
 
 import abrs.system.aspect.Auth;
-import abrs.system.dao.Entity.SummerFoodAndRapeseed;
-import abrs.system.dao.Entity.SummerFoodAndRapeseedItem;
-import abrs.system.dao.SummerFoodAndRapeseedDao;
+import abrs.system.dao.Entity.SummerFoodAndRapeseedExpecPro;
+import abrs.system.dao.Entity.ExpectedProductionItem;
+import abrs.system.dao.SummerFoodAndRapeseedExpecProDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class SummerFoodAndRapeseedService {
     private static Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
-    private SummerFoodAndRapeseedDao summerFoodAndRapeseedDao;
+    private SummerFoodAndRapeseedExpecProDao summerFoodAndRapeseedDao;
 
     private int survey_village_num; //调查村数
 
@@ -35,7 +35,7 @@ public class SummerFoodAndRapeseedService {
 
     private String rapeseed_food_itemid; //油菜籽(ItemID)
 
-    public boolean addItem(int survey_village_num,int survey_family_num,SummerFoodAndRapeseedItem food_item,SummerFoodAndRapeseedItem food_xiaomai_food_item,SummerFoodAndRapeseedItem rapeseed_food_item)
+    public boolean addItem(int survey_village_num,int survey_family_num,ExpectedProductionItem food_item,ExpectedProductionItem food_xiaomai_food_item,ExpectedProductionItem rapeseed_food_item)
     {
         addItem(survey_village_num,survey_family_num,food_item.getId(),food_xiaomai_food_item.getId(),rapeseed_food_item.getId());
         return true;
@@ -43,7 +43,7 @@ public class SummerFoodAndRapeseedService {
 
     public boolean addItem(int survey_village_num,int survey_family_num,String food_itemid,String food_xiaomai_food_itemid,String rapeseed_food_itemid)
     {
-        SummerFoodAndRapeseed summerFoodAndRapeseed = new SummerFoodAndRapeseed();
+        SummerFoodAndRapeseedExpecPro summerFoodAndRapeseed = new SummerFoodAndRapeseedExpecPro();
         summerFoodAndRapeseed.setFood_itemid(food_itemid);
         summerFoodAndRapeseed.setFood_xiaomai_food_itemid(food_xiaomai_food_itemid);
         summerFoodAndRapeseed.setRapeseed_food_itemid(rapeseed_food_itemid);
@@ -52,16 +52,16 @@ public class SummerFoodAndRapeseedService {
         return true;
     }
 
-    public SummerFoodAndRapeseed getItem(String id)
+    public SummerFoodAndRapeseedExpecPro getItem(String id)
     {
         return summerFoodAndRapeseedDao.queryById(id);
     }
 
-    public SummerFoodAndRapeseed getItemByNo(String no)
+    public SummerFoodAndRapeseedExpecPro getItemByNo(String no)
     {
         Query query = new Query();
         query.addCriteria(Criteria.where("no").is(no));
-        SummerFoodAndRapeseed summerFoodAndRapeseed = summerFoodAndRapeseedDao.queryOne(query);
+        SummerFoodAndRapeseedExpecPro summerFoodAndRapeseed = summerFoodAndRapeseedDao.queryOne(query);
         return summerFoodAndRapeseed;
     }
 
@@ -69,7 +69,7 @@ public class SummerFoodAndRapeseedService {
         return summerFoodAndRapeseedDao.getCount(new Query());
     }
 
-    public boolean updateItem(SummerFoodAndRapeseed region)
+    public boolean updateItem(SummerFoodAndRapeseedExpecPro region)
     {
         summerFoodAndRapeseedDao.save(region);
         logger.info("Update SummerFoodAndRapeseed");
@@ -81,7 +81,7 @@ public class SummerFoodAndRapeseedService {
         summerFoodAndRapeseedDao.deleteById(id);
     }
 
-    public List<SummerFoodAndRapeseed> getItems(int start, int size){
+    public List<SummerFoodAndRapeseedExpecPro> getItems(int start, int size){
         return summerFoodAndRapeseedDao.getPage(new Query(), start, size);
     }
 }
