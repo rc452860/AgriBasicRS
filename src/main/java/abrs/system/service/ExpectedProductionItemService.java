@@ -1,8 +1,8 @@
 package abrs.system.service;
 
 import abrs.system.aspect.Auth;
-import abrs.system.dao.Entity.SummerFoodAndRapeseedItem;
-import abrs.system.dao.SummerFoodAndRapeseedItemDao;
+import abrs.system.dao.Entity.ExpectedProductionItem;
+import abrs.system.dao.ExpectedProductionItemDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +18,18 @@ import java.util.List;
  */
 
 @Service
-public class SummerFoodAndRapeseedItemService {
+public class ExpectedProductionItemService {
     private static Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
-    private SummerFoodAndRapeseedItemDao summerFoodAndRapeseedItemDao;
+    private ExpectedProductionItemDao summerFoodAndRapeseedItemDao;
 
 
     public boolean addItem(double seededarea_lastyear,double seededarea_thisyear,double seededarea_Increasedecrease_absolute,double seededarea_Increasedecrease_relative
             ,double perunit_lastyear,double perunit_thisyear,double perunit_Increasedecrease_absolute,double perunit_Increasedecrease_relative
             ,double total_lastyear,double total_thisyear,double total_Increasedecrease_absolute,double total_Increasedecrease_relative)
     {
-        SummerFoodAndRapeseedItem summerFoodAndRapeseedItem = new SummerFoodAndRapeseedItem();
+        ExpectedProductionItem summerFoodAndRapeseedItem = new ExpectedProductionItem();
 
         summerFoodAndRapeseedItem.setSeededarea_lastyear(seededarea_lastyear);
         summerFoodAndRapeseedItem.setSeededarea_thisyear(seededarea_thisyear);
@@ -51,16 +51,16 @@ public class SummerFoodAndRapeseedItemService {
         return true;
     }
 
-    public SummerFoodAndRapeseedItem getItem(String id)
+    public ExpectedProductionItem getItem(String id)
     {
         return summerFoodAndRapeseedItemDao.queryById(id);
     }
 
-    public SummerFoodAndRapeseedItem getItemByNo(String no)
+    public ExpectedProductionItem getItemByNo(String no)
     {
         Query query = new Query();
         query.addCriteria(Criteria.where("no").is(no));
-        SummerFoodAndRapeseedItem summerFoodAndRapeseedItem = summerFoodAndRapeseedItemDao.queryOne(query);
+        ExpectedProductionItem summerFoodAndRapeseedItem = summerFoodAndRapeseedItemDao.queryOne(query);
         return summerFoodAndRapeseedItem;
     }
 
@@ -68,7 +68,7 @@ public class SummerFoodAndRapeseedItemService {
         return summerFoodAndRapeseedItemDao.getCount(new Query());
     }
 
-    public boolean updateItem(SummerFoodAndRapeseedItem summerFoodAndRapeseedItem)
+    public boolean updateItem(ExpectedProductionItem summerFoodAndRapeseedItem)
     {
         summerFoodAndRapeseedItemDao.save(summerFoodAndRapeseedItem);
         logger.info("Update SummerFoodAndRapeseedItem");
@@ -80,7 +80,7 @@ public class SummerFoodAndRapeseedItemService {
         summerFoodAndRapeseedItemDao.deleteById(id);
     }
 
-    public List<SummerFoodAndRapeseedItem> getItems(int start, int size){
+    public List<ExpectedProductionItem> getItems(int start, int size){
         return summerFoodAndRapeseedItemDao.getPage(new Query(), start, size);
     }
 }

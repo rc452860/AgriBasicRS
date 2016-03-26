@@ -9,8 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * 夏粮、夏收油菜籽产量预计主表信息
  */
-@Document(collection = "SummerFoodAndRapeseed")
-public class SummerFoodAndRapeseed {
+@Document(collection = "SummerFoodAndRapeseedExpecPro")
+public class SummerFoodAndRapeseedExpecPro {
     @Id
     private String id;
 
@@ -22,9 +22,9 @@ public class SummerFoodAndRapeseed {
 
     private String food_xiaomai_food_itemid;//其中：小麦(ItemID)
 
-    private String rapeseed_food_itemid; //油菜籽(ItemID)
+    private String rapeseed_youcaizi_itemid; //油菜籽(ItemID)
 
-    public SummerFoodAndRapeseed(){}
+    public SummerFoodAndRapeseedExpecPro(){}
 
     public String getId() {
         return id;
@@ -66,11 +66,11 @@ public class SummerFoodAndRapeseed {
         this.food_xiaomai_food_itemid = food_xiaomai_food_itemid;
     }
 
-    public String getRapeseed_food_itemid() {
-        return rapeseed_food_itemid;
+    public String getRapeseed_youcaizi_itemid() {
+        return rapeseed_youcaizi_itemid;
     }
 
-    public void setRapeseed_food_itemid(String rapeseed_food_itemid) {
-        this.rapeseed_food_itemid = rapeseed_food_itemid;
+    public void setRapeseed_youcaizi_itemid(String rapeseed_youcaizi_itemid) {
+        this.rapeseed_youcaizi_itemid = rapeseed_youcaizi_itemid;
     }
 }

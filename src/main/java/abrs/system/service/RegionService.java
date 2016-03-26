@@ -24,11 +24,17 @@ public class RegionService {
     @Autowired
     private RegionDao regionDao;
 
-    public boolean addItem(String no,String name)
+    public boolean addItem(String no,String name, String fullname,String fatherno,
+                           String shortnoone,String shortnotwo,
+                           int flag)
     {
         Region region = new Region();
         region.setNo(no);
         region.setName(name);
+        region.setFullname(fullname);
+        region.setFatherno(fatherno);
+        region.setShortnoone(shortnoone);
+        region.setShortnotwo(shortnotwo);
         regionDao.save(region);
         logger.info("Add Region: " + no + "/" + name);
         return true;
