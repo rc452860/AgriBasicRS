@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" build-on-make="true" name="AgriBasicRS:war exploded">
+  <artifact type="exploded-war" name="AgriBasicRS:war exploded">
     <output-path>$PROJECT_DIR$/target/ExamPlus</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
@@ -80,7 +80,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/ExamPlus/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="AgriBasicRS/web/Web" />
     </root>

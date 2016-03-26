@@ -43,9 +43,9 @@ public class UserMobileController {
     @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public String info(ModelMap model) {
-        User user = (User) session.getAttribute(SessionContext.CURRENT_USER);
-        model.addAttribute("user", user);
-        model.addAttribute("money", userService.getMoney(user.getId()));
+//        User user = (User) session.getAttribute(SessionContext.CURRENT_USER);
+//        model.addAttribute("user", user);
+//        model.addAttribute("money", userService.getMoney(user.getId()));
         return "mobile/user_info";
     }
 
@@ -54,24 +54,24 @@ public class UserMobileController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public Map<String, Object> doAdd(@Valid @ModelAttribute("AddUserForm") AddUserForm form, Errors errors, ModelMap model) {
         Map<String, Object> map = new HashMap<String, Object>();
-        if (errors.hasErrors()) {
-            map.put("message", errors.getFieldError().getDefaultMessage());
-        } else {
-            try {
-                User user = userService.getItem(form.getUsername(), form.getInstitution());
-                if(user == null) {
-                    boolean result = userService.addItem(form.getUsername(), form.getPassword(), form.getName(),
-                            form.getInstitution(), Auth.Role.NONE, form.getEmail(), form.getPhone(), form.getTeam(),
-                            form.getSchool(), form.getGrade());
-                    if (result) map.put("message", "提交成功");
-                    else map.put("message", "提交失败");
-                } else{
-                    map.put("message", "用户已存在");
-                }
-            } catch (Exception e) {
-                map.put("message", e.getMessage());
-            }
-        }
+//        if (errors.hasErrors()) {
+//            map.put("message", errors.getFieldError().getDefaultMessage());
+//        } else {
+//            try {
+//                User user = userService.getItem(form.getUsername(), form.getInstitution());
+//                if(user == null) {
+//                    boolean result = userService.addItem(form.getUsername(), form.getPassword(), form.getName(),
+//                            form.getInstitution(), Auth.Role.NONE, form.getEmail(), form.getPhone(), form.getTeam(),
+//                            form.getSchool(), form.getGrade());
+//                    if (result) map.put("message", "提交成功");
+//                    else map.put("message", "提交失败");
+//                } else{
+//                    map.put("message", "用户已存在");
+//                }
+//            } catch (Exception e) {
+//                map.put("message", e.getMessage());
+//            }
+//        }
         return map;
     }
 

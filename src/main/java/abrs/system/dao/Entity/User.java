@@ -14,18 +14,15 @@ public class User {
     @Id
     private String id;
 
-    private String institution = "";
     private String name = "";
     private String username = "";
     private String password = "";
     private String role = "";
     private String email = "";
     private String phone = "";
-    private String money = "";
+
     private String salt = "";
-    private String team = "";
-    private String school = "";
-    private String grade = "";
+
 
     public User() {
     }
@@ -60,17 +57,6 @@ public class User {
         this.password = password;
     }
 
-    /**
-     *
-     * @return 所属机构
-     */
-    public String getInstitution() {
-        return institution;
-    }
-
-    public void setInstitution(String institution) {
-        this.institution = institution;
-    }
 
     /**
      *
@@ -107,17 +93,6 @@ public class User {
         this.phone = phone;
     }
 
-    /**
-     *
-     * @return 金额，md5加密
-     */
-    public String getMoney() {
-        return money;
-    }
-
-    public void setMoney(String money) {
-        this.money = money;
-    }
 
     /**
      *
@@ -131,41 +106,9 @@ public class User {
         this.salt = salt;
     }
 
-    /**
-     *
-     * @return 班级
-     */
-    public String getTeam() {
-        return team;
-    }
 
-    public void setTeam(String team) {
-        this.team = team;
-    }
 
-    /**
-     *
-     * @return 学校
-     */
-    public String getSchool() {
-        return school;
-    }
 
-    public void setSchool(String school) {
-        this.school = school;
-    }
-
-    /**
-     *
-     * @return 年级
-     */
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
 
     /**
      *

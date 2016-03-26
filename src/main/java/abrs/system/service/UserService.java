@@ -29,52 +29,71 @@ public class UserService {
      *
      * @param username     用户名
      * @param password     密码
-     * @param institution  合作机构用户
+     * @param name          昵称
      * @param role      角色
      * @param email        邮箱
      * @param phone        电话
-     * @param team         班级
-     * @param school       学校
-     * @param grade        年级
      * @return 是否增加成功
      */
-    public boolean addItem(String username, String password, String name, String institution,
+    public boolean addItem(String username, String password, String name,
                            Auth.Role role, String email,
-                           String phone, String team, String school, String grade) {
-        if (checkUserExist(username, institution))
+                           String phone) {
+        if (checkUserExist(username))
             return false;
 
         User user = new User();
         user.setSalt(getRandomString(6));
         user.setUsername(username);
         user.setName(name);
-        user.setPassword(MD5.GetMD5Code(user.getSalt() + password));
-        user.setInstitution(institution);
-        user.setRole(AES.encrypt(user.getSalt() + role.name()));
+        user.setPassword(this.getUserPasswordMd5(user.getSalt(),password));
+        user.setRole(AES.encrypt(this.getUserRoleEncrypt(user.getSalt(),role.name())));
         user.setEmail(email);
         user.setPhone(phone);
-        user.setTeam(team);
-        user.setSchool(school);
-        user.setGrade(grade);
-        user.setMoney(AES.encrypt(user.getSalt() + Integer.toString(0)));
         userDao.save(user);
-        logger.info("Add User: " + institution + "/" + username);
+        logger.info("Add User: " +  "/" + username);
         return true;
     }
 
     /**
+     * 获得用户的真实角色
+     * @param salt 盐值
+     * @param rolename 角色名
+     * @return 角色信息
+     */
+    public Auth.Role getUserRole(String salt,String rolename){
+        String name = AES.decrypt(salt+rolename);
+        return Auth.Role.valueOf(name);
+    }
+
+    /**
+     * 加密用户角色信息
+     * @param salt 盐值
+     * @param rolename 色名
+     * @return 加密结果
+     */
+    public String getUserRoleEncrypt(String salt,String rolename){
+        return AES.encrypt(salt+rolename);
+    }
+    /***
+     * 获得用户密码MD5值
+     * @param salt
+     * @param password
+     * @return
+     */
+    public String getUserPasswordMd5(String salt,String password){
+        return (MD5.GetMD5Code(salt + password));
+    }
+    /**
      * 检测用户是否存在，本站用户机构名为空
      *
      * @param username    用户名
-     * @param institution 机构名
      * @return 用户是否存在
      */
-    public boolean checkUserExist(String username, String institution) {
+    public boolean checkUserExist(String username) {
         Query query = new Query();
         query.addCriteria(Criteria.where("username").is(username));
-        query.addCriteria(Criteria.where("institution").is(institution));
         boolean result = userDao.getCount(query) == 1;
-        logger.info("Check User " + institution + "/" + username + " Exist: " + result);
+        logger.info("Check User " +  "/" + username + " Exist: " + result);
         return result;
     }
 
@@ -89,39 +108,17 @@ public class UserService {
     }
 
     /**
-     * 获取用户信息
-     *
-     * @param username    用户名
-     * @param institution 机构名
+     * 根据账号密码查找用户
+     * @param username
+     * @param userpassword
      * @return 用户信息
      */
-    public User getItem(String username, String institution) {
+    public User getItem(String username,String userpassword)
+    {
         Query query = new Query();
         query.addCriteria(Criteria.where("username").is(username));
-        query.addCriteria(Criteria.where("institution").is(institution));
         User user = userDao.queryOne(query);
-        logger.info("Get User: " + institution + "/" + username);
-        if (user != null)
-            return user;
-        else
-            return null;
-    }
-
-    /**
-     * 获取用户信息
-     *
-     * @param username    用户名
-     * @param password    密码
-     * @param institution 机构名
-     * @return 用户信息
-     */
-    public User getItem(String username, String password, String institution) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("username").is(username));
-        query.addCriteria(Criteria.where("institution").is(institution));
-        User user = userDao.queryOne(query);
-        logger.info("Get User: " + institution + "/" + username);
-        if (user != null && MD5.GetMD5Code(user.getSalt() + password).equals(user.getPassword()))
+        if (user.getPassword().equals( this.getUserPasswordMd5(user.getSalt(),userpassword)))
             return user;
         else
             return null;
@@ -152,60 +149,23 @@ public class UserService {
      * @param username    用户名
      * @param oldPassword 旧密码
      * @param newPassword 新密码
-     * @param institution 机构
      * @return 重置是否成功
      */
     public boolean resetPassword(String username, String oldPassword,
-                                 String newPassword, String institution) {
+                                 String newPassword) {
         Query query = new Query();
         query.addCriteria(Criteria.where("username").is(username));
-        query.addCriteria(Criteria.where("institution").is(institution));
         User user = userDao.queryOne(query);
         if (user != null && MD5.GetMD5Code(user.getSalt() + oldPassword).equals(user.getPassword())) {
             Update update = new Update();
             update.set("password", MD5.GetMD5Code(user.getSalt() + newPassword));
             userDao.updateFirst(query, update);
-            logger.info("Reset User Password: " + institution + "/" + username);
+            logger.info("Reset User Password: " +  "/" + username);
             return true;
         } else
             return false;
     }
 
-    /**
-     * 用户金额修改
-     *
-     * @param userId 用户ID
-     * @param value  增减金额
-     * @return 修改成功
-     */
-    public boolean changeMoney(String userId, int value) {
-        User user = userDao.queryById(userId);
-        if (user != null) {
-            int money = Integer.parseInt(AES.decrypt(user.getMoney().substring(6))) + value;
-            Query query = new Query();
-            query.addCriteria(Criteria.where("id").is(userId));
-            Update update = new Update();
-            update.set("money", AES.encrypt(user.getSalt() + Integer.toString(money)));
-            userDao.updateFirst(query, update);
-            logger.info("Add User Money: " + userId + " " + value);
-            return true;
-        } else
-            return false;
-    }
-
-    /**
-     * 获取用户金额
-     *
-     * @param userId 用户ID
-     * @return 用户金额
-     */
-    public int getMoney(String userId) {
-        User user = userDao.queryById(userId);
-        if (user != null) {
-            return Integer.parseInt(AES.decrypt(user.getMoney()).substring(6));
-        } else
-            return 0;
-    }
 
     /**
      * 获取角色

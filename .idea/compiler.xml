@@ -17,18 +17,16 @@
       <profile default="true" name="Default" enabled="false">
         <processorPath useClasspath="true" />
       </profile>
-      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+      <profile default="false" name="Annotation profile for AgriBasicRS" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="AgriBasicRS" />
-        <module name="ExamPlus" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AgriBasicRS" target="1.6" />
-      <module name="ExamPlus" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

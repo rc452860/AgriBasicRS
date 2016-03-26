@@ -30,7 +30,7 @@ public class IndexMobileController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap model) {
-        return "mobile/index";
+        return "redirect:mobile/login";
     }
 
     @RequestMapping(value = "/{error}",method = RequestMethod.GET)
@@ -42,15 +42,15 @@ public class IndexMobileController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(ModelMap model) {
         model.addAttribute("LoginForm", new LoginForm());
-        return "mobile/user_login";
+        return "mobile/login";
     }
 
     @RequestMapping(value = "/install", method = RequestMethod.GET)
     public String install(ModelMap model) {
-        userService.addItem("admin", "admin", "管理员", "", Auth.Role.ADMIN,
-                "edifierwill@163.com", "", "", "", "");
+        userService.addItem("admin", "admin", "管理员", Auth.Role.ADMIN,
+                "edifierwill@163.com","");
         model.addAttribute("LoginForm", new LoginForm());
-        return "mobile/user_login";
+        return "mobile/login";
     }
 
     @ResponseBody
@@ -61,7 +61,7 @@ public class IndexMobileController {
             map.put("message", errors.getFieldError().getDefaultMessage());
         } else {
             try {
-                User user = userService.getItem(form.getUsername(), form.getPassword(), "");
+                User user = userService.getItem(form.getUsername(), form.getPassword());
                 if (user != null) {
                     session.setAttribute(SessionContext.CURRENT_USER, user);
                     session.setAttribute(SessionContext.CURRENT_USER_ROLE, userService.getUserRole(user.getId()));
