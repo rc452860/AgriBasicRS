@@ -16,11 +16,11 @@ public class CostBenefitProductivityOfPlant {
 
     private int county_num;//调查县数
     private int family_num;//调查户数
-    private int area_num;//调查面积
+    private double area_num;//调查面积
 
     //region 成本与收益
 
-    //region每亩
+    //region 每亩
     private double costbenefit_permu_main_product_output;//主产品产量
     private double costbenefit_permu_by_product_output;//副产品产量
 
@@ -33,7 +33,7 @@ public class CostBenefitProductivityOfPlant {
     private double costbenefit_permu_production_material_cost;//物质费用
     private double costbenefit_permu_production_person_cost;//人工成本(costbenefit_permu_production_person_family_total + costbenefit_permu_production_person_employee_total)
     private double costbenefit_permu_production_person_family_total;//家庭用工作价(costbenefit_permu_production_person_family_num * costbenefit_permu_production_person_family_price)
-    private double costbenefit_permu_production_person_family_num;//家庭用工数量
+    private double costbenefit_permu_production_person_family_num;//家庭用工数量(permu_family_cost_total)
     private double costbenefit_permu_production_person_family_price;//家庭用工日工价
     private double costbenefit_permu_production_person_employee_total;//雇工费用(costbenefit_permu_production_person_employee_num * costbenefit_permu_production_person_employee_price)
     private double costbenefit_permu_production_person_employee_num;//雇工数量
@@ -76,6 +76,7 @@ public class CostBenefitProductivityOfPlant {
     //endregion
 
     //region 每亩物质费用合计
+    private double permu_material_cost_total;//每亩物质费用合计
 
     //region 直接生产费用小计
     private double permu_material_cost_total_direct_cost_subtotal;//直接生产费用小计
@@ -108,6 +109,7 @@ public class CostBenefitProductivityOfPlant {
     //endregion
 
     //region 每亩家庭用工合计
+    private double permu_family_cost_total;//每亩家庭用工合计(permu_family_cost_total_direct_employ_subtotal + permu_family_cost_total_indirect_employ_subtotal)
 
     //region 直接费用工用小计
     private double permu_family_cost_total_direct_employ_subtotal;//直接用工费用小计
@@ -159,11 +161,11 @@ public class CostBenefitProductivityOfPlant {
         this.family_num = family_num;
     }
 
-    public int getArea_num() {
+    public double getArea_num() {
         return area_num;
     }
 
-    public void setArea_num(int area_num) {
+    public void setArea_num(double area_num) {
         this.area_num = area_num;
     }
 
@@ -431,6 +433,14 @@ public class CostBenefitProductivityOfPlant {
         this.costbenefit_note_permu_subsidy_income = costbenefit_note_permu_subsidy_income;
     }
 
+    public double getPermu_material_cost_total() {
+        return permu_material_cost_total;
+    }
+
+    public void setPermu_material_cost_total(double permu_material_cost_total) {
+        this.permu_material_cost_total = permu_material_cost_total;
+    }
+
     public double getPermu_material_cost_total_direct_cost_subtotal() {
         return permu_material_cost_total_direct_cost_subtotal;
     }
@@ -597,6 +607,14 @@ public class CostBenefitProductivityOfPlant {
 
     public void setPermu_material_cost_total_note_mixed_application_rate(double permu_material_cost_total_note_mixed_application_rate) {
         this.permu_material_cost_total_note_mixed_application_rate = permu_material_cost_total_note_mixed_application_rate;
+    }
+
+    public double getPermu_family_cost_total() {
+        return permu_family_cost_total;
+    }
+
+    public void setPermu_family_cost_total(double permu_family_cost_total) {
+        this.permu_family_cost_total = permu_family_cost_total;
     }
 
     public double getPermu_family_cost_total_direct_employ_subtotal() {
