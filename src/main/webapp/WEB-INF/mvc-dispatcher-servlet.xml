@@ -17,11 +17,12 @@
 
     <context:component-scan base-package="abrs.system"/>
 
-    <mvc:resources mapping="/mobile/css/**" location="/mobile/css/"/>
-    <mvc:resources mapping="/mobile/img/**" location="/mobile/img/"/>
-    <mvc:resources mapping="/mobile/js/**" location="/mobile/js/"/>
+    <!--<mvc:resources mapping="/mobile/css/**" location="/mobile/css/"/>-->
+    <!--<mvc:resources mapping="/mobile/img/**" location="/mobile/img/"/>-->
+    <!--<mvc:resources mapping="/mobile/js/**" location="/mobile/js/"/>-->
+    <!--<mvc:resources mapping="/mobile/editor/**" location="/mobile/editor/"/>-->
+    <mvc:resources mapping="/mobile/**" location="/mobile/"/>
     <mvc:resources mapping="/template/**" location="/template/"/>
-    <mvc:resources mapping="/mobile/editor/**" location="/mobile/editor/"/>
 
 
 
