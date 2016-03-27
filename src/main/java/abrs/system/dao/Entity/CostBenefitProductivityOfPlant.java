@@ -1,6 +1,7 @@
 package abrs.system.dao.Entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Created by Edifi_000 on 2016-03-27.
@@ -8,6 +9,7 @@ import org.springframework.data.annotation.Id;
 /**
  * 种植业产品生产成本、收益与劳动生产率
  */
+@Document(collection = "CostBenefitProductivityOfPlant")
 public class CostBenefitProductivityOfPlant {
     @Id
     private String id;
