@@ -19,7 +19,6 @@
     <%--script--%>
     <script type="text/javascript" src="/mobile/js/jquery.js"></script>
     <!--[if IE 6]>
-    <script type="text/javascript" src="/mobile/js/IE8.js"></script>
     <script type="text/javascript" src="/mobile/js/DD_belatedPNG_0.0.8a-min.js" ></script>
 
     <script type="text/javascript">
@@ -77,7 +76,6 @@
                 });
 //                回车登陆
                 $(document).keydown(function(evenet){
-                    console.log(evenet)
                     if(evenet.keyCode == 13){
                         $('#submit_button').click();
                     }

@@ -63,36 +63,46 @@
             <span><img src="img/leftico01.png" /></span>管理信息
         </div>
         <ul class="menuson">
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="index.html" target="rightFrame">农户基本信息</a>
+                    <i class ="png"></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="/mobile/manage/farmerAdd" target="rightFrame">添加农户基本信息</a></li>
+                    <li><a href="/mobile/manage/farmerList" target="rightFrame">农户基本信息列表</a></li>
+                </ul>
+            </li>
+            <%--<li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="index.html" target="rightFrame">首页模版</a>
+                    <i class ="png"></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="javascript:;">文件管理</a></li>
+                    <li><a href="javascript:;">模型信息配置</a></li>
+                    <li><a href="javascript:;">基本内容</a></li>
+                    <li><a href="javascript:;">自定义</a></li>
+                </ul>
+            </li>
 
-            <%--<li>--%>
-                <%--<div class="header">--%>
-                    <%--<cite></cite>--%>
-                    <%--<a href="index.html" target="rightFrame">首页模版</a>--%>
-                    <%--<i class ="png"></i>--%>
-                <%--</div>--%>
-                <%--<ul class="sub-menus">--%>
-                    <%--<li><a href="javascript:;">文件管理</a></li>--%>
-                    <%--<li><a href="javascript:;">模型信息配置</a></li>--%>
-                    <%--<li><a href="javascript:;">基本内容</a></li>--%>
-                    <%--<li><a href="javascript:;">自定义</a></li>--%>
-                <%--</ul>--%>
-            <%--</li>--%>
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="right.html" target="rightFrame">数据列表</a>
+                    <i class ="png"></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="javascript:;">文件数据</a></li>
+                    <li><a href="javascript:;">学生数据列表</a></li>
+                    <li><a href="javascript:;">我的数据列表</a></li>
+                    <li><a href="javascript:;">自定义</a></li>
+                </ul>
+            </li>--%>
 
-            <%--<li>--%>
-                <%--<div class="header">--%>
-                    <%--<cite></cite>--%>
-                    <%--<a href="right.html" target="rightFrame">数据列表</a>--%>
-                    <%--<i class ="png"></i>--%>
-                <%--</div>--%>
-                <%--<ul class="sub-menus">--%>
-                    <%--<li><a href="javascript:;">文件数据</a></li>--%>
-                    <%--<li><a href="javascript:;">学生数据列表</a></li>--%>
-                    <%--<li><a href="javascript:;">我的数据列表</a></li>--%>
-                    <%--<li><a href="javascript:;">自定义</a></li>--%>
-                <%--</ul>--%>
-            <%--</li>--%>
-
-            <li><cite></cite><a href="form.html" target="rightFrame">添加编辑</a><i class ="png"></i></li>
+            <%--<li><cite></cite><a href="form.html" target="rightFrame">添加编辑</a><i class ="png"></i></li>--%>
 
         </ul>
     </dd>
