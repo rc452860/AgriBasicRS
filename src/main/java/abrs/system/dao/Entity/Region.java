@@ -7,26 +7,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * Created by Edifi_000 on 2016-03-22.
  */
 /**
- * ÇøÓòµ¥Î»ĞÅÏ¢£¨ËùÔÚÕæ´å×é£©
+ * åŒºåŸŸå•ä½ä¿¡æ¯ï¼ˆæ‰€åœ¨çœŸæ‘ç»„ï¼‰
  */
 @Document(collection = "Region")
 public class Region {
     @Id
     private String id;
 
-    private String no;//±àºÅ
+    private String no;//ç¼–å·
 
-    private String name;//Ãû³Æ
+    private String name;//åç§°
 
-    private String fullname;//È«³Æ
+    private String fullname;//å…¨ç§°
 
-    private String fatherno;//¸¸ÇøÓòµ¥Î»±àºÅ
+    private String fatherno;//çˆ¶åŒºåŸŸå•ä½ç¼–å·
 
-    private String shortnoone;//¶ÌÂë1
+    private String shortnoone;//çŸ­ç 1
 
-    private String shortnotwo;//¶ÌÂë2
+    private String shortnotwo;//çŸ­ç 2
 
-    private int flag;//±êÊ¶
+    private int flag;//æ ‡è¯†
 
     public Region(){}
 

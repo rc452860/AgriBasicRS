@@ -8,35 +8,35 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * ²úÁ¿Ô¤¼ÆÃ÷Ï¸ĞÅÏ¢
+ * äº§é‡é¢„è®¡æ˜ç»†ä¿¡æ¯
  */
 @Document(collection = "ExpectedProductionItem")
 public class ExpectedProductionItem {
     @Id
     private String id;
 
-    //region ²¥ÖÖÃæ»ı£¨Ä¶£©
-    private double seededarea_lastyear;//ÉÏÄêÊµ¼Ê
-    private double seededarea_thisyear;//±¾ÄêÔ¤¼Æ
-    //Ôö¼õ±È½Ï
-    private double seededarea_Increasedecrease_absolute;//¾ø¶ÔÊı
-    private double seededarea_Increasedecrease_relative;//Ïà¶ÔÊı
+    //region æ’­ç§é¢ç§¯ï¼ˆäº©ï¼‰
+    private double seededarea_lastyear;//ä¸Šå¹´å®é™…
+    private double seededarea_thisyear;//æœ¬å¹´é¢„è®¡
+    //å¢å‡æ¯”è¾ƒ
+    private double seededarea_Increasedecrease_absolute;//ç»å¯¹æ•°
+    private double seededarea_Increasedecrease_relative;//ç›¸å¯¹æ•°
     //endregion
 
-    //region µ¥²ú£¨¹«½ï/Ä¶£©
-    private double perunit_lastyear;//ÉÏÄêÊµ¼Ê
-    private double perunit_thisyear;//±¾ÄêÔ¤¼Æ
-    //Ôö¼õ±È½Ï
-    private double perunit_Increasedecrease_absolute;//¾ø¶ÔÊı
-    private double perunit_Increasedecrease_relative;//Ïà¶ÔÊı
+    //region å•äº§ï¼ˆå…¬æ–¤/äº©ï¼‰
+    private double perunit_lastyear;//ä¸Šå¹´å®é™…
+    private double perunit_thisyear;//æœ¬å¹´é¢„è®¡
+    //å¢å‡æ¯”è¾ƒ
+    private double perunit_Increasedecrease_absolute;//ç»å¯¹æ•°
+    private double perunit_Increasedecrease_relative;//ç›¸å¯¹æ•°
     //endregion
 
-    //region ×Ü²úÁ¿£¨¶Ö£©£©
-    private double total_lastyear;//ÉÏÄêÊµ¼Ê
-    private double total_thisyear;//±¾ÄêÔ¤¼Æ
-    //Ôö¼õ±È½Ï
-    private double total_Increasedecrease_absolute;//¾ø¶ÔÊı
-    private double total_Increasedecrease_relative;//Ïà¶ÔÊı
+    //region æ€»äº§é‡ï¼ˆå¨ï¼‰ï¼‰
+    private double total_lastyear;//ä¸Šå¹´å®é™…
+    private double total_thisyear;//æœ¬å¹´é¢„è®¡
+    //å¢å‡æ¯”è¾ƒ
+    private double total_Increasedecrease_absolute;//ç»å¯¹æ•°
+    private double total_Increasedecrease_relative;//ç›¸å¯¹æ•°
     //endregion
 
 

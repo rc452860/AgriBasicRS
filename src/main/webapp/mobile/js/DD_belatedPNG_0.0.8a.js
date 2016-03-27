@@ -135,7 +135,10 @@ var DD_belatedPNG = {
     giveLayout: function (el) {
         el.style.zoom = 1;
         if (el.currentStyle.position == 'static') {
-            el.style.position = 'relative';
+            var tags=el.nodeName.toLowerCase();
+            if(tags!='html' && tags!='a'&& tags!='img'){
+                el.style.position = 'relative'
+            };
         }
     },
     copyImageBorders: function (el) {
@@ -248,7 +251,7 @@ var DD_belatedPNG = {
         }
         el.isImg = false;
         if (el.nodeName == 'IMG') {
-            if(el.src.toLowerCase().search(/\.png$/) != -1) {
+            if(/\.png(?:\W|$)/.test(el.src.toLowerCase())) {
                 el.isImg = true;
                 el.style.visibility = 'hidden';
             }

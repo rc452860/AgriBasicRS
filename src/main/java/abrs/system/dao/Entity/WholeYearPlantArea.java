@@ -8,84 +8,84 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * È«ÄêÅ©×÷Îï²¥ÖÖÃæ»ıÒâÏò£¨Ô¤¼Æ£©µ÷²é(µ¥Ò»Ã÷Ï¸ÅäºÏRegistrationForm²éÑ¯³É»ã×Ü±í)
+ * å…¨å¹´å†œä½œç‰©æ’­ç§é¢ç§¯æ„å‘ï¼ˆé¢„è®¡ï¼‰è°ƒæŸ¥(å•ä¸€æ˜ç»†é…åˆRegistrationFormæŸ¥è¯¢æˆæ±‡æ€»è¡¨)
  */
 @Document(collection = "WholeYearPlantArea")
 public class WholeYearPlantArea {
     @Id
     private String id;
 
-    private String farmer_id;//Å©»§id
+    private String farmer_id;//å†œæˆ·id
 
-    private int form_tag;//µ±Îª0ÎªÒâÏòµ÷²é µ±Îª1Ô¤¼Æµ÷²é
+    private int form_tag;//å½“ä¸º0ä¸ºæ„å‘è°ƒæŸ¥ å½“ä¸º1é¢„è®¡è°ƒæŸ¥
 
-    private double plant_total;//Å©×÷Îï×ÜÃæ»ı
+    private double plant_total;//å†œä½œç‰©æ€»é¢ç§¯
 
-    //region Á¸Ê³
-    private double food_total;//Á¸Ê³ºÏ¼Æ
-    private double food_summerl;//ÆäÖĞ£ºÏÄÁ¸
+    //region ç²®é£Ÿ
+    private double food_total;//ç²®é£Ÿåˆè®¡
+    private double food_summerl;//å…¶ä¸­ï¼šå¤ç²®
 
-    //¹ÈÎï
-    private double food_grain;//¹ÈÎï ºÏ¼Æ£¨food_grain_daogu_zaodao+food_grain_daogu_zhongdao+food_grain_daogu_wandao+food_grain_xiaomai+food_grain_yumi+food_grain_guzi+food_grain_gaoliang+food_grain_other£©
-    private double food_grain_daogu;//µ¾¹È£¨food_grain_daogu_zaodao+food_grain_daogu_zhongdao+food_grain_daogu_wandao£©
-    private double food_grain_daogu_zaodao;//Ôçµ¾
-    private double food_grain_daogu_zhongdao;//ÖĞµ¾
-    private double food_grain_daogu_wandao;//Ë«¼¾Ííµ¾
-    private double food_grain_xiaomai;//Ğ¡Âó
-    private double food_grain_yumi;//ÓñÃ×
-    private double food_grain_guzi;//¹È×Ó
-    private double food_grain_gaoliang;//¸ßÁ»
-    private double food_grain_other;//ÆäËû
+    //è°·ç‰©
+    private double food_grain;//è°·ç‰© åˆè®¡ï¼ˆfood_grain_daogu_zaodao+food_grain_daogu_zhongdao+food_grain_daogu_wandao+food_grain_xiaomai+food_grain_yumi+food_grain_guzi+food_grain_gaoliang+food_grain_otherï¼‰
+    private double food_grain_daogu;//ç¨»è°·ï¼ˆfood_grain_daogu_zaodao+food_grain_daogu_zhongdao+food_grain_daogu_wandaoï¼‰
+    private double food_grain_daogu_zaodao;//æ—©ç¨»
+    private double food_grain_daogu_zhongdao;//ä¸­ç¨»
+    private double food_grain_daogu_wandao;//åŒå­£æ™šç¨»
+    private double food_grain_xiaomai;//å°éº¦
+    private double food_grain_yumi;//ç‰ç±³
+    private double food_grain_guzi;//è°·å­
+    private double food_grain_gaoliang;//é«˜ç²±
+    private double food_grain_other;//å…¶ä»–
     //endregion
 
-    //region ¶¹Àà
-    private double food_legume;//¶¹Àà ºÏ¼Æ
-    private double food_legume_dadou;//ÆäÖĞ£º´ó¶¹(²»´óÓÚfood_legume)
+    //region è±†ç±»
+    private double food_legume;//è±†ç±» åˆè®¡
+    private double food_legume_dadou;//å…¶ä¸­ï¼šå¤§è±†(ä¸å¤§äºfood_legume)
     //endregion
 
-    //region ÕÛÁ¸ÊíÀà
-    private double food_potato;//ÊíÀà ºÏ¼Æ
-    private double food_potato_malingshu;// ÆäÖĞ£ºÂíÁåÊí(²»´óÓÚfood_potato)
+    //region æŠ˜ç²®è–¯ç±»
+    private double food_potato;//è–¯ç±» åˆè®¡
+    private double food_potato_malingshu;// å…¶ä¸­ï¼šé©¬é“ƒè–¯(ä¸å¤§äºfood_potato)
     //endregion
 
-    //region ÓÍÁÏ×÷Îï
-    private double oilplant_total;//ÓÍÁÏ×÷Îï ºÏ¼Æ(²»Ğ¡ÓÚfood_oilplant_huasheng+food_oilplant_youcaizi+food_oilplant_zhima)
-    private double oilplant_huasheng;//ÆäÖĞ£º»¨Éú
-    private double oilplant_youcaizi;//ÓÍ²Ë×Ñ
-    private double oilplant_zhima;//Ö¥Âé
+    //region æ²¹æ–™ä½œç‰©
+    private double oilplant_total;//æ²¹æ–™ä½œç‰© åˆè®¡(ä¸å°äºfood_oilplant_huasheng+food_oilplant_youcaizi+food_oilplant_zhima)
+    private double oilplant_huasheng;//å…¶ä¸­ï¼šèŠ±ç”Ÿ
+    private double oilplant_youcaizi;//æ²¹èœç±½
+    private double oilplant_zhima;//èŠéº»
     //endregion
 
-    //region ÃŞ»¨
-    private double cotton_total;//ÃŞ»¨
+    //region æ£‰èŠ±
+    private double cotton_total;//æ£‰èŠ±
     //endregion
 
-    //region ÉúÂé
-    private double rawjute_total;//ÉúÂé
-    private double rawjute_hongma;//ÆäÖĞ£ºÉú»ÆºìÂé
+    //region ç”Ÿéº»
+    private double rawjute_total;//ç”Ÿéº»
+    private double rawjute_hongma;//å…¶ä¸­ï¼šç”Ÿé»„çº¢éº»
     //endregion
 
-    //region ÌÇÀàºÏ¼Æ
-    private double sugar_total;//ÌÇÀà
-    private double sugar_ganzhe;//¸ÊÕá
-    private double sugar_tiancai;//Ìğ²Ë
+    //region ç³–ç±»åˆè®¡
+    private double sugar_total;//ç³–ç±»
+    private double sugar_ganzhe;//ç”˜è”—
+    private double sugar_tiancai;//ç”œèœ
     //endregion
 
-    //region ÑÌÒ¶
-    private double tobacco_total;//ÑÌÒ¶
-    private double tobacco_kaoyan;//ÆäÖĞ£º¿¾ÑÌ
+    //region çƒŸå¶
+    private double tobacco_total;//çƒŸå¶
+    private double tobacco_kaoyan;//å…¶ä¸­ï¼šçƒ¤çƒŸ
     //endregion
 
-    //region Êß²Ë
-    private double vegetables_total;//Êß²Ë
+    //region è”¬èœ
+    private double vegetables_total;//è”¬èœ
     //endregion
 
-    //region ¹Ï¹ûÀà
-    private double fruit_total;//¹Ï¹û
+    //region ç“œæœç±»
+    private double fruit_total;//ç“œæœ
     //endregion
 
-    //region ÆäËû×÷Îï
-    private double otherplant_total;//ÆäËû×÷Îï
-    private double otherplant_qingsiliaol;//ÆäÖĞ£ºÇàËÇÁÏ
+    //region å…¶ä»–ä½œç‰©
+    private double otherplant_total;//å…¶ä»–ä½œç‰©
+    private double otherplant_qingsiliaol;//å…¶ä¸­ï¼šé’é¥²æ–™
     //endregion
 
     public WholeYearPlantArea(){}

@@ -65,7 +65,7 @@ public class IndexMobileController {
                 if (user != null) {
                     session.setAttribute(SessionContext.CURRENT_USER, user);
                     session.setAttribute(SessionContext.CURRENT_USER_ROLE, userService.getUserRole(user.getId()));
-                    map.put("url", "/mobile/examine/my_list/0");
+                    map.put("url", "/mobile/admin");
                 } else {
                     map.put("message", "用户名或密码不正确");
                 }
@@ -82,4 +82,27 @@ public class IndexMobileController {
         session.removeAttribute(SessionContext.CURRENT_USER);
         return "redirect:/mobile/";
     }
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String admin(){
+        return "mobile/admin";
+    }
+
+    @RequestMapping(value = "/left", method = RequestMethod.GET)
+    public String left(){
+        return "mobile/left";
+    }
+    @RequestMapping(value = "/footer", method = RequestMethod.GET)
+    public String footer(){
+        return "mobile/footer";
+    }
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index(){
+        return "mobile/index";
+    }
+    @RequestMapping(value = "/top", method = RequestMethod.GET)
+    public String top(){
+        return "mobile/top";
+    }
+
 }

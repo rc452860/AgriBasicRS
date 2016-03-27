@@ -10,31 +10,31 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 /**
- * µ÷²é±íĞÅÏ¢
+ * è°ƒæŸ¥è¡¨ä¿¡æ¯
  */
 @Document(collection = "RegistrationForm")
 public class RegistrationForm {
     @Id
     private String id;
 
-    private String no;//±àºÅ
+    private String no;//ç¼–å·
 
-    private String name;//Ãû³Æ
+    private String name;//åç§°
 
-    private String form_type;//±í¸ñÀàĞÍ£¨¸ù¾İ¹Ì¶¨µÄÌá¹©µÄexcel±í£¬´Ó¶øÎª´òÓ¡Ìá¹©Ä£°æ£©
+    private String form_type;//è¡¨æ ¼ç±»å‹ï¼ˆæ ¹æ®å›ºå®šçš„æä¾›çš„excelè¡¨ï¼Œä»è€Œä¸ºæ‰“å°æä¾›æ¨¡ç‰ˆï¼‰
 
-    private Boolean multidata;//ÅĞ¶ÏÊÇ·ñ¶àÊı¾İ±í(Å©ÊĞ£¨»ù£©1-1±í¡¢1-2±í)»òµ¥Êı¾İ±í(Å©ÊĞ£¨»ù£©3-1±í¡¢3-2±í)
+    private Boolean multidata;//åˆ¤æ–­æ˜¯å¦å¤šæ•°æ®è¡¨(å†œå¸‚ï¼ˆåŸºï¼‰1-1è¡¨ã€1-2è¡¨)æˆ–å•æ•°æ®è¡¨(å†œå¸‚ï¼ˆåŸºï¼‰3-1è¡¨ã€3-2è¡¨)
 
-    private Date create_date = new Date();//´´½¨Ê±¼ä
+    private Date create_date = new Date();//åˆ›å»ºæ—¶é—´
 
-    private Date record_date;//Ìî±íÊ±¼ä
+    private Date record_date;//å¡«è¡¨æ—¶é—´
 
-    private Date end_date;//½ØÖ¹Ê±¼ä
+    private Date end_date;//æˆªæ­¢æ—¶é—´
 
-    private String record_entity;//Ìî±¨µ¥Î»
+    private String record_entity;//å¡«æŠ¥å•ä½
 
-    private String record_person_name;//µ÷²éÔ±ĞÕÃû
-    private String record_person_phone;//µ÷²éÔ±ÁªÏµµç»°
+    private String record_person_name;//è°ƒæŸ¥å‘˜å§“å
+    private String record_person_phone;//è°ƒæŸ¥å‘˜è”ç³»ç”µè¯
 
     public RegistrationForm(){}
 

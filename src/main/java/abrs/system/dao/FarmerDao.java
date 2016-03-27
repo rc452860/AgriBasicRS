@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public class FarmerDao extends MongoGenDao<Farmer> {
 
     /**
-     * ·µ»Ø·´ÉäµÄÀàĞÍ
+     * è¿”å›åå°„çš„ç±»å‹
      */
     @Override
     protected Class<Farmer> getEntityClass() {

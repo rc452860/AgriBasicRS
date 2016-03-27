@@ -7,22 +7,22 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * Created by Edifi_000 on 2016-03-23.
  */
 /**
- * ÏÄÁ¸¡¢ÏÄÊÕÓÍ²Ë×Ñ²úÁ¿Ô¤¼ÆÖ÷±íĞÅÏ¢
+ * å¤ç²®ã€å¤æ”¶æ²¹èœç±½äº§é‡é¢„è®¡ä¸»è¡¨ä¿¡æ¯
  */
 @Document(collection = "SummerFoodAndRapeseedExpecPro")
 public class SummerFoodAndRapeseedExpecPro {
     @Id
     private String id;
 
-    private int survey_village_num; //µ÷²é´åÊı
+    private int survey_village_num; //è°ƒæŸ¥æ‘æ•°
 
-    private int survey_family_num;//µ÷²é»§Êı
+    private int survey_family_num;//è°ƒæŸ¥æˆ·æ•°
 
-    private String food_itemid; //ÏÄÁ¸(ItemID)
+    private String food_itemid; //å¤ç²®(ItemID)
 
-    private String food_xiaomai_food_itemid;//ÆäÖĞ£ºĞ¡Âó(ItemID)
+    private String food_xiaomai_food_itemid;//å…¶ä¸­ï¼šå°éº¦(ItemID)
 
-    private String rapeseed_youcaizi_itemid; //ÓÍ²Ë×Ñ(ItemID)
+    private String rapeseed_youcaizi_itemid; //æ²¹èœç±½(ItemID)
 
     public SummerFoodAndRapeseedExpecPro(){}
 

@@ -8,7 +8,7 @@
             <c:import url="nav.jsp"/>
             <div class="row">
                 <div class="col-sm-3">
-                    <c:import url="menu.jsp"/>
+                    <c:import url="left.jsp"/>
                 </div>
                 <div class="col-sm-9">
                     <h4 class="page-title">用户列表

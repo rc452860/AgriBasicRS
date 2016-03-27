@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public class AutumnFoodExpecProDao extends MongoGenDao<AutumnFoodExpecPro> {
 
     /**
-     * ·µ»Ø·´ÉäµÄÀàĞÍ
+     * è¿”å›åå°„çš„ç±»å‹
      */
     @Override
     protected Class<AutumnFoodExpecPro> getEntityClass() {

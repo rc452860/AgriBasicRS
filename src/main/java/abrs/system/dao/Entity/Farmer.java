@@ -10,66 +10,66 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 /**
- * Å©»§»ù±¾ĞÅÏ¢
+ * å†œæˆ·åŸºæœ¬ä¿¡æ¯
  */
 @Document(collection = "Farmer")
 public class Farmer {
     @Id
     private String id;
 
-    private String registration_form_id;//µ÷²é±í±àºÅ
+    private String registration_form_id;//è°ƒæŸ¥è¡¨ç¼–å·
+    
+    private int no;//åºå·
+    private String region_no; //æ‰€åœ¨é•‡æ‘ç»„ç¼–å·
+    private String region; //æ‰€åœ¨é•‡æ‘ç»„
+    private String name;//å§“å
+    private String sex;//æ€§åˆ«
+    private int age;//å¹´é¾„
+    private String familypopulation;//å®¶åº­äººå£
 
-    private int no;//ĞòºÅ
-    private String region_no; //ËùÔÚÕò´å×é±àºÅ
-    private String region; //ËùÔÚÕò´å×é
-    private String name;//ĞÕÃû
-    private String sex;//ĞÔ±ğ
-    private int age;//ÄêÁä
-    private String familypopulation;//¼ÒÍ¥ÈË¿Ú
+    //è”ç³»æ–¹å¼
+    private String contact_landline;//åº§æœº
+    private String contact_phone;//æ‰‹æœº
 
-    //ÁªÏµ·½Ê½
-    private String contact_landline;//×ù»ú
-    private String contact_phone;//ÊÖ»ú
+    //æ‰¿åŒ…åœ°é¢ç§¯ï¼ˆäº©)
+    private double contract_total;//åˆè®¡
+    private double contract_total_exchange;//æµè½¬åˆè®¡
+    private double contract_paddyfield;//æ°´ç”°
+    private double contract_paddyfield_exchange;//æ°´ç”°ä¸­æµè½¬
+    private double contract_dryfield;//æ—±åœ°
+    private double contract_dryfield_exchange;//æ—±åœ°ä¸­æµè½¬
 
-    //³Ğ°üµØÃæ»ı£¨Ä¶)
-    private double contract_total;//ºÏ¼Æ
-    private double contract_total_exchange;//Á÷×ªºÏ¼Æ
-    private double contract_paddyfield;//Ë®Ìï
-    private double contract_paddyfield_exchange;//Ë®ÌïÖĞÁ÷×ª
-    private double contract_dryfield;//ºµµØ
-    private double contract_dryfield_exchange;//ºµµØÖĞÁ÷×ª
+    //å¸¸å¹´å†œä½œç‰©ç§æ¤é¢ç§¯
+    private double plantingarea_xiaomai;//å°éº¦
+    private double plantingarea_malingshu;//é©¬é“ƒè–¯
+    private double plantingarea_youcaizi;//æ²¹èœç±½
+    private double plantingarea_zhongdao;//ä¸­ç¨»
+    private double plantingarea_wandao;//æ™šç¨»
+    private double plantingarea_yumi;//ç‰ç±³
+    private double plantingarea_dadou;//å¤§è±†
+    private double plantingarea_hongshu;//çº¢è–¯
+    private double plantingarea_mianhua;//æ£‰èŠ±
+    private double plantingarea_huasheng;//èŠ±ç”Ÿ
+    private double plantingarea_zhima;//èŠéº»
+    private double plantingarea_vegetable_facility;//è®¾æ–½è”¬èœ
+    private double plantingarea_vegetables_outdoors;//éœ²å¤©è”¬èœ
 
-    //³£ÄêÅ©×÷ÎïÖÖÖ²Ãæ»ı
-    private double plantingarea_xiaomai;//Ğ¡Âó
-    private double plantingarea_malingshu;//ÂíÁåÊí
-    private double plantingarea_youcaizi;//ÓÍ²Ë×Ñ
-    private double plantingarea_zhongdao;//ÖĞµ¾
-    private double plantingarea_wandao;//Ííµ¾
-    private double plantingarea_yumi;//ÓñÃ×
-    private double plantingarea_dadou;//´ó¶¹
-    private double plantingarea_hongshu;//ºìÊí
-    private double plantingarea_mianhua;//ÃŞ»¨
-    private double plantingarea_huasheng;//»¨Éú
-    private double plantingarea_zhima;//Ö¥Âé
-    private double plantingarea_vegetable_facility;//ÉèÊ©Êß²Ë
-    private double plantingarea_vegetables_outdoors;//Â¶ÌìÊß²Ë
+    private String note;//å¤‡æ³¨
 
-    private String note;//±¸×¢
+    private int flag;//æ ‡è¯†ç”¨äºæ ‡è®°åˆ é™¤ã€æ³¨é”€ç­‰çŠ¶æ€ 10-åœ¨çº¿ï¼›21-æ­»äº¡æ³¨é”€ï¼›22-èµ„æ ¼å–æ¶ˆ
 
-    private int flag;//±êÊ¶ÓÃÓÚ±ê¼ÇÉ¾³ı¡¢×¢ÏúµÈ×´Ì¬ 10-ÔÚÏß£»21-ËÀÍö×¢Ïú£»22-×Ê¸ñÈ¡Ïû
-
-    //·Ç±íµ¥ÏÔÊ¾ĞÅÏ¢
-    private String house_no;//ÃÅÅÆºÅ
-    private String zip_code; //ÓÊ±à
-    private String nation;//Ãñ×å
-    private String education;//ÎÄ»¯³Ì¶È
-    private String political_affiliation;//ÕşÖÎÃæÃ²
-    private int insurance;//ÊÇ·ñ²Î±££¬0-·ñ£¬1-ÊÇ
-    private Date create_date = new Date();//´´½¨Ê±¼ä
-    private Date record_date;//Â¼ÈëĞÅÏ¢ÈÕÆÚ
-    private Date update_date;//ĞŞ¸ÄĞÅÏ¢ÈÕÆÚ
-    private String record_person;//Â¼ÈëÈËÔ±
-    private String update_person;//ĞŞ¸ÄÈËÔ±
+    //éè¡¨å•æ˜¾ç¤ºä¿¡æ¯
+    private String house_no;//é—¨ç‰Œå·
+    private String zip_code; //é‚®ç¼–
+    private String nation;//æ°‘æ—
+    private String education;//æ–‡åŒ–ç¨‹åº¦
+    private String political_affiliation;//æ”¿æ²»é¢è²Œ
+    private int insurance;//æ˜¯å¦å‚ä¿ï¼Œ0-å¦ï¼Œ1-æ˜¯
+    private Date create_date = new Date();//åˆ›å»ºæ—¶é—´
+    private Date record_date;//å½•å…¥ä¿¡æ¯æ—¥æœŸ
+    private Date update_date;//ä¿®æ”¹ä¿¡æ¯æ—¥æœŸ
+    private String record_person;//å½•å…¥äººå‘˜
+    private String update_person;//ä¿®æ”¹äººå‘˜
 
     public Farmer(){
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public class RegionDao extends MongoGenDao<Region>{
 
     /**
-     * ·µ»Ø·´ÉäµÄÀàĞÍ
+     * è¿”å›åå°„çš„ç±»å‹
      */
     @Override
     protected Class<Region> getEntityClass() {

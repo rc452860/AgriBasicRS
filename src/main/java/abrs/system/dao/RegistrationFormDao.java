@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public class RegistrationFormDao extends MongoGenDao<RegistrationForm> {
 
     /**
-     * ·µ»Ø·´ÉäµÄÀàĞÍ
+     * è¿”å›åå°„çš„ç±»å‹
      */
     @Override
     protected Class<RegistrationForm> getEntityClass() {

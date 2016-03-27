@@ -7,29 +7,29 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * Created by Edifi_000 on 2016-03-25.
  */
 /**
- * ÇïÊÕ×÷Îï²úÁ¿Ô¤¼ÆÖ÷±íĞÅÏ¢
+ * ç§‹æ”¶ä½œç‰©äº§é‡é¢„è®¡ä¸»è¡¨ä¿¡æ¯
  */
 @Document(collection = "AutumnFoodExpecPro")
 public class AutumnFoodExpecPro {
     @Id
     private String id;
 
-    private int survey_village_num; //µ÷²é´åÊı
+    private int survey_village_num; //è°ƒæŸ¥æ‘æ•°
 
-    private int survey_family_num;//µ÷²é»§Êı
+    private int survey_family_num;//è°ƒæŸ¥æˆ·æ•°
 
-    private String food_itemid; //ÇïÁ¸(ItemID)
-    private String food_zhongdaoyijidao_itemid; //ÆäÖĞ£ºÖĞµ¾¼°Ò»¼¾µ¾
-    private String food_shuangjiwandao_itemid; //Ë«¼¾Ííµ¾
-    private String food_yumi_itemid; //ÓñÃ×
-    private String food_dadou_itemid; //´ó¶¹
+    private String food_itemid; //ç§‹ç²®(ItemID)
+    private String food_zhongdaoyijidao_itemid; //å…¶ä¸­ï¼šä¸­ç¨»åŠä¸€å­£ç¨»
+    private String food_shuangjiwandao_itemid; //åŒå­£æ™šç¨»
+    private String food_yumi_itemid; //ç‰ç±³
+    private String food_dadou_itemid; //å¤§è±†
 
-    private String rapeseed_itemid; //ÓÍÁÏ
-    private String rapeseed_huasheng_itemid; //ÆäÖĞ£º»¨Éú
+    private String rapeseed_itemid; //æ²¹æ–™
+    private String rapeseed_huasheng_itemid; //å…¶ä¸­ï¼šèŠ±ç”Ÿ
 
-    private String cotton_itemid; //ÃŞ»¨
+    private String cotton_itemid; //æ£‰èŠ±
 
-    private String sugar_itemid;//ÌÇÁÏ£¨¸ÊÕá£©
+    private String sugar_itemid;//ç³–æ–™ï¼ˆç”˜è”—ï¼‰
 
     public String getId() {
         return id;

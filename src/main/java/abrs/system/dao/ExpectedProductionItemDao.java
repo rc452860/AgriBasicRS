@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public class ExpectedProductionItemDao extends MongoGenDao<ExpectedProductionItem> {
 
     /**
-     * ·µ»Ø·´ÉäµÄÀàĞÍ
+     * è¿”å›åå°„çš„ç±»å‹
      */
     @Override
     protected Class<ExpectedProductionItem> getEntityClass() {

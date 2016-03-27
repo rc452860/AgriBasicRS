@@ -7,42 +7,42 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * Created by Edifi_000 on 2016-03-24.
  */
 /**
- * Çï¶¬×÷Îï²¥ÖÖÃæ»ıÒâÏòµ÷²é
+ * ç§‹å†¬ä½œç‰©æ’­ç§é¢ç§¯æ„å‘è°ƒæŸ¥
  */
 @Document(collection = "AutumnWinterPlantsIntention")
 public class AutumnWinterPlantsIntention {
     @Id
     private String id;
 
-    private String farmer_id;//Å©»§id
-    private double plant_total;//²¥ÖÖ×ÜÃæ»ı
+    private String farmer_id;//å†œæˆ·id
+    private double plant_total;//æ’­ç§æ€»é¢ç§¯
 
-    //region Á¸Ê³
-    private double food_total;//Á¸Ê³ºÏ¼Æ
+    //region ç²®é£Ÿ
+    private double food_total;//ç²®é£Ÿåˆè®¡
 
-    //¹ÈÎï
-    private double food_grain;//¹ÈÎï
-    private double food_grain_dongxiaomai;//ÆäÖĞ£º¶¬Ğ¡Âó
+    //è°·ç‰©
+    private double food_grain;//è°·ç‰©
+    private double food_grain_dongxiaomai;//å…¶ä¸­ï¼šå†¬å°éº¦
 
-    //¶¹Àà
-    private double food_legume;//¶¹Àà ºÏ¼Æ
+    //è±†ç±»
+    private double food_legume;//è±†ç±» åˆè®¡
 
-    //ÊíÀà
-    private double food_potato;//ÊíÀà ºÏ¼Æ
+    //è–¯ç±»
+    private double food_potato;//è–¯ç±» åˆè®¡
     //endregion
 
-    //region ÓÍÁÏ×÷Îï
-    private double oilplant_total;//ÓÍÁÏ×÷Îï ºÏ¼Æ(²»Ğ¡ÓÚfood_oilplant_youcaizi)
-    private double oilplant_youcaizi;//ÆäÖĞ£ºÓÍ²Ë×Ñ
+    //region æ²¹æ–™ä½œç‰©
+    private double oilplant_total;//æ²¹æ–™ä½œç‰© åˆè®¡(ä¸å°äºfood_oilplant_youcaizi)
+    private double oilplant_youcaizi;//å…¶ä¸­ï¼šæ²¹èœç±½
     //endregion
 
-    //region Êß²Ë
-    private double vegetables_total;//Êß²Ë
+    //region è”¬èœ
+    private double vegetables_total;//è”¬èœ
     //endregion
 
-    //region ÆäËû×÷Îï
-    private double otherplant_total;//ÆäËû×÷Îï
-    private double otherplant_qingsiliaol;//ÆäÖĞ£ºÇàËÇÁÏ
+    //region å…¶ä»–ä½œç‰©
+    private double otherplant_total;//å…¶ä»–ä½œç‰©
+    private double otherplant_qingsiliaol;//å…¶ä¸­ï¼šé’é¥²æ–™
     //endregion
 
     public String getId() {

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public class AutumnWinterPlantsIntentionDao extends MongoGenDao<AutumnWinterPlantsIntention> {
 
     /**
-     * ·µ»Ø·´ÉäµÄÀàĞÍ
+     * è¿”å›åå°„çš„ç±»å‹
      */
     @Override
     protected Class<AutumnWinterPlantsIntention> getEntityClass() {

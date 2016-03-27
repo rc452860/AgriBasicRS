@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class WholeYearPlantAreaDao extends MongoGenDao<WholeYearPlantArea>{
     /**
-     * ·µ»Ø·´ÉäµÄÀàĞÍ
+     * è¿”å›åå°„çš„ç±»å‹
      */
     @Override
     protected Class<WholeYearPlantArea> getEntityClass() {
