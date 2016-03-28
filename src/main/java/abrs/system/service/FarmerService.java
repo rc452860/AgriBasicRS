@@ -60,6 +60,10 @@ public class FarmerService {
         farmerDao.deleteById(id);
     }
 
+    public void removeMulit(String[] ids){
+        farmerDao.deleteByIdMulit(ids);
+    }
+
     public List<Farmer> getItems(int start, int size){
         return farmerDao.getPage(new Query(), start, size);
     }

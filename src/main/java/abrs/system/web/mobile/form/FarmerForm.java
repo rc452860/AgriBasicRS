@@ -2,6 +2,7 @@ package abrs.system.web.mobile.form;
 
 import abrs.system.dao.Entity.Farmer;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.introspect.ClassIntrospector;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.lang.reflect.Field;
@@ -12,7 +13,7 @@ import java.util.Date;
  */
 //日期绑定http://blog.csdn.net/whumr1/article/details/8056285
 public class FarmerForm {
-
+    private String id;
     private int no;//序号
     private String region_no; //所在镇村组编号
     private String region; //所在镇村组
@@ -83,6 +84,21 @@ public class FarmerForm {
             entityField.set(farmer,field.get(this));
         }
         return farmer;
+    }
+
+
+    public static FarmerForm FarmerToForm(Farmer farmer) throws NoSuchFieldException, IllegalAccessException {
+        FarmerForm farmerForm = new FarmerForm();
+        Field[] formFields = farmerForm.getClass().getDeclaredFields();
+
+        for (Field field : formFields){
+            field.setAccessible(true);
+            Field farmerField = farmer.getClass().getDeclaredField(field.getName());
+            field.setAccessible(true);
+            farmerField.setAccessible(true);
+            field.set(farmerForm,farmerField.get(farmer));
+        }
+        return farmerForm;
     }
 
 
@@ -412,5 +428,13 @@ public class FarmerForm {
 
     public void setUpdate_person(String update_person) {
         this.update_person = update_person;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

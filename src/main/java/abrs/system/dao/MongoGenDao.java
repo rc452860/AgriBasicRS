@@ -85,6 +85,17 @@ public abstract class MongoGenDao<T> {
         }
     }
 
+    public void deleteByIdMulit(String[] ids) {
+        Criteria criteria = Criteria.where("_id").in(ids);
+        if(null!=criteria){
+            Query query = new Query(criteria);
+            log.info("[Mongo Dao] deleteById:" + query);
+            if(null!=query && this.queryOne(query)!=null){
+                this.mongoTemplate.remove(query, this.getEntityClass());
+            }
+        }
+    }
+
     /**
      * 删除对象
      */
@@ -92,6 +103,8 @@ public abstract class MongoGenDao<T> {
         log.info("[Mongo Dao] delete:" + t);
         this.mongoTemplate.remove(t);
     }
+
+
 
     /**
      * 更新满足条件的第一个记录

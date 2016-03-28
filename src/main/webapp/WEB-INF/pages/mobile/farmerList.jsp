@@ -10,27 +10,74 @@
     <link href="/mobile/css/style.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="/mobile/js/jquery.js"></script>
 
+    <%--<script type="text/javascript">--%>
+        <%--$(document).ready(function () {--%>
+            <%--$(".click").click(function () {--%>
+                <%--$(".tip").fadeIn(200);--%>
+            <%--});--%>
+
+            <%--$(".tiptop a").click(function () {--%>
+                <%--$(".tip").fadeOut(200);--%>
+            <%--});--%>
+
+            <%--$(".sure").click(function () {--%>
+                <%--$(".tip").fadeOut(100);--%>
+            <%--});--%>
+
+            <%--$(".cancel").click(function () {--%>
+                <%--$(".tip").fadeOut(100);--%>
+            <%--});--%>
+
+        <%--});--%>
+    <%--</script>--%>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(".click").click(function () {
-                $(".tip").fadeIn(200);
-            });
-
-            $(".tiptop a").click(function () {
-                $(".tip").fadeOut(200);
-            });
-
-            $(".sure").click(function () {
-                $(".tip").fadeOut(100);
-            });
-
-            $(".cancel").click(function () {
-                $(".tip").fadeOut(100);
-            });
-
+    function Delete(id){/*删除脚本*/
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "/mobile/manage/farmerDelete",/*此处需修改*/
+            data: {'id':id},
+            async: false,
+            error: function (XMLHttpRequest) {
+                alert("error:" + XMLHttpRequest.status);
+            },
+            success: function (data) {
+                if(data.message != null) alert(data.message);
+                /*if(data.url != null) window.location.href = data.url;*/
+                if(data.message == "删除成功")
+                    window.location.reload();
+            }
         });
+    }
+    function DeleteMulit(){
+        var arr = new Array();
+        $(".ctr:checked").each(function(){
+                arr.push($(this).val())
+        });
+        console.log(arr)
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "/mobile/manage/farmerDeleteMulit",/*此处需修改*/
+            data: {ids:arr},
+            async: false,
+            error: function (XMLHttpRequest) {
+                alert("error:" + XMLHttpRequest.status);
+            },
+            success: function (data) {
+                if(data.message != null) alert(data.message);
+                /*if(data.url != null) window.location.href = data.url;*/
+                if(data.message == "删除成功")
+                    window.location.reload();
+            }
+        });
+    }
+        $(function(){
+            $("#ctrall").click(function(){
+                $(".ctr").attr("checked",$(this).attr("checked") != null);
+            })
+        })
     </script>
-
 <%--分页插件--%>
     <link rel="stylesheet" href="/mobile/css/pagination.css">
     <script type="text/javascript" src="/mobile/js/jquery.pagination.min.js"></script>
@@ -53,9 +100,9 @@
     <div class="tools">
 
         <ul class="toolbar">
-            <li class="click"><span><img src="/mobile/img/t01.png"/></span>添加</li>
+            <li onclick="window.location.href='/mobile/manage/farmerAdd'" class="click"><span><img src="/mobile/img/t01.png"/></span>添加</li>
             <%--<li class="click"><span><img src="/mobile/img/t02.png"/></span>修改</li>--%>
-            <li><span><img src="/mobile/img/t03.png"/></span>删除</li>
+            <li onclick="DeleteMulit()"><span><img src="/mobile/img/t03.png"/></span>删除</li>
             <%--<li><span><img src="/mobile/img/t04.png"/></span>统计</li>--%>
         </ul>
 
@@ -70,7 +117,7 @@
     <table class="tablelist">
         <thead>
         <tr>
-            <th><input name="" type="checkbox" value="" checked="checked"/></th>
+            <th><input name="" type="checkbox" id="ctrall" value=""/></th>
             <%--<th>编号<i class="sort"><img src="/mobile/img/px.gif"/></i></th>--%>
             <th>所在镇村组编号</th>
             <th>所在镇村组</th>
@@ -83,15 +130,17 @@
         </thead>
         <tbody>
         <c:forEach var="item" items="${list}">
+
             <tr>
-                <td><input name="" type="checkbox" value="${item.id}"/></td>
+                <td><input class="ctr" name="" type="checkbox" value="${item.id}"/></td>
                 <td>${item.region_no}</td>
                 <td>${item.region}</td>
                 <td>${item.name}</td>
                 <td>${item.sex}</td>
                 <td>${item.age}</td>
                 <td>${item.familypopulation}</td>
-                <td><a href="#" class="tablelink">修改/查看</a> <a href="#" class="tablelink"> 删除</a></td>
+                <td><a href="/mobile/manage/farmerEdit?id=${item.id}" class="tablelink">修改/查看</a> <a href="javascript:Delete('${item.id}')" class="tablelink"> 删除</a></td>
+
             </tr>
         </c:forEach>
         </tbody>
@@ -103,8 +152,7 @@
         <div id="pageGro" class="cb">
 
         </div>
-        <script type="text/javascript">
-            console.log("aa")
+        <script type="text/javascript">/*分页插件*/
             $('#pageGro').pagination({
                 coping:true,
                 homePage:'首页',
@@ -132,21 +180,21 @@
     </div>
 
 
-    <div class="tip">
-        <div class="tiptop"><span>提示信息</span><a></a></div>
+    <%--<div class="tip">--%>
+        <%--<div class="tiptop"><span>提示信息</span><a></a></div>--%>
 
-        <div class="tipinfo">
-            <span><img src="/mobile/img/ticon.png"/></span>
-            <div class="tipright">
-                <p>是否确认对信息的修改 ？</p>
-                <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
-            </div>
-        </div>
+        <%--<div class="tipinfo">--%>
+            <%--<span><img src="/mobile/img/ticon.png"/></span>--%>
+            <%--<div class="tipright">--%>
+                <%--<p>是否确认对信息的修改 ？</p>--%>
+                <%--<cite>如果是请点击确定按钮 ，否则请点取消。</cite>--%>
+            <%--</div>--%>
+        <%--</div>--%>
 
-        <div class="tipbtn">
-            <input name="" type="button" class="sure" value="确定"/>&nbsp;
-            <input name="" type="button" class="cancel" value="取消"/>
-        </div>
+        <%--<div class="tipbtn">--%>
+            <%--<input name="" type="button" class="sure" value="确定"/>&nbsp;--%>
+            <%--<input name="" type="button" class="cancel" value="取消"/>--%>
+        <%--</div>--%>
 
     </div>
 

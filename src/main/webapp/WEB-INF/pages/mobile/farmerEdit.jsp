@@ -1,6 +1,7 @@
 <%@page language="java" pageEncoding="UTF-8" contentType="text/html;charset=utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="Form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -15,9 +16,9 @@
     <script type="text/javascript" src="/mobile/laydate/laydate.js"></script>
 
     <script type="text/javascript">
-        KindEditor.ready(function(K){
-            K.create("#note",{
-                afterBlur:function(){
+        KindEditor.ready(function (K) {
+            K.create("#note", {
+                afterBlur: function () {
                     this.sync();
                 }
             })
@@ -41,6 +42,7 @@
 <div class="formbody">
 
     <form:form commandName="FarmerForm">
+        <form:hidden path="id"/>
         <div id="usual1" class="usual">
 
             <div class="itab">
@@ -250,7 +252,7 @@
                                 <div class='diy_select_txt'>--请选择--</div>
                                 <div class='diy_select_btn'></div>
                                 <ul class='diy_select_list'>
-                                    <li value="0">是</li>
+                                    <li select="true" value="0">是</li>
                                     <li value="1">否</li>
                                 </ul>
                             </div>
@@ -271,7 +273,7 @@
                     <li><label>修改人员<b>*</b></label><form:input path="update_person" name="" type="text" class="dfinput"
                                                                value=""
                                                                style="width:518px;"/></li>
-                    <li><label>&nbsp;</label><input name="" type="button" id="submit_button" class="btn" value="提交"/></li>
+                    <li><label>&nbsp;</label><input type="button" id="submit_button" class="btn" value="提交"/></li>
                 </ul>
             </div>
 
@@ -286,15 +288,15 @@
                 $.ajax({
                     cache: false,
                     type: "POST",
-                    url: "/mobile/manage/farmerAdd",
+                    url: "/mobile/manage/farmerEdit",
                     data: $('#FarmerForm').serialize(),
                     async: false,
                     error: function (XMLHttpRequest) {
                         alert("error:" + XMLHttpRequest.status);
                     },
                     success: function (data) {
-                        if(data.message != null) alert(data.message);
-                        if(data.url != null) window.location.href = data.url;
+                        if (data.message != null) alert(data.message);
+                        if (data.url != null) window.location.href = data.url;
                     }
                 });
             });
@@ -346,10 +348,10 @@
                     var item = This.l[i].getElementsByTagName('li');
                     for (var j = 0; j < item.length; j++) {
                         /*console.log(item[j].getAttribute('select'))
-                         if (item[j].getAttribute('select') != null && This.ipt[i].value !=null) {
-                         This.t[i].innerHTML = item[j].innerHTML;
-                         This.ipt[i].value = item[j].getAttribute('value');
-                         }*/
+                        if (item[j].getAttribute('select') != null && This.ipt[i].value !=null) {
+                            This.t[i].innerHTML = item[j].innerHTML;
+                            This.ipt[i].value = item[j].getAttribute('value');
+                        }*/
                         if(This.ipt[i].value == item[j].getAttribute('value')){
                             This.t[i].innerHTML = item[j].innerHTML;
                         }
@@ -382,7 +384,8 @@
                         e.stopPropagation ? e.stopPropagation() : (e.cancelBubble = true); //阻止冒泡
                     }
                 }
-            },
+            }
+            ,
             addClick: function (o)//点击回调函数
             {
 
@@ -404,7 +407,8 @@
                         }
                     }
                 }
-            },
+            }
+            ,
             getByClass: function (s, p, t)//使用class获取元素
             {
                 var reg = new RegExp('\\b' + s + '\\b');
@@ -417,7 +421,8 @@
                     }
                 }
                 return aResult;
-            },
+            }
+            ,
 
             setOpts: function (opt) //以下参数可以不设置  //设置参数
             {

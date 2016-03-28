@@ -6,13 +6,13 @@ import abrs.system.service.FarmerService;
 import abrs.system.web.mobile.form.FarmerForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.WebParam;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -48,10 +48,9 @@ public class ManageMobileContorller {
             try {
                 farmerService.addItem(form.getFarmer());
                 map.put("message","添加成功");
-            } catch (NoSuchFieldException e) {
+            }catch (Exception e){
                 e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                map.put("message", e.getMessage());
             }
         }
         return map;
@@ -69,5 +68,65 @@ public class ManageMobileContorller {
 
         return "mobile/farmerList";
     }
+    @Auth(role = Auth.Role.ADMIN)
+    @RequestMapping(value = "/farmerEdit",method = RequestMethod.GET)
+    public String farmerEdit(@RequestParam(value = "id") String id,ModelMap modelMap){
+        Farmer farmer =  farmerService.getItem(id);
+        try {
+            modelMap.addAttribute("FarmerForm",FarmerForm.FarmerToForm(farmer));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "mobile/farmerEdit";
+    }
+    @ResponseBody
+    @Auth(role = Auth.Role.ADMIN)
+    @RequestMapping(value = "/farmerEdit",method = RequestMethod.POST)
+    public Object farmerEdit(@Valid @ModelAttribute("FarmerForm") FarmerForm form, Errors errors, ModelMap model){
+        Map<String,Object> map = new HashMap<String, Object>();
+        if (errors.hasErrors()){
+            map.put("message",errors.getFieldError().getDefaultMessage());
+        }
+        try {
+            Farmer farmer = form.getFarmer();
+            farmerService.updateItem(farmer);
+            map.put("message","修改成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            map.put("message", e.getMessage());
+        }
+        return map;
+
+    }
+
+    @Auth(role = Auth.Role.ADMIN)
+    @ResponseBody
+    @RequestMapping(value = "farmerDelete",method = RequestMethod.POST)
+    public Object farmerDelete(@RequestParam("id") String id){
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            farmerService.remove(id);
+            map.put("message","删除成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            map.put("message", e.getMessage());
+        }
+        return map;
+    }
+    @Auth(role = Auth.Role.ADMIN)
+    @ResponseBody
+    @RequestMapping(value = "farmerDeleteMulit",method = RequestMethod.POST)
+    public Object farmerDeleteMulit(@RequestParam("ids[]") String[] ids){
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            farmerService.removeMulit(ids);
+            map.put("message","删除成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            map.put("message", e.getMessage());
+        }
+        return map;
+    }
+
 
 }
