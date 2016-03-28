@@ -83,6 +83,26 @@
         </thead>
         <tbody>
         <c:forEach var="item" items="${list}">
+            <script type="text/javascript">/*删除脚本*/
+                function Delete(id){
+                    $.ajax({
+                        cache: false,
+                        type: "POST",
+                        url: "/mobile/manage/farmerDelete",/*此处需修改*/
+                        data: {'id':id},
+                        async: false,
+                        error: function (XMLHttpRequest) {
+                            alert("error:" + XMLHttpRequest.status);
+                        },
+                        success: function (data) {
+                            if(data.message != null) alert(data.message);
+                            /*if(data.url != null) window.location.href = data.url;*/
+                            if(data.message == "删除成功")
+                                    window.location.reload();
+                        }
+                    });
+                }
+            </script>
             <tr>
                 <td><input name="" type="checkbox" value="${item.id}"/></td>
                 <td>${item.region_no}</td>
@@ -91,7 +111,8 @@
                 <td>${item.sex}</td>
                 <td>${item.age}</td>
                 <td>${item.familypopulation}</td>
-                <td><a href="#" class="tablelink">修改/查看</a> <a href="#" class="tablelink"> 删除</a></td>
+                <td><a href="/mobile/manage/farmerEdit?id=${item.id}" class="tablelink">修改/查看</a> <a href="javascript:Delete('${item.id}')" class="tablelink"> 删除</a></td>
+
             </tr>
         </c:forEach>
         </tbody>
@@ -103,8 +124,7 @@
         <div id="pageGro" class="cb">
 
         </div>
-        <script type="text/javascript">
-            console.log("aa")
+        <script type="text/javascript">/*分页插件*/
             $('#pageGro').pagination({
                 coping:true,
                 homePage:'首页',
