@@ -113,6 +113,20 @@ public class ManageMobileContorller {
         }
         return map;
     }
+    @Auth(role = Auth.Role.ADMIN)
+    @ResponseBody
+    @RequestMapping(value = "farmerDeleteMulit",method = RequestMethod.POST)
+    public Object farmerDeleteMulit(@RequestParam("ids[]") String[] ids){
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            farmerService.removeMulit(ids);
+            map.put("message","删除成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            map.put("message", e.getMessage());
+        }
+        return map;
+    }
 
 
 }
