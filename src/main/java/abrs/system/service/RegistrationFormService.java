@@ -25,6 +25,13 @@ public class RegistrationFormService {
     @Autowired
     private RegistrationFormDao registrationFormDao;
 
+    public boolean addItem(RegistrationForm registrationForm)
+    {
+        registrationFormDao.save(registrationForm);
+        logger.info("Add RegistrationForm");
+        return true;
+    }
+
     public boolean addItem(String no,String name,String form_type,Boolean multidata,Date record_date,Date end_date
             ,String record_entity,String record_person_name,String record_person_phone)
     {
@@ -70,6 +77,10 @@ public class RegistrationFormService {
     public void remove(String id)
     {
         registrationFormDao.deleteById(id);
+    }
+
+    public void removeMulit(String[] ids){
+        registrationFormDao.deleteByIdMulit(ids);
     }
 
     public List<RegistrationForm> getItems(int start, int size){
