@@ -25,25 +25,26 @@ public class SummerFoodAndRapeseedExpecProService {
     @Autowired
     private SummerFoodAndRapeseedExpecProDao summerFoodAndRapeseedDao;
 
-    private int survey_village_num; //µ÷²é´åÊý
+    private int survey_village_num; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    private int survey_family_num;//µ÷²é»§Êý
+    private int survey_family_num;//ï¿½ï¿½ï¿½é»§ï¿½ï¿½
 
-    private String food_itemid; //ÏÄÁ¸(ItemID)
+    private String food_itemid; //ï¿½ï¿½ï¿½ï¿½(ItemID)
 
-    private String food_xiaomai_food_itemid;//ÆäÖÐ£ºÐ¡Âó(ItemID)
+    private String food_xiaomai_food_itemid;//ï¿½ï¿½ï¿½Ð£ï¿½Ð¡ï¿½ï¿½(ItemID)
 
-    private String rapeseed_food_itemid; //ÓÍ²Ë×Ñ(ItemID)
+    private String rapeseed_food_itemid; //ï¿½Í²ï¿½ï¿½ï¿½(ItemID)
 
-    public boolean addItem(int survey_village_num,int survey_family_num,ExpectedProductionItem food_item,ExpectedProductionItem food_xiaomai_food_item,ExpectedProductionItem rapeseed_food_item)
+    public boolean addItem(String registration_form_id,int survey_village_num,int survey_family_num,ExpectedProductionItem food_item,ExpectedProductionItem food_xiaomai_food_item,ExpectedProductionItem rapeseed_food_item)
     {
-        addItem(survey_village_num,survey_family_num,food_item.getId(),food_xiaomai_food_item.getId(),rapeseed_food_item.getId());
+        addItem(registration_form_id,survey_village_num,survey_family_num,food_item.getId(),food_xiaomai_food_item.getId(),rapeseed_food_item.getId());
         return true;
     }
 
-    public boolean addItem(int survey_village_num,int survey_family_num,String food_itemid,String food_xiaomai_food_itemid,String rapeseed_youcaizi_itemid)
+    public boolean addItem(String registration_form_id,int survey_village_num,int survey_family_num,String food_itemid,String food_xiaomai_food_itemid,String rapeseed_youcaizi_itemid)
     {
         SummerFoodAndRapeseedExpecPro summerFoodAndRapeseed = new SummerFoodAndRapeseedExpecPro();
+        summerFoodAndRapeseed.setRegistration_form_id(registration_form_id);
         summerFoodAndRapeseed.setFood_itemid(food_itemid);
         summerFoodAndRapeseed.setFood_xiaomai_food_itemid(food_xiaomai_food_itemid);
         summerFoodAndRapeseed.setRapeseed_youcaizi_itemid(rapeseed_youcaizi_itemid);

@@ -31,7 +31,8 @@ public class WholeYearPlantAreaService {
         return true;
     }
 
-    public boolean addItem(int form_tag,
+    public boolean addItem(String registration_form_id,
+                           int form_tag,
                            double plant_total,
                            double food_total,double food_summerl,
                            double food_grain_daogu_zaodao,double food_grain_daogu_zhongdao,double food_grain_daogu_wandao,double food_grain_xiaomai,double food_grain_yumi,double food_grain_guzi,double food_grain_gaoliang,double food_grain_other,
@@ -47,6 +48,7 @@ public class WholeYearPlantAreaService {
                            double otherplant_total,double otherplant_qingsiliaol)
     {
         WholeYearPlantArea wholeYearPlantArea = new WholeYearPlantArea();
+        wholeYearPlantArea.setRegistration_form_id(registration_form_id);
         wholeYearPlantArea.setForm_tag(form_tag);
         wholeYearPlantArea.setPlant_total(plant_total);
 

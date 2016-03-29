@@ -23,13 +23,13 @@ public class AutumnFoodExpecProService {
     @Autowired
     private AutumnFoodExpecProDao autumnFoodExpecProDao;
 
-    public boolean addItem(int survey_village_num,int survey_family_num,
+    public boolean addItem(String registration_form_id,int survey_village_num,int survey_family_num,
                            ExpectedProductionItem food_item,ExpectedProductionItem food_zhongdaoyijidao_item,ExpectedProductionItem food_shuangjiwandao_item,ExpectedProductionItem food_yumi_item,ExpectedProductionItem food_dadou_item,
                            ExpectedProductionItem rapeseed_item,ExpectedProductionItem rapeseed_huasheng_item,
                            ExpectedProductionItem cotton_item,
                            ExpectedProductionItem sugar_item)
     {
-        addItem(survey_village_num,survey_family_num,
+        addItem(registration_form_id,survey_village_num,survey_family_num,
                 food_item.getId(),food_zhongdaoyijidao_item.getId(),food_shuangjiwandao_item.getId(),food_yumi_item.getId(),food_dadou_item.getId(),
                 rapeseed_item.getId(),rapeseed_huasheng_item.getId(),
                 cotton_item.getId(),
@@ -37,13 +37,14 @@ public class AutumnFoodExpecProService {
         return true;
     }
 
-    public boolean addItem(int survey_village_num,int survey_family_num,
+    public boolean addItem(String registration_form_id,int survey_village_num,int survey_family_num,
                            String food_itemid,String food_zhongdaoyijidao_itemid,String food_shuangjiwandao_itemid,String food_yumi_itemid,String food_dadou_itemid,
                            String rapeseed_itemid,String rapeseed_huasheng_itemid,
                            String cotton_itemid,
                            String sugar_itemid)
     {
         AutumnFoodExpecPro autumnFoodExpecPro = new AutumnFoodExpecPro();
+        autumnFoodExpecPro.setRegistration_form_id(registration_form_id);
         autumnFoodExpecPro.setSurvey_village_num(survey_village_num);
         autumnFoodExpecPro.setSurvey_family_num(survey_family_num);
 

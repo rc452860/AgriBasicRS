@@ -24,12 +24,13 @@ public class CropYieldSummaryService {
     @Autowired
     private CropYieldSummaryDao cropYieldSummaryDao;
 
-    public boolean addItem(String village, String corp_name,
+    public boolean addItem(String registration_form_id,String village, String corp_name,
                            String total_of_fifteen_itemid,
                            List<String> list_itemid,
                            String simple_average_itemid)
     {
         CropYieldSummary cropYieldSummary = new CropYieldSummary();
+        cropYieldSummary.setRegistration_form_id(registration_form_id);
         cropYieldSummary.setVillage(village);
         cropYieldSummary.setCorp_name(corp_name);
         cropYieldSummary.setTotal_of_fifteen_itemid(total_of_fifteen_itemid);
