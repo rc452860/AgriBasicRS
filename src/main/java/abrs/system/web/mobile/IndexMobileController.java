@@ -30,7 +30,7 @@ public class IndexMobileController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap model) {
-        return "redirect:mobile/login";
+        return "redirect:/mobile/login";
     }
 
     @RequestMapping(value = "/{error}",method = RequestMethod.GET)
