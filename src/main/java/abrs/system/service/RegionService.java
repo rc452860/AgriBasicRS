@@ -24,6 +24,13 @@ public class RegionService {
     @Autowired
     private RegionDao regionDao;
 
+    public boolean addItem(Region region)
+    {
+        regionDao.save(region);
+        logger.info("Add Region");
+        return true;
+    }
+
     public boolean addItem(String no,String name, String fullname,String fatherno,
                            String shortnoone,String shortnotwo,
                            int flag)
@@ -67,6 +74,10 @@ public class RegionService {
     public void remove(String id)
     {
         regionDao.deleteById(id);
+    }
+
+    public void removeMulit(String[] ids){
+        regionDao.deleteByIdMulit(ids);
     }
 
     public List<Region> getItems(int start, int size){

@@ -74,6 +74,17 @@
                     <li><a href="/mobile/manage/farmerList" target="rightFrame">农户基本信息列表</a></li>
                 </ul>
             </li>
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="index.html" target="rightFrame">区域单位基本信息</a>
+                    <i class ="png"></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="/mobile/region/add" target="rightFrame">添加区域单位</a></li>
+                    <li><a href="/mobile/region/list" target="rightFrame">区域单位列表</a></li>
+                </ul>
+            </li>
             <%--<li>
                 <div class="header">
                     <cite></cite>
