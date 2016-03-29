@@ -14,6 +14,8 @@ public class AutumnWinterPlantsIntention {
     @Id
     private String id;
 
+    private String registration_form_id;//调查表编号
+
     private String farmer_id;//农户id
     private double plant_total;//播种总面积
 
@@ -51,6 +53,14 @@ public class AutumnWinterPlantsIntention {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getRegistration_form_id() {
+        return registration_form_id;
+    }
+
+    public void setRegistration_form_id(String registration_form_id) {
+        this.registration_form_id = registration_form_id;
     }
 
     public String getFarmer_id() {

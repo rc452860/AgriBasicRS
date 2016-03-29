@@ -15,6 +15,8 @@ public class ProductsAndMeansMarketPrice {
     @Id
     private String id;
 
+    private String registration_form_id;//调查表编号
+
     private String townships;//乡镇名称
 
     //region 原粮
@@ -92,6 +94,14 @@ public class ProductsAndMeansMarketPrice {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getRegistration_form_id() {
+        return registration_form_id;
+    }
+
+    public void setRegistration_form_id(String registration_form_id) {
+        this.registration_form_id = registration_form_id;
     }
 
     public String getTownships() {

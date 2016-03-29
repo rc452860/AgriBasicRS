@@ -15,6 +15,8 @@ public class WholeYearPlantArea {
     @Id
     private String id;
 
+    private String registration_form_id;//调查表编号
+
     private String farmer_id;//农户id
 
     private int form_tag;//当为0为意向调查 当为1预计调查
@@ -96,6 +98,22 @@ public class WholeYearPlantArea {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getRegistration_form_id() {
+        return registration_form_id;
+    }
+
+    public void setRegistration_form_id(String registration_form_id) {
+        this.registration_form_id = registration_form_id;
+    }
+
+    public String getFarmer_id() {
+        return farmer_id;
+    }
+
+    public void setFarmer_id(String farmer_id) {
+        this.farmer_id = farmer_id;
     }
 
     public int getForm_tag() {

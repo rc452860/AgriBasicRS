@@ -8,10 +8,15 @@ import java.util.List;
 /**
  * Created by Edifi_000 on 2016-03-27.
  */
+/**
+ * 农作物产量调查汇总表
+ */
 @Document(collection = "CropYieldSummary")
 public class CropYieldSummary {
     @Id
     private String id;
+
+    private String registration_form_id;//调查表编号
 
     private String village;//村
     private String corp_name;//作物名称
@@ -30,6 +35,14 @@ public class CropYieldSummary {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getRegistration_form_id() {
+        return registration_form_id;
+    }
+
+    public void setRegistration_form_id(String registration_form_id) {
+        this.registration_form_id = registration_form_id;
     }
 
     public String getVillage() {

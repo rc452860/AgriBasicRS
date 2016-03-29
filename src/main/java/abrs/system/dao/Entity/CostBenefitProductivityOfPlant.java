@@ -14,6 +14,8 @@ public class CostBenefitProductivityOfPlant {
     @Id
     private String id;
 
+    private String registration_form_id;//调查表编号
+
     private int county_num;//调查县数
     private int family_num;//调查户数
     private double area_num;//调查面积
@@ -143,6 +145,14 @@ public class CostBenefitProductivityOfPlant {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getRegistration_form_id() {
+        return registration_form_id;
+    }
+
+    public void setRegistration_form_id(String registration_form_id) {
+        this.registration_form_id = registration_form_id;
     }
 
     public int getCounty_num() {
