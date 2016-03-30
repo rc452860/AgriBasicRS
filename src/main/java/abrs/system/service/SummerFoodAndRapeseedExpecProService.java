@@ -35,9 +35,16 @@ public class SummerFoodAndRapeseedExpecProService {
 
     private String rapeseed_food_itemid; //�Ͳ���(ItemID)
 
+    public boolean addItem(SummerFoodAndRapeseedExpecPro summerFoodAndRapeseed)
+    {
+        summerFoodAndRapeseedDao.save(summerFoodAndRapeseed);
+        logger.info("Add SummerFoodAndRapeseed");
+        return true;
+    }
+
     public boolean addItem(String registration_form_id,int survey_village_num,int survey_family_num,ExpectedProductionItem food_item,ExpectedProductionItem food_xiaomai_food_item,ExpectedProductionItem rapeseed_food_item)
     {
-        addItem(registration_form_id,survey_village_num,survey_family_num,food_item.getId(),food_xiaomai_food_item.getId(),rapeseed_food_item.getId());
+        addItem(registration_form_id, survey_village_num, survey_family_num, food_item.getId(), food_xiaomai_food_item.getId(), rapeseed_food_item.getId());
         return true;
     }
 
@@ -80,6 +87,10 @@ public class SummerFoodAndRapeseedExpecProService {
     public void remove(String id)
     {
         summerFoodAndRapeseedDao.deleteById(id);
+    }
+
+    public void removeMulit(String[] ids){
+        summerFoodAndRapeseedDao.deleteByIdMulit(ids);
     }
 
     public List<SummerFoodAndRapeseedExpecPro> getItems(int start, int size){
