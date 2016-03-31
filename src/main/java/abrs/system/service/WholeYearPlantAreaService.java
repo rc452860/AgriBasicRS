@@ -138,4 +138,8 @@ public class WholeYearPlantAreaService {
     public List<WholeYearPlantArea> getItems(int start, int size){
         return wholeYearPlantAreaDao.getPage(new Query(), start, size);
     }
+
+    public void removeMulit(String[] ids) {
+        wholeYearPlantAreaDao.deleteByIdMulit(ids);
+    }
 }

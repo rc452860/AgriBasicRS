@@ -107,6 +107,17 @@
                     <li><a href="/mobile/summerFoodAndRapeseedExpecPro/list" target="rightFrame">调查表信息列表</a></li>
                 </ul>
             </li>
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="index.html" target="rightFrame">全年农作物播种面积意向（预计）调查</a>
+                    <i class ="png"></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="/mobile/WholeYearPlantArea/add" target="rightFrame">添加调查表信息</a></li>
+                    <li><a href="/mobile/WholeYearPlantArea/list" target="rightFrame">调查表信息列表</a></li>
+                </ul>
+            </li>
             <%--<li>
                 <div class="header">
                     <cite></cite>

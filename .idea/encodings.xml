@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/AutumnFoodExpecProDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/AutumnWinterPlantsIntentionDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/Entity/AutumnFoodExpecPro.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/Entity/AutumnWinterPlantsIntention.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/Entity/ExpectedProductionItem.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/Entity/Farmer.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/Entity/Region.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/Entity/RegistrationForm.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/Entity/SummerFoodAndRapeseedExpecPro.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/Entity/User.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/Entity/WholeYearPlantArea.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/ExpectedProductionItemDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/FarmerDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/RegionDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/RegistrationFormDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/SummerFoodAndRapeseedExpecProDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/abrs/system/dao/WholeYearPlantAreaDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/mobile/index.jsp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/mobile/top.jsp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/mobile/css/css.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/mobile/css/style.css" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

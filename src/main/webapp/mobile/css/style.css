@@ -227,6 +227,9 @@ h2{font-weight:normal;}
 .formtitle span,.formtitle1 span{font-weight:bold;font-size:14px; border-bottom:solid 3px #F99331;float:left; position:absolute; z-index:100; bottom:-1px; padding:0 3px; height:30px; line-height:30px;}
 .forminfo{padding-left:23px;}
 .forminfo li{margin-bottom:13px; clear:both;}
+.forminfo li:before,.forminfo li:after{content:"";display:table;}
+.forminfo li:after{clear:both;}
+.forminfo li{*zoom:1;}
 .forminfo li label{width:100px;line-height:34px; display:block; float:left;}
 .forminfo li i{color:#7f7f7f; padding-left:20px; font-style:normal;}
 .forminfo li cite{display:block; padding-top:10px;}
@@ -315,7 +318,7 @@ h2{font-weight:normal;}
 /*tab*/
 .itab{height:36px; border-bottom:solid 1px #eac998; position:relative; border-left:solid 1px #eac998;}
 .itab ul li{float:left;height:37px; line-height:37px; background:url("/mobile/img/itabbg.png") repeat-x; border-right:solid 1px #eac998;}
-.itab ul li a{font-size:14px; color:#000; padding-left:25px; padding-right:25px;}
+.itab ul li a{font-size:14px; color:#000; padding-left:15px; padding-right:15px;}
 .itab ul li a.selected{ height:37px; display:inline-block;*zoom: 1;*display:inline; background:url("/mobile/img/itabbg1.png") repeat-x; font-weight:bold; color:#EB5409;}
 .tabson{margin:18px 0px;}
 .formtext{height:45px; padding-left:25px; line-height:20px; color:#848383;}
@@ -397,12 +400,12 @@ h2{font-weight:normal;}
 .footer i{display:block; float:right; font-style:normal; margin-right:10px; background:url("/mobile/img/fjt.png") no-repeat right; padding-right:12px; }
 
 /* diy_select */
-.diy_select{height:28px;width:210px;position:relative;font-size:12px;background:#fff;color:#000;}
-.diy_select_btn,.diy_select_txt{float:left;height:100%;line-height:28px}
+.diy_select{height:34px;width:210px;position:relative;font-size:12px;background:#fff;color:#000;}
+.diy_select_btn,.diy_select_txt{float:left;height:100%;line-height:34px}
 .diy_select,.diy_select_list{border:1px solid #73839F;}
 .diy_select_txt{width:180px;}
 .diy_select_txt,.diy_select_list li{text-indent:10px;overflow:hidden}
-.diy_select_list{position:absolute;top:28px;left:-1px;z-index:88888;border-top:none;width:100%;display:none;_top:29px;background: #FFF;}
+.diy_select_list{position:absolute;top:34px;left:-1px;z-index:88888;border-top:none;width:100%;display:none;_top:35px;background: #FFF;}
 .diy_select_list li{list-style:none;height:25px;line-height:25px;cursor:default;_background:#fff;float: none !important;}
 .diy_select_list li.focus{background:#3399FF;color:#fff}
 .vocation {float: left;}

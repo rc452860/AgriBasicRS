@@ -227,7 +227,7 @@
         </div>
     </form:form>
 
-    <%--此乃登陆代码--%>
+    <%--此乃提交代码--%>
     <script type="text/javascript">
         $(function () {
             $('#submit_button').click(function () {
