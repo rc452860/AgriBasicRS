@@ -54,9 +54,7 @@
             </div>
 
             <div id="tab1" class="tabson"><%--联系方式--%>
-
-                <div class="formtext">Hi，<b>admin</b>，欢迎您试用信息发布功能！</div>
-
+                
                 <ul class="forminfo">
                     <li><label>序号<b>*</b></label><form:input path="no" name="" type="text" class="dfinput" value=""
                                                              style="width:518px;"/></li>
