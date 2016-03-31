@@ -96,6 +96,17 @@
                     <li><a href="/mobile/registrationForm/list" target="rightFrame">调查表信息列表</a></li>
                 </ul>
             </li>
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="index.html" target="rightFrame">夏粮、夏收油菜籽产量预计</a>
+                    <i class ="png"></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="/mobile/summerFoodAndRapeseedExpecPro/add" target="rightFrame">添加调查表信息</a></li>
+                    <li><a href="/mobile/summerFoodAndRapeseedExpecPro/list" target="rightFrame">调查表信息列表</a></li>
+                </ul>
+            </li>
             <%--<li>
                 <div class="header">
                     <cite></cite>

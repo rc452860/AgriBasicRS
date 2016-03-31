@@ -25,6 +25,13 @@ public class ExpectedProductionItemService {
     private ExpectedProductionItemDao summerFoodAndRapeseedItemDao;
 
 
+    public String addItem(ExpectedProductionItem expectedProductionItem)
+    {
+        summerFoodAndRapeseedItemDao.save(expectedProductionItem);
+        logger.info("Add ExpectedProductionItem");
+        return expectedProductionItem.getId();
+    }
+
     public boolean addItem(double seededarea_lastyear,double seededarea_thisyear,double seededarea_Increasedecrease_absolute,double seededarea_Increasedecrease_relative
             ,double perunit_lastyear,double perunit_thisyear,double perunit_Increasedecrease_absolute,double perunit_Increasedecrease_relative
             ,double total_lastyear,double total_thisyear,double total_Increasedecrease_absolute,double total_Increasedecrease_relative)
