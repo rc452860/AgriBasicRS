@@ -99,7 +99,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">夏粮、夏收油菜籽产量预计</a>
+                    <a href="index.html" target="rightFrame">夏粮、夏收油菜籽产量..</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
@@ -110,7 +110,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">全年农作物播种面积意向（预计）调查</a>
+                    <a href="index.html" target="rightFrame">全年农作物播种面积意向..</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
