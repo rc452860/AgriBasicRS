@@ -26,7 +26,7 @@ import java.util.Map;
 @RequestMapping("/mobile/summerFoodAndRapeseedExpecPro")
 public class SummerFoodAndRapeseedExpecProMobileController {
 
-    private static Logger logger = LoggerFactory.getLogger(RegionMobileController.class);
+    private static Logger logger = LoggerFactory.getLogger(SummerFoodAndRapeseedExpecProMobileController.class);
 
     @Autowired
     SummerFoodAndRapeseedExpecProService service;
