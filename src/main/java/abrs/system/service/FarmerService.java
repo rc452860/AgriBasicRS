@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,8 +45,27 @@ public class FarmerService {
         return farmer;
     }
 
-    public long getCount() {
-        return farmerDao.getCount(new Query());
+    public long getCount(String name,String telphone,String village) {
+        Query query = new Query();
+        Criteria cr = new Criteria();
+        List<Criteria> querylist = new ArrayList<Criteria>();
+        if(name != null){
+            querylist.add(Criteria.where("name").regex(name));
+        }
+        if (telphone!=null){
+            querylist.add(Criteria.where("contact_phone").regex(telphone));
+            querylist.add(Criteria.where("contact_landline").regex(telphone));
+        }
+        if (village != null){
+            querylist.add(Criteria.where("region").regex(village));
+        }
+        if(querylist.size()>1){
+            query.addCriteria(cr.andOperator(querylist.toArray(new Criteria[querylist.size()])));
+        }
+        if (querylist.size() == 1){
+            query.addCriteria(querylist.get(0));
+        }
+        return farmerDao.getCount(query);
     }
 
     public boolean updateItem(Farmer farmer)
@@ -64,7 +84,26 @@ public class FarmerService {
         farmerDao.deleteByIdMulit(ids);
     }
 
-    public List<Farmer> getItems(int start, int size){
-        return farmerDao.getPage(new Query(), start, size);
+    public List<Farmer> getItems(int start, int size,String name,String telphone,String village){
+        Query query = new Query();
+        Criteria cr = new Criteria();
+        List<Criteria> querylist = new ArrayList<Criteria>();
+        if(name != null){
+            querylist.add(Criteria.where("name").regex(name));
+        }
+        if (telphone!=null){
+            querylist.add(Criteria.where("contact_phone").regex(telphone));
+            querylist.add(Criteria.where("contact_landline").regex(telphone));
+        }
+        if (village != null){
+            querylist.add(Criteria.where("region").regex(village));
+        }
+        if(querylist.size()>1){
+                query.addCriteria(cr.andOperator(querylist.toArray(new Criteria[querylist.size()])));
+        }
+        if (querylist.size() == 1){
+            query.addCriteria(querylist.get(0));
+        }
+        return farmerDao.getPage(query, start, size);
     }
 }

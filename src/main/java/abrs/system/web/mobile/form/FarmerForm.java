@@ -14,6 +14,7 @@ import java.util.Date;
 //日期绑定http://blog.csdn.net/whumr1/article/details/8056285
 public class FarmerForm {
     private String id;
+    private String registration_form_id;//调查表编号
     private int no;//序号
     private String region_no; //所在镇村组编号
     private String region; //所在镇村组
@@ -436,5 +437,13 @@ public class FarmerForm {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getRegistration_form_id() {
+        return registration_form_id;
+    }
+
+    public void setRegistration_form_id(String registration_form_id) {
+        this.registration_form_id = registration_form_id;
     }
 }

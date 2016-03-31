@@ -3,11 +3,12 @@ package abrs.system.web.mobile;
 import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.Farmer;
 import abrs.system.service.FarmerService;
+import abrs.system.service.RegistrationFormService;
 import abrs.system.web.mobile.form.FarmerForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
@@ -29,6 +30,9 @@ public class ManageMobileContorller {
 
     @Autowired
     FarmerService farmerService;
+
+    @Autowired
+    RegistrationFormService registrationFormService;
 
 
     @Auth(role = Auth.Role.ADMIN)
@@ -57,15 +61,20 @@ public class ManageMobileContorller {
     }
     @Auth(role = Auth.Role.ADMIN)
     @RequestMapping(value = "/farmerList",method = RequestMethod.GET)
-    public String farmerList(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
-        List<Farmer> list = farmerService.getItems((index-1)*size,size);
-        long count = farmerService.getCount();
+    public String farmerList(
+            @RequestParam(value = "index",defaultValue = "1") int index ,
+            @RequestParam(value = "size",defaultValue = "20") int size,
+            @RequestParam(value = "name",required = false) String name,
+            @RequestParam(value = "telphone",required = false) String telphone,
+            @RequestParam(value = "village",required = false) String village,
+            ModelMap modelMap){
+        List<Farmer> list = farmerService.getItems((index-1)*size,size,name,telphone,village);
+        long count = farmerService.getCount(name,telphone,village);
         modelMap.addAttribute("list",list);
         modelMap.addAttribute("count",count);
         modelMap.addAttribute("index",index);
         modelMap.addAttribute("size",size);
         modelMap.addAttribute("countpage",Math.floor(count/size));
-
         return "mobile/farmerList";
     }
     @Auth(role = Auth.Role.ADMIN)

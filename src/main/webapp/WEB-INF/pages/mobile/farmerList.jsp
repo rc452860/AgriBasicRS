@@ -7,29 +7,16 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>无标题文档</title>
-    <link href="/mobile/css/style.css" rel="stylesheet" />
+    <link href="/mobile/css/style.css" rel="stylesheet"/>
     <script type="text/javascript" src="/mobile/js/jquery.js"></script>
+    <style>
+        .seachform1 .diy_select, .seachform2 .diy_select, .diy_select_txt {
+            width: 150px;
+            margin: 0;
+            height: 34px;;
+        }
 
-    <%--<script type="text/javascript">--%>
-    <%--$(document).ready(function () {--%>
-    <%--$(".click").click(function () {--%>
-    <%--$(".tip").fadeIn(200);--%>
-    <%--});--%>
-
-    <%--$(".tiptop a").click(function () {--%>
-    <%--$(".tip").fadeOut(200);--%>
-    <%--});--%>
-
-    <%--$(".sure").click(function () {--%>
-    <%--$(".tip").fadeOut(100);--%>
-    <%--});--%>
-
-    <%--$(".cancel").click(function () {--%>
-    <%--$(".tip").fadeOut(100);--%>
-    <%--});--%>
-
-    <%--});--%>
-    <%--</script>--%>
+    </style>
     <script type="text/javascript">
         function Delete(id) {/*删除脚本*/
             $.ajax({
@@ -77,6 +64,26 @@
                 $(".ctr").attr("checked", $(this).attr("checked") != null);
             })
         })
+        function search(){
+
+            var url = window.location.pathname;
+            url = $("input[name=name]").val() == ''?url:addParam(url,'name',$('input[name=name]').val());
+            url = $("input[name=telphone]").val() == ''?url:addParam(url,'telphone',$('input[name=telphone]').val());
+            url = $("input[name=village]").val() == ''?url:addParam(url,'village',$('input[name=village]').val());
+            window.location.href = url;
+        }
+        function addParam(url,key,value){
+            if(url.search(/\?/) == -1)
+                    url+='?';
+            var patternTemp = "var re = /("+key+"=)(.*?)(&)/";
+            eval(patternTemp);
+            if(re.test(url))
+                    url.replace(re,"$1"+patternTemp+"&");
+            else
+                   url += (url[url.length-1] == '&' || url[url.length-1] == "?")?key+"="+value+"&":"&"+key+"="+value+"&";
+
+            return url;
+        }
     </script>
     <%--分页插件--%>
     <link rel="stylesheet" href="/mobile/css/pagination.css">
@@ -100,22 +107,77 @@
     <div class="tools">
 
         <ul class="toolbar">
-            <li onclick="window.location.href='/mobile/manage/farmerAdd'" class="click"><span><img
-                    src="/mobile/img/t01.png"/></span>添加
-            </li>
-            <%--<li class="click"><span><img src="/mobile/img/t02.png"/></span>修改</li>--%>
+            <li onclick="window.location.href='/mobile/manage/farmerAdd'" class="click"> <span><img src="/mobile/img/t01.png"/></span>添加</li>
             <li onclick="DeleteMulit()"><span><img src="/mobile/img/t03.png"/></span>删除</li>
-            <%--<li><span><img src="/mobile/img/t04.png"/></span>统计</li>--%>
         </ul>
 
 
-        <%--<ul class="toolbar1">--%>
-        <%--<li><span><img src="/mobile/img/t05.png"/></span>设置</li>--%>
-        <%--</ul>--%>
-
     </div>
+    <ul class="seachform1 clearfix">
+        <li><label>姓名:</label><input name="name" type="text" class="scinput1"/></li>
+        <li><label>电话:</label><input name="telphone" type="text" class="scinput1"/></li>
+        <li><label>村子:</label><input name="village" type="text" class="scinput1"/></li>
+    </ul>
+
+    <%--<ul class="seachform2 clearfix">
+
+        <li><label>项目编号</label><input name="" type="text" class="scinput1" /></li>
+        <li><label>项目类型</label>
+            <div class="vocation">
+                <div class='diy_select'>
+                    <input type='hidden' name='flag' class='diy_select_input'/>
+                    <div class='diy_select_txt'>--请选择--</div>
+                    <div class='diy_select_btn'></div>
+                    <ul class='diy_select_list'>
+                        <li value="10">在线</li>
+                        <li value="21">死亡注销</li>
+                        <li value="22">资格取消</li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+
+        <li><label>项目领域</label>
+            <div class="vocation">
+                <div class='diy_select'>
+                    <input type='hidden' name='flag' class='diy_select_input'/>
+                    <div class='diy_select_txt'>--请选择--</div>
+                    <div class='diy_select_btn'></div>
+                    <ul class='diy_select_list'>
+                        <li value="10">在线</li>
+                        <li value="21">死亡注销</li>
+                        <li value="22">资格取消</li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+
+        <li><label>立项部门</label><input name="" type="text" class="scinput1" /></li>
+        <li><label>经费范围</label><input name="" type="text" class="scinput1" /></li>
+        <li><label>一</label><input name="" type="text" class="scinput1" /></li>
+        <li><label>负责人</label><input name="" type="text" class="scinput1" /></li>
+        <li><label>立项时间</label><input name="" type="text" class="scinput1" /></li>
+        <li><label>一</label><input name="" type="text" class="scinput1" /></li>
 
 
+    </ul>--%>
+
+    <ul class="seachform1 clearfix">
+        <li class="sarchbtn">
+            <label>&nbsp;</label>
+            <input name="" type="button" onclick="search()" id="search-button" class="scbtn" value="查询"/>
+            <%--<input name=""  type="button" class="scbtn1" value="更多条件"/>--%>
+            <input name="" type="button" class="scbtn2" value="导出"/></li>
+    </ul>
+<%--
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".scbtn1").click(function () {
+                $(".seachform2").toggle(200);
+            });
+        });--%>
+    </script>
+    <div class="formtitle clearfix"><span>农户基本信息列表</span></div>
     <table class="tablelist">
         <thead>
         <tr>
@@ -169,35 +231,19 @@
             }
         });
         </script>
-        <%--<ul class="paginList">
-            <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
-            <li class="paginItem"><a href="javascript:;">1</a></li>
-            <li class="paginItem current"><a href="javascript:;">2</a></li>
-            <li class="paginItem"><a href="javascript:;">3</a></li>
-            <li class="paginItem"><a href="javascript:;">4</a></li>
-            <li class="paginItem"><a href="javascript:;">5</a></li>
-            <li class="paginItem more"><a href="javascript:;">...</a></li>
-            <li class="paginItem"><a href="javascript:;">10</a></li>
-            <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
-        </ul>--%>
     </div>
 
-
-    <%--<div class="tip">--%>
-    <%--<div class="tiptop"><span>提示信息</span><a></a></div>--%>
-
-    <%--<div class="tipinfo">--%>
-    <%--<span><img src="/mobile/img/ticon.png"/></span>--%>
-    <%--<div class="tipright">--%>
-    <%--<p>是否确认对信息的修改 ？</p>--%>
-    <%--<cite>如果是请点击确定按钮 ，否则请点取消。</cite>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-
-    <%--<div class="tipbtn">--%>
-    <%--<input name="" type="button" class="sure" value="确定"/>&nbsp;--%>
-    <%--<input name="" type="button" class="cancel" value="取消"/>--%>
-    <%--</div>--%>
+    <script type="text/javascript" src="/mobile/js/diy_select.js"></script>
+    <script type="text/javascript">
+        var TTDiy_select = new diy_select({  //参数可选
+            TTContainer: 'diy_select',//控件的class
+            TTDiy_select_input: 'diy_select_input',//用于提交表单的class
+            TTDiy_select_txt: 'diy_select_txt',//diy_select用于显示当前选中内容的容器class
+            TTDiy_select_btn: 'diy_select_btn',//diy_select的打开按钮
+            TTDiv_select_list: 'diy_select_list',//要显示的下拉框内容列表class
+            TTFcous: 'focus'//得到焦点时的class
+        });//如同时使用多个时请保持各class一致.
+    </script>
 
 </div>
 

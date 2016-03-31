@@ -73,57 +73,6 @@
                     <li><label>&nbsp;</label><input name="" type="button" onclick="$('.itab a:eq(1)').click()"
                                                     class="btn" value="下一步"/></li>
                 </ul>
-                    <%--<li><label>职位名称<b>*</b></label>--%>
-
-
-                    <%--<div class="vocation">--%>
-                    <%--<div class='diy_select'>--%>
-                    <%--<input type='hidden' name='' class='diy_select_input'/>--%>
-                    <%--<div class='diy_select_txt'>--请选择--</div>--%>
-                    <%--<div class='diy_select_btn'></div>--%>
-                    <%--<ul class='diy_select_list'>--%>
-                    <%--<li>UI设计师</li>--%>
-                    <%--<li>交互设计师</li>--%>
-                    <%--<li>前端设计师</li>--%>
-                    <%--<li>网页设计师</li>--%>
-                    <%--<li>Flash动画</li>--%>
-                    <%--<li>视觉设计师</li>--%>
-                    <%--<li>插画设计师</li>--%>
-                    <%--<li>美工</li>--%>
-                    <%--<li>其他</li>--%>
-                    <%--</ul>--%>
-                    <%--</div>--%>
-                    <%--</div>--%>
-
-                    <%--</li>--%>
-
-                    <%--<li><label>薪资待遇<b>*</b></label>--%>
-
-                    <%--<div class="vocation">--%>
-                    <%--<div class='diy_select'>--%>
-                    <%--<input type='hidden' name='' class='diy_select_input'/>--%>
-                    <%--<div class='diy_select_txt'>--请选择--</div>--%>
-                    <%--<div class='diy_select_btn'></div>--%>
-                    <%--<ul class='diy_select_list'>--%>
-                    <%--<li>3000-5000</li>--%>
-                    <%--<li>5000-8000</li>--%>
-                    <%--<li>8000-10000</li>--%>
-                    <%--<li>10000-15000</li>--%>
-                    <%--</ul>--%>
-                    <%--</div>--%>
-                    <%--</div>--%>
-                    <%--</li>--%>
-
-                    <%--<li><label>通知内容<b>*</b></label>--%>
-
-
-                    <%--<textarea id="content7" name="content" style="width:700px;height:250px;visibility:hidden;"></textarea>--%>
-
-                    <%--</li>--%>
-                    <%--<li><label>&nbsp;</label><input name="" type="button" onclick="$('.itab a:eq(1)').click()" class="btn" value="下一步"/></li>--%>
-                    <%--</ul>--%>
-
-
             </div>
 
 
@@ -344,11 +293,6 @@
                 for (var i = 0; i < this.lengths; i++) {
                     var item = This.l[i].getElementsByTagName('li');
                     for (var j = 0; j < item.length; j++) {
-                        /*console.log(item[j].getAttribute('select'))
-                         if (item[j].getAttribute('select') != null && This.ipt[i].value !=null) {
-                         This.t[i].innerHTML = item[j].innerHTML;
-                         This.ipt[i].value = item[j].getAttribute('value');
-                         }*/
                         if(This.ipt[i].value == item[j].getAttribute('value')){
                             This.t[i].innerHTML = item[j].innerHTML;
                         }
@@ -396,7 +340,6 @@
                         }
                         o[i].onclick = function () {
                             var index = this.parentNode.index;//获得列表
-                            //This.t[index].innerHTML = This.ipt[index].value = this.innerHTML.replace(/^\s+/, '').replace(/\s+&/, '');
                             This.t[index].innerHTML = this.innerHTML.replace(/^\s+/, '').replace(/\s+&/, '');
                             This.ipt[index].value = this.getAttribute('value');
                             This.l[index].style.display = 'none';
