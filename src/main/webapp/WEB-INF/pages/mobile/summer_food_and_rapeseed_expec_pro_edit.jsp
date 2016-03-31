@@ -49,6 +49,9 @@
 
   <form:form commandName="SummerFoodAndRapeseedExpecProForm">
     <form:hidden path="summerFoodAndRapeseedExpecPro.id"/>
+    <form:hidden path="summerFoodAndRapeseedExpecPro.food_itemid"/>
+    <form:hidden path="summerFoodAndRapeseedExpecPro.food_xiaomai_food_itemid"/>
+    <form:hidden path="summerFoodAndRapeseedExpecPro.rapeseed_youcaizi_itemid"/>
     <div id="usual1" class="usual">
 
       <div class="itab">
