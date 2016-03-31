@@ -23,6 +23,12 @@ public class AutumnFoodExpecProService {
     @Autowired
     private AutumnFoodExpecProDao autumnFoodExpecProDao;
 
+    public boolean addItem(AutumnFoodExpecPro autumnFoodExpecPro)
+    {
+        autumnFoodExpecProDao.save(autumnFoodExpecPro);
+        return true;
+    }
+
     public boolean addItem(String registration_form_id,int survey_village_num,int survey_family_num,
                            ExpectedProductionItem food_item,ExpectedProductionItem food_zhongdaoyijidao_item,ExpectedProductionItem food_shuangjiwandao_item,ExpectedProductionItem food_yumi_item,ExpectedProductionItem food_dadou_item,
                            ExpectedProductionItem rapeseed_item,ExpectedProductionItem rapeseed_huasheng_item,
