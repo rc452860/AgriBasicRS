@@ -45,8 +45,8 @@ public class UserService {
         user.setSalt(getRandomString(6));
         user.setUsername(username);
         user.setName(name);
-        user.setPassword(this.getUserPasswordMd5(user.getSalt(),password));
-        user.setRole(AES.encrypt(this.getUserRoleEncrypt(user.getSalt(),role.name())));
+        user.setPassword(this.getUserPasswordMd5(user.getSalt(), password));
+        user.setRole(this.getUserRoleEncrypt(user.getSalt(),role.name()));
         user.setEmail(email);
         user.setPhone(phone);
         userDao.save(user);
