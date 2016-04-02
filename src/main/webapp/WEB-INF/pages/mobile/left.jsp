@@ -140,6 +140,17 @@
                     <li><a href="/mobile/autumnWinterPlantsIntention/list" target="rightFrame">调查表信息列表</a></li>
                 </ul>
             </li>
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="index.html" target="rightFrame">出栏肥猪生产成本、收益..</a>
+                    <i class ="png"></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="/mobile/costBenefitOfPig/add" target="rightFrame">添加调查表信息</a></li>
+                    <li><a href="/mobile/costBenefitOfPig/list" target="rightFrame">调查表信息列表</a></li>
+                </ul>
+            </li>
             <%--<li>
                 <div class="header">
                     <cite></cite>

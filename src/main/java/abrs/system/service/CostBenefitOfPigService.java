@@ -52,6 +52,10 @@ public class CostBenefitOfPigService {
         costBenefitOfPigDao.deleteById(id);
     }
 
+    public void removeMulit(String[] ids){
+        costBenefitOfPigDao.deleteByIdMulit(ids);
+    }
+
     public List<CostBenefitOfPig> getItems(int start, int size){
         return costBenefitOfPigDao.getPage(new Query(), start, size);
     }
