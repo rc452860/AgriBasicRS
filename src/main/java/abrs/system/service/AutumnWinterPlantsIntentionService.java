@@ -52,6 +52,10 @@ public class AutumnWinterPlantsIntentionService {
         autumnWinterPlantsIntentionDao.deleteById(id);
     }
 
+    public void removeMulit(String[] ids){
+        autumnWinterPlantsIntentionDao.deleteByIdMulit(ids);
+    }
+
     public List<AutumnWinterPlantsIntention> getItems(int start, int size){
         return autumnWinterPlantsIntentionDao.getPage(new Query(), start, size);
     }
