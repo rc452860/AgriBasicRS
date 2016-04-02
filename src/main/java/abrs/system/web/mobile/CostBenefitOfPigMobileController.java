@@ -24,7 +24,7 @@ import java.util.Map;
 @RequestMapping("/mobile/costBenefitOfPig")
 public class CostBenefitOfPigMobileController {
 
-    private static Logger logger = LoggerFactory.getLogger(RegionMobileController.class);
+    private static Logger logger = LoggerFactory.getLogger(CostBenefitOfPigMobileController.class);
 
     @Autowired
     CostBenefitOfPigService service;
