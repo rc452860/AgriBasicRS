@@ -52,6 +52,10 @@ public class CostBenefitProductivityOfPlantService {
         costBenefitProductivityOfPlantDao.deleteById(id);
     }
 
+    public void removeMulit(String[] ids){
+        costBenefitProductivityOfPlantDao.deleteByIdMulit(ids);
+    }
+
     public List<CostBenefitProductivityOfPlant> getItems(int start, int size){
         return costBenefitProductivityOfPlantDao.getPage(new Query(), start, size);
     }
