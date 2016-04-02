@@ -24,7 +24,7 @@ import java.util.Map;
 @RequestMapping("/mobile/autumnWinterPlantsIntention")
 public class AutumnWinterPlantsIntentionMobileController {
 
-    private static Logger logger = LoggerFactory.getLogger(AutumnFoodExpecProMobileController.class);
+    private static Logger logger = LoggerFactory.getLogger(AutumnWinterPlantsIntentionMobileController.class);
 
     @Autowired
     AutumnWinterPlantsIntentionService service;
