@@ -52,6 +52,10 @@ public class ProductsAndMeansFarmerPriceService {
         productsAndMeansFarmerPriceDao.deleteById(id);
     }
 
+    public void removeMulit(String[] ids){
+        productsAndMeansFarmerPriceDao.deleteByIdMulit(ids);
+    }
+
     public List<ProductsAndMeansFarmerPrice> getItems(int start, int size){
         return productsAndMeansFarmerPriceDao.getPage(new Query(), start, size);
     }

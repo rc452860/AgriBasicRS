@@ -162,6 +162,17 @@
                     <li><a href="/mobile/costBenefitProductivityOfPlant/list" target="rightFrame">调查表信息列表</a></li>
                 </ul>
             </li>
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="index.html" target="rightFrame">主要农产品和农业生产资料价格监测旬报表(农民售价)</a>
+                    <i class ="png"></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="/mobile/productsAndMeansFarmerPrice/add" target="rightFrame">添加调查表信息</a></li>
+                    <li><a href="/mobile/productsAndMeansFarmerPrice/list" target="rightFrame">调查表信息列表</a></li>
+                </ul>
+            </li>
             <%--<li>
                 <div class="header">
                     <cite></cite>
