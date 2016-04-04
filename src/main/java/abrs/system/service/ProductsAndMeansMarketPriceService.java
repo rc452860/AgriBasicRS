@@ -52,6 +52,10 @@ public class ProductsAndMeansMarketPriceService {
         productsAndMeansMarketPriceDao.deleteById(id);
     }
 
+    public void removeMulit(String[] ids){
+        productsAndMeansMarketPriceDao.deleteByIdMulit(ids);
+    }
+
     public List<ProductsAndMeansMarketPrice> getItems(int start, int size){
         return productsAndMeansMarketPriceDao.getPage(new Query(), start, size);
     }
