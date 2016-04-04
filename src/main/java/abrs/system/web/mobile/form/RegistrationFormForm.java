@@ -17,6 +17,8 @@ public class RegistrationFormForm {
 
     private String name;//名称
 
+    private String region_id;//区域单位编号
+
     private String form_type;//表格类型（根据固定的提供的excel表，从而为打印提供模版）
 
     private Boolean multidata;//判断是否多数据表(农市（基）1-1表、1-2表)或单数据表(农市（基）3-1表、3-2表)
@@ -88,6 +90,14 @@ public class RegistrationFormForm {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getRegion_id() {
+        return region_id;
+    }
+
+    public void setRegion_id(String region_id) {
+        this.region_id = region_id;
     }
 
     public String getForm_type() {

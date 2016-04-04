@@ -63,6 +63,8 @@
                                                    style="width:518px;"/></li>
           <li><label>名称<b>*</b></label><form:input path="name" name="" type="text" class="dfinput"
                                                    value="" style="width:518px;"/></li>
+          <li><label>区域单位编号<b>*</b></label><form:input path="region_id" name="" type="text" class="dfinput"
+                                                       value="" style="width:518px;"/></li>
           <li><label>表格类型<b>*</b></label><form:input path="form_type" name="" type="text" class="dfinput"
                                                      value="" style="width:518px;"/></li>
           <li><label>是否多数据表<b>*</b></label><form:input path="multidata" name="" type="text" class="dfinput" value=""
