@@ -1,0 +1,39 @@
+/*
+.form-add {
+     border: solid #222;
+    border-width:1px 0px 0px 1px;
+    background: lightseagreen;
+}
+.form-add td,.form-add th{
+    border:solid #222; border-width:0px 1px 1px 0px; padding-left:10px;
+}
+.form-add input{
+    width:100%;
+}*/
+.form-add{border-collapse:collapse;width: 800px;margin-left: 20px;font-size: 14px;padding: 8px;font-size: 14px;}
+.form-add th,.form-add td{border:1px solid #ffdca9;padding: 3px 5px;}
+.form-add input,.form-add textarea{border: 1px solid #d2dff0;}
+.form-add input,
+.form-add .diy_select,
+.form-add .diy_select_list li,
+.diy_select_txt{width: 148px;height:22px;line-height: 22px;}
+.form-add .diy_select{;position:relative;font-size:12px;background:#fff;color:#000;}
+.form-add .diy_select_txt{float:left;height:100%;line-height:16px;}
+.form-add .diy_select,.diy_select_list{border:1px solid #73839F;}
+.form-add .diy_select_txt{width:148px;}
+.form-add .diy_select_txt,.diy_select_list li{text-indent:10px;overflow:hidden}
+.form-add .diy_select_list{position:absolute;top:15px;left:-1px;z-index:88888;border-top:none;width:100%;display:none;_top:16px;background: #FFF;}
+.form-add .diy_select_list li{list-style:none;cursor:default;_background:#fff;float: none !important;}
+.form-add .diy_select_list li.focus{background:#3399FF;color:#fff}
+/*
+.form-add input{
+    width: 100%;
+    height: 100%;
+    line-height: 1;
+    height:34px;
+    border: 1px solid #d2dff0;
+}
+.form-add .label,.form-add th{
+    background: #ffdca9;
+    padding-right: 8px;
+}*/
