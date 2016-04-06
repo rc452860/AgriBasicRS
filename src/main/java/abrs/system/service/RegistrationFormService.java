@@ -39,7 +39,7 @@ public class RegistrationFormService {
         registrationForm.setNo(no);
         registrationForm.setName(name);
         registrationForm.setForm_type(form_type);
-        registrationForm.setMultidata(multidata);
+        registrationForm.setIs_multidata(multidata);
         registrationForm.setRecord_date(record_date);
         registrationForm.setEnd_date(end_date);
         registrationForm.setRecord_entity(record_entity);
