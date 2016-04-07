@@ -106,6 +106,14 @@
     <tr>
       <th><input name="" type="checkbox" id="ctrall" value=""/></th>
       <th>调查表编号</th>
+      <th>乡镇名称</th>
+      <th>早籼稻</th>
+      <th>中籼稻</th>
+      <th>晚籼稻</th>
+      <th>粳稻</th>
+      <th>小麦</th>
+      <th>玉米</th>
+      <th>大豆</th>
       <th></th>
     </tr>
     </thead>
@@ -115,6 +123,14 @@
       <tr>
         <td><input class="ctr" name="" type="checkbox" value="${item.id}"/></td>
         <td>${item.registration_form_id}</td>
+        <td>${item.townships}</td>
+        <td>${item.raw_grain_zaoxiandao}</td>
+        <td>${item.raw_grain_zhongxiandao}</td>
+        <td>${item.raw_grain_wanxiandao}</td>
+        <td>${item.raw_grain_jingdao}</td>
+        <td>${item.raw_grain_xiaomai}</td>
+        <td>${item.raw_grain_yumi}</td>
+        <td>${item.raw_grain_dadou}</td>
         <td><a href="/mobile/productsAndMeansMarketPrice/edit?id=${item.id}" class="tablelink">修改/查看</a> <a
                 href="javascript:Delete('${item.id}')" class="tablelink"> 删除</a></td>
 
