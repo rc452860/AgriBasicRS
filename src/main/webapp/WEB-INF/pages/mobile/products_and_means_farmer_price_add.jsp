@@ -52,6 +52,9 @@
       <tr>
         <td>调查表编号</td><td colspan="5"><form:input  path="productsAndMeansFarmerPrice.registration_form_id"/></td>
       </tr>
+      <tr>
+        <td>乡镇名称</td><td colspan="5"><form:input  path="productsAndMeansFarmerPrice.townships"/></td>
+      </tr>
       <!--原粮-->
       <tr>
         <td colspan="6">原粮</td>

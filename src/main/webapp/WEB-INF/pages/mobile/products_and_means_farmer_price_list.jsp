@@ -99,6 +99,7 @@
     <tr>
       <th><input name="" type="checkbox" id="ctrall" value=""/></th>
       <th>调查表编号</th>
+      <th>乡镇名称</th>
       <th>早籼稻</th>
       <th>中籼稻</th>
       <th>晚籼稻</th>
@@ -115,6 +116,7 @@
       <tr>
         <td><input class="ctr" name="" type="checkbox" value="${item.id}"/></td>
         <td>${item.registration_form_id}</td>
+        <td>${item.townships}</td>
         <td>${item.raw_grain_zaoxiandao}</td>
         <td>${item.raw_grain_zhongxiandao}</td>
         <td>${item.raw_grain_wanxiandao}</td>
