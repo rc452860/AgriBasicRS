@@ -17,8 +17,6 @@ public class ProductsAndMeansMarketPrice {
 
     private String registration_form_id;//调查表编号
 
-    private String townships;//乡镇名称
-
     //region 原粮
     private double raw_grain_zaoxiandao;//早籼稻
     private double raw_grain_zhongxiandao;//中籼稻
@@ -102,14 +100,6 @@ public class ProductsAndMeansMarketPrice {
 
     public void setRegistration_form_id(String registration_form_id) {
         this.registration_form_id = registration_form_id;
-    }
-
-    public String getTownships() {
-        return townships;
-    }
-
-    public void setTownships(String townships) {
-        this.townships = townships;
     }
 
     public double getRaw_grain_zaoxiandao() {

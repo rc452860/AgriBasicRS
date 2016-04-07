@@ -18,7 +18,6 @@ public class CropYieldSummary {
 
     private String registration_form_id;//调查表编号
 
-    private String village;//村
     private String corp_name;//作物名称
 
     private String total_of_fifteen_itemid;//15基点户合计
@@ -43,14 +42,6 @@ public class CropYieldSummary {
 
     public void setRegistration_form_id(String registration_form_id) {
         this.registration_form_id = registration_form_id;
-    }
-
-    public String getVillage() {
-        return village;
-    }
-
-    public void setVillage(String village) {
-        this.village = village;
     }
 
     public String getCorp_name() {

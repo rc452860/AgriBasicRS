@@ -24,6 +24,13 @@ public class CropYieldSummaryService {
     @Autowired
     private CropYieldSummaryDao cropYieldSummaryDao;
 
+    public boolean addItem(CropYieldSummary cropYieldSummary)
+    {
+        cropYieldSummaryDao.save(cropYieldSummary);
+        logger.info("Add CropYieldSummary");
+        return true;
+    }
+
     public boolean addItem(String registration_form_id,String village, String corp_name,
                            String total_of_fifteen_itemid,
                            List<String> list_itemid,
@@ -31,7 +38,6 @@ public class CropYieldSummaryService {
     {
         CropYieldSummary cropYieldSummary = new CropYieldSummary();
         cropYieldSummary.setRegistration_form_id(registration_form_id);
-        cropYieldSummary.setVillage(village);
         cropYieldSummary.setCorp_name(corp_name);
         cropYieldSummary.setTotal_of_fifteen_itemid(total_of_fifteen_itemid);
         cropYieldSummary.setList_itemid(list_itemid);
@@ -61,6 +67,10 @@ public class CropYieldSummaryService {
     public void remove(String id)
     {
         cropYieldSummaryDao.deleteById(id);
+    }
+
+    public void removeMulit(String[] ids){
+        cropYieldSummaryDao.deleteByIdMulit(ids);
     }
 
     public List<CropYieldSummary> getItems(int start, int size){

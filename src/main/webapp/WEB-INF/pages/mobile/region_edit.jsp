@@ -15,6 +15,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>无标题文档</title>
   <link href="/mobile/css/style.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="/mobile/css/table.css">
   <script type="text/javascript" src="/mobile/js/jquery.js"></script>
   <script type="text/javascript" src="/mobile/js/jquery.idTabs.min.js"></script>
   <script type="text/javascript" src="/mobile/kindeditor/kindeditor-min.js"></script>
@@ -49,33 +50,23 @@
 
   <form:form commandName="RegionForm">
     <form:hidden path="id"/>
-    <div id="usual1" class="usual">
-
-      <div class="itab">
-        <ul>
-          <li><a href="#tab1" class="selected">基本信息</a></li>
-        </ul>
-      </div>
-
-      <div id="tab1" class="tabson"><%--联系方式--%>
-        <ul class="forminfo">
-          <li><label>序号<b>*</b></label><form:input path="no" name="" type="text" class="dfinput" value=""
-                                                   style="width:518px;"/></li>
-          <li><label>名称<b>*</b></label><form:input path="name" name="" type="text" class="dfinput"
-                                                   value="" style="width:518px;"/></li>
-          <li><label>全称<b>*</b></label><form:input path="fullname" name="" type="text" class="dfinput"
-                                                   value="" style="width:518px;"/></li>
-          <li><label>父区域单位编号<b>*</b></label><form:input path="fatherno" name="" type="text" class="dfinput" value=""
-                                                        style="width:518px;"/></li>
-          <li><label>短码1<b>*</b></label><form:input path="shortnoone" name="" type="text" class="dfinput" value=""
-                                                    style="width:518px;"/></li>
-          <li><label>短码2<b>*</b></label><form:input path="shortnotwo" name="" type="text"
-                                                    class="dfinput" value="" style="width:518px;"/></li>
-          <li><label>&nbsp;</label><input type="button" id="submit_button" class="btn" value="提交"/></li>
-        </ul>
-      </div>
-
-    </div>
+    <table class="form-add" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>序号</td><td><form:input  path="no"/></td>
+        <td>名称</td><td><form:input  path="name"/></td>
+      </tr>
+      <tr>
+        <td>全称</td><td><form:input  path="fullname"/></td>
+        <td>父区域单位编号</td><td><form:input  path="fatherno"/></td>
+      </tr>
+      <tr>
+        <td>短码1</td><td><form:input  path="shortnoone"/></td>
+        <td>短码2</td><td><form:input  path="shortnotwo"/></td>
+      </tr>
+      <tr>
+        <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
+      </tr>
+    </table>
   </form:form>
 
   <%--此乃登陆代码--%>

@@ -21,9 +21,11 @@ public class RegistrationForm {
 
     private String name;//名称
 
+    private String region_id;//区域单位编号
+
     private String form_type;//表格类型（根据固定的提供的excel表，从而为打印提供模版）
 
-    private Boolean multidata;//判断是否多数据表(农市（基）1-1表、1-2表)或单数据表(农市（基）3-1表、3-2表)
+    private Boolean is_multidata;//判断是否多数据表(农市（基）1-1表、1-2表)或单数据表(农市（基）3-1表、3-2表)
 
     private Date create_date = new Date();//创建时间
 
@@ -62,6 +64,14 @@ public class RegistrationForm {
         this.name = name;
     }
 
+    public String getRegion_id() {
+        return region_id;
+    }
+
+    public void setRegion_id(String region_id) {
+        this.region_id = region_id;
+    }
+
     public String getForm_type() {
         return form_type;
     }
@@ -70,11 +80,13 @@ public class RegistrationForm {
         this.form_type = form_type;
     }
 
-    public Boolean getMultidata() {
-        return multidata;
+    public Boolean getIs_multidata() {
+        return is_multidata;
     }
 
-    public void setMultidata(Boolean multidata) { this.multidata = multidata; }
+    public void setIs_multidata(Boolean is_multidata) {
+        this.is_multidata = is_multidata;
+    }
 
     public Date getCreate_date() {
         return create_date;

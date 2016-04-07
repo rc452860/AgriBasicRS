@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Edifi_000
-  Date: 2016-03-29
-  Time: 23:41
+  Date: 2016-04-04
+  Time: 22:55
   To change this template use File | Settings | File Templates.
 --%>
 <%@page language="java" pageEncoding="UTF-8" contentType="text/html;charset=utf-8" %>
@@ -41,14 +41,15 @@
   <span>位置：</span>
   <ul class="placeul">
     <li><a href="#">首页</a></li>
-    <li><a href="#">调查表修改</a></li>
+    <li><a href="#">农作物产量调查汇总表</a></li>
+    <li><a href="#">修改调查信息</a></li>
   </ul>
 </div>
 
 <div class="formbody">
 
-  <form:form commandName="RegistrationFormForm">
-    <form:hidden path="id"/>
+  <form:form commandName="CropYieldSummaryForm">
+    <form:hidden path="cropYieldSummary.id"/>
     <div id="usual1" class="usual">
 
       <div class="itab">
@@ -57,28 +58,11 @@
         </ul>
       </div>
 
-      <div id="tab1" class="tabson">
+      <div id="tab1" class="tabson"><%--联系方式--%>
         <ul class="forminfo">
-          <li><label>序号<b>*</b></label><form:input path="no" name="" type="text" class="dfinput" value=""
-                                                   style="width:518px;"/></li>
-          <li><label>名称<b>*</b></label><form:input path="name" name="" type="text" class="dfinput"
-                                                   value="" style="width:518px;"/></li>
-          <li><label>区域单位编号<b>*</b></label><form:input path="region_id" name="" type="text" class="dfinput"
-                                                       value="" style="width:518px;"/></li>
-          <li><label>表格类型<b>*</b></label><form:input path="form_type" name="" type="text" class="dfinput"
-                                                     value="" style="width:518px;"/></li>
-          <li><label>是否多数据表<b>*</b></label><form:input path="multidata" name="" type="text" class="dfinput" value=""
-                                                       style="width:518px;"/></li>
-          <li><label>填表时间<b>*</b></label><form:input path="record_date" name="" type="text" class="dfinput" value=""
-                                                     style="width:518px;" onclick="laydate()"/></li>
-          <li><label>截止时间<b>*</b></label><form:input path="end_date" name="" type="text"
-                                                     class="dfinput" value="" style="width:518px;" onclick="laydate()"/></li>
-          <li><label>填报单位<b>*</b></label><form:input path="record_entity" name="" type="text"
-                                                     class="dfinput" value="" style="width:518px;"/></li>
-          <li><label>调查员姓名<b>*</b></label><form:input path="record_person_name" name="" type="text"
-                                                      class="dfinput" value="" style="width:518px;"/></li>
-          <li><label>调查员联系电话<b>*</b></label><form:input path="record_person_phone" name="" type="text"
-                                                        class="dfinput" value="" style="width:518px;"/></li>
+          <li><label>调查表编号<b>*</b></label><form:input path="cropYieldSummary.registration_form_id" name="" type="text" class="dfinput" value=""
+                                                      style="width:518px;"/></li>
+
           <li><label>&nbsp;</label><input type="button" id="submit_button" class="btn" value="提交"/></li>
         </ul>
       </div>
@@ -93,8 +77,8 @@
         $.ajax({
           cache: false,
           type: "POST",
-          url: "/mobile/registrationForm/edit",
-          data: $('#RegistrationFormForm').serialize(),
+          url: "/mobile/cropYieldSummary/edit",
+          data: $('#CropYieldSummaryForm').serialize(),
           async: false,
           error: function (XMLHttpRequest) {
             alert("error:" + XMLHttpRequest.status);

@@ -1,14 +1,13 @@
 <%--
   Created by IntelliJ IDEA.
   User: Edifi_000
-  Date: 2016-03-29
-  Time: 23:41
+  Date: 2016-04-04
+  Time: 22:55
   To change this template use File | Settings | File Templates.
 --%>
 <%@page language="java" pageEncoding="UTF-8" contentType="text/html;charset=utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib prefix="Form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -22,9 +21,9 @@
   <script type="text/javascript" src="/mobile/laydate/laydate.js"></script>
 
   <script type="text/javascript">
-    KindEditor.ready(function (K) {
-      K.create("#note", {
-        afterBlur: function () {
+    KindEditor.ready(function(K){
+      K.create("#note",{
+        afterBlur:function(){
           this.sync();
         }
       })
@@ -41,14 +40,14 @@
   <span>位置：</span>
   <ul class="placeul">
     <li><a href="#">首页</a></li>
-    <li><a href="#">调查表修改</a></li>
+    <li><a href="#">农作物产量调查汇总表</a></li>
+    <li><a href="#">新增调查信息</a></li>
   </ul>
 </div>
 
 <div class="formbody">
 
-  <form:form commandName="RegistrationFormForm">
-    <form:hidden path="id"/>
+  <form:form commandName="CropYieldSummaryForm">
     <div id="usual1" class="usual">
 
       <div class="itab">
@@ -57,29 +56,13 @@
         </ul>
       </div>
 
-      <div id="tab1" class="tabson">
+      <div id="tab1" class="tabson"><%--基本信息--%>
+
         <ul class="forminfo">
-          <li><label>序号<b>*</b></label><form:input path="no" name="" type="text" class="dfinput" value=""
-                                                   style="width:518px;"/></li>
-          <li><label>名称<b>*</b></label><form:input path="name" name="" type="text" class="dfinput"
-                                                   value="" style="width:518px;"/></li>
-          <li><label>区域单位编号<b>*</b></label><form:input path="region_id" name="" type="text" class="dfinput"
-                                                       value="" style="width:518px;"/></li>
-          <li><label>表格类型<b>*</b></label><form:input path="form_type" name="" type="text" class="dfinput"
-                                                     value="" style="width:518px;"/></li>
-          <li><label>是否多数据表<b>*</b></label><form:input path="multidata" name="" type="text" class="dfinput" value=""
-                                                       style="width:518px;"/></li>
-          <li><label>填表时间<b>*</b></label><form:input path="record_date" name="" type="text" class="dfinput" value=""
-                                                     style="width:518px;" onclick="laydate()"/></li>
-          <li><label>截止时间<b>*</b></label><form:input path="end_date" name="" type="text"
-                                                     class="dfinput" value="" style="width:518px;" onclick="laydate()"/></li>
-          <li><label>填报单位<b>*</b></label><form:input path="record_entity" name="" type="text"
-                                                     class="dfinput" value="" style="width:518px;"/></li>
-          <li><label>调查员姓名<b>*</b></label><form:input path="record_person_name" name="" type="text"
-                                                      class="dfinput" value="" style="width:518px;"/></li>
-          <li><label>调查员联系电话<b>*</b></label><form:input path="record_person_phone" name="" type="text"
-                                                        class="dfinput" value="" style="width:518px;"/></li>
-          <li><label>&nbsp;</label><input type="button" id="submit_button" class="btn" value="提交"/></li>
+          <li><label>调查表编号<b>*</b></label><form:input path="cropYieldSummary.registration_form_id" name="" type="text" class="dfinput" value=""
+                                                      style="width:518px;"/></li>
+
+          <li><label>&nbsp;</label><input name="" type="button" id="submit_button" class="btn" value="提交"/></li>
         </ul>
       </div>
 
@@ -93,15 +76,15 @@
         $.ajax({
           cache: false,
           type: "POST",
-          url: "/mobile/registrationForm/edit",
-          data: $('#RegistrationFormForm').serialize(),
+          url: "/mobile/cropYieldSummary/add",
+          data: $('#CropYieldSummaryForm').serialize(),
           async: false,
           error: function (XMLHttpRequest) {
             alert("error:" + XMLHttpRequest.status);
           },
           success: function (data) {
-            if (data.message != null) alert(data.message);
-            if (data.url != null) window.location.href = data.url;
+            if(data.message != null) alert(data.message);
+            if(data.url != null) window.location.href = data.url;
           }
         });
       });
@@ -189,8 +172,7 @@
             e.stopPropagation ? e.stopPropagation() : (e.cancelBubble = true); //阻止冒泡
           }
         }
-      }
-      ,
+      },
       addClick: function (o)//点击回调函数
       {
 
@@ -212,8 +194,7 @@
             }
           }
         }
-      }
-      ,
+      },
       getByClass: function (s, p, t)//使用class获取元素
       {
         var reg = new RegExp('\\b' + s + '\\b');
@@ -226,8 +207,7 @@
           }
         }
         return aResult;
-      }
-      ,
+      },
 
       setOpts: function (opt) //以下参数可以不设置  //设置参数
       {
