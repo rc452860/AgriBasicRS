@@ -6,12 +6,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>信息管理系统</title>
+
 </head>
 <frameset rows="88,*,31" cols="*" frameborder="no" border="0" framespacing="0">
     <frame src="/mobile/top" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame" />
     <frameset cols="187,*" frameborder="no" border="0" framespacing="0">
         <frame src="/mobile/left" name="leftFrame" scrolling="No" noresize="noresize" id="leftFrame" title="leftFrame" />
         <frame src="/mobile/index" name="rightFrame" id="rightFrame" title="rightFrame" />
+
     </frameset>
     <frame src="/mobile/footer" name="bottomFrame" scrolling="No" noresize="noresize" id="bottomFrame" title="bottomFrame" />
 </frameset>

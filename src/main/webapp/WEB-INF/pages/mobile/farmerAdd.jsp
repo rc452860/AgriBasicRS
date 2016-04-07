@@ -15,15 +15,13 @@
     <script type="text/javascript" src="/mobile/kindeditor/kindeditor-min.js"></script>
     <script type="text/javascript" src="/mobile/kindeditor/lang/zh_CN.js"></script>
     <script type="text/javascript" src="/mobile/laydate/laydate.js"></script>
+    <script type="text/javascript" src="/mobile/easyui/src/easyloader.js"></script>
 
     <script type="text/javascript">
-       /* KindEditor.ready(function(K){
-            K.create("#note",{
-                afterBlur:function(){
-                    this.sync();
-                }
-            })
-        })*/
+        easyloader.base = "/mobile/easyui/";
+        easyloader.theme = "metro";
+        easyloader.locale = "zh_CN";
+        easyloader.load(['tooltip','combotree','calendar','combobox','resizable'])
     </script>
 
 
@@ -44,6 +42,12 @@
 
     <form:form commandName="FarmerForm">
         <table class="form-add" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>testing</td>
+                <td colspan="3">
+                    <input class="easyui-combotree validatebox-invalid" data-options="url:'/mobile/json/tree_test.json',method:'get',required:true" style="width:200px;height:24px;">
+                </td>
+            </tr>
             <tr>
                 <td>序号</td><td><form:input  path="no"/></td>
                 <td>所在镇村组编号</td><td><form:input  path="region_no"/></td>

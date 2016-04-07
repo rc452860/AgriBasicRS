@@ -47,14 +47,29 @@
                     $(this).next('.menuson').slideDown();
                 }
             });
+            console.log(self == top)
+            $("a[target=rightFrame]").on("click",function (){
+                if(self==top){
+
+                    return true;
+                }else{
+                    var target = top.frames["rightFrame"];
+                    console.log(/(#|javascript)/.test($(this).attr('href')))
+                    if(!/(#|javascript)/.test($(this).attr('href'))){
+                        target.addTab($(this).text(),$(this).attr('href'));
+                        return false;
+                    }
+                }
+            })
         })
     </script>
+
 
 
 </head>
 
 <body style="background:#fff3e1;">
-<div class="lefttop png"><span></span>通讯录</div>
+<div class="lefttop png"><span></span></div>
 
 <dl class="leftmenu">
 
@@ -66,7 +81,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">农户基本信息</a>
+                    <a href="javascript:void(0)" target="rightFrame">农户基本信息</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
@@ -77,7 +92,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">区域单位基本信息</a>
+                    <a href="javascript:void(0)" target="rightFrame">区域单位基本信息</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
@@ -88,7 +103,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">调查表信息</a>
+                    <a href="javascript:void(0)" target="rightFrame">调查表信息</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
@@ -99,7 +114,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">夏粮、夏收油菜籽产量..</a>
+                    <a href="javascript:void(0)" target="rightFrame">夏粮、夏收油菜籽产量..</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
@@ -110,7 +125,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">全年农作物播种面积意向..</a>
+                    <a href="javascript:void(0)" target="rightFrame">全年农作物播种面积意向..</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
@@ -121,7 +136,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">秋收作物产量预计</a>
+                    <a href="javascript:void(0)" target="rightFrame">秋收作物产量预计</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
@@ -132,7 +147,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">秋冬作物播种面积意向</a>
+                    <a href="javascript:void(0)" target="rightFrame">秋冬作物播种面积意向</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
@@ -143,7 +158,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">出栏肥猪生产成本、收益..</a>
+                    <a href="javascript:void(0)" target="rightFrame">出栏肥猪生产成本、收益..</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
@@ -154,7 +169,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">种植业产品生产成本、收益..</a>
+                    <a href="javascript:void(0)" target="rightFrame">种植业产品生产成本、收益..</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
@@ -165,7 +180,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">主要农产品和农业生产资料价格监测旬报表(农民售价)</a>
+                    <a href="javascript:void(0)" target="rightFrame">主要农产品和农业生产资料价格监测旬报表(农民售价)</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
@@ -176,7 +191,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">主要农产品和农业生产资料价格监测旬报表(市场价格)</a>
+                    <a href="javascript:void(0)" target="rightFrame">主要农产品和农业生产资料价格监测旬报表(市场价格)</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
@@ -187,7 +202,7 @@
             <%--<li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">首页模版</a>
+                    <a href="javascript:void(0)" target="rightFrame">首页模版</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
