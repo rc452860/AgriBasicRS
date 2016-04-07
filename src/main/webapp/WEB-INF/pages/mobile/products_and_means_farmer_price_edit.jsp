@@ -15,6 +15,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>无标题文档</title>
   <link href="/mobile/css/style.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="/mobile/css/table.css">
   <script type="text/javascript" src="/mobile/js/jquery.js"></script>
   <script type="text/javascript" src="/mobile/js/jquery.idTabs.min.js"></script>
   <script type="text/javascript" src="/mobile/kindeditor/kindeditor-min.js"></script>
@@ -50,24 +51,68 @@
 
   <form:form commandName="ProductsAndMeansFarmerPriceForm">
     <form:hidden path="productsAndMeansFarmerPrice.id"/>
-    <div id="usual1" class="usual">
+    <table class="form-add" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>调查表编号</td><td colspan="5"><form:input  path="productsAndMeansFarmerPrice.registration_form_id"/></td>
+      </tr>
+      <!--原粮-->
+      <tr>
+        <td colspan="6">原粮</td>
+      </tr>
+      <tr>
+        <td>早籼稻</td><td><form:input  path="productsAndMeansFarmerPrice.raw_grain_zaoxiandao"/></td>
+        <td>中籼稻</td><td><form:input  path="productsAndMeansFarmerPrice.raw_grain_zhongxiandao"/></td>
+        <td>晚籼稻</td><td><form:input  path="productsAndMeansFarmerPrice.raw_grain_wanxiandao"/></td>
+      </tr>
+      <tr>
+        <td>粳稻</td><td><form:input  path="productsAndMeansFarmerPrice.raw_grain_jingdao"/></td>
+        <td>小麦</td><td><form:input  path="productsAndMeansFarmerPrice.raw_grain_xiaomai"/></td>
+        <td>玉米</td><td><form:input  path="productsAndMeansFarmerPrice.raw_grain_yumi"/></td>
+      </tr>
+      <tr>
+        <td>大豆</td><td><form:input  path="productsAndMeansFarmerPrice.raw_grain_dadou"/></td>
+        <td colspan="4"></td>
+      </tr>
 
-      <div class="itab">
-        <ul>
-          <li><a href="#tab1" class="selected">基本信息</a></li>
-        </ul>
-      </div>
+      <!--经养产品-->
+      <tr>
+        <td colspan="6">经养产品</td>
+      </tr>
+      <tr>
+        <td>带壳花生</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_daikehuasheng"/></td>
+        <td>花生米</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_huashengmi"/></td>
+        <td>油菜籽</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_youcaizi"/></td>
+      </tr>
+      <tr>
+        <td>生猪</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_shengzhu"/></td>
+        <td>仔猪</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_zaizhu"/></td>
+        <td>活鸡</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_huoji"/></td>
+      </tr>
+      <tr>
+        <td>鸡蛋</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_jidan"/></td>
+        <td>籽棉</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_zimian"/></td>
+        <td>甘蔗</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_ganze"/></td>
+      </tr>
+      <tr>
+        <td>鲤鱼</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_liyu"/></td>
+        <td>鲢鱼</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_lianyu"/></td>
+        <td>草鱼</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_caoyu"/></td>
+      </tr>
+      <tr>
+        <td>白菜</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_baicai"/></td>
+        <td>西红柿</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_xihongshi"/></td>
+        <td>黄瓜</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_huanggua"/></td>
+      </tr>
+      <tr>
+        <td>菜椒</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_caijiao"/></td>
+        <td>土豆</td><td><form:input  path="productsAndMeansFarmerPrice.raised_product_tudou"/></td>
+        <td colspan="2"></td>
+      </tr>
 
-      <div id="tab1" class="tabson"><%--联系方式--%>
-        <ul class="forminfo">
-          <li><label>调查表编号<b>*</b></label><form:input path="productsAndMeansFarmerPrice.registration_form_id" name="" type="text" class="dfinput" value=""
-                                                      style="width:518px;"/></li>
-
-          <li><label>&nbsp;</label><input type="button" id="submit_button" class="btn" value="提交"/></li>
-        </ul>
-      </div>
-
-    </div>
+      <tr>
+        <td align="center" colspan="6"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
+      </tr>
+    </table>
   </form:form>
 
   <%--此乃登陆代码--%>
