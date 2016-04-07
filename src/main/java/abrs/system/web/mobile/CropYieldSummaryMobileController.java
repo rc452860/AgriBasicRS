@@ -2,7 +2,9 @@ package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.CropYieldSummary;
+import abrs.system.dao.Entity.ExpectedProductionItem;
 import abrs.system.service.CropYieldSummaryService;
+import abrs.system.service.ExpectedProductionItemService;
 import abrs.system.web.mobile.form.CropYieldSummaryForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,10 +32,18 @@ public class CropYieldSummaryMobileController {
     @Autowired
     CropYieldSummaryService service;
 
+    @Autowired
+    ExpectedProductionItemService itemService;
+
     @Auth(role = Auth.Role.ADMIN)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String Add(ModelMap modelMap){
-        modelMap.addAttribute("CropYieldSummaryForm",new CropYieldSummaryForm());
+        CropYieldSummaryForm form = new CropYieldSummaryForm();
+        for(int i = 0;i<15;i++)
+        {
+            form.getList_item()[i] = new ExpectedProductionItem();
+        }
+        modelMap.addAttribute("CropYieldSummaryForm",form);
         return "mobile/crop_yield_summary_add";
     }
 
@@ -45,9 +56,19 @@ public class CropYieldSummaryMobileController {
             map.put("message", errors.getFieldError().getDefaultMessage());
         }else{
             try {
-                CropYieldSummary costBenefitOfPig = form.getCropYieldSummary();
+                CropYieldSummary entity = form.getCropYieldSummary();
 
-                service.addItem(costBenefitOfPig);
+                entity.setTotal_of_fifteen_itemid(itemService.addItem(form.getTotal_of_fifteen_item()));
+                entity.setSimple_average_itemid(itemService.addItem(form.getSimple_average_item()));
+                ExpectedProductionItem[] list_item = form.getList_item();
+                List<String> list_itemid = new ArrayList<String>();
+                for (int i = 0;i<list_item.length;i++)
+                {
+                    list_itemid.add(itemService.addItem(list_item[i]));
+                }
+                entity.setList_itemid(list_itemid);
+
+                service.addItem(entity);
                 map.put("message","添加成功");
             }catch (Exception e){
                 e.printStackTrace();
@@ -76,7 +97,21 @@ public class CropYieldSummaryMobileController {
     public String Edit(@RequestParam(value = "id") String id,ModelMap modelMap){
 
         CropYieldSummaryForm form = new CropYieldSummaryForm();
-        form.setCropYieldSummary(service.getItem(id));
+
+        CropYieldSummary entity =  service.getItem(id);
+        ExpectedProductionItem total_of_fifteen_item = itemService.getItem(entity.getTotal_of_fifteen_itemid());
+        ExpectedProductionItem simple_average_itemid = itemService.getItem(entity.getSimple_average_itemid());
+        ExpectedProductionItem[] list_item = new ExpectedProductionItem[15];
+        for (int i = 0;i<15;i++)
+        {
+            list_item[i] = itemService.getItem(entity.getList_itemid().get(i));
+        }
+
+        form.setCropYieldSummary(entity);
+        form.setTotal_of_fifteen_item(total_of_fifteen_item);
+        form.setSimple_average_item(simple_average_itemid);
+        form.setList_item(list_item);
+
         try {
             modelMap.addAttribute("CropYieldSummaryForm", form);
         }catch (Exception e){
@@ -94,9 +129,17 @@ public class CropYieldSummaryMobileController {
             map.put("message",errors.getFieldError().getDefaultMessage());
         }
         try {
-            CropYieldSummary cropYieldSummary = form.getCropYieldSummary();
+            CropYieldSummary entity = form.getCropYieldSummary();
+            ExpectedProductionItem total_of_fifteen_item = form.getTotal_of_fifteen_item();
+            ExpectedProductionItem simple_average_item = form.getSimple_average_item();
 
-            service.updateItem(cropYieldSummary);
+            service.updateItem(entity);
+            itemService.updateItem(total_of_fifteen_item);
+            itemService.updateItem(simple_average_item);
+            for(int z=0;z<form.getList_item().length;z++)
+            {
+                itemService.updateItem(form.getList_item()[z]);
+            }
 
             map.put("message","修改成功");
         }catch (Exception e){
@@ -112,7 +155,14 @@ public class CropYieldSummaryMobileController {
     public Object Delete(@RequestParam("id") String id){
         Map<String, Object> map = new HashMap<String, Object>();
         try {
+            CropYieldSummary entity =  service.getItem(id);
             service.remove(id);
+            itemService.remove(entity.getTotal_of_fifteen_itemid());
+            itemService.remove(entity.getSimple_average_itemid());
+            for(int z=0;z<entity.getList_itemid().size();z++)
+            {
+                itemService.remove(entity.getList_itemid().get(z));
+            }
             map.put("message", "删除成功");
         }catch (Exception e){
             e.printStackTrace();
@@ -126,7 +176,18 @@ public class CropYieldSummaryMobileController {
     public Object DeleteMulit(@RequestParam("ids[]") String[] ids){
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            service.removeMulit(ids);
+            //service.removeMulit(ids);
+            for(int i=0;i<ids.length;i++) {
+                String id = ids[i];
+                CropYieldSummary entity =  service.getItem(id);
+                service.remove(id);
+                itemService.remove(entity.getTotal_of_fifteen_itemid());
+                itemService.remove(entity.getSimple_average_itemid());
+                for(int z=0;z<entity.getList_itemid().size();z++)
+                {
+                    itemService.remove(entity.getList_itemid().get(z));
+                }
+            }
             map.put("message","删除成功");
         }catch (Exception e){
             e.printStackTrace();

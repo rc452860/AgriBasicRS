@@ -67,8 +67,8 @@ public class ExpectedProductionItem {
     }
 
     public double getSeededarea_Increasedecrease_absolute() {
-        //return seededarea_Increasedecrease_absolute;
-        return seededarea_thisyear-seededarea_lastyear;
+        return seededarea_Increasedecrease_absolute;
+        //return seededarea_thisyear-seededarea_lastyear;
     }
 
     public void setSeededarea_Increasedecrease_absolute(double seededarea_Increasedecrease_absolute) {
@@ -76,8 +76,8 @@ public class ExpectedProductionItem {
     }
 
     public double getSeededarea_Increasedecrease_relative() {
-        //return seededarea_Increasedecrease_relative;
-        return (seededarea_thisyear-seededarea_lastyear)/seededarea_lastyear;
+        return seededarea_Increasedecrease_relative;
+        //return (seededarea_thisyear-seededarea_lastyear)/seededarea_lastyear;
     }
 
     public void setSeededarea_Increasedecrease_relative(double seededarea_Increasedecrease_relative) {
@@ -85,8 +85,8 @@ public class ExpectedProductionItem {
     }
 
     public double getPerunit_lastyear() {
-        //return perunit_lastyear;
-        return total_lastyear/seededarea_lastyear;
+        return perunit_lastyear;
+        //return total_lastyear/seededarea_lastyear;
     }
 
     public void setPerunit_lastyear(double perunit_lastyear) {
@@ -94,8 +94,8 @@ public class ExpectedProductionItem {
     }
 
     public double getPerunit_thisyear() {
-       //return perunit_thisyear;
-        return total_thisyear/seededarea_thisyear;
+       return perunit_thisyear;
+        //return total_thisyear/seededarea_thisyear;
     }
 
     public void setPerunit_thisyear(double perunit_thisyear) {
@@ -103,8 +103,8 @@ public class ExpectedProductionItem {
     }
 
     public double getPerunit_Increasedecrease_absolute() {
-       //return perunit_Increasedecrease_absolute;
-        return total_Increasedecrease_absolute/seededarea_Increasedecrease_absolute;
+       return perunit_Increasedecrease_absolute;
+        //return total_Increasedecrease_absolute/seededarea_Increasedecrease_absolute;
     }
 
     public void setPerunit_Increasedecrease_absolute(double perunit_Increasedecrease_absolute) {
@@ -112,8 +112,8 @@ public class ExpectedProductionItem {
     }
 
     public double getPerunit_Increasedecrease_relative() {
-        //return perunit_Increasedecrease_relative;
-        return total_Increasedecrease_relative/seededarea_Increasedecrease_relative;
+        return perunit_Increasedecrease_relative;
+        //return total_Increasedecrease_relative/seededarea_Increasedecrease_relative;
     }
 
     public void setPerunit_Increasedecrease_relative(double perunit_Increasedecrease_relative) {
@@ -146,8 +146,8 @@ public class ExpectedProductionItem {
     }
 
     public double getTotal_Increasedecrease_relative() {
-        //return total_Increasedecrease_relative;
-        return (total_thisyear-total_lastyear)/total_lastyear;
+        return total_Increasedecrease_relative;
+        //return (total_thisyear-total_lastyear)/total_lastyear;
     }
 
     public void setTotal_Increasedecrease_relative(double total_Increasedecrease_relative) {

@@ -15,6 +15,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>无标题文档</title>
   <link href="/mobile/css/style.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="/mobile/css/table.css">
   <script type="text/javascript" src="/mobile/js/jquery.js"></script>
   <script type="text/javascript" src="/mobile/js/jquery.idTabs.min.js"></script>
   <script type="text/javascript" src="/mobile/kindeditor/kindeditor-min.js"></script>
@@ -50,24 +51,210 @@
 
   <form:form commandName="CropYieldSummaryForm">
     <form:hidden path="cropYieldSummary.id"/>
-    <div id="usual1" class="usual">
+	<form:hidden path="cropYieldSummary.total_of_fifteen_itemid"/>
+    <form:hidden path="cropYieldSummary.simple_average_itemid"/>
+	<form:hidden path="cropYieldSummary.list_itemid"/>
+    <form:hidden path="total_of_fifteen_item.id"/>
+    <form:hidden path="simple_average_item.id"/>
+	<form:hidden path="list_item[0].id"/>
+	<form:hidden path="list_item[1].id"/>
+	<form:hidden path="list_item[2].id"/>
+	<form:hidden path="list_item[3].id"/>
+	<form:hidden path="list_item[4].id"/>
+	<form:hidden path="list_item[5].id"/>
+	<form:hidden path="list_item[6].id"/>
+	<form:hidden path="list_item[7].id"/>
+	<form:hidden path="list_item[8].id"/>
+	<form:hidden path="list_item[9].id"/>
+	<form:hidden path="list_item[10].id"/>
+	<form:hidden path="list_item[11].id"/>
+	<form:hidden path="list_item[12].id"/>
+	<form:hidden path="list_item[13].id"/>
+	<form:hidden path="list_item[14].id"/>
+    <table class="form-add" cellpadding="0" cellspacing="0">
+      <tr>
+        <td colspan="3">调查表编号</td><td colspan="5"><form:input  path="cropYieldSummary.registration_form_id"/></td>
+      </tr>
+      <tr>
+        <td colspan="3">作物名称</td><td colspan="5"><form:input  path="cropYieldSummary.corp_name"/></td>
+      </tr>
 
-      <div class="itab">
-        <ul>
-          <li><a href="#tab1" class="selected">基本信息</a></li>
-        </ul>
-      </div>
+      <!--15基点户合计-->
+      <tr>
+        <td colspan="2">
+        <td colspan="3">本年预计</td>
+        <td colspan="3">上年实际</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+        <td>播种面积（亩）</td>
+        <td>单产（公斤/亩）</td>
+        <td>总产量（吨）</td>
+        <td>播种面积（亩）</td>
+        <td>单产（公斤/亩）</td>
+        <td>总产量（吨）</td>
+      </tr>
+      <!--15基点户合计-->
+      <tr>
+        <td colspan="2">15基点户合计</td>
+        <td><form:input  path="total_of_fifteen_item.seededarea_thisyear"/></td>
+        <td><form:input  path="total_of_fifteen_item.perunit_thisyear"/></td>
+        <td><form:input  path="total_of_fifteen_item.total_thisyear"/></td>
+        <td><form:input  path="total_of_fifteen_item.seededarea_lastyear"/></td>
+        <td><form:input  path="total_of_fifteen_item.perunit_lastyear"/></td>
+        <td><form:input  path="total_of_fifteen_item.total_lastyear"/></td>
+      </tr>
 
-      <div id="tab1" class="tabson"><%--联系方式--%>
-        <ul class="forminfo">
-          <li><label>调查表编号<b>*</b></label><form:input path="cropYieldSummary.registration_form_id" name="" type="text" class="dfinput" value=""
-                                                      style="width:518px;"/></li>
+      <!--15基点户-->
+      <tr>
+        <td colspan="2">15基点户</td>
+        <td><form:input  path="list_item[0].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[0].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[0].total_thisyear"/></td>
+        <td><form:input  path="list_item[0].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[0].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[0].total_lastyear"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><form:input  path="list_item[1].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[1].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[1].total_thisyear"/></td>
+        <td><form:input  path="list_item[1].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[1].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[1].total_lastyear"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><form:input  path="list_item[2].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[2].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[2].total_thisyear"/></td>
+        <td><form:input  path="list_item[2].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[2].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[2].total_lastyear"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><form:input  path="list_item[3].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[3].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[3].total_thisyear"/></td>
+        <td><form:input  path="list_item[3].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[3].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[3].total_lastyear"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><form:input  path="list_item[4].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[4].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[4].total_thisyear"/></td>
+        <td><form:input  path="list_item[4].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[4].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[4].total_lastyear"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><form:input  path="list_item[5].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[5].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[5].total_thisyear"/></td>
+        <td><form:input  path="list_item[5].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[5].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[5].total_lastyear"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><form:input  path="list_item[6].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[6].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[6].total_thisyear"/></td>
+        <td><form:input  path="list_item[6].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[6].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[6].total_lastyear"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><form:input  path="list_item[7].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[7].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[7].total_thisyear"/></td>
+        <td><form:input  path="list_item[7].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[7].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[7].total_lastyear"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><form:input  path="list_item[8].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[8].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[8].total_thisyear"/></td>
+        <td><form:input  path="list_item[8].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[8].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[8].total_lastyear"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><form:input  path="list_item[9].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[9].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[9].total_thisyear"/></td>
+        <td><form:input  path="list_item[9].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[9].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[9].total_lastyear"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><form:input  path="list_item[10].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[10].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[10].total_thisyear"/></td>
+        <td><form:input  path="list_item[10].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[10].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[10].total_lastyear"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><form:input  path="list_item[11].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[11].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[11].total_thisyear"/></td>
+        <td><form:input  path="list_item[11].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[11].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[11].total_lastyear"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><form:input  path="list_item[12].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[12].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[12].total_thisyear"/></td>
+        <td><form:input  path="list_item[12].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[12].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[12].total_lastyear"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><form:input  path="list_item[13].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[13].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[13].total_thisyear"/></td>
+        <td><form:input  path="list_item[13].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[13].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[13].total_lastyear"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td><form:input  path="list_item[14].seededarea_thisyear"/></td>
+        <td><form:input  path="list_item[14].perunit_thisyear"/></td>
+        <td><form:input  path="list_item[14].total_thisyear"/></td>
+        <td><form:input  path="list_item[14].seededarea_lastyear"/></td>
+        <td><form:input  path="list_item[14].perunit_lastyear"/></td>
+        <td><form:input  path="list_item[14].total_lastyear"/></td>
+      </tr>
 
-          <li><label>&nbsp;</label><input type="button" id="submit_button" class="btn" value="提交"/></li>
-        </ul>
-      </div>
+      <!--简单平均单产-->
+      <tr>
+        <td colspan="3">简单平均单产</td>
+        <td><form:input  path="simple_average_item.perunit_thisyear"/></td>
+        <td colspan="2"></td>
+        <td><form:input  path="simple_average_item.perunit_lastyear"/></td>
+        <td colspan="1"></td>
+      </tr>
 
-    </div>
+      <tr>
+        <td align="center" colspan="6"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
+      </tr>
+    </table>
   </form:form>
 
   <%--此乃登陆代码--%>
