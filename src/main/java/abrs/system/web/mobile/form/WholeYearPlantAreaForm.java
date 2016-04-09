@@ -404,10 +404,9 @@ public class WholeYearPlantAreaForm {
 
         for (Field field : wholeYearPlantAreaFields){
             field.setAccessible(true);
-            Field farmerField = wholeYearPlantArea.getClass().getDeclaredField(field.getName());
-            field.setAccessible(true);
-            farmerField.setAccessible(true);
-            field.set(wholeYearPlantAreaForm,farmerField.get(wholeYearPlantArea));
+            Field wholeYearPlantAreaField = wholeYearPlantAreaForm.getClass().getDeclaredField(field.getName());
+            wholeYearPlantAreaField.setAccessible(true);
+            wholeYearPlantAreaField.set(wholeYearPlantAreaForm,field.get(wholeYearPlantArea));
         }
         return wholeYearPlantAreaForm;
     }

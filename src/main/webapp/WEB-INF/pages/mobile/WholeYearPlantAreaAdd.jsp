@@ -14,21 +14,30 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>无标题文档</title>
     <link href="/mobile/css/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/mobile/css/table.css">
     <script type="text/javascript" src="/mobile/js/jquery.js"></script>
     <script type="text/javascript" src="/mobile/js/jquery.idTabs.min.js"></script>
     <script type="text/javascript" src="/mobile/kindeditor/kindeditor-min.js"></script>
     <script type="text/javascript" src="/mobile/kindeditor/lang/zh_CN.js"></script>
     <script type="text/javascript" src="/mobile/laydate/laydate.js"></script>
+    <script type="text/javascript" src="/mobile/easyui/src/easyloader.js"></script>
 
     <script type="text/javascript">
-        KindEditor.ready(function (K) {
-            K.create("#note", {
-                afterBlur: function () {
-                    this.sync();
-                }
-            })
-        })
+        easyloader.base = "/mobile/easyui/";
+        easyloader.theme = "metro";
+        easyloader.locale = "zh_CN";
+        easyloader.load(['tooltip','combotree','calendar','combobox','resizable'])
     </script>
+
+    <%--<script type="text/javascript">--%>
+        <%--KindEditor.ready(function (K) {--%>
+            <%--K.create("#note", {--%>
+                <%--afterBlur: function () {--%>
+                    <%--this.sync();--%>
+                <%--}--%>
+            <%--})--%>
+        <%--})--%>
+    <%--</script>--%>
 
 
 </head>
@@ -47,7 +56,123 @@
 <div class="formbody">
 
     <form:form commandName="WholeYearPlantAreaForm">
-    <div id="usual1" class="usual">
+        <table class="form-add" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>调查表编号</td>
+                <td><form:input path="registration_form_id"/></td>
+                <td>农户</td>
+                <td><form:input path="farmer_id"/></td>
+            </tr>
+            <tr>
+                <td>调查形式</td>
+                <td>
+                    <form:select path="form_tag" cssClass="easyui-combobox" cssStyle="width: 150px;height: 24px;">
+                        <form:option value="0">意向调查</form:option>
+                        <form:option value="1">预计调查</form:option>
+                    </form:select>
+                </td>
+                 <td>农作物总面积</td>
+                <td><form:input path="plant_total"/></td>
+            </tr>
+            <tr>
+                <td>稻谷</td>
+                <td><form:input path="food_grain_daogu"/></td>
+                <td>早稻</td>
+                <td><form:input path="food_grain_daogu_zaodao"/></td>
+            </tr>
+            <tr>
+                <td>中稻</td>
+                <td><form:input path="food_grain_daogu_zhongdao"/></td>
+                <td>双季晚稻</td>
+                <td><form:input path="food_grain_daogu_wandao"/></td>
+            </tr>
+            <tr>
+                <td>小麦</td>
+                <td><form:input path="food_grain_xiaomai"/></td>
+                <td>玉米</td>
+                <td><form:input path="food_grain_yumi"/></td>
+            </tr>
+            <tr>
+                <td>谷子</td>
+                <td><form:input path="food_grain_guzi"/></td>
+                <td>高粱</td>
+                <td><form:input path="food_grain_gaoliang"/></td>
+            </tr>
+            <tr>
+                <td>其他</td>
+                <td><form:input path="food_grain_other"/></td>
+                <td>夏粮合计</td>
+                <td><form:input path="food_summerl"/></td>
+            </tr>
+            <tr>
+                <td>粮食合计</td>
+                <td><form:input path="food_total"/></td>
+                <td>大豆</td>
+                <td><form:input path="food_legume_dadou"/></td>
+            </tr>
+            <tr>
+                <td>豆类合计</td>
+                <td><form:input path="food_legume"/></td>
+                <td>马铃薯</td>
+                <td><form:input path="food_potato_malingshu"/></td>
+            </tr>
+            <tr>
+                <td>薯类合计</td>
+                <td><form:input path="food_potato"/></td>
+                <td>花生</td>
+                <td><form:input path="oilplant_huasheng"/></td>
+            </tr>
+            <tr>
+                <td>油菜籽</td>
+                <td><form:input path="oilplant_youcaizi"/></td>
+                <td>芝麻</td>
+                <td><form:input path="oilplant_zhima"/></td>
+            </tr>
+            <tr>
+                <td>油料作物合计</td>
+                <td><form:input path="oilplant_total"/></td>
+                <td>棉花</td>
+                <td><form:input path="cotton_total"/></td>
+            </tr>
+            <tr>
+                <td>生麻</td>
+                <td><form:input path="rawjute_total"/></td>
+                <td>生黄红麻</td>
+                <td><form:input path="rawjute_hongma"/></td>
+            </tr>
+            <tr>
+                <td>糖类</td>
+                <td><form:input path="sugar_total"/></td>
+                <td>甘蔗</td>
+                <td><form:input path="sugar_ganzhe"/></td>
+            </tr>
+            <tr>
+                <td>甜菜</td>
+                <td><form:input path="sugar_tiancai"/></td>
+                <td>烟叶</td>
+                <td><form:input path="tobacco_total"/></td>
+            </tr>
+            <tr>
+                <td>烤烟</td>
+                <td><form:input path="tobacco_kaoyan"/></td>
+                <td>蔬菜</td>
+                <td><form:input path="vegetables_total"/></td>
+            </tr>
+            <tr>
+                <td>瓜果</td>
+                <td><form:input path="fruit_total"/></td>
+                <td>其他作物</td>
+                <td><form:input path="otherplant_total"/></td>
+            </tr>
+            <tr>
+                <td>青饲料</td>
+                <td colspan="3"><form:input path="otherplant_qingsiliaol"/></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
+            </tr>
+        </table>
+    <%--<div id="usual1" class="usual">
 
         <div class="itab">
             <ul>
@@ -251,7 +376,7 @@
             </ul>
         </div>
     </div>
-</div>
+</div>--%>
 </form:form>
 
 <%--此乃提交代码--%>

@@ -54,7 +54,6 @@
                     return true;
                 }else{
                     var target = top.frames["rightFrame"];
-                    console.log(/(#|javascript)/.test($(this).attr('href')))
                     if(!/(#|javascript)/.test($(this).attr('href'))){
                         target.addTab($(this).text(),$(this).attr('href'));
                         return false;

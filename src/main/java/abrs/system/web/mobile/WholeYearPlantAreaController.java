@@ -64,9 +64,14 @@ public class WholeYearPlantAreaController {
 
     @Auth(role = Auth.Role.ADMIN)
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
-    public String edit(ModelMap modelMap){
-        WholeYearPlantAreaForm wholeYearPlantArea = new WholeYearPlantAreaForm();
-        modelMap.addAttribute("WholeYearPlantAreaForm",wholeYearPlantArea);
+    public String edit(@RequestParam("id") String id, ModelMap modelMap){
+        WholeYearPlantArea wholeYearPlantArea =  wholeYearPlantAreaService.getItem(id);
+        try {
+            modelMap.addAttribute("WholeYearPlantAreaForm",WholeYearPlantAreaForm.WholeYearPlantAreaToForm(wholeYearPlantArea));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         return "/mobile/WholeYearPlantAreaEdit";
     }
     @ResponseBody

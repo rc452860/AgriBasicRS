@@ -14,6 +14,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>无标题文档</title>
   <link href="/mobile/css/style.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="/mobile/css/table.css">
   <script type="text/javascript" src="/mobile/js/jquery.js"></script>
   <script type="text/javascript" src="/mobile/js/jquery.idTabs.min.js"></script>
   <script type="text/javascript" src="/mobile/kindeditor/kindeditor-min.js"></script>
@@ -47,7 +48,42 @@
 <div class="formbody">
 
   <form:form commandName="RegistrationFormForm">
-    <div id="usual1" class="usual">
+    <table class="form-add" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>序号</td>
+        <td><form:input path="no" type="text"/></td>
+        <td>名称</td>
+        <td><form:input path="name" type="text"/></td>
+      </tr>
+      <tr>
+        <td>区域单位编号</td>
+        <td><form:input path="region_id" type="text"/></td>
+        <td>表格类型</td>
+        <td><form:input path="form_type" type="text"/></td>
+      </tr>
+      <tr>
+        <td>是否多数据表</td>
+        <td><form:input path="multidata" type="text"/></td>
+        <td>填表时间</td>
+        <td><form:input path="record_date" type="text"/></td>
+      </tr>
+      <tr>
+        <td>截止时间</td>
+        <td><form:input path="end_date" type="text"/></td>
+        <td>填报单位</td>
+        <td><form:input path="record_entity" type="text"/></td>
+      </tr>
+      <tr>
+        <td>调查员姓名</td>
+        <td><form:input path="record_person_name" type="text"/></td>
+        <td>调查员联系电话</td>
+        <td><form:input path="record_person_phone" type="text"/></td>
+      </tr>
+      <tr>
+        <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
+      </tr>
+    </table>
+    <%--<div id="usual1" class="usual">
 
       <div class="itab">
         <ul>
@@ -55,7 +91,7 @@
         </ul>
       </div>
 
-      <div id="tab1" class="tabson"><%--基本信息--%>
+      <div id="tab1" class="tabson">&lt;%&ndash;基本信息&ndash;%&gt;
 
         <ul class="forminfo">
           <li><label>序号<b>*</b></label><form:input path="no" name="" type="text" class="dfinput" value=""
@@ -82,7 +118,7 @@
         </ul>
       </div>
 
-    </div>
+    </div>--%>
   </form:form>
 
   <%--此乃登陆代码--%>
