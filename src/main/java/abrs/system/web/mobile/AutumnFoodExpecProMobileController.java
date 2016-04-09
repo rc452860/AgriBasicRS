@@ -5,6 +5,8 @@ import abrs.system.dao.Entity.ExpectedProductionItem;
 import abrs.system.dao.Entity.AutumnFoodExpecPro;
 import abrs.system.service.ExpectedProductionItemService;
 import abrs.system.service.AutumnFoodExpecProService;
+import abrs.system.web.mobile.excel.AutumnFoodExpecProExport;
+import abrs.system.web.mobile.excel.EntiyToMapHelper;
 import abrs.system.web.mobile.form.AutumnFoodExpecProForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -275,5 +277,18 @@ public class AutumnFoodExpecProMobileController {
             map.put("message", e.getMessage());
         }
         return map;
+    }
+
+    @Auth(role = Auth.Role.ADMIN)
+    @RequestMapping(value = "/export",method = RequestMethod.GET)
+    public String Export(){
+        AutumnFoodExpecProExport needExport = new AutumnFoodExpecProExport();
+        needExport.getAutumnFoodExpecPro().setId("888");
+
+        EntiyToMapHelper helper = new EntiyToMapHelper(needExport);
+        Map<String,String> dicStringInfo = helper.GetStringInfoMap();
+        Map<String,Double> dicDoubleInfo = helper.GetDoubleInfoMap();
+
+        return null;
     }
 }
