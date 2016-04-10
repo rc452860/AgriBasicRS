@@ -8,7 +8,7 @@ import abrs.system.dao.Entity.AutumnFoodExpecPro;
 import abrs.system.dao.Entity.ExpectedProductionItem;
 
 /**
- * 秋收作物产量预计表导出实体
+ * 秋收作物产量预计表导出实体(农市（基）5表.xls)
  */
 public class AutumnFoodExpecProExport extends  BaseExport{
 

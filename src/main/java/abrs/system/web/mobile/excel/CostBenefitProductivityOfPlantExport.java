@@ -7,7 +7,7 @@ package abrs.system.web.mobile.excel;
 import abrs.system.dao.Entity.CostBenefitProductivityOfPlant;
 
 /**
- * 种植业产品生产成本、收益与劳动生产率
+ * 种植业产品生产成本、收益与劳动生产率导出实体(农作物生产成本、收益与劳动生产率调查表(新）.)
  */
 public class CostBenefitProductivityOfPlantExport extends BaseExport{
 
