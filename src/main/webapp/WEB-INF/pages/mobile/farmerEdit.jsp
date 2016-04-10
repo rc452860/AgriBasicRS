@@ -44,73 +44,68 @@
     <form:form commandName="FarmerForm">
         <form:hidden path="id"/>
         <table class="form-add" cellpadding="0" cellspacing="0">
+                <%--<tr>
+                    <td>testing</td>
+                    <td colspan="3">
+                        <input class="easyui-combotree validatebox-invalid" data-options="url:'/mobile/json/tree_test.json',method:'get',required:true" style="width:200px;height:24px;">
+                    </td>
+                </tr>--%>
             <tr>
-                <td>testing</td>
-                <td colspan="3">
-                    <input class="easyui-combotree validatebox-invalid" data-options="url:'/mobile/json/tree_test.json',method:'get',required:true" style="width:200px;height:24px;">
-                </td>
+                <td>序号</td><td><form:input required="required" path="no"/></td>
+                <td>所在镇村组编号</td><td><form:input required="required" path="region_no"/></td>
             </tr>
             <tr>
-                <td>序号</td><td><form:input  path="no"/></td>
-                <td>所在镇村组编号</td><td><form:input  path="region_no"/></td>
-            </tr>
-            <tr>
-                <td>所在镇村组</td><td><form:input  path="region"/></td>
-                <td>姓名</td><td><form:input  path="name"/></td>
+                <td>所在镇村组</td><td><form:input class="easyui-validatebox" required="required" path="region"/></td>
+                <td>姓名</td><td><form:input class="easyui-validatebox" validType="CHS" required="required" path="name"/></td>
             </tr>
             <tr>
                 <td>性别</td>
                 <td>
-                    <div class='diy_select'>
-                        <form:input type='hidden' path='sex' value="男" class='diy_select_input'/>
-                        <div class='diy_select_txt'>--请选择--</div>
-                        <div class='diy_select_btn'></div>
-                        <ul class='diy_select_list'>
-                            <li selected="true" value="男">男</li>
-                            <li value="女">女</li>
-                        </ul>
-                    </div>
+                    <form:select class="easyui-combobox" style="width:150px;height:24px;"  path="sex" >
+                        <form:option value="男">男</form:option>
+                        <form:option value="女">女</form:option>
+                    </form:select>
                 </td>
-                <td>家庭人口</td><td><form:input  path="familypopulation"/></td>
+                <td>家庭人口</td><td><form:input class="easyui-numberbox" required="required" data-options="min:0" path="familypopulation"/></td>
             </tr>
             <tr>
                 <td>座机</td><td><form:input  path="contact_landline"/></td>
                 <td>手机</td><td><form:input  path="contact_phone"/></td>
             </tr>
             <tr>
-                <td>水田</td><td><form:input  path="contract_paddyfield"/></td>
-                <td>水田中流转</td><td><form:input  path="contract_paddyfield_exchange"/></td>
+                <td>水田</td><td><form:input class="easyui-numberbox" data-options="precision:2"  path="contract_paddyfield"/></td>
+                <td>水田中流转</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="contract_paddyfield_exchange"/></td>
             </tr>
             <tr>
-                <td>旱地</td><td><form:input  path="contract_dryfield"/></td>
-                <td>旱地中流转</td><td><form:input  path="contract_dryfield_exchange"/></td>
+                <td>旱地</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="contract_dryfield"/></td>
+                <td>旱地中流转</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="contract_dryfield_exchange"/></td>
             </tr>
             <tr>
-                <td>小麦</td><td><form:input  path="plantingarea_xiaomai"/></td>
-                <td>马铃薯</td><td><form:input  path="plantingarea_malingshu"/></td>
+                <td>小麦</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="plantingarea_xiaomai"/></td>
+                <td>马铃薯</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="plantingarea_malingshu"/></td>
             </tr>
             <tr>
-                <td>油菜籽</td><td><form:input  path="plantingarea_youcaizi"/></td>
-                <td>中稻</td><td><form:input  path="plantingarea_zhongdao"/></td>
+                <td>油菜籽</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="plantingarea_youcaizi"/></td>
+                <td>中稻</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="plantingarea_zhongdao"/></td>
             </tr>
             <tr>
-                <td>晚稻</td><td><form:input  path="plantingarea_wandao"/></td>
-                <td>玉米</td><td><form:input  path="plantingarea_yumi"/></td>
+                <td>晚稻</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="plantingarea_wandao"/></td>
+                <td>玉米</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="plantingarea_yumi"/></td>
             </tr>
             <tr>
-                <td>大豆</td><td><form:input  path="plantingarea_dadou"/></td>
-                <td>红薯</td><td><form:input  path="plantingarea_hongshu"/></td>
+                <td>大豆</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="plantingarea_dadou"/></td>
+                <td>红薯</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="plantingarea_hongshu"/></td>
             </tr>
             <tr>
-                <td>棉花</td><td><form:input  path="plantingarea_mianhua"/></td>
-                <td>花生</td><td><form:input  path="plantingarea_huasheng"/></td>
+                <td>棉花</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="plantingarea_mianhua"/></td>
+                <td>花生</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="plantingarea_huasheng"/></td>
             </tr>
             <tr>
-                <td>芝麻</td><td><form:input  path="plantingarea_zhima"/></td>
-                <td>设施蔬菜</td><td><form:input  path="plantingarea_vegetable_facility"/></td>
+                <td>芝麻</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="plantingarea_zhima"/></td>
+                <td>设施蔬菜</td><td><form:input class="easyui-numberbox" data-options="precision:2" path="plantingarea_vegetable_facility"/></td>
             </tr>
             <tr>
-                <td>露天蔬菜</td><td colspan="3"><form:input  path="plantingarea_vegetables_outdoors"/></td>
+                <td>露天蔬菜</td><td colspan="3"><form:input class="easyui-numberbox" data-options="precision:2" path="plantingarea_vegetables_outdoors"/></td>
             </tr>
             <tr>
                 <td>备注</td><td colspan="3"><form:textarea style="width:600px;height:80px;"   path="note"/></td>
@@ -118,21 +113,26 @@
             <tr>
                 <td>标志</td>
                 <td>
-                    <div class='diy_select'>
-                        <form:input type='hidden' path='flag' class='diy_select_input'/>
-                        <div class='diy_select_txt'>--请选择--</div>
-                        <div class='diy_select_btn'></div>
-                        <ul class='diy_select_list'>
-                            <li value="10">在线</li>
-                            <li value="21">死亡注销</li>
-                            <li value="22">资格取消</li>
-                        </ul>
-                    </div>
+                    <form:select class="easyui-combobox" style="width:150px;height:24px;"  path="" >
+                        <form:option value="10">在线</form:option>
+                        <form:option value="21">死亡注销</form:option>
+                        <form:option value="22">资格取消</form:option>
+                    </form:select>
+                        <%--<div class='diy_select'>
+                            <form:input type='hidden' path='flag' class='diy_select_input'/>
+                            <div class='diy_select_txt'>--请选择--</div>
+                            <div class='diy_select_btn'></div>
+                            <ul class='diy_select_list'>
+                                <li value="10">在线</li>
+                                <li value="21">死亡注销</li>
+                                <li value="22">资格取消</li>
+                            </ul>
+                        </div>--%>
                 </td>
                 <td>门牌号</td><td><form:input  path="house_no"/></td>
             </tr>
             <tr>
-                <td>邮编</td><td><form:input  path="zip_code"/></td>
+                <td>邮编</td><td><form:input class="easyui-validatebox" validType="zipcode" path="zip_code"/></td>
                 <td>民族</td><td><form:input  path="nation"/></td>
             </tr>
             <tr>
@@ -142,25 +142,28 @@
             <tr>
                 <td>是否参加社保</td>
                 <td>
-                    <div class='diy_select'>
-                        <form:input type='hidden' path='insurance' class='diy_select_input'/>
-                        <div class='diy_select_txt'>--请选择--</div>
-                        <div class='diy_select_btn'></div>
-                        <ul class='diy_select_list'>
-                            <li value="0">是</li>
-                            <li value="1">否</li>
-                        </ul>
-                    </div>
+                    <form:select class="easyui-combobox" style="width:150px;height:24px;" path="insurance">
+                        <form:option value="0">是</form:option>
+                        <form:option value="1">否</form:option>
+                    </form:select>
+                        <%--<div class='diy_select'>
+                            <form:input type='hidden' path='insurance' class='diy_select_input'/>
+                           &lt;%&ndash; <div class='diy_select_txt'>--请选择--</div>
+                            <div class='diy_select_btn'></div>
+                            <ul class='diy_select_list'>
+
+                            </ul>&ndash;%&gt;
+                        </div>--%>
                 </td>
-                <td>创建时间</td><td><form:input onclick="laydate()"  path="create_date"/></td>
+                <td>创建时间</td><td><form:input class="easyui-datebox" style="width:150px;height:24px;" path="create_date"/></td>
             </tr>
             <tr>
-                <td>录入信息日期</td><td><form:input onclick="laydate()" path="record_date"/></td>
-                <td>修改信息日期</td><td><form:input onclick="laydate()" path="update_date"/></td>
+                <td>录入信息日期</td><td><form:input class="easyui-datebox" style="width:150px;height:24px;" path="record_date"/></td>
+                <td>修改信息日期</td><td><form:input class="easyui-datebox" style="width:150px;height:24px;" path="update_date"/></td>
             </tr>
             <tr>
-                <td>录入人员</td><td><form:input  path="record_person"/></td>
-                <td>修改人员</td><td><form:input  path="update_person"/></td>
+                <td>录入人员</td><td><form:input class="easyui-validatebox" required="required" path="record_person"/></td>
+                <td>修改人员</td><td><form:input class="easyui-validatebox" required="required" path="update_person"/></td>
             </tr>
             <tr>
                 <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
@@ -419,43 +422,25 @@
     <%--此乃登陆代码--%>
     <script type="text/javascript">
         $(function () {
-            $('#submit_button').click(function () {
-                $.ajax({
-                    cache: false,
-                    type: "POST",
-                    url: "/mobile/manage/farmerEdit",
-                    data: $('#FarmerForm').serialize(),
-                    async: false,
-                    error: function (XMLHttpRequest) {
-                        alert("error:" + XMLHttpRequest.status);
-                    },
-                    success: function (data) {
-                        if (data.message != null) alert(data.message);
-                        if (data.url != null) window.location.href = data.url;
-                    }
+            if($("#FarmerForm").form('validate')) {
+                $('#submit_button').click(function () {
+                    $.ajax({
+                        cache: false,
+                        type: "POST",
+                        url: "/mobile/manage/farmerEdit",
+                        data: $('#FarmerForm').serialize(),
+                        async: false,
+                        error: function (XMLHttpRequest) {
+                            alert("error:" + XMLHttpRequest.status);
+                        },
+                        success: function (data) {
+                            if (data.message != null) alert(data.message);
+                            if (data.url != null) window.location.href = data.url;
+                        }
+                    });
                 });
-            });
+            }
         });
-    </script>
-    <%--激活tab面板--%>
-    <script type="text/javascript">
-        $("#usual1 ul").idTabs();
-    </script>
-    <%--列表js虽然现在删除了列表--%>
-    <script type="text/javascript">
-        $('.tablelist tbody tr:odd').addClass('odd');
-    </script>
-    <%--选择器js--%>
-    <script type="text/javascript" src="/mobile/js/diy_select.js"></script>
-    <script type="text/javascript">
-        var TTDiy_select = new diy_select({  //参数可选
-            TTContainer: 'diy_select',//控件的class
-            TTDiy_select_input: 'diy_select_input',//用于提交表单的class
-            TTDiy_select_txt: 'diy_select_txt',//diy_select用于显示当前选中内容的容器class
-            TTDiy_select_btn: 'diy_select_btn',//diy_select的打开按钮
-            TTDiv_select_list: 'diy_select_list',//要显示的下拉框内容列表class
-            TTFcous: 'focus'//得到焦点时的class
-        });//如同时使用多个时请保持各class一致.
     </script>
 </div>
 </body>

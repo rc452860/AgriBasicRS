@@ -125,6 +125,7 @@ h2{font-weight:normal;}
 
 /**支持二级菜单覆盖样式**/
 .menuson li .header{height:30px;}
+.menuson li .header{}
 .menuson li .sub-menus{ display:none; background:#FFDCA9;padding:10px 0;border-bottom:1px solid #E8B365;}
 .menuson li .sub-menus li{height:25px;line-height:25px;padding-left:48px;border-left:1px solid #d9ebf3;}
 .menuson li .sub-menus li.active{position:relative;right:-1px;border-left:none;background:#fff;}

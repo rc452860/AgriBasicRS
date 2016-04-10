@@ -12,7 +12,7 @@
 
     <![endif]-->
 
-    <script language="JavaScript" src="js/jquery.js"></script>
+    <script language="JavaScript" src="/mobile/js/jquery.js"></script>
     <script type="text/javascript">
         $(function(){
             //导航切换
@@ -47,10 +47,8 @@
                     $(this).next('.menuson').slideDown();
                 }
             });
-            console.log(self == top)
             $("a[target=rightFrame]").on("click",function (){
                 if(self==top){
-
                     return true;
                 }else{
                     var target = top.frames["rightFrame"];
@@ -60,6 +58,16 @@
                     }
                 }
             })
+
+
+            //限制字符个数
+            $(".menuson li a").each(function(){
+                var maxwidth=10;
+                if($(this).text().length>maxwidth){
+                    $(this).text($(this).text().substring(0,maxwidth));
+                    $(this).html($(this).html()+'...');
+                }
+            });
         })
     </script>
 

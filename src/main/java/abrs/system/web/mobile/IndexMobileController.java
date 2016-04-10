@@ -82,20 +82,23 @@ public class IndexMobileController {
         session.removeAttribute(SessionContext.CURRENT_USER);
         return "redirect:/mobile/";
     }
+    @Auth(role = Auth.Role.ADMIN)
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(){
         return "mobile/admin";
     }
-
+    @Auth(role = Auth.Role.ADMIN)
     @RequestMapping(value = "/left", method = RequestMethod.GET)
     public String left(){
         return "mobile/left";
     }
+
     @RequestMapping(value = "/footer", method = RequestMethod.GET)
     public String footer(){
         return "mobile/footer";
     }
 
+    @Auth(role = Auth.Role.ADMIN)
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(){
         return "mobile/index";

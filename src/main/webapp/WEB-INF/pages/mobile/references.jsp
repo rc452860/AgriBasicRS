@@ -25,8 +25,31 @@
 <script type="text/javascript" src="/mobile/easyui/src/easyloader.js"></script>
 
 <script type="text/javascript">
+    $.extend(easyloader.modules,
+        {
+            validator:{
+                js:"validator.js",
+                dependencies:[
+                    'validatebox'
+                ]
+            }
+        }
+    )
     easyloader.base = "/mobile/easyui/";
-    easyloader.theme = "metro";
     easyloader.locale = "zh_CN";
-    easyloader.load(['tooltip','combotree','calendar','combobox','resizable'])
+    easyloader.theme = "metro";
+    easyloader.load([
+        'tooltip',
+        'combotree',
+        'calendar',
+        'combobox',
+        'resizable',
+        'validator',
+            'form'
+    ])
 </script>
+<%--
+<script type="text/javascript" src="/mobile/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/mobile/easyui/locale/easyui-lang-zh_CN.js"></script>--%>
+<%--
+<script type="text/javascript" src="/mobile/js/validator.js"></script>--%>

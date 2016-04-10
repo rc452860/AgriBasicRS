@@ -6,16 +6,25 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/mobile/css/style.css" rel="stylesheet" type="text/css" />
 
-    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="/mobile/js/jquery.js"></script>
     <script type="text/javascript" src="/mobile/easyui/src/easyloader.js"></script>
 
     <script type="text/javascript">
         easyloader.base = "/mobile/easyui/";
         easyloader.theme = "metro";
         easyloader.locale = "zh_CN";
-        easyloader.load(['tooltip','combotree','calendar','combobox','resizable','tabs'])
+        easyloader.load(['tooltip','combotree','calendar','combobox','resizable','tabs'],function(){
+            $("#tt").tabs({
+                height:($(window).height()-$("#tt").offset().top)
+            })
+            $(window).resize(function(){
+                $("#tt").tabs({
+                    height:($(window).height()-$("#tt").offset().top)
+                })
+            })
+            })
     </script>
     <script type="text/javascript">
         function addTab(title, url){
@@ -31,16 +40,6 @@
                     height:$(window).height()-$("#tt").offset().top
                 });
 //            }
-        }
-        window.onload = function(){
-            $("#tt").tabs({
-                height:($(window).height()-$("#tt").offset().top)
-            })
-           $(window).resize(function(){
-               $("#tt").tabs({
-                   height:($(window).height()-$("#tt").offset().top)
-               })
-           })
         }
         /*function addTab(title, href,icon){
             var tt = $('#tabs');
