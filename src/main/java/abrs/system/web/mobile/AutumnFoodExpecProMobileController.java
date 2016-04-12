@@ -7,6 +7,7 @@ import abrs.system.service.ExpectedProductionItemService;
 import abrs.system.service.AutumnFoodExpecProService;
 import abrs.system.web.mobile.excel.AutumnFoodExpecProExport;
 import abrs.system.web.mobile.excel.EntiyToMapHelper;
+import abrs.system.web.mobile.excel.ExcelOP;
 import abrs.system.web.mobile.form.AutumnFoodExpecProForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -281,13 +283,23 @@ public class AutumnFoodExpecProMobileController {
 
     @Auth(role = Auth.Role.ADMIN)
     @RequestMapping(value = "/export",method = RequestMethod.GET)
-    public String Export(){
+    public String Export(HttpServletRequest request){
         AutumnFoodExpecProExport needExport = new AutumnFoodExpecProExport();
         needExport.getAutumnFoodExpecPro().setId("888");
 
         EntiyToMapHelper helper = new EntiyToMapHelper(needExport);
         Map<String,String> dicStringInfo = helper.GetStringInfoMap();
         Map<String,Double> dicDoubleInfo = helper.GetDoubleInfoMap();
+
+        ExcelOP excel = new ExcelOP();
+
+        try{
+            excel.PrepareWorkBookForDic(request.getRealPath("mobile/exceltemplate"));
+        }
+        catch (Exception ex){
+            System.out.print(ex.toString());
+        }
+
 
         return null;
     }
