@@ -53,14 +53,14 @@
         <td>序号</td><td><form:input  path="no"/></td>
         <td>名称</td><td><form:input  path="name"/></td>
       </tr>
-      <tr>
+     <%-- <tr>
         <td>全称</td><td><form:input  path="fullname"/></td>
         <td>父区域单位编号</td><td><form:input  path="fatherno"/></td>
       </tr>
       <tr>
         <td>短码1</td><td><form:input  path="shortnoone"/></td>
         <td>短码2</td><td><form:input  path="shortnotwo"/></td>
-      </tr>
+      </tr>--%>
       <tr>
         <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
       </tr>

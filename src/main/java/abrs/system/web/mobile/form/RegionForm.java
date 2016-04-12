@@ -14,7 +14,7 @@ public class RegionForm {
 
     private String name;//名称
 
-    private String fullname;//全称
+   /* private String fullname;//全称
 
     private String fatherno;//父区域单位编号
 
@@ -22,7 +22,7 @@ public class RegionForm {
 
     private String shortnotwo;//短码2
 
-    private int flag;//标识
+    private int flag;//标识*/
 
     public Region getRegion() throws NoSuchFieldException, IllegalAccessException {
         Region region = new Region();
@@ -76,7 +76,7 @@ public class RegionForm {
         this.name = name;
     }
 
-    public String getFullname() {
+   /* public String getFullname() {
         return fullname;
     }
 
@@ -114,5 +114,5 @@ public class RegionForm {
 
     public void setFlag(int flag) {
         this.flag = flag;
-    }
+    }*/
 }

@@ -1,6 +1,7 @@
 package abrs.system.dao.Entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -14,21 +15,26 @@ public class Region {
     @Id
     private String id;
 
+    @Indexed(unique = true)
     private String no;//编号
 
     private String name;//名称
 
-    private String fullname;//全称
-
-    private String fatherno;//父区域单位编号
-
-    private String shortnoone;//短码1
-
-    private String shortnotwo;//短码2
-
-    private int flag;//标识
+//    private String fullname;//全称
+//
+//    private String fatherno;//父区域单位编号
+//
+//    private String shortnoone;//短码1
+//
+//    private String shortnotwo;//短码2
+//
+//    private int flag;//标识
 
     public Region(){}
+    public Region(String no,String name){
+        this.no = no;
+        this.name = name;
+    }
 
     public String getId() {
         return id;
@@ -54,7 +60,7 @@ public class Region {
         this.name = name;
     }
 
-    public String getFullname() {
+   /* public String getFullname() {
         return fullname;
     }
 
@@ -92,5 +98,5 @@ public class Region {
 
     public void setFlag(int flag) {
         this.flag = flag;
-    }
+    }*/
 }

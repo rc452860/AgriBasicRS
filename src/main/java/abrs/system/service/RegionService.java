@@ -31,17 +31,24 @@ public class RegionService {
         return true;
     }
 
-    public boolean addItem(String no,String name, String fullname,String fatherno,
+    public boolean addItems(List<Region> regions){
+        regionDao.insertAll(regions);
+        logger.info("Add Regions");
+        return true;
+    }
+
+
+    public boolean addItem(String no,String name, String fullname/*,String fatherno,
                            String shortnoone,String shortnotwo,
-                           int flag)
+                           int flag*/)
     {
         Region region = new Region();
         region.setNo(no);
-        region.setName(name);
+        region.setName(name);/*
         region.setFullname(fullname);
         region.setFatherno(fatherno);
         region.setShortnoone(shortnoone);
-        region.setShortnotwo(shortnotwo);
+        region.setShortnotwo(shortnotwo);*/
         regionDao.save(region);
         logger.info("Add Region: " + no + "/" + name);
         return true;

@@ -26,6 +26,13 @@ public abstract class MongoGenDao<T> {
     }
 
     /**
+     * 保存一个对象
+     */
+    public void insertAll(List<T> t) {
+        log.info("[Mongo Dao] save:" + t);
+        this.mongoTemplate.insertAll(t);
+    }
+    /**
      * 根据Id从Collection中查询对象
      */
     public T queryById(String id) {

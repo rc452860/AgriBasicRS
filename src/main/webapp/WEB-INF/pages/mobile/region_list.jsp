@@ -100,10 +100,10 @@
       <th><input name="" type="checkbox" id="ctrall" value=""/></th>
       <th>编号</th>
       <th>名称</th>
-      <th>全称</th>
+     <%--<th>全称</th>
       <th>父区域单位编号</th>
       <th>短码1</th>
-      <th>短码2</th>
+      <th>短码2</th>--%>
     </tr>
     </thead>
     <tbody>
@@ -113,9 +113,9 @@
         <td><input class="ctr" name="" type="checkbox" value="${item.id}"/></td>
         <td>${item.no}</td>
         <td>${item.name}</td>
-        <td>${item.fatherno}</td>
+       <%-- <td>${item.fatherno}</td>
         <td>${item.shortnoone}</td>
-        <td>${item.shortnotwo}</td>
+        <td>${item.shortnotwo}</td>--%>
         <td><a href="/mobile/region/edit?id=${item.id}" class="tablelink">修改/查看</a> <a
                 href="javascript:Delete('${item.id}')" class="tablelink"> 删除</a></td>
 

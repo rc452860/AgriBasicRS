@@ -1,21 +1,34 @@
 package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
+import abrs.system.dao.Entity.Region;
+import abrs.system.service.RegionService;
 import abrs.system.service.UserService;
+import abrs.system.util.Util;
 import abrs.system.web.mobile.form.LoginForm;
 import abrs.system.dao.Entity.User;
 import abrs.system.web.context.SessionContext;
+import org.mozilla.universalchardet.UniversalDetector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.EncodedResource;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.support.ServletContextResource;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -27,6 +40,8 @@ public class IndexMobileController {
     private UserService userService;
     @Autowired
     private HttpSession session;
+    @Autowired
+    private RegionService regionService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap model) {
@@ -46,11 +61,35 @@ public class IndexMobileController {
     }
 
     @RequestMapping(value = "/install", method = RequestMethod.GET)
-    public String install(ModelMap model) {
-        userService.addItem("admin", "admin", "管理员", Auth.Role.ADMIN,
-                "edifierwill@163.com","");
-        model.addAttribute("LoginForm", new LoginForm());
-        return "mobile/login";
+    public String install(ModelMap model, HttpServletRequest request) {
+        try{
+            userService.addItem("admin", "admin", "管理员", Auth.Role.ADMIN,
+                    "edifierwill@163.com","");
+            String root = request.getSession().getServletContext().getRealPath("/");
+            File file = new File(root+"\\mobile\\install\\region.txt");
+            BufferedReader bufferedReader =new BufferedReader(new InputStreamReader(new FileInputStream(file),Util.GetEncoding(file)),65536);
+            String tempLine = null;
+            String[] nameAndCode = null;
+            List<Region> regions = new ArrayList<Region>();
+            while((tempLine = bufferedReader.readLine()) != null){
+                nameAndCode  = tempLine.split(",");
+                regions.add(new Region(nameAndCode[1],nameAndCode[0]));
+                if (regions.size()==5000){
+                    regionService.addItems(regions);
+                    regions.clear();
+                }
+            }
+            regionService.addItems(regions);
+            regions.clear();
+            bufferedReader.close();
+        }catch (DuplicateKeyException e){
+            System.out.println("唯一键索引问题");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return "redirect:/mobile/login";
     }
 
     @ResponseBody
