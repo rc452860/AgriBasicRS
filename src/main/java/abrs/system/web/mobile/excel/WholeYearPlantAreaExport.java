@@ -11,6 +11,13 @@ import abrs.system.dao.Entity.WholeYearPlantArea;
  */
 public class WholeYearPlantAreaExport extends BaseExport{
 
+    private final String TemplateFileName = "农市（基）1-1表、1-2表.xls";
+
+    public String getTemplateFileName()
+    {
+        return this.TemplateFileName;
+    }
+
     public WholeYearPlantArea[] getList_WholeYearPlantArea() {
         return list_WholeYearPlantArea;
     }

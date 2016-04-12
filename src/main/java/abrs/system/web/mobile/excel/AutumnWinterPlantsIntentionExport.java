@@ -1,6 +1,6 @@
 package abrs.system.web.mobile.excel;
 
-import abrs.system.dao.Entity.AutumnFoodExpecPro;
+import abrs.system.dao.Entity.AutumnWinterPlantsIntention;
 
 /**
  * Created by Edifi_000 on 2016-04-10.
@@ -10,13 +10,20 @@ import abrs.system.dao.Entity.AutumnFoodExpecPro;
  */
 public class AutumnWinterPlantsIntentionExport extends BaseExport {
 
-    public AutumnFoodExpecPro[] getList_AutumnFoodExpecPro() {
-        return list_AutumnFoodExpecPro;
+    private final String TemplateFileName = "农市（基）2表.xls";
+
+    public String getTemplateFileName()
+    {
+        return this.TemplateFileName;
     }
 
-    public void setList_AutumnFoodExpecPro(AutumnFoodExpecPro[] list_AutumnFoodExpecPro) {
-        this.list_AutumnFoodExpecPro = list_AutumnFoodExpecPro;
+    public AutumnWinterPlantsIntention[] getList_AutumnWinterPlantsIntention() {
+        return list_AutumnWinterPlantsIntention;
     }
 
-    private AutumnFoodExpecPro[] list_AutumnFoodExpecPro;
+    public void setList_AutumnFoodExpecPro(AutumnWinterPlantsIntention[] list_AutumnWinterPlantsIntention) {
+        this.list_AutumnWinterPlantsIntention = list_AutumnWinterPlantsIntention;
+    }
+
+    private AutumnWinterPlantsIntention[] list_AutumnWinterPlantsIntention;
 }

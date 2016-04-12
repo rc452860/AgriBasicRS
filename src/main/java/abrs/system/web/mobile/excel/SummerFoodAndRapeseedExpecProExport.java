@@ -6,7 +6,17 @@ import abrs.system.dao.Entity.SummerFoodAndRapeseedExpecPro;
 /**
  * Created by Edifi_000 on 2016-04-10.
  */
+/**
+ * 夏粮、夏收油菜籽产量预计表信息导出实体(农市（基）3-1表、3-2表.xls)
+ */
 public class SummerFoodAndRapeseedExpecProExport extends BaseExport{
+
+    private final String TemplateFileName = "农市（基）3-1表、3-2表.xls";
+
+    public String getTemplateFileName()
+    {
+        return this.TemplateFileName;
+    }
 
     public SummerFoodAndRapeseedExpecPro getSummerFoodAndRapeseedExpecPro() {
         return summerFoodAndRapeseedExpecPro;

@@ -11,6 +11,13 @@ import abrs.system.dao.Entity.CostBenefitOfPig;
  */
 public class CostBenefitOfPigExport extends BaseExport{
 
+    private final String TemplateFileName = "2016年出栏肥猪生产成本收益调查表空白表.xls";
+
+    public String getTemplateFileName()
+    {
+        return this.TemplateFileName;
+    }
+
     public CostBenefitOfPig[] getList_CostBenefitOfPig() {
         return list_CostBenefitOfPig;
     }
