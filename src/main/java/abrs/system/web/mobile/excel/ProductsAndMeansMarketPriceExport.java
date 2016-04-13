@@ -11,6 +11,13 @@ import abrs.system.dao.Entity.ProductsAndMeansMarketPrice;
  */
 public class ProductsAndMeansMarketPriceExport {
 
+    private final String TemplateFileName = "2016主要产品价格监测表市场价格.xls";
+
+    public String getTemplateFileName()
+    {
+        return this.TemplateFileName;
+    }
+
     public ProductsAndMeansMarketPrice[] getList_ProductsAndMeansMarketPrice() {
         return list_ProductsAndMeansMarketPrice;
     }

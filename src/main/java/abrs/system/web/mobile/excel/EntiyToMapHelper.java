@@ -1,7 +1,6 @@
 package abrs.system.web.mobile.excel;
 
-import abrs.system.dao.Entity.AutumnFoodExpecPro;
-import abrs.system.dao.Entity.ExpectedProductionItem;
+import abrs.system.dao.Entity.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -94,16 +93,36 @@ public class EntiyToMapHelper {
             infoMap.put("value", getFieldValueByName(fields[i].getName(), o));
 
 
-            if((infoMap.get("type").equals(AutumnFoodExpecPro.class.toString())//数据实体类型的节点
+            //数据实体类型的节点
+            if((infoMap.get("type").equals(AutumnFoodExpecPro.class.toString())
+                    ||infoMap.get("type").equals(AutumnWinterPlantsIntention.class.toString())
+                    ||infoMap.get("type").equals(CostBenefitOfPig.class.toString())
+                    ||infoMap.get("type").equals(CostBenefitProductivityOfPlant.class.toString())
+                    ||infoMap.get("type").equals(CropYieldSummary.class.toString())
+                    ||infoMap.get("type").equals(CropYieldSummary.class.toString())
+                    ||infoMap.get("type").equals(Farmer.class.toString())
+                    ||infoMap.get("type").equals(ProductsAndMeansFarmerPrice.class.toString())
+                    ||infoMap.get("type").equals(ProductsAndMeansMarketPrice.class.toString())
+                    ||infoMap.get("type").equals(SummerFoodAndRapeseedExpecPro.class.toString())
+                    ||infoMap.get("type").equals(WholeYearPlantArea.class.toString())
                     ||infoMap.get("type").equals(ExpectedProductionItem.class.toString()))
                     &&infoMap.get("value")!=null)
             {
                 List childList = getFiledsInfo(infoMap.get("value"), infoMap.get("name")+".");
                 list.addAll(childList);
             }
-            else if(infoMap.get("type").equals(ExpectedProductionItem[].class.toString())&&infoMap.get("value")!=null)//列表类型的节点
+            //列表类型的节点
+            else if((infoMap.get("type").equals(ExpectedProductionItem[].class.toString())
+                    ||infoMap.get("type").equals(AutumnWinterPlantsIntention[].class.toString())
+                    ||infoMap.get("type").equals(CostBenefitOfPig[].class.toString())
+                    ||infoMap.get("type").equals(CostBenefitProductivityOfPlant[].class.toString())
+                    ||infoMap.get("type").equals(Farmer[].class.toString())
+                    ||infoMap.get("type").equals(ProductsAndMeansFarmerPrice[].class.toString())
+                    ||infoMap.get("type").equals(ProductsAndMeansMarketPrice[].class.toString())
+                    ||infoMap.get("type").equals(WholeYearPlantArea[].class.toString()))
+                    &&infoMap.get("value")!=null)
             {
-                ExpectedProductionItem[] li = (ExpectedProductionItem[])infoMap.get("value");
+                Object[] li = (Object[])infoMap.get("value");
                 for (int z=0;z<li.length;z++)
                 {
                     if(li[z]!=null) {

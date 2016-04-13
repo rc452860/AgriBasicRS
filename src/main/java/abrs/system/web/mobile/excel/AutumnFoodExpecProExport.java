@@ -12,6 +12,13 @@ import abrs.system.dao.Entity.ExpectedProductionItem;
  */
 public class AutumnFoodExpecProExport extends  BaseExport{
 
+    private final String TemplateFileName = "农市（基）5表.xls";
+
+    public String getTemplateFileName()
+    {
+        return this.TemplateFileName;
+    }
+
     public AutumnFoodExpecPro getAutumnFoodExpecPro() {
         return autumnFoodExpecPro;
     }

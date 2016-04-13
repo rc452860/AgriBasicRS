@@ -12,6 +12,12 @@ import abrs.system.dao.Entity.ProductsAndMeansFarmerPrice;
 
 public class ProductsAndMeansFarmerPriceExport extends BaseExport{
 
+    private final String TemplateFileName = "2016主要产品价格监测表农民售价.xls";
+
+    public String getTemplateFileName()
+    {
+        return this.TemplateFileName;
+    }
 
     public ProductsAndMeansFarmerPrice[] getList_ProductsAndMeansFarmerPrice() {
         return list_ProductsAndMeansFarmerPrice;

@@ -1,13 +1,13 @@
 package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
+import abrs.system.dao.Entity.AutumnWinterPlantsIntention;
 import abrs.system.dao.Entity.ExpectedProductionItem;
 import abrs.system.dao.Entity.AutumnFoodExpecPro;
+import abrs.system.dao.Entity.Farmer;
 import abrs.system.service.ExpectedProductionItemService;
 import abrs.system.service.AutumnFoodExpecProService;
-import abrs.system.web.mobile.excel.AutumnFoodExpecProExport;
-import abrs.system.web.mobile.excel.EntiyToMapHelper;
-import abrs.system.web.mobile.excel.ExcelOP;
+import abrs.system.web.mobile.excel.*;
 import abrs.system.web.mobile.form.AutumnFoodExpecProForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +17,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -283,23 +287,60 @@ public class AutumnFoodExpecProMobileController {
 
     @Auth(role = Auth.Role.ADMIN)
     @RequestMapping(value = "/export",method = RequestMethod.GET)
-    public String Export(HttpServletRequest request){
-        AutumnFoodExpecProExport needExport = new AutumnFoodExpecProExport();
-        needExport.getAutumnFoodExpecPro().setId("888");
+    public String Export(HttpServletRequest request,HttpServletResponse response){
 
-        EntiyToMapHelper helper = new EntiyToMapHelper(needExport);
-        Map<String,String> dicStringInfo = helper.GetStringInfoMap();
-        Map<String,Double> dicDoubleInfo = helper.GetDoubleInfoMap();
+        //DemoData
+//        AutumnFoodExpecProExport needExport = new AutumnFoodExpecProExport();
+//        needExport.setRealPath(request.getRealPath("mobile/exceltemplate"));
+//        needExport.setIncreaseType(0);
+//        needExport.setIncreaseCount(10);
+//
+//        needExport.getAutumnFoodExpecPro().setId("888");
+//        needExport.getAutumnFoodExpecPro().setSurvey_village_num(5);
+//        needExport.getAutumnFoodExpecPro().setSurvey_family_num(10);
+//        needExport.getFood_item().setSeededarea_lastyear(100.0);
+//        needExport.getFood_item().setSeededarea_thisyear(180.0);
+//        needExport.getFood_item().setTotal_lastyear(130.0);
+//        needExport.getFood_item().setTotal_thisyear(260.0);
 
-        ExcelOP excel = new ExcelOP();
+//        AutumnWinterPlantsIntentionExport needExport = new AutumnWinterPlantsIntentionExport();
+//        needExport.setRealPath(request.getRealPath("mobile/exceltemplate"));
+//        needExport.setIncreaseType(2);
+//        needExport.setIncreaseCount(5);
+//        List<AutumnWinterPlantsIntention> list = new ArrayList<AutumnWinterPlantsIntention>();
+//        for(int i = 0;i<5;i++)
+//        {
+//            AutumnWinterPlantsIntention aa= new AutumnWinterPlantsIntention();
+//            aa.setFarmer_id(i+"");
+//            list.add(aa);
+//        }
+//        final int size =  list.size();
+//        AutumnWinterPlantsIntention[] asd = list.toArray(new AutumnWinterPlantsIntention[size]);
+//        needExport.setList_AutumnFoodExpecPro(asd);
+
+        FarmerExport needExport = new FarmerExport();
+        needExport.setRealPath(request.getRealPath("mobile/exceltemplate"));
+        needExport.setIncreaseType(1);
+        needExport.setIncreaseCount(5);
+        List<Farmer> list = new ArrayList<Farmer>();
+        for(int i = 0;i<5;i++)
+        {
+            Farmer aa= new Farmer();
+            aa.setNo(i);
+            list.add(aa);
+        }
+        final int size =  list.size();
+        Farmer[] asd = list.toArray(new Farmer[size]);
+        needExport.setList_Farmer(asd);
 
         try{
-            excel.PrepareWorkBookForDic(request.getRealPath("mobile/exceltemplate"));
+            byte[] content = needExport.Export();
+            ResponseUtils.MakeDownLoadFile(content,response,needExport.getTemplateFileName());
+            return null;
         }
         catch (Exception ex){
             System.out.print(ex.toString());
         }
-
 
         return null;
     }

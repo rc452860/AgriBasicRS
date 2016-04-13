@@ -12,6 +12,13 @@ import abrs.system.dao.Entity.ExpectedProductionItem;
  */
 public class CropYieldSummaryExport extends BaseExport {
 
+    private final String TemplateFileName = "农作物产量调查汇总表.xls";
+
+    public String getTemplateFileName()
+    {
+        return this.TemplateFileName;
+    }
+
     public CropYieldSummary getCropYieldSummary() {
         return cropYieldSummary;
     }
