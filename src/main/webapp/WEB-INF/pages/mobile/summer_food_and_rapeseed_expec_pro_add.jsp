@@ -31,12 +31,32 @@
 </div>
 
 <div class="formbody">
-
+  <div id="dd"></div>
+  <script type="text/javascript">
+    $(function(){
+      $(".choose").click(function(){
+        $('#dd').dialog({
+          title: '选择编号',
+          width: 700,
+          height: 400,
+          closed: false,
+          cache: false,
+          href: '/mobile/registrationForm/select',
+          modal: true
+        });
+        window.chooser = $(this);
+      })
+      window.choose = function(no,name){
+        window.chooser.val(no);
+        $('#dd').dialog("close");
+      }
+    })
+  </script>
   <form:form commandName="SummerFoodAndRapeseedExpecProForm">
     <table class="form-add" cellpadding="0" cellspacing="0">
       <tr>
-        <td>调查表编号</td>
-        <td><form:input path="summerFoodAndRapeseedExpecPro.registration_form_id" /></td>
+        <td>调查表</td>
+        <td><form:input class="choose easyui-validatebox" required="true" readonly="true" path="summerFoodAndRapeseedExpecPro.registration_form_id"/></td>
       </tr>
       <tr>
         <td>调查村数</td>
@@ -170,7 +190,6 @@
         <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
       </tr>
     </table>
-
     <%--<div id="usual1" class="usual">
 
       <div class="itab">

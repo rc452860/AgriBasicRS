@@ -47,11 +47,31 @@
 </div>
 
 <div class="formbody">
-
+  <div id="dd"></div>
+  <script type="text/javascript">
+    $(function(){
+      $(".choose").click(function(){
+        $('#dd').dialog({
+          title: '选择编号',
+          width: 700,
+          height: 400,
+          closed: false,
+          cache: false,
+          href: '/mobile/registrationForm/select',
+          modal: true
+        });
+        window.chooser = $(this);
+      })
+      window.choose = function(no,name){
+        window.chooser.val(no);
+        $('#dd').dialog("close");
+      }
+    })
+  </script>
   <form:form commandName="CropYieldSummaryForm">
     <table class="form-add" cellpadding="0" cellspacing="0">
       <tr>
-        <td colspan="3">调查表编号</td><td colspan="5"><form:input  path="cropYieldSummary.registration_form_id"/></td>
+        <td colspan="3">调查表编号</td><td colspan="5"><form:input class="choose easyui-validatebox" required="true" readonly="true" path="cropYieldSummary.registration_form_id"/></td>
       </tr>
       <tr>
         <td colspan="3">作物名称</td><td colspan="5"><form:input  path="cropYieldSummary.corp_name"/></td>

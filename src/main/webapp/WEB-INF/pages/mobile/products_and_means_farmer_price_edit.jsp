@@ -48,12 +48,33 @@
 </div>
 
 <div class="formbody">
+  <div id="dd"></div>
+  <script type="text/javascript">
+    $(function(){
+      $(".choose").click(function(){
+        $('#dd').dialog({
+          title: '选择编号',
+          width: 700,
+          height: 400,
+          closed: false,
+          cache: false,
+          href: '/mobile/registrationForm/select',
+          modal: true
+        });
+        window.chooser = $(this);
+      })
+      window.choose = function(no,name){
+        window.chooser.val(no);
+        $('#dd').dialog("close");
+      }
+    })
+  </script>
 
   <form:form commandName="ProductsAndMeansFarmerPriceForm">
     <form:hidden path="productsAndMeansFarmerPrice.id"/>
     <table class="form-add" cellpadding="0" cellspacing="0">
       <tr>
-        <td>调查表编号</td><td colspan="5"><form:input  path="productsAndMeansFarmerPrice.registration_form_id"/></td>
+        <td>调查表编号</td><td colspan="5"><form:input class="choose easyui-validatebox" required="true" readonly="true" path="productsAndMeansFarmerPrice.registration_form_id"/></td>
       </tr>
       <tr>
         <td>乡镇名称</td><td colspan="5"><form:input  path="productsAndMeansFarmerPrice.townships"/></td>
