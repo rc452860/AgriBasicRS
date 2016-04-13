@@ -13,6 +13,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -127,6 +128,114 @@ public class RegionMobileController {
             map.put("message", e.getMessage());
         }
         return map;
+    }
+    //@Auth(role = Auth.Role.ADMIN)
+    @ResponseBody
+    @RequestMapping(value = "/getRoot",method = RequestMethod.GET)
+    public Object getRoot(){
+        List<Region> list = regionService.getRoot();
+        List<Object> result = new ArrayList<Object>();
+        for(final Region item : list){
+            result.add(new Object(){
+                String id;
+                String text;
+                String state;
+                List<Object> children;
+                {
+                    id = item.getNo();
+                    text = item.getName();
+                    state = "closed";
+                    children = new ArrayList<Object>();
+                }
+                public List<Object> getChildren() {
+                    return children;
+                }
+
+                public void setChildren(List<Object> children) {
+                    this.children = children;
+                }
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getText() {
+                    return text;
+                }
+
+                public void setText(String text) {
+                    this.text = text;
+                }
+
+                public String getState() {
+                    return state;
+                }
+
+                public void setState(String state) {
+                    this.state = state;
+                }
+            });
+        }
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getChild",method = RequestMethod.GET)
+    public Object getChild(@RequestParam("id")String id){
+        List<Region> list = regionService.getChild(id);
+        List<Object> result = new ArrayList<Object>();
+        for(final Region item : list){
+            if (item.getNo().equals(id))
+                continue;
+            result.add(new Object(){
+                String id;
+                String text;
+                String state;
+                List<Object> children;
+                {
+                    id = item.getNo();
+                    text = item.getName();
+                    state = "closed";
+                    children = new ArrayList<Object>();
+                }
+                public List<Object> getChildren() {
+                    return children;
+                }
+
+                public void setChildren(List<Object> children) {
+                    this.children = children;
+                }
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getText() {
+                    return text;
+                }
+
+                public void setText(String text) {
+                    this.text = text;
+                }
+
+                public String getState() {
+                    return state;
+                }
+
+                public void setState(String state) {
+                    this.state = state;
+                }
+            });
+        }
+        return result;
     }
 
 }

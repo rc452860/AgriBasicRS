@@ -13,7 +13,24 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>无标题文档</title>
-  <link href="/mobile/css/style.css" rel="stylesheet" type="text/css"/>
+  <c:import url="references.jsp"></c:import>
+  <script type="text/javascript">
+    function inittree() {
+      $(".tree-city").combotree("tree").tree({
+        onBeforeExpand: function (node) {
+          var children = $('.tree-city').combotree("tree").tree('getChildren', node.target);
+          if (children.length > 0) {
+            return;
+          }
+          //var level = node.attributes.level;
+          var pid = node.id;
+          //这里注意，请查看后面的有关这里的描述（最后的描述）
+          $('.tree-city').combotree("tree").tree("options").url = "/mobile/region/getChild";
+        }
+      })
+    }
+  </script>
+<%--<link href="/mobile/css/style.css" rel="stylesheet" type="text/css"/>
   <link rel="stylesheet" href="/mobile/css/table.css">
   <script type="text/javascript" src="/mobile/js/jquery.js"></script>
   <script type="text/javascript" src="/mobile/js/jquery.idTabs.min.js"></script>
@@ -29,7 +46,7 @@
         }
       })
     })
-  </script>
+  </script>--%>
 
 
 </head>
@@ -51,33 +68,33 @@
     <table class="form-add" cellpadding="0" cellspacing="0">
       <tr>
         <td>序号</td>
-        <td><form:input path="no" type="text"/></td>
+        <td><form:input path="no" style="width:150px;height:24px;" type="text"/></td>
         <td>名称</td>
-        <td><form:input path="name" type="text"/></td>
+        <td><form:input path="name" style="width:150px;height:24px;" type="text"/></td>
       </tr>
       <tr>
         <td>区域单位编号</td>
-        <td><form:input path="region_id" type="text"/></td>
+        <td><form:input path="region_id" class="easyui-combotree tree-city" data-options="url:'/mobile/region/getRoot',method:'get',required:true" style="width:152px;height:26px;" type="text"/></td>
         <td>表格类型</td>
-        <td><form:input path="form_type" type="text"/></td>
+        <td><form:input path="form_type" style="width:150px;height:24px;" type="text"/></td>
       </tr>
       <tr>
         <td>是否多数据表</td>
-        <td><form:input path="multidata" type="text"/></td>
+        <td><form:input path="is_multidata" style="width:150px;height:24px;" type="text"/></td>
         <td>填表时间</td>
-        <td><form:input path="record_date" type="text"/></td>
+        <td><form:input path="record_date" class="easyui-datebox" style="width:152px;height:26px;" type="text"/></td>
       </tr>
       <tr>
         <td>截止时间</td>
-        <td><form:input path="end_date" type="text"/></td>
+        <td><form:input path="end_date" class="easyui-datebox" style="width:152px;height:26px;" type="text"/></td>
         <td>填报单位</td>
-        <td><form:input path="record_entity" type="text"/></td>
+        <td><form:input path="record_entity" style="width:150px;height:24px;" type="text"/></td>
       </tr>
       <tr>
         <td>调查员姓名</td>
-        <td><form:input path="record_person_name" type="text"/></td>
+        <td><form:input path="record_person_name"  style="width:150px;height:24px;" type="text"/></td>
         <td>调查员联系电话</td>
-        <td><form:input path="record_person_phone" type="text"/></td>
+        <td><form:input path="record_person_phone" style="width:150px;height:24px;" type="text"/></td>
       </tr>
       <tr>
         <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>

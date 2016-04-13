@@ -21,7 +21,15 @@ public class RegistrationFormForm {
 
     private String form_type;//表格类型（根据固定的提供的excel表，从而为打印提供模版）
 
-    private Boolean multidata;//判断是否多数据表(农市（基）1-1表、1-2表)或单数据表(农市（基）3-1表、3-2表)
+    public Boolean getIs_multidata() {
+        return is_multidata;
+    }
+
+    public void setIs_multidata(Boolean is_multidata) {
+        this.is_multidata = is_multidata;
+    }
+
+    private Boolean is_multidata;//判断是否多数据表(农市（基）1-1表、1-2表)或单数据表(农市（基）3-1表、3-2表)
 
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")  //取日期时使用
     @DateTimeFormat(pattern = "yyyy-MM-dd")//存日期时使用
@@ -108,11 +116,7 @@ public class RegistrationFormForm {
         this.form_type = form_type;
     }
 
-    public Boolean getMultidata() {
-        return multidata;
-    }
 
-    public void setMultidata(Boolean multidata) { this.multidata = multidata; }
 
     public Date getCreate_date() {
         return create_date;

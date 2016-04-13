@@ -10,7 +10,28 @@
     <title>无标题文档</title>
     <c:import url="references.jsp"></c:import>
 
-
+    <script type="text/javascript">
+            function inittree() {
+                $(".tree-city").combotree("tree").tree({
+                    onBeforeExpand: function (node) {
+                        var children = $('.tree-city').combotree("tree").tree('getChildren', node.target);
+                        if (children.length > 0) {
+                            return;
+                        }
+                        //var level = node.attributes.level;
+                        var pid = node.id;
+                        //这里注意，请查看后面的有关这里的描述（最后的描述）
+                        $('.tree-city').combotree("tree").tree("options").url = "/mobile/region/getChild";
+                    },
+                    onSelect: function (node) {
+                        $("#region_no").val(node.id);
+                        setTimeout(function(){
+                            $("input[name=region]").val(node.text);
+                        },50);
+                    }
+                })
+            }
+    </script>
 </head>
 
 <body>
@@ -28,18 +49,13 @@
 
     <form:form commandName="FarmerForm">
         <table class="form-add" cellpadding="0" cellspacing="0">
-            <%--<tr>
-                <td>testing</td>
-                <td colspan="3">
-                    <input class="easyui-combotree validatebox-invalid" data-options="url:'/mobile/json/tree_test.json',method:'get',required:true" style="width:200px;height:24px;">
-                </td>
-            </tr>--%>
+
             <tr>
-                <td>序号</td><td><form:input required="required" path="no"/></td>
-                <td>所在镇村组编号</td><td><form:input required="required" path="region_no"/></td>
+                <td>序号</td><td><form:input class="easyui-validatebox" required="required" path="no"/></td>
+                <td>所在镇村组编号</td><td><form:input readonly="true" path="region_no"/></td>
             </tr>
             <tr>
-                <td>所在镇村组</td><td><form:input class="easyui-validatebox" required="required" path="region"/></td>
+                <td>所在镇村组</td><td><form:input path="region" class="easyui-combotree tree-city" data-options="url:'/mobile/region/getRoot',method:'get',required:true" style="width:200px;height:24px;"/></td>
                 <td>姓名</td><td><form:input class="easyui-validatebox" validType="CHS" required="required" path="name"/></td>
             </tr>
             <tr>
@@ -116,7 +132,7 @@
                 <td>门牌号</td><td><form:input  path="house_no"/></td>
             </tr>
             <tr>
-                <td>邮编</td><td><form:input class="easyui-validatebox" validType="zipcode" path="zip_code"/></td>
+                <td>邮编</td><td><form:input path="zip_code"/></td>
                 <td>民族</td><td><form:input  path="nation"/></td>
             </tr>
             <tr>

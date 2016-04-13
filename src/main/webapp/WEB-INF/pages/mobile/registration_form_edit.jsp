@@ -8,13 +8,36 @@
 <%@page language="java" pageEncoding="UTF-8" contentType="text/html;charset=utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@taglib uri="/exam" prefix="my"%>
 <%@ taglib prefix="Form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>无标题文档</title>
-  <link href="/mobile/css/style.css" rel="stylesheet" type="text/css"/>
+  <c:import url="references.jsp"></c:import>
+  <script type="text/javascript">
+    function inittree() {
+      $(".tree-city").combotree("tree").tree({
+        onBeforeExpand: function (node) {
+          var children = $('.tree-city').combotree("tree").tree('getChildren', node.target);
+          if (children.length > 0) {
+            return;
+          }
+          //var level = node.attributes.level;
+          var pid = node.id;
+          //这里注意，请查看后面的有关这里的描述（最后的描述）
+          $('.tree-city').combotree("tree").tree("options").url = "/mobile/region/getChild";
+        }
+      })
+      setTimeout(function(){
+        $(".tree-city").each(function(){
+          $(this).next().find(".combo-text").val($(this).attr("displaytext"));
+        })
+      },200);
+    }
+  </script>
+  <%--<link href="/mobile/css/style.css" rel="stylesheet" type="text/css"/>
   <link rel="stylesheet" href="/mobile/css/table.css">
   <script type="text/javascript" src="/mobile/js/jquery.js"></script>
   <script type="text/javascript" src="/mobile/js/jquery.idTabs.min.js"></script>
@@ -30,7 +53,7 @@
         }
       })
     })
-  </script>
+  </script>--%>
 
 
 </head>
@@ -50,41 +73,41 @@
 
   <form:form commandName="RegistrationFormForm">
     <form:hidden path="id"/>
-    <table class="form-add" cellpadding="0" cellspacing="0">
-      <tr>
-        <td>序号</td>
-        <td><form:input path="no" type="text"/></td>
-        <td>名称</td>
-        <td><form:input path="name" type="text"/></td>
-      </tr>
-      <tr>
-        <td>区域单位编号</td>
-        <td><form:input path="region_id" type="text"/></td>
-        <td>表格类型</td>
-        <td><form:input path="form_type" type="text"/></td>
-      </tr>
-      <tr>
-        <td>是否多数据表</td>
-        <td><form:input path="multidata" type="text"/></td>
-        <td>填表时间</td>
-        <td><form:input path="record_date" type="text"/></td>
-      </tr>
-      <tr>
-        <td>截止时间</td>
-        <td><form:input path="end_date" type="text"/></td>
-        <td>填报单位</td>
-        <td><form:input path="record_entity" type="text"/></td>
-      </tr>
-      <tr>
-        <td>调查员姓名</td>
-        <td><form:input path="record_person_name" type="text"/></td>
-        <td>调查员联系电话</td>
-        <td><form:input path="record_person_phone" type="text"/></td>
-      </tr>
-      <tr>
-        <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
-      </tr>
-    </table>
+        <table class="form-add" cellpadding="0" cellspacing="0">
+          <tr>
+            <td>序号</td>
+            <td><form:input path="no" style="width:150px;height:24px;" type="text"/></td>
+            <td>名称</td>
+            <td><form:input path="name" style="width:150px;height:24px;" type="text"/></td>
+          </tr>
+          <tr>
+            <td>区域单位编号</td>
+            <td><form:input path="region_id" displaytext='${region.name}' class="easyui-combotree tree-city" data-options="url:'/mobile/region/getRoot',method:'get',required:true" style="width:152px;height:26px;" type="text"/></td>
+            <td>表格类型</td>
+            <td><form:input path="form_type" style="width:150px;height:24px;" type="text"/></td>
+          </tr>
+          <tr>
+            <td>是否多数据表</td>
+            <td><form:input path="is_multidata" style="width:150px;height:24px;" type="text"/></td>
+            <td>填表时间</td>
+            <td><form:input path="record_date" class="easyui-datebox" style="width:152px;height:26px;" type="text"/></td>
+          </tr>
+          <tr>
+            <td>截止时间</td>
+            <td><form:input path="end_date" class="easyui-datebox" style="width:152px;height:26px;" type="text"/></td>
+            <td>填报单位</td>
+            <td><form:input path="record_entity" style="width:150px;height:24px;" type="text"/></td>
+          </tr>
+          <tr>
+            <td>调查员姓名</td>
+            <td><form:input path="record_person_name"  style="width:150px;height:24px;" type="text"/></td>
+            <td>调查员联系电话</td>
+            <td><form:input path="record_person_phone" style="width:150px;height:24px;" type="text"/></td>
+          </tr>
+          <tr>
+            <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
+          </tr>
+        </table>
     <%--<div id="usual1" class="usual">
 
       <div class="itab">
@@ -143,155 +166,7 @@
       });
     });
   </script>
-  <%--激活tab面板--%>
-  <script type="text/javascript">
-    $("#usual1 ul").idTabs();
-  </script>
-  <%--列表js虽然现在删除了列表--%>
-  <script type="text/javascript">
-    $('.tablelist tbody tr:odd').addClass('odd');
-  </script>
-  <%--选择器js--%>
-  <script type="text/javascript">
-    function diy_select() {
-      this.init.apply(this, arguments)
-    }
-    ;
-    diy_select.prototype = {
-      init: function (opt) {
-        this.setOpts(opt);
-        this.o = this.getByClass(this.opt.TTContainer, document, 'div');//容器
-        this.b = this.getByClass(this.opt.TTDiy_select_btn);//按钮
-        this.t = this.getByClass(this.opt.TTDiy_select_txt);//显示
-        this.l = this.getByClass(this.opt.TTDiv_select_list);//列表容器
-        this.ipt = this.getByClass(this.opt.TTDiy_select_input);//列表容器
-        this.lengths = this.o.length;
-        this.showSelect();
-      },
-      addClass: function (o, s)//添加class
-      {
-        o.className = o.className ? o.className + ' ' + s : s;
-      },
-      removeClass: function (o, st)//删除class
-      {
-        var reg = new RegExp('\\b' + st + '\\b');
-        o.className = o.className ? o.className.replace(reg, '') : '';
-      },
-      addEvent: function (o, t, fn)//注册事件
-      {
-        return o.addEventListener ? o.addEventListener(t, fn, false) : o.attachEvent('on' + t, fn);
-      },
-      showSelect: function ()//显示下拉框列表
-      {
-        var This = this;
-        var iNow = 0;
-        for (var i = 0; i < this.lengths; i++) {
-          var item = This.l[i].getElementsByTagName('li');
-          for (var j = 0; j < item.length; j++) {
-            /*console.log(item[j].getAttribute('select'))
-             if (item[j].getAttribute('select') != null && This.ipt[i].value !=null) {
-             This.t[i].innerHTML = item[j].innerHTML;
-             This.ipt[i].value = item[j].getAttribute('value');
-             }*/
-            if(This.ipt[i].value == item[j].getAttribute('value')){
-              This.t[i].innerHTML = item[j].innerHTML;
-            }
-          }
-        }
-        this.addEvent(document, 'click', function () {
-          for (var i = 0; i < This.lengths; i++) {
-            This.l[i].style.display = 'none';
-          }
-        })
-        for (var i = 0; i < this.lengths; i++) {
-          this.l[i].index = this.b[i].index = this.t[i].index = i;
-          this.t[i].onclick = this.b[i].onclick = function (ev) {
-            var e = window.event || ev;
-            var index = this.index;
-            This.item = This.l[index].getElementsByTagName('li');
 
-            This.l[index].style.display = This.l[index].style.display == 'block' ? 'none' : 'block';
-            This.o[index].style.zIndex = '999'
-
-            for (var j = 0; j < This.lengths; j++) {
-              if (j != index) {
-                This.l[j].style.display = 'none';
-
-
-                This.o[j].style.zIndex = '1'
-              }
-            }
-            This.addClick(This.item);
-            e.stopPropagation ? e.stopPropagation() : (e.cancelBubble = true); //阻止冒泡
-          }
-        }
-      }
-      ,
-      addClick: function (o)//点击回调函数
-      {
-
-        if (o.length > 0) {
-          var This = this;
-          for (var i = 0; i < o.length; i++) {
-            o[i].onmouseover = function () {
-              This.addClass(this, This.opt.TTFcous);
-            }
-            o[i].onmouseout = function () {
-              This.removeClass(this, This.opt.TTFcous);
-            }
-            o[i].onclick = function () {
-              var index = this.parentNode.index;//获得列表
-              //This.t[index].innerHTML = This.ipt[index].value = this.innerHTML.replace(/^\s+/, '').replace(/\s+&/, '');
-              This.t[index].innerHTML = this.innerHTML.replace(/^\s+/, '').replace(/\s+&/, '');
-              This.ipt[index].value = this.getAttribute('value');
-              This.l[index].style.display = 'none';
-            }
-          }
-        }
-      }
-      ,
-      getByClass: function (s, p, t)//使用class获取元素
-      {
-        var reg = new RegExp('\\b' + s + '\\b');
-        var aResult = [];
-        var aElement = (p || document).getElementsByTagName(t || '*');
-
-        for (var i = 0; i < aElement.length; i++) {
-          if (reg.test(aElement[i].className)) {
-            aResult.push(aElement[i])
-          }
-        }
-        return aResult;
-      }
-      ,
-
-      setOpts: function (opt) //以下参数可以不设置  //设置参数
-      {
-        this.opt = {
-          TTContainer: 'diy_select',//控件的class
-          TTDiy_select_input: 'diy_select_input',//用于提交表单的class
-          TTDiy_select_txt: 'diy_select_txt',//diy_select用于显示当前选中内容的容器class
-          TTDiy_select_btn: 'diy_select_btn',//diy_select的打开按钮
-          TTDiv_select_list: 'diy_select_list',//要显示的下拉框内容列表class
-          TTFcous: 'focus'//得到焦点时的class
-        }
-        for (var a in opt)  //赋值 ,请保持正确,没有准确判断的
-        {
-          this.opt[a] = opt[a] ? opt[a] : this.opt[a];
-        }
-      }
-    }
-
-
-    var TTDiy_select = new diy_select({  //参数可选
-      TTContainer: 'diy_select',//控件的class
-      TTDiy_select_input: 'diy_select_input',//用于提交表单的class
-      TTDiy_select_txt: 'diy_select_txt',//diy_select用于显示当前选中内容的容器class
-      TTDiy_select_btn: 'diy_select_btn',//diy_select的打开按钮
-      TTDiv_select_list: 'diy_select_list',//要显示的下拉框内容列表class
-      TTFcous: 'focus'//得到焦点时的class
-    });//如同时使用多个时请保持各class一致.
-  </script>
 </div>
 </body>
 </html>

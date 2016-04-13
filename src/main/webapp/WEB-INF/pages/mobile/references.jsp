@@ -46,7 +46,14 @@
         'resizable',
         'validator',
             'form'
-    ])
+    ],function(){
+        setTimeout(function(){
+            if(inittree!=null){
+                inittree();
+                $("input[readonly]").css({background:"#CCC"});
+            }
+        },200)
+    })
 </script>
 <%--
 <script type="text/javascript" src="/mobile/easyui/jquery.easyui.min.js"></script>

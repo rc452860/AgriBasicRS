@@ -2,6 +2,7 @@ package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.RegistrationForm;
+import abrs.system.service.RegionService;
 import abrs.system.service.RegistrationFormService;
 import abrs.system.web.mobile.form.RegistrationFormForm;
 import org.slf4j.Logger;
@@ -27,7 +28,8 @@ public class RegistrationFormMobileController {
 
     @Autowired
     RegistrationFormService service;
-
+    @Autowired
+    RegionService regionService;
     @Auth(role = Auth.Role.ADMIN)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String Add(ModelMap modelMap){
@@ -74,6 +76,7 @@ public class RegistrationFormMobileController {
         RegistrationForm entity =  service.getItem(id);
         try {
             modelMap.addAttribute("RegistrationFormForm",RegistrationFormForm.EntityToForm(entity));
+            modelMap.addAttribute("region",regionService.getByCode(entity.getRegion_id()));
         }catch (Exception e){
             e.printStackTrace();
         }
