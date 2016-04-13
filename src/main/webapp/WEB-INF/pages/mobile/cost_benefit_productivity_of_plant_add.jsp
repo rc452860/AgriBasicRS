@@ -13,24 +13,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>无标题文档</title>
-  <link href="/mobile/css/style.css" rel="stylesheet" type="text/css"/>
-  <script type="text/javascript" src="/mobile/js/jquery.js"></script>
-  <script type="text/javascript" src="/mobile/js/jquery.idTabs.min.js"></script>
-  <script type="text/javascript" src="/mobile/kindeditor/kindeditor-min.js"></script>
-  <script type="text/javascript" src="/mobile/kindeditor/lang/zh_CN.js"></script>
-  <script type="text/javascript" src="/mobile/laydate/laydate.js"></script>
-
-  <script type="text/javascript">
-    KindEditor.ready(function(K){
-      K.create("#note",{
-        afterBlur:function(){
-          this.sync();
-        }
-      })
-    })
-  </script>
-
-
+  <c:import url="references.jsp"></c:import>
 </head>
 
 <body>
@@ -46,27 +29,416 @@
 </div>
 
 <div class="formbody">
-
+  <div id="dd"></div>
+  <script type="text/javascript">
+    $(function(){
+      $(".choose").click(function(){
+        $('#dd').dialog({
+          title: '选择编号',
+          width: 700,
+          height: 400,
+          closed: false,
+          cache: false,
+          href: '/mobile/registrationForm/select',
+          modal: true
+        });
+        window.chooser = $(this);
+      })
+      window.choose = function(no,name){
+        window.chooser.val(no);
+        $('#dd').dialog("close");
+      }
+    })
+  </script>
   <form:form commandName="CostBenefitProductivityOfPlantForm">
-    <div id="usual1" class="usual">
+    <table class="form-add" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>调查表编号</td>
+        <td><form:input class="choose easyui-validatebox" required="true" readonly="true" path="costBenefitProductivityOfPlant.registration_form_id"/></td>
+      </tr>
+      <tr>
+        <td>调查县数</td>
+        <td><form:input path="costBenefitProductivityOfPlant.county_num"/></td>
+      </tr>
+      <tr>
+        <td>调查户数</td>
+        <td><form:input path="costBenefitProductivityOfPlant.family_num"/></td>
+      </tr>
+      <tr>
+        <td>调查面积</td>
+        <td><form:input path="costBenefitProductivityOfPlant.area_num"/></td>
+      </tr>
 
-      <div class="itab">
-        <ul>
-          <li><a href="#tab1" class="selected">基本信息</a></li>
-        </ul>
-      </div>
+      <tr>
+        <td colspan="2">一、成本与收益</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table class="form-add" cellpadding="0" cellspacing="0">
+            <tr>
+              <td colspan="4">每    亩</td>
+            </tr>
 
-      <div id="tab1" class="tabson"><%--基本信息--%>
+            <tr>
+              <td colspan="2">
+                <table class="form-add" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td colspan="4">产量</td>
+                  </tr>
+                  <tr>
+                    <td>主产品</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_main_product_output" /></td>
+                    <td>副产品</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_by_product_output" /></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
 
-        <ul class="forminfo">
-          <li><label>调查表编号<b>*</b></label><form:input path="costBenefitProductivityOfPlant.registration_form_id" name="" type="text" class="dfinput" value=""
-                                                      style="width:518px;"/></li>
+            <tr>
+              <td colspan="2">
+                <table class="form-add" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td colspan="6">产值</td>
+                  </tr>
+                  <tr>
+                    <td>总产值合计</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_total_product_output_value" /></td>
+                    <td>主产品产值</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_main_product_output_value" /></td>
+                    <td>副产品产值</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_by_product_output_value" /></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
 
-          <li><label>&nbsp;</label><input name="" type="button" id="submit_button" class="btn" value="提交"/></li>
-        </ul>
-      </div>
+            <tr>
+              <td colspan="2">
+                <table class="form-add" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td >总成本</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_total_cost" /></td>
+                  </tr>
+                  <tr>
+                    <td >生产成本合计</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_production_cost" /></td>
+                  </tr>
+                  <tr>
+                    <td>物质费用</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_production_material_cost" /></td>
+                  </tr>
 
-    </div>
+                  <tr>
+                    <td>人工成本</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_production_person_cost" /></td>
+                  </tr>
+                  <tr>
+                    <td>家庭用工作价</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_production_person_family_total" /></td>
+                    <td>家庭用工数量</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_production_person_family_num" /></td>
+                    <td>家庭用工日工价</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_production_person_family_price" /></td>
+                  </tr>
+                  <tr>
+                    <td>雇工费用</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_production_person_employee_total" /></td>
+                    <td>雇工数量</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_production_person_employee_num" /></td>
+                    <td>雇工工价</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_production_person_employee_price" /></td>
+                  </tr>
+
+                  <tr>
+                    <td>土地成本</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_production_land_cost" /></td>
+                  </tr>
+                  <tr>
+                    <td>自营地折租</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_production_land_self_cost" /></td>
+                    <td>流转地租金</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_production_land_other_cost" /></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2">
+                <table class="form-add" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td >净产值</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_net_production_value" /></td>
+                    <td >纯收益</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_net_income" /></td>
+                    <td >成本纯收益率</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_cost_net_income_rate" /></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="4">每50公斤主产品</td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <table class="form-add" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td >平均出售价格</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_perfiftykgmainproducts_average_selling_price" /></td>
+                  </tr>
+                  <tr>
+                    <td >总成本</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_perfiftykgmainproducts_total_cost" /></td>
+                  </tr>
+                  <tr>
+                    <td >生产成本</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_perfiftykgmainproducts_production_cost" /></td>
+                    <td >物质费用</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_perfiftykgmainproducts_material_cost" /></td>
+                  </tr>
+                  <tr>
+                    <td >净产值</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_perfiftykgmainproducts_net_production_value" /></td>
+                    <td >纯收益</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_perfiftykgmainproducts_net_income" /></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="4">每一劳动日</td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <table class="form-add" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td >主产品产量</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_perworkday_main_product_output" /></td>
+                    <td >净产值</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_perworkday_net_production_value" /></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="4">每亩</td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <table class="form-add" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td >主产品出售量</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_main_product_sale_num" /></td>
+                    <td >主产品出售价值</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_permu_net_production_sale_value" /></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="4">附记</td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <table class="form-add" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td >每亩成本外支出</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_note_permu_ext_cost" /></td>
+                    <td >每亩补贴收入</td>
+                    <td><form:input path="costBenefitProductivityOfPlant.costbenefit_note_permu_subsidy_income" /></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">二、每亩物质费用合计</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table class="form-add" cellpadding="0" cellspacing="0">
+            <tr>
+              <td colspan="2">
+                <table class="form-add" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td colspan="4">每亩物质费用合计</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total"/></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <table class="form-add" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td colspan="6">（一）直接生产费用小计</td>
+                  </tr>
+                  <tr>
+                    <td >直接生产费用小计</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_direct_cost_subtotal"/></td>
+                    <td >种籽、种苗费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_direct_cost_seedsseedlings"/></td>
+                    <td >农家肥费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_direct_cost_farmmanure"/></td>
+                  </tr>
+                  <tr>
+                    <td >化肥费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_direct_cost_fertilizer"/></td>
+                    <td >农膜费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_direct_cost_plasticsheeting"/></td>
+                    <td >农药费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_direct_cost_pesticide"/></td>
+                  </tr>
+                  <tr>
+                    <td >畜力费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_direct_cost_animal"/></td>
+                    <td >机械作业费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_direct_cost_mechanical"/></td>
+                    <td >排灌费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_direct_cost_irrigation"/></td>
+                  </tr>
+                  <tr>
+                    <td >其中：水费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_direct_cost_irrigation_water"/></td>
+                    <td >燃料动力费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_direct_cost_fuelpower"/></td>
+                    <td >工具材料费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_direct_cost_toolmaterial"/></td>
+                  </tr>
+                  <tr>
+                    <td >技术服务费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_direct_cost_technicalservice"/></td>
+                    <td >其他直接生产费用</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_direct_cost_other"/></td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="6">（二）间接生产费用小计</td>
+                  </tr>
+                  <tr>
+                    <td >间接生产费用小计</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_indirect_cost_subtotal"/></td>
+                  </tr>
+                  <tr>
+                    <td >固定资产折旧费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_indirect_cost_depreciation"/></td>
+                    <td >保险费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_indirect_cost_insurance"/></td>
+                    <td >管理费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_indirect_cost_management"/></td>
+                  </tr>
+                  <tr>
+                    <td >财务费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_indirect_cost_finance"/></td>
+                    <td >销售费</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_indirect_cost_sale"/></td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="6">附记</td>
+                  </tr>
+                  <tr>
+                    <td >每亩化肥混合施用量</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_material_cost_total_note_mixed_application_rate"/></td>
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">三、每亩家庭用工合计</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table class="form-add" cellpadding="0" cellspacing="0">
+            <tr>
+              <td colspan="2">
+                <table class="form-add" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td colspan="4">每亩家庭用工合计</td>
+                    <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total"/></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <td colspan="2">
+              <table class="form-add" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td colspan="6">（一）直接生产用工小计</td>
+                </tr>
+                <tr>
+                  <td >直接用工费用小计</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_direct_employ_subtotal"/></td>
+                </tr>
+                <tr>
+                  <td >播种前翻耕整地用工</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_direct_employ_beforesowing"/></td>
+                  <td >种籽准备与播种用工</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_direct_employ_preparationsowing"/></td>
+                  <td >施肥用工</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_direct_employ_fertilizer"/></td>
+                </tr>
+                <tr>
+                  <td >排灌用工</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_direct_employ_irrigation"/></td>
+                  <td >田间管理用工</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_direct_employ_fieldmanagement"/></td>
+                  <td >收获用工</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_direct_employ_harvest"/></td>
+                </tr>
+                <tr>
+                  <td >初制加工用工</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_direct_employ_primaryprocessing"/></td>
+                  <td >其他直接生产用工</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_direct_employ_other"/></td>
+                </tr>
+
+                <tr>
+                  <td colspan="6">（二）间接生产用工小计</td>
+                </tr>
+                <tr>
+                  <td >间接生产用工小计</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_indirect_employ_subtotal"/></td>
+                </tr>
+                <tr>
+                  <td >初期生产用工分摊</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_indirect_employ_initialproduction"/></td>
+                  <td >积肥用工</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_indirect_employ_compost"/></td>
+                  <td >经营管理用工</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_indirect_employ_managementl"/></td>
+                </tr>
+                <tr>
+                  <td >一事一议酬劳</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_indirect_employ_oneone"/></td>
+                  <td >其他间接生产用工</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_indirect_employ_other"/></td>
+                  <td >销售用工</td>
+                  <td ><form:input path="costBenefitProductivityOfPlant.permu_family_cost_total_indirect_employ_sale"/></td>
+                </tr>
+              </table>
+            </td>
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
+      </tr>
+    </table>
   </form:form>
 
   <%--此乃登陆代码--%>
