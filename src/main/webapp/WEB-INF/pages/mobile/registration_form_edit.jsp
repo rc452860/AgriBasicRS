@@ -87,22 +87,19 @@
             <td><form:input path="form_type" style="width:150px;height:24px;" type="text"/></td>
           </tr>
           <tr>
-            <td>是否多数据表</td>
-            <td><form:input path="is_multidata" style="width:150px;height:24px;" type="text"/></td>
             <td>填表时间</td>
             <td><form:input path="record_date" class="easyui-datebox" style="width:152px;height:26px;" type="text"/></td>
-          </tr>
-          <tr>
             <td>截止时间</td>
-            <td><form:input path="end_date" class="easyui-datebox" style="width:152px;height:26px;" type="text"/></td>
+            <td><form:input path="end_date" class="easyui-datebox" style="width:152px;height:26px;" type="text"/></td></tr>
+          <tr>
             <td>填报单位</td>
             <td><form:input path="record_entity" style="width:150px;height:24px;" type="text"/></td>
-          </tr>
-          <tr>
             <td>调查员姓名</td>
             <td><form:input path="record_person_name"  style="width:150px;height:24px;" type="text"/></td>
+          </tr>
+          <tr>
             <td>调查员联系电话</td>
-            <td><form:input path="record_person_phone" style="width:150px;height:24px;" type="text"/></td>
+            <td colspan="3"><form:input path="record_person_phone" style="width:150px;height:24px;" type="text"/></td>
           </tr>
           <tr>
             <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>

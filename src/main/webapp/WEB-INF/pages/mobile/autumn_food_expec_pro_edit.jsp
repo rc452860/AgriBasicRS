@@ -51,11 +51,32 @@
     <form:hidden path="rapeseed_huasheng_item.id"/>
     <form:hidden path="cotton_item.id"/>
     <form:hidden path="sugar_item.id"/>
+    <div id="dd"></div>
 
+    <script type="text/javascript">
+      $(function(){
+        $(".choose").click(function(){
+          $('#dd').dialog({
+            title: '选择编号',
+            width: 700,
+            height: 400,
+            closed: false,
+            cache: false,
+            href: '/mobile/registrationForm/select',
+            modal: true
+          });
+          window.chooser = $(this);
+        })
+        window.choose = function(no,name){
+          window.chooser.val(no);
+          $('#dd').dialog("close");
+        }
+      })
+    </script>
     <table class="form-add" cellpadding="0" cellspacing="0">
       <tr>
         <td>调查表编号</td>
-        <td><form:input path="autumnFoodExpecPro.registration_form_id" /></td>
+        <td><form:input class="choose easyui-validatebox" required="true" readonly="true" path="autumnFoodExpecPro.registration_form_id" /></td>
       </tr>
       <tr>
         <td>调查村数</td>

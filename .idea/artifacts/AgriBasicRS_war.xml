@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="AgriBasicRS:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="ExamPlus.war">
-      <element id="artifact" artifact-name="AgriBasicRS:war exploded" />
-    </root>
-  </artifact>
-</component>

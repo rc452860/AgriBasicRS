@@ -22,7 +22,15 @@
     })
 </script>--%>
 <script type="text/javascript" src="/mobile/laydate/laydate.js"></script>
-<script type="text/javascript" src="/mobile/easyui/src/easyloader.js"></script>
+<link href="/mobile/easyui/themes/icon.css" rel="stylesheet" type="text/css"/>
+<link href="/mobile/easyui/themes/metro/easyui.css" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript" src="/mobile/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/mobile/easyui/locale/easyui-lang-zh_CN.js"></script>
+
+<script type="text/javascript" src="/mobile/easyui/plugins/validator.js"></script>
+
+<%--<script type="text/javascript" src="/mobile/easyui/src/easyloader.js"></script>
 
 <script type="text/javascript">
     $.extend(easyloader.modules,
@@ -45,7 +53,8 @@
         'combobox',
         'resizable',
         'validator',
-            'form'
+            'form',
+        'datagrid'
     ],function(){
         setTimeout(function(){
             if(inittree!=null){
@@ -54,9 +63,13 @@
             }
         },200)
     })
+</script>--%>
+
+<script type="text/javascript">
+    $(function(){
+        if(typeof(inittree) != "undefined"){
+            inittree();
+            $("input[readonly]").css({background:"#CCC"});
+        }
+    })
 </script>
-<%--
-<script type="text/javascript" src="/mobile/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="/mobile/easyui/locale/easyui-lang-zh_CN.js"></script>--%>
-<%--
-<script type="text/javascript" src="/mobile/js/validator.js"></script>--%>

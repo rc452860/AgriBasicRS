@@ -1,6 +1,7 @@
 package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
+import abrs.system.dao.Entity.Region;
 import abrs.system.dao.Entity.RegistrationForm;
 import abrs.system.service.RegionService;
 import abrs.system.service.RegistrationFormService;
@@ -129,5 +130,50 @@ public class RegistrationFormMobileController {
             map.put("message", e.getMessage());
         }
         return map;
+    }
+
+    @Auth(role = Auth.Role.ADMIN)
+    @RequestMapping(value = "/select",method = RequestMethod.GET)
+    public String select(){
+
+        return "mobile/registration_form_select";
+    }
+    @Auth(role = Auth.Role.ADMIN)
+    @ResponseBody
+    @RequestMapping(value = "/selectJson",method = RequestMethod.GET)
+    public Object selectJson(@RequestParam(value = "page",required = false) Integer page,
+                             @RequestParam(value = "rows",required = false) Integer rows){
+        final long count = service.getCount();
+        rows = rows == null ? 10:rows;
+        page = page == null ?0:page;
+        final List<RegistrationForm> list = service.getItems((page-1)*rows,rows);
+        for (RegistrationForm item : list){
+            Region region = regionService.getByCode(item.getRegion_id());
+            item.setRegion_id(region.getName());
+        }
+        return new Object(){
+            public int getTotal() {
+                return total;
+            }
+
+            public void setTotal(int total) {
+                this.total = total;
+            }
+
+            public List<RegistrationForm> getRows() {
+                return rows;
+            }
+
+            public void setRows(List<RegistrationForm> rows) {
+                this.rows = rows;
+            }
+
+            private int total;
+            private List<RegistrationForm> rows;
+            {
+                total = (int) count;
+                rows = list;
+            }
+        };
     }
 }
