@@ -51,12 +51,12 @@
         <table class="form-add" cellpadding="0" cellspacing="0">
 
             <tr>
-                <td>序号</td><td><form:input class="easyui-validatebox" required="required" path="no"/></td>
-                <td>所在镇村组编号</td><td><form:input readonly="true" path="region_no"/></td>
+                <td>序号</td><td><form:input class="easyui-validatebox" style="width:150px;height:24px;" required="required" path="no"/></td>
+                <td>所在镇村组编号</td><td><form:input readonly="true" style="width:150px;height:24px;" path="region_no"/></td>
             </tr>
             <tr>
-                <td>所在镇村组</td><td><form:input path="region" class="easyui-combotree tree-city" data-options="url:'/mobile/region/getRoot',method:'get',required:true" style="width:200px;height:24px;"/></td>
-                <td>姓名</td><td><form:input class="easyui-validatebox" validType="CHS" required="required" path="name"/></td>
+                <td>所在镇村组</td><td><form:input path="region" class="easyui-combotree tree-city" style="width:150px;height:24px;" data-options="url:'/mobile/region/getRoot',method:'get',required:true" /></td>
+                <td>姓名</td><td><form:input class="easyui-validatebox" validType="CHS" style="width:150px;height:24px;" required="required" path="name"/></td>
             </tr>
             <tr>
                 <td>性别</td>
@@ -69,8 +69,8 @@
                 <td>家庭人口</td><td><form:input class="easyui-numberbox" required="required" data-options="min:0" path="familypopulation"/></td>
             </tr>
             <tr>
-                <td>座机</td><td><form:input  path="contact_landline"/></td>
-                <td>手机</td><td><form:input  path="contact_phone"/></td>
+                <td>座机</td><td><form:input style="width:150px;height:24px;" path="contact_landline"/></td>
+                <td>手机</td><td><form:input style="width:150px;height:24px;" path="contact_phone"/></td>
             </tr>
             <tr>
                 <td>水田</td><td><form:input class="easyui-numberbox" data-options="precision:2"  path="contract_paddyfield"/></td>

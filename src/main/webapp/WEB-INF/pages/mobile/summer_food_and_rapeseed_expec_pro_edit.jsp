@@ -32,7 +32,7 @@
 </div>
 
 <div class="formbody">
-  <div id="dd"></div>
+  <%--<div id="dd"></div>
   <script type="text/javascript">
     $(function(){
       $(".choose").click(function(){
@@ -52,7 +52,7 @@
         $('#dd').dialog("close");
       }
     })
-  </script>
+  </script>--%>
   <form:form commandName="SummerFoodAndRapeseedExpecProForm">
     <form:hidden path="summerFoodAndRapeseedExpecPro.id"/>
     <form:hidden path="summerFoodAndRapeseedExpecPro.food_itemid"/>
@@ -66,7 +66,11 @@
       <tr>
         <td>调查表编号</td>
         <td><form:input
-                class="choose easyui-validatebox" required="true" readonly="true" path="summerFoodAndRapeseedExpecPro.registration_form_id" /></td>
+                class="easyui-combobox" required="true" data-options="url:'/mobile/registrationForm/selectJsonB',
+					method:'get',
+					valueField:'id',
+					textField:'text',
+					panelHeight:'auto'" path="summerFoodAndRapeseedExpecPro.registration_form_id" /></td>
       </tr>
       <tr>
         <td>调查村数</td>

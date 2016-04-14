@@ -13,31 +13,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>无标题文档</title>
-    <link href="/mobile/css/style.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="/mobile/css/table.css">
-
-    <script type="text/javascript" src="/mobile/js/jquery.js"></script>
-    <script type="text/javascript" src="/mobile/js/jquery.idTabs.min.js"></script>
-    <script type="text/javascript" src="/mobile/kindeditor/kindeditor-min.js"></script>
-    <script type="text/javascript" src="/mobile/kindeditor/lang/zh_CN.js"></script>
-    <script type="text/javascript" src="/mobile/laydate/laydate.js"></script>
-    <script type="text/javascript" src="/mobile/easyui/src/easyloader.js"></script>
-
-    <script type="text/javascript">
-        easyloader.base = "/mobile/easyui/";
-        easyloader.theme = "metro";
-        easyloader.locale = "zh_CN";
-        easyloader.load(['tooltip','combotree','calendar','combobox','resizable'])
-    </script>
-    <%--<script type="text/javascript">
-        KindEditor.ready(function (K) {
-            K.create("#note", {
-                afterBlur: function () {
-                    this.sync();
-                }
-            })
-        })
-    </script>--%>
+    <c:import url="references.jsp"></c:import>
 
 
 </head>
@@ -60,7 +36,11 @@
         <table class="form-add" cellpadding="0" cellspacing="0">
             <tr>
                 <td>调查表编号</td>
-                <td><form:input path="registration_form_id"/></td>
+                <td><form:input class="easyui-combobox" required="true" data-options="url:'/mobile/registrationForm/selectJsonB',
+					method:'get',
+					valueField:'id',
+					textField:'text',
+					panelHeight:'auto'" path="registration_form_id"/></td>
                 <td>农户</td>
                 <td><form:input path="farmer_id"/></td>
             </tr>

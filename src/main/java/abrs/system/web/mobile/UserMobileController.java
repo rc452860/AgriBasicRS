@@ -1,11 +1,9 @@
 package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
-import abrs.system.dao.Entity.User;
 import abrs.system.service.UserService;
 import abrs.system.util.SubSite;
-import abrs.system.web.context.SessionContext;
-import abrs.system.web.mobile.form.AddUserForm;
+import abrs.system.web.mobile.form.UserForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -35,7 +32,7 @@ public class UserMobileController {
     @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(ModelMap model) {
-        model.addAttribute("AddUserForm", new AddUserForm());
+        model.addAttribute("AddUserForm", new UserForm());
         model.addAttribute("sites", SubSite.getMap());
         return "mobile/user_add";
     }
@@ -52,7 +49,7 @@ public class UserMobileController {
     @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Map<String, Object> doAdd(@Valid @ModelAttribute("AddUserForm") AddUserForm form, Errors errors, ModelMap model) {
+    public Map<String, Object> doAdd(@Valid @ModelAttribute("AddUserForm") UserForm form, Errors errors, ModelMap model) {
         Map<String, Object> map = new HashMap<String, Object>();
 //        if (errors.hasErrors()) {
 //            map.put("message", errors.getFieldError().getDefaultMessage());

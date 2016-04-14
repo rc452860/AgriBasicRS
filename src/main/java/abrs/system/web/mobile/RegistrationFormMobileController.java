@@ -15,6 +15,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -175,5 +176,41 @@ public class RegistrationFormMobileController {
                 rows = list;
             }
         };
+    }
+    @Auth(role = Auth.Role.ADMIN)
+    @ResponseBody
+    @RequestMapping(value = "/selectJsonB",method = RequestMethod.GET)
+    public Object selectJsonB(){
+        List<RegistrationForm> registrationForms =  service.getAvailableRegister();
+        List<Object> result = new ArrayList<Object>();
+        for (final RegistrationForm item : registrationForms){
+            result.add(new Object(){
+                String id;
+
+                public String getText() {
+                    return text;
+                }
+
+                public void setText(String text) {
+                    this.text = text;
+                }
+
+                String text;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                {
+                    id = item.getNo();
+                    text = item.getName();
+                }
+            });
+        }
+        return result;
     }
 }

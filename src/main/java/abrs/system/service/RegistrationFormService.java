@@ -86,4 +86,10 @@ public class RegistrationFormService {
     public List<RegistrationForm> getItems(int start, int size){
         return registrationFormDao.getPage(new Query(), start, size);
     }
+
+    public List<RegistrationForm> getAvailableRegister() {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("end_date").gte(new Date()));
+        return registrationFormDao.queryList(query);
+    }
 }

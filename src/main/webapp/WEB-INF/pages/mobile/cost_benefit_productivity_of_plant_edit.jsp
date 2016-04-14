@@ -30,33 +30,17 @@
 </div>
 
 <div class="formbody">
-  <div id="dd"></div>
-  <script type="text/javascript">
-    $(function(){
-      $(".choose").click(function(){
-        $('#dd').dialog({
-          title: '选择编号',
-          width: 700,
-          height: 400,
-          closed: false,
-          cache: false,
-          href: '/mobile/registrationForm/select',
-          modal: true
-        });
-        window.chooser = $(this);
-      })
-      window.choose = function(no,name){
-        window.chooser.val(no);
-        $('#dd').dialog("close");
-      }
-    })
-  </script>
+
   <form:form commandName="CostBenefitProductivityOfPlantForm">
     <form:hidden path="costBenefitProductivityOfPlant.id"/>
     <table class="form-add" cellpadding="0" cellspacing="0">
       <tr>
         <td>调查表编号</td>
-        <td><form:input class="choose easyui-validatebox" required="true" readonly="true" path="costBenefitProductivityOfPlant.registration_form_id"/></td>
+        <td><form:input class="easyui-combobox" required="true" data-options="url:'/mobile/registrationForm/selectJsonB',
+					method:'get',
+					valueField:'id',
+					textField:'text',
+					panelHeight:'auto'" path="costBenefitProductivityOfPlant.registration_form_id"/></td>
       </tr>
       <tr>
         <td>调查县数</td>
