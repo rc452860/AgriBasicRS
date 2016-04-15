@@ -63,7 +63,12 @@ public class IndexMobileController {
     @RequestMapping(value = "/install", method = RequestMethod.GET)
     public String install(ModelMap model, HttpServletRequest request) {
         try{
-            userService.addItem("admin", "admin", "管理员", Auth.Role.ADMIN);
+            User user = new User();
+            user.setName("管理员");
+            user.setUsername("admin");
+            user.setPassword("admin");
+            user.setRole(Auth.Role.ADMIN.name());
+            userService.addItem(user);
             String root = request.getSession().getServletContext().getRealPath("/");
             File file = new File(root+"\\mobile\\install\\region.txt");
             BufferedReader bufferedReader =new BufferedReader(new InputStreamReader(new FileInputStream(file),Util.GetEncoding(file)),65536);

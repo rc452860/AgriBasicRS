@@ -26,7 +26,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/mobile/manage")
 public class ManageMobileContorller {
-    private static Logger logger = LoggerFactory.getLogger(UserMobileController.class);
+    private static Logger logger = LoggerFactory.getLogger(ManageMobileContorller.class);
 
     @Autowired
     FarmerService farmerService;

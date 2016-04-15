@@ -1,6 +1,7 @@
 package abrs.system.dao.Entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -15,13 +16,22 @@ public class User {
     private String id;
 
     private String name = "";
+    @Indexed(unique = true)
     private String username = "";
     private String password = "";
     private String role = "";
-    private String email = "";
-    private String phone = "";
+    private String regionCode = "";
 
     private String salt = "";
+
+    public String getRegionCode() {
+        return regionCode;
+    }
+
+    public void setRegionCode(String regionCode) {
+        this.regionCode = regionCode;
+    }
+
 
 
     public User() {
@@ -69,30 +79,6 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-    /**
-     *
-     * @return 电子邮箱
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     *
-     * @return 手机号码
-     */
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
 
     /**
      *

@@ -27,30 +27,18 @@ public class UserService {
     /**
      * 增加新用户
      *
-     * @param username     用户名
-     * @param password     密码
-     * @param name          昵称
-     * @param role      角色
-     * @param email        邮箱
-     * @param phone        电话
      * @return 是否增加成功
      */
-    public boolean addItem(String username, String password, String name,
-                           Auth.Role role, String email,
-                           String phone) {
-        if (checkUserExist(username))
+    public boolean addItem(User user) {
+        if (checkUserExist(user.getUsername()))
             return false;
 
-        User user = new User();
+
         user.setSalt(getRandomString(6));
-        user.setUsername(username);
-        user.setName(name);
-        user.setPassword(this.getUserPasswordMd5(user.getSalt(), password));
-        user.setRole(this.getUserRoleEncrypt(user.getSalt(),role.name()));
-        user.setEmail(email);
-        user.setPhone(phone);
+        user.setPassword(this.getUserPasswordMd5(user.getSalt(), user.getPassword()));
+        user.setRole(this.getUserRoleEncrypt(user.getSalt(),user.getRole()));
         userDao.save(user);
-        logger.info("Add User: " +  "/" + username);
+        logger.info("Add User: " +  "/" + user.getUsername());
         return true;
     }
 
@@ -217,5 +205,13 @@ public class UserService {
             sb.append(base.charAt(number));
         }
         return sb.toString();
+    }
+
+    public void remove(String id) {
+        userDao.deleteById(id);
+    }
+
+    public void removeMulit(String[] ids) {
+        userDao.deleteByIdMulit(ids);
     }
 }

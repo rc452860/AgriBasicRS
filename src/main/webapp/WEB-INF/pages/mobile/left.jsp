@@ -217,6 +217,17 @@
                     <li><a href="/mobile/cropYieldSummary/list" target="rightFrame">调查表信息列表</a></li>
                 </ul>
             </li>
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="index.html" target="rightFrame">用户管理</a>
+                    <i class ="png"></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="/mobile/cropYieldSummary/add" target="rightFrame">添加用户</a></li>
+                    <li><a href="/mobile/cropYieldSummary/list" target="rightFrame">用户列表</a></li>
+                </ul>
+            </li>
             <%--<li>
                 <div class="header">
                     <cite></cite>
