@@ -38,6 +38,8 @@ public class RegistrationForm {
     private String record_person_name;//调查员姓名
     private String record_person_phone;//调查员联系电话
 
+    private String workflow_id;//当前工作流id
+
     public RegistrationForm(){}
 
     public String getId() {
@@ -134,5 +136,13 @@ public class RegistrationForm {
 
     public void setRecord_person_phone(String record_person_phone) {
         this.record_person_phone = record_person_phone;
+    }
+
+    public String getWorkflow_id() {
+        return workflow_id;
+    }
+
+    public void setWorkflow_id(String workflow_id) {
+        this.workflow_id = workflow_id;
     }
 }
