@@ -1,3 +1,5 @@
+<%@ page import="abrs.system.web.context.SessionContext" %>
+<%@ page import="abrs.system.dao.Entity.User" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@page language="java" pageEncoding="UTF-8" contentType="text/html;charset=utf-8" %>
@@ -40,9 +42,7 @@
     </ul>
 
     <div class="user">
-        <span>admin</span>
-        <i>消息</i>
-        <b>5</b>
+        <span><%=((User)session.getAttribute(SessionContext.CURRENT_USER)).getName()%></span>
     </div>
 
 </div>

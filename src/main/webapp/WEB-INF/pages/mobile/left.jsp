@@ -209,7 +209,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">农作物产量调查汇总表</a>
+                    <a href="javascript:void(0)" target="rightFrame">农作物产量调查汇总表</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
@@ -220,12 +220,12 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">用户管理</a>
+                    <a href="javascript:void(0)" target="rightFrame">用户管理</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
-                    <li><a href="/mobile/cropYieldSummary/add" target="rightFrame">添加用户</a></li>
-                    <li><a href="/mobile/cropYieldSummary/list" target="rightFrame">用户列表</a></li>
+                    <li><a href="/mobile/user/add" target="rightFrame">添加用户</a></li>
+                    <li><a href="/mobile/user/list" target="rightFrame">用户列表</a></li>
                 </ul>
             </li>
             <%--<li>

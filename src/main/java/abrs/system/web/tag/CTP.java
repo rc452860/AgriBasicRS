@@ -20,6 +20,16 @@ public class CTP extends RequestContextAwareTag {
 
     String code;
 
+    public String getInstance() {
+        return instance;
+    }
+
+    public void setInstance(String instance) {
+        this.instance = instance;
+    }
+
+    String instance;
+
 
     RegionService regionService;
 
@@ -32,7 +42,6 @@ public class CTP extends RequestContextAwareTag {
         try {
             regionService = (RegionService)getRequestContext().getWebApplicationContext().getBean(RegionService.class);
             jspWriter.print(regionService.getByCode(code).getName());
-
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -67,7 +67,7 @@ public class IndexMobileController {
             user.setName("管理员");
             user.setUsername("admin");
             user.setPassword("admin");
-            user.setRole(Auth.Role.ADMIN.name());
+            user.setRole(Auth.Role.SUPERADMIN.name());
             userService.addItem(user);
             String root = request.getSession().getServletContext().getRealPath("/");
             File file = new File(root+"\\mobile\\install\\region.txt");

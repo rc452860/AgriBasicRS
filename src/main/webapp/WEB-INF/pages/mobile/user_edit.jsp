@@ -23,13 +23,15 @@
                 },
                 onSelect: function (node) {
                     $("#region_no").val(node.id);
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $("input[name=region]").val(node.text);
-                    },50);
+                    }, 50);
                 }
             })
         }
+
     </script>
+
 
 </head>
 
@@ -47,24 +49,55 @@
 <div class="formbody">
 
     <form:form commandName="UserForm">
+        <script type="text/javascript">
+            $(function () {
+                $.get("/mobile/region/getRegionByCode?code=" + "${UserForm.regionCode}", function (data) {
+                    setTimeout(function () {
+                        $("#regionCode+.combo .combo-text").val(data.name);
+                    }, 200);
+                })
+                /*$.ajax({
+                 cache: false,
+                 type: "GET",
+                 method:"GET",
+                 url:"/mobile/region/getRegionByCode?code="+"
+                ${UserForm.regionCode}",
+                 success:function(data){
+                 $("#regionCode+.combo .combo-text").val(data.name);
+                 },
+                 error:function (XMLHttpRequest) {
+                 alert("error:" + XMLHttpRequest.status);
+                 }
+                 })*/
+            })
+        </script>
         <form:hidden path="id"/>
         <table class="form-add" cellpadding="0" cellspacing="0">
             <tr>
                 <td>选择区域</td>
-                <td><form:input path="regionCode" class="easyui-combotree tree-city" style="width:150px;height:24px;" data-options="url:'/mobile/region/getRoot',method:'get',required:true" /></td>
+                <td colspan="3"><form:input path="regionCode" class="easyui-combotree tree-city"
+                                            style="width:150px;height:24px;"
+                                            data-options="url:'/mobile/region/getRoot',method:'get',required:true"/></td>
+            </tr>
+            <tr>
                 <td>昵称</td>
                 <td>
                     <form:input path="name"/>
                 </td>
-            </tr>
-            <tr>
                 <td>用户名</td>
-                <td><form:input path="username"/></td>
-                <td>密码</td>
-                <td><form:input path="password"/></td>
+                <td><form:input readonly="true" path="username"/></td>
+
             </tr>
             <tr>
-                <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
+                <td>密码</td>
+                <td><form:password value="******" path="password"/></td>
+                <td>确认密码</td>
+                <td><input class="easyui-validatebox"  validType="equalTo['#password']" value="******" invalidMessage="两次输入密码不匹配" type="password"/></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="4"><input name="" type="button" id="submit_button"
+                                                      value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/>
+                </td>
             </tr>
         </table>
     </form:form>
@@ -73,20 +106,22 @@
     <script type="text/javascript">
         $(function () {
             $('#submit_button').click(function () {
-                $.ajax({
-                    cache: false,
-                    type: "POST",
-                    url: "/mobile/user/add",
-                    data: $('#UserForm').serialize(),
-                    async: false,
-                    error: function (XMLHttpRequest) {
-                        alert("error:" + XMLHttpRequest.status);
-                    },
-                    success: function (data) {
-                        if (data.message != null) alert(data.message);
-                        if (data.url != null) window.location.href = data.url;
-                    }
-                });
+                if ($("#UserForm").form('validate')) {
+                    $.ajax({
+                        cache: false,
+                        type: "POST",
+                        url: "/mobile/user/edit",
+                        data: $('#UserForm').serialize(),
+                        async: false,
+                        error: function (XMLHttpRequest) {
+                            alert("error:" + XMLHttpRequest.status);
+                        },
+                        success: function (data) {
+                            if (data.message != null) alert(data.message);
+                            if (data.url != null) window.location.href = data.url;
+                        }
+                    });
+                }
             });
         });
     </script>

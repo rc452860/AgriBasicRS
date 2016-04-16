@@ -42,5 +42,6 @@ $.extend($.fn.validatebox.defaults.rules, {
                 }
             }
         }, message: ''
-    }
+    },
+    equalTo: { validator: function (value, param) { return $(param[0]).val() == value; }, message: '字段不匹配' }
 })

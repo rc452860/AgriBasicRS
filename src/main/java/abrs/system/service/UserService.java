@@ -13,8 +13,10 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 @Service
 public class UserService {
@@ -120,7 +122,9 @@ public class UserService {
      * @return 用户列表
      */
     public List<User> getItems(int start, int size){
-        return userDao.getPage(new Query(), start, size);
+        Query query = new Query();
+        query.addCriteria(Criteria.where("username").nin("admin"));
+        return userDao.getPage(query, start, size);
     }
 
     /**
@@ -213,5 +217,28 @@ public class UserService {
 
     public void removeMulit(String[] ids) {
         userDao.deleteByIdMulit(ids);
+    }
+
+    /***
+     * 更新用户资料
+     * @param user
+     */
+    public void update(User user) {
+        try{
+            User old = userDao.queryById(user.getId());
+            Field[] fields = User.class.getDeclaredFields();
+            Pattern filter = Pattern.compile("(id|username|salt|role)");//更新过滤字段
+            for (Field item : fields){
+                item.setAccessible(true);
+                if (item.get(user)!=null && !item.get(user).toString().equals("")&&!filter.matcher(item.getName()).find())
+                    item.set(old,item.get(user));
+                if (item.getName().equals("password")&&!item.get(user).toString().equals("******")){
+                    old.setPassword(this.getUserPasswordMd5(old.getSalt(), user.getPassword()));
+                }
+            }
+            userDao.save(old);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

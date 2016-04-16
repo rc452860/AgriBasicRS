@@ -238,4 +238,11 @@ public class RegionMobileController {
         return result;
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/getRegionByCode",method = RequestMethod.GET)
+    public Object getRegionByCode(@RequestParam("code") String code){
+        Region region = regionService.getByCode(code);
+        return region;
+    }
+
 }
