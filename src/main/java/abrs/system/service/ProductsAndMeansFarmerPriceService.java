@@ -19,7 +19,7 @@ import java.util.List;
 
 @Service
 public class ProductsAndMeansFarmerPriceService {
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static Logger logger = LoggerFactory.getLogger(ProductsAndMeansFarmerPriceService.class);
 
     @Autowired
     private ProductsAndMeansFarmerPriceDao productsAndMeansFarmerPriceDao;

@@ -20,7 +20,7 @@ import java.util.List;
 
 @Service
 public class RegistrationFormService {
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static Logger logger = LoggerFactory.getLogger(RegistrationFormService.class);
 
     @Autowired
     private RegistrationFormDao registrationFormDao;

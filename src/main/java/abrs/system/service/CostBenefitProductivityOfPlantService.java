@@ -19,7 +19,7 @@ import java.util.List;
 
 @Service
 public class CostBenefitProductivityOfPlantService {
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static Logger logger = LoggerFactory.getLogger(CostBenefitProductivityOfPlantService.class);
 
     @Autowired
     private CostBenefitProductivityOfPlantDao costBenefitProductivityOfPlantDao;

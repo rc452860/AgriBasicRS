@@ -19,7 +19,7 @@ import java.util.List;
 
 @Service
 public class AutumnWinterPlantsIntentionService {
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static Logger logger = LoggerFactory.getLogger(AutumnWinterPlantsIntentionService.class);
 
     @Autowired
     private AutumnWinterPlantsIntentionDao autumnWinterPlantsIntentionDao;

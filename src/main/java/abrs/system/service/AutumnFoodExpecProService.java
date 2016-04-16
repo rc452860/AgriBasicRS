@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Service
 public class AutumnFoodExpecProService {
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static Logger logger = LoggerFactory.getLogger(AutumnFoodExpecProService.class);
 
     @Autowired
     private AutumnFoodExpecProDao autumnFoodExpecProDao;

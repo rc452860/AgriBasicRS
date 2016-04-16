@@ -19,7 +19,7 @@ import java.util.List;
 
 @Service
 public class CropYieldSummaryService {
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static Logger logger = LoggerFactory.getLogger(CropYieldSummaryService.class);
 
     @Autowired
     private CropYieldSummaryDao cropYieldSummaryDao;

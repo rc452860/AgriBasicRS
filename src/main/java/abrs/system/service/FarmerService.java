@@ -20,7 +20,7 @@ import java.util.List;
 
 @Service
 public class FarmerService {
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static Logger logger = LoggerFactory.getLogger(FarmerService.class);
 
     @Autowired
     private FarmerDao farmerDao;

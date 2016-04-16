@@ -19,7 +19,7 @@ import java.util.List;
 
 @Service
 public class WholeYearPlantAreaService {
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static Logger logger = LoggerFactory.getLogger(WholeYearPlantAreaService.class);
 
     @Autowired
     private WholeYearPlantAreaDao wholeYearPlantAreaDao;

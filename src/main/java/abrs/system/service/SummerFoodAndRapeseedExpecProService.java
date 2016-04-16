@@ -20,7 +20,7 @@ import java.util.List;
 
 @Service
 public class SummerFoodAndRapeseedExpecProService {
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static Logger logger = LoggerFactory.getLogger(SummerFoodAndRapeseedExpecProService.class);
 
     @Autowired
     private SummerFoodAndRapeseedExpecProDao summerFoodAndRapeseedDao;

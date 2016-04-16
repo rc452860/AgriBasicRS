@@ -19,7 +19,7 @@ import java.util.List;
 
 @Service
 public class ExpectedProductionItemService {
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static Logger logger = LoggerFactory.getLogger(ExpectedProductionItemService.class);
 
     @Autowired
     private ExpectedProductionItemDao summerFoodAndRapeseedItemDao;
