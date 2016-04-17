@@ -29,7 +29,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/mobile/WholeYearPlantArea")
 public class WholeYearPlantAreaController {
-    private static Logger logger = LoggerFactory.getLogger(RegionMobileController.class);
+    private static Logger logger = LoggerFactory.getLogger(WholeYearPlantAreaController.class);
 
     @Autowired
     RegistrationFormService service;

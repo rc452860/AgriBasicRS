@@ -26,7 +26,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/mobile/registrationForm")
 public class RegistrationFormMobileController {
-    private static Logger logger = LoggerFactory.getLogger(RegionMobileController.class);
+    private static Logger logger = LoggerFactory.getLogger(RegistrationFormMobileController.class);
 
     @Autowired
     RegistrationFormService service;
