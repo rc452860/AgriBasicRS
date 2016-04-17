@@ -1,6 +1,7 @@
 package abrs.system.web.mobile.workflow;
 
 import abrs.system.dao.Entity.RegistrationFormWorkFlow;
+import abrs.system.service.RegionService;
 import abrs.system.service.RegistrationFormWorkFlowService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,6 +12,9 @@ public class BaseWorkFlow {
 
     @Autowired
     RegistrationFormWorkFlowService service;
+
+    @Autowired
+    RegionService region_service;
 
     public String getWorkFlowName() {
         return WorkFlowName;
@@ -43,7 +47,8 @@ public class BaseWorkFlow {
         next.setResult(0);
         next.setClass_name(nextWorkFlow.getClass().getName());
         next.setNo(current.getNo() + 1);//序号+1
-        next.setRegion_id("");//获取上一级区域 --待完成
+
+        next.setRegion_id(region_service.getParent(current.getRegion_id()).getId());//获取上一级区域
         service.addItem(next);//上报上级单位
     }
 
