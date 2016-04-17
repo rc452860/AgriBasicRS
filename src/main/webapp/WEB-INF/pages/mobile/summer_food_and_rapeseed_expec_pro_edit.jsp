@@ -16,7 +16,319 @@
   <title>无标题文档</title>
   <c:import url="references.jsp"></c:import>
 
+    <script type="text/javascript">
+        /*计算代码*/
+        $(function () {
+            function calc(name, field, func) {
+                this.name = name;
+                this.field = field;
+                if (typeof func == 'function')
+                    this.func = func;
+            }
 
+            calc.prototype.func = function () {
+                var total = 0;
+                for (var i = 0; i < this.field.length; i++) {
+                    total += parseFloat($("[id='" + this.field[i] + "']").numberbox("getValue"));
+                }
+                return total;
+            }
+            var calcarr = [
+                new calc(//夏良
+                        'food_item.seededarea_Increasedecrease_absolute',[
+                            'food_item.seededarea_thisyear',
+                            'food_item.seededarea_lastyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'food_item.seededarea_Increasedecrease_relative',[
+                            'food_item.seededarea_Increasedecrease_absolute',
+                            'food_item.seededarea_lastyear',
+                        ],function(){
+                            var result = 0;
+                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
+                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            }
+                            return result;
+                        }
+                ),
+                new calc(
+                        'food_item.total_Increasedecrease_absolute',[
+                            'food_item.total_thisyear',
+                            'food_item.total_lastyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'food_item.total_Increasedecrease_relative',[
+                            'food_item.total_Increasedecrease_absolute',
+                            'food_item.total_lastyear',
+                        ],function(){
+                            var result = 0;
+                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
+                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            }
+                            return result;
+                        }
+                ),
+                new calc(
+                        'food_item.perunit_thisyear',[
+                            'food_item.total_thisyear',
+                            'food_item.seededarea_thisyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'food_item.perunit_lastyear',[
+                            'food_item.total_lastyear',
+                            'food_item.seededarea_lastyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'food_item.perunit_Increasedecrease_absolute',[
+                            'food_item.perunit_thisyear',
+                            'food_item.perunit_lastyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'food_item.perunit_Increasedecrease_relative',[
+                            'food_item.perunit_Increasedecrease_absolute',
+                            'food_item.perunit_lastyear',
+                        ],function(){
+                            var result = 0;
+                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
+                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            }
+                            return result;
+                        }
+                ),
+                new calc(//其中小麦
+                        'food_xiaomai_food_item.seededarea_Increasedecrease_absolute',[
+                            'food_xiaomai_food_item.seededarea_thisyear',
+                            'food_xiaomai_food_item.seededarea_lastyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'food_xiaomai_food_item.seededarea_Increasedecrease_relative',[
+                            'food_xiaomai_food_item.seededarea_Increasedecrease_absolute',
+                            'food_xiaomai_food_item.seededarea_lastyear',
+                        ],function(){
+                            var result = 0;
+                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
+                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            }
+                            return result;
+                        }
+                ),
+                new calc(
+                        'food_xiaomai_food_item.total_Increasedecrease_absolute',[
+                            'food_xiaomai_food_item.total_thisyear',
+                            'food_xiaomai_food_item.total_lastyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'food_xiaomai_food_item.total_Increasedecrease_relative',[
+                            'food_xiaomai_food_item.total_Increasedecrease_absolute',
+                            'food_xiaomai_food_item.total_lastyear',
+                        ],function(){
+                            var result = 0;
+                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
+                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            }
+                            return result;
+                        }
+                ),
+                new calc(
+                        'food_xiaomai_food_item.perunit_thisyear',[
+                            'food_xiaomai_food_item.total_thisyear',
+                            'food_xiaomai_food_item.seededarea_thisyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'food_xiaomai_food_item.perunit_lastyear',[
+                            'food_xiaomai_food_item.total_lastyear',
+                            'food_xiaomai_food_item.seededarea_lastyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'food_xiaomai_food_item.perunit_Increasedecrease_absolute',[
+                            'food_xiaomai_food_item.perunit_thisyear',
+                            'food_xiaomai_food_item.perunit_lastyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'food_xiaomai_food_item.perunit_Increasedecrease_relative',[
+                            'food_xiaomai_food_item.perunit_Increasedecrease_absolute',
+                            'food_xiaomai_food_item.perunit_lastyear',
+                        ],function(){
+                            var result = 0;
+                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
+                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            }
+                            return result;
+                        }
+                ),
+                new calc(//其中：油菜籽
+                        'rapeseed_food_item.seededarea_Increasedecrease_absolute',[
+                            'rapeseed_food_item.seededarea_thisyear',
+                            'rapeseed_food_item.seededarea_lastyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'rapeseed_food_item.seededarea_Increasedecrease_relative',[
+                            'rapeseed_food_item.seededarea_Increasedecrease_absolute',
+                            'rapeseed_food_item.seededarea_lastyear',
+                        ],function(){
+                            var result = 0;
+                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
+                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            }
+                            return result;
+                        }
+                ),
+                new calc(
+                        'rapeseed_food_item.total_Increasedecrease_absolute',[
+                            'rapeseed_food_item.total_thisyear',
+                            'rapeseed_food_item.total_lastyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'rapeseed_food_item.total_Increasedecrease_relative',[
+                            'rapeseed_food_item.total_Increasedecrease_absolute',
+                            'rapeseed_food_item.total_lastyear',
+                        ],function(){
+                            var result = 0;
+                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
+                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            }
+                            return result;
+                        }
+                ),
+                new calc(
+                        'rapeseed_food_item.perunit_thisyear',[
+                            'rapeseed_food_item.total_thisyear',
+                            'rapeseed_food_item.seededarea_thisyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'rapeseed_food_item.perunit_lastyear',[
+                            'rapeseed_food_item.total_lastyear',
+                            'rapeseed_food_item.seededarea_lastyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'rapeseed_food_item.perunit_Increasedecrease_absolute',[
+                            'rapeseed_food_item.perunit_thisyear',
+                            'rapeseed_food_item.perunit_lastyear',
+                        ],function(){
+                            var result;
+                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            return result;
+                        }
+                ),
+                new calc(
+                        'rapeseed_food_item.perunit_Increasedecrease_relative',[
+                            'rapeseed_food_item.perunit_Increasedecrease_absolute',
+                            'rapeseed_food_item.perunit_lastyear',
+                        ],function(){
+                            var result = 0;
+                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
+                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            }
+                            return result;
+                        }
+                ),
+
+            ]
+            for (var i = 0; i < calcarr.length; i++) {
+                $("[id='" + calcarr[i].name+"']").numberbox("disable");
+            }
+            $("#SummerFoodAndRapeseedExpecProForm input").blur(function () {
+                for (var i = 0; i < calcarr.length; i++) {
+                    $("[id='" + calcarr[i].name+"']").numberbox("setValue", calcarr[i].func());
+                }
+
+            })
+        })
+    </script>
 
 </head>
 
@@ -32,27 +344,7 @@
 </div>
 
 <div class="formbody">
-  <%--<div id="dd"></div>
-  <script type="text/javascript">
-    $(function(){
-      $(".choose").click(function(){
-        $('#dd').dialog({
-          title: '选择编号',
-          width: 700,
-          height: 400,
-          closed: false,
-          cache: false,
-          href: '/mobile/registrationForm/select',
-          modal: true
-        });
-        window.chooser = $(this);
-      })
-      window.choose = function(no,name){
-        window.chooser.val(no);
-        $('#dd').dialog("close");
-      }
-    })
-  </script>--%>
+
   <form:form commandName="SummerFoodAndRapeseedExpecProForm">
     <form:hidden path="summerFoodAndRapeseedExpecPro.id"/>
     <form:hidden path="summerFoodAndRapeseedExpecPro.food_itemid"/>
@@ -64,21 +356,20 @@
 
     <table class="form-add" cellpadding="0" cellspacing="0">
       <tr>
-        <td>调查表编号</td>
-        <td><form:input
-                class="easyui-combobox" required="true" data-options="url:'/mobile/registrationForm/selectJsonB',
+        <td>调查表</td>
+        <td><form:input class="easyui-combobox" required="true" data-options="url:'/mobile/registrationForm/selectJsonB',
 					method:'get',
 					valueField:'id',
 					textField:'text',
-					panelHeight:'auto'" path="summerFoodAndRapeseedExpecPro.registration_form_id" /></td>
+					panelHeight:'auto'" path="summerFoodAndRapeseedExpecPro.registration_form_id"/></td>
       </tr>
       <tr>
         <td>调查村数</td>
-        <td><form:input path="summerFoodAndRapeseedExpecPro.survey_village_num" /></td>
+        <td><form:input path="summerFoodAndRapeseedExpecPro.survey_village_num" class="easyui-numberbox" data-options="precision:0"/></td>
       </tr>
       <tr>
         <td>调查户数</td>
-        <td><form:input path="summerFoodAndRapeseedExpecPro.survey_family_num" /></td>
+        <td><form:input path="summerFoodAndRapeseedExpecPro.survey_family_num" class="easyui-numberbox" data-options="precision:0"/></td>
       </tr>
       <tr>
         <td colspan="2">夏粮</td>
@@ -91,31 +382,45 @@
             </tr>
             <tr>
               <td>上年实际</td>
-              <td><form:input path="food_item.seededarea_lastyear" /></td>
+              <td><form:input path="food_item.seededarea_lastyear" class="easyui-numberbox" data-options="precision:2"/></td>
               <td>本年预计</td>
-              <td><form:input path="food_item.seededarea_thisyear" /></td>
+              <td><form:input path="food_item.seededarea_thisyear" class="easyui-numberbox" data-options="precision:2"/></td>
+            </tr>
+            <tr>
+              <td>绝对数</td>
+              <td><form:input path="food_item.seededarea_Increasedecrease_absolute" class="easyui-numberbox" data-options="precision:2"/></td>
+              <td>相对数</td>
+              <td><form:input path="food_item.seededarea_Increasedecrease_relative" class="easyui-numberbox" data-options="precision:2"/></td>
             </tr>
             <tr>
               <td colspan="4">单产（公斤/亩）</td>
             </tr>
             <tr>
               <td>上年实际</td>
-              <td><form:input path="food_item.perunit_lastyear" /></td>
+              <td><form:input path="food_item.perunit_lastyear" class="easyui-numberbox" data-options="precision:2"/></td>
               <td>本年预计</td>
-              <td><form:input path="food_item.perunit_thisyear" /></td>
+              <td><form:input path="food_item.perunit_thisyear" class="easyui-numberbox" data-options="precision:2"/></td>
             </tr>
             <tr>
               <td>绝对数</td>
-              <td><form:input path="food_item.perunit_Increasedecrease_absolute" /></td>
+              <td><form:input path="food_item.perunit_Increasedecrease_absolute" class="easyui-numberbox" data-options="precision:2"/></td>
               <td>相对数</td>
-              <td><form:input path="food_item.perunit_Increasedecrease_relative" /></td>
+              <td><form:input path="food_item.perunit_Increasedecrease_relative" class="easyui-numberbox" data-options="precision:2"/></td>
             </tr>
-            <tr><td colspan="4">总产量（吨）</td></tr>
+            <tr>
+              <td colspan="4">总产量（吨）</td>
+            </tr>
             <tr>
               <td>上年实际</td>
-              <td><form:input path="food_item.total_lastyear"/></td>
+              <td><form:input path="food_item.total_lastyear" class="easyui-numberbox" data-options="precision:2"/></td>
               <td>本年预计</td>
-              <td><form:input path="food_item.total_thisyear"/></td>
+              <td><form:input path="food_item.total_thisyear" class="easyui-numberbox" data-options="precision:2"/></td>
+            </tr>
+            <tr>
+              <td>绝对数</td>
+              <td><form:input path="food_item.total_Increasedecrease_absolute" class="easyui-numberbox" data-options="precision:2"/></td>
+              <td>相对数</td>
+              <td><form:input path="food_item.total_Increasedecrease_relative" class="easyui-numberbox" data-options="precision:2"/></td>
             </tr>
           </table>
         </td>
@@ -131,31 +436,45 @@
             </tr>
             <tr>
               <td>上年实际</td>
-              <td><form:input path="food_xiaomai_food_item.seededarea_lastyear" /></td>
+              <td><form:input path="food_xiaomai_food_item.seededarea_lastyear" class="easyui-numberbox" data-options="precision:2"/></td>
               <td>本年预计</td>
-              <td><form:input path="food_xiaomai_food_item.seededarea_thisyear" /></td>
+              <td><form:input path="food_xiaomai_food_item.seededarea_thisyear" class="easyui-numberbox" data-options="precision:2"/></td>
+            </tr>
+            <tr>
+              <td>绝对数</td>
+              <td><form:input path="food_xiaomai_food_item.seededarea_Increasedecrease_absolute" class="easyui-numberbox" data-options="precision:2"/></td>
+              <td>相对数</td>
+              <td><form:input path="food_xiaomai_food_item.seededarea_Increasedecrease_relative" class="easyui-numberbox" data-options="precision:2"/></td>
             </tr>
             <tr>
               <td colspan="4">单产（公斤/亩）</td>
             </tr>
             <tr>
               <td>上年实际</td>
-              <td><form:input path="food_xiaomai_food_item.perunit_lastyear" /></td>
+              <td><form:input path="food_xiaomai_food_item.perunit_lastyear" class="easyui-numberbox" data-options="precision:2"/></td>
               <td>本年预计</td>
-              <td><form:input path="food_xiaomai_food_item.perunit_thisyear" /></td>
+              <td><form:input path="food_xiaomai_food_item.perunit_thisyear" class="easyui-numberbox" data-options="precision:2"/></td>
             </tr>
             <tr>
               <td>绝对数</td>
-              <td><form:input path="food_xiaomai_food_item.perunit_Increasedecrease_absolute" /></td>
+              <td><form:input path="food_xiaomai_food_item.perunit_Increasedecrease_absolute" class="easyui-numberbox" data-options="precision:2"/></td>
               <td>相对数</td>
-              <td><form:input path="food_xiaomai_food_item.perunit_Increasedecrease_relative" /></td>
+              <td><form:input path="food_xiaomai_food_item.perunit_Increasedecrease_relative" class="easyui-numberbox" data-options="precision:2"/></td>
             </tr>
-            <tr><td colspan="4">总产量（吨）</td></tr>
+            <tr>
+              <td colspan="4">总产量（吨）</td>
+            </tr>
             <tr>
               <td>上年实际</td>
-              <td><form:input path="food_xiaomai_food_item.total_lastyear"/></td>
+              <td><form:input path="food_xiaomai_food_item.total_lastyear" class="easyui-numberbox" data-options="precision:2"/></td>
               <td>本年预计</td>
-              <td><form:input path="food_xiaomai_food_item.total_thisyear"/></td>
+              <td><form:input path="food_xiaomai_food_item.total_thisyear" class="easyui-numberbox" data-options="precision:2"/></td>
+            </tr>
+            <tr>
+              <td>绝对数</td>
+              <td><form:input path="food_xiaomai_food_item.total_Increasedecrease_absolute" class="easyui-numberbox" data-options="precision:2"/></td>
+              <td>相对数</td>
+              <td><form:input path="food_xiaomai_food_item.total_Increasedecrease_relative" class="easyui-numberbox" data-options="precision:2"/></td>
             </tr>
           </table>
         </td>
@@ -171,188 +490,56 @@
             </tr>
             <tr>
               <td>上年实际</td>
-              <td><form:input path="rapeseed_food_item.seededarea_lastyear" /></td>
+              <td><form:input path="rapeseed_food_item.seededarea_lastyear" class="easyui-numberbox" data-options="precision:2"/></td>
               <td>本年预计</td>
-              <td><form:input path="rapeseed_food_item.seededarea_thisyear" /></td>
+              <td><form:input path="rapeseed_food_item.seededarea_thisyear" class="easyui-numberbox" data-options="precision:2"/></td>
+            </tr>
+            <tr>
+              <td>绝对数</td>
+              <td><form:input path="rapeseed_food_item.seededarea_Increasedecrease_absolute" class="easyui-numberbox" data-options="precision:2"/></td>
+              <td>相对数</td>
+              <td><form:input path="rapeseed_food_item.seededarea_Increasedecrease_relative" class="easyui-numberbox" data-options="precision:2"/></td>
             </tr>
             <tr>
               <td colspan="4">单产（公斤/亩）</td>
             </tr>
             <tr>
               <td>上年实际</td>
-              <td><form:input path="rapeseed_food_item.perunit_lastyear" /></td>
+              <td><form:input path="rapeseed_food_item.perunit_lastyear" class="easyui-numberbox" data-options="precision:2"/></td>
               <td>本年预计</td>
-              <td><form:input path="rapeseed_food_item.perunit_thisyear" /></td>
+              <td><form:input path="rapeseed_food_item.perunit_thisyear" class="easyui-numberbox" data-options="precision:2"/></td>
             </tr>
             <tr>
               <td>绝对数</td>
-              <td><form:input path="rapeseed_food_item.perunit_Increasedecrease_absolute" /></td>
+              <td><form:input path="rapeseed_food_item.perunit_Increasedecrease_absolute" class="easyui-numberbox" data-options="precision:2"/></td>
               <td>相对数</td>
-              <td><form:input path="rapeseed_food_item.perunit_Increasedecrease_relative" /></td>
+              <td><form:input path="rapeseed_food_item.perunit_Increasedecrease_relative" class="easyui-numberbox" data-options="precision:2"/></td>
             </tr>
-            <tr><td colspan="4">总产量（吨）</td></tr>
+
+            <tr>
+              <td colspan="4">总产量（吨）</td>
+            </tr>
             <tr>
               <td>上年实际</td>
-              <td><form:input path="rapeseed_food_item.total_lastyear"/></td>
+              <td><form:input path="rapeseed_food_item.total_lastyear" class="easyui-numberbox" data-options="precision:2"/></td>
               <td>本年预计</td>
-              <td><form:input path="rapeseed_food_item.total_thisyear"/></td>
+              <td><form:input path="rapeseed_food_item.total_thisyear" class="easyui-numberbox" data-options="precision:2"/></td>
+            </tr>
+            <tr>
+              <td>绝对数</td>
+              <td><form:input path="rapeseed_food_item.total_Increasedecrease_absolute" class="easyui-numberbox" data-options="precision:2"/></td>
+              <td>相对数</td>
+              <td><form:input path="rapeseed_food_item.total_Increasedecrease_relative" class="easyui-numberbox" data-options="precision:2"/></td>
             </tr>
           </table>
         </td>
       </tr>
       <tr>
-        <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
+        <td align="center" colspan="4"><input name="" type="button" id="submit_button"
+                                              value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/>
+        </td>
       </tr>
     </table>
-    <%--<div id="usual1" class="usual">
-
-      <div class="itab">
-        <ul>
-          <li><a href="#tab1" class="selected">基本信息</a></li>
-          <li><a href="#tab2">夏粮</a></li>
-          <li><a href="#tab3">其中：小麦</a></li>
-          <li><a href="#tab4">油菜籽</a></li>
-        </ul>
-      </div>
-
-      <div id="tab1" class="tabson">&lt;%&ndash;基本信息&ndash;%&gt;
-
-        <ul class="forminfo">
-          <li><label>调查表编号<b>*</b></label><form:input path="summerFoodAndRapeseedExpecPro.registration_form_id" name="" type="text" class="dfinput" value=""
-                                                      style="width:518px;"/></li>
-          <li><label>调查村数<b>*</b></label><form:input path="summerFoodAndRapeseedExpecPro.survey_village_num" name="" type="text" class="dfinput" value=""
-                                                     style="width:518px;"/></li>
-          <li><label>调查户数<b>*</b></label><form:input path="summerFoodAndRapeseedExpecPro.survey_family_num" name="" type="text" class="dfinput" value=""
-                                                     style="width:518px;"/></li>
-          <li><label>&nbsp;</label><input name="" type="button" onclick="$('.itab a:eq(1)').click()"
-                                          class="btn" value="下一步"/></li>
-        </ul>
-      </div>
-      <div id="tab2" class="tabson">&lt;%&ndash;夏粮&ndash;%&gt;
-        <ul class="forminfo">
-          <li>
-            <div class="formbody">
-              <div class="formtitle"><span>播种面积（亩）</span></div>
-              <ul class="forminfo">
-                <li><label>上年实际<b>*</b></label><form:input path="food_item.seededarea_lastyear" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>本年预计<b>*</b></label><form:input path="food_item.seededarea_thisyear" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>绝对数<b>*</b></label><form:input path="food_item.seededarea_Increasedecrease_absolute" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>相对数<b>*</b></label><form:input path="food_item.seededarea_Increasedecrease_relative" name="" type="text" class="dfinput" value=""/></li>
-              </ul>
-            </div>
-          </li>
-            &lt;%&ndash;
-                      <li>
-                        <div class="formbody">
-                          <div class="formtitle"><span>单产（公斤/亩）</span></div>
-                          <ul class="forminfo">
-                            <li><label>上年实际<b>*</b></label><form:input path="food_item.perunit_lastyear" name="" type="text" class="dfinput" value=""/></li>
-                            <li><label>本年预计<b>*</b></label><form:input path="food_item.perunit_thisyear" name="" type="text" class="dfinput" value=""/></li>
-                            <li><label>绝对数<b>*</b></label><form:input path="food_item.perunit_Increasedecrease_absolute" name="" type="text" class="dfinput" value=""/></li>
-                            <li><label>相对数<b>*</b></label><form:input path="food_item.perunit_Increasedecrease_relative" name="" type="text" class="dfinput" value=""/></li>
-                          </ul>
-                        </div>
-                      </li>
-            &ndash;%&gt;
-          <li>
-            <div class="formbody">
-              <div class="formtitle"><span>总产量（吨）</span></div>
-              <ul class="forminfo">
-                <li><label>上年实际<b>*</b></label><form:input path="food_item.total_lastyear" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>本年预计<b>*</b></label><form:input path="food_item.total_thisyear" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>绝对数<b>*</b></label><form:input path="food_item.total_Increasedecrease_absolute" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>相对数<b>*</b></label><form:input path="food_item.total_Increasedecrease_relative" name="" type="text" class="dfinput" value=""/></li>
-              </ul>
-            </div>
-          </li>
-          <li><label>&nbsp;</label><input name="" type="button" onclick="$('.itab a:eq(2)').click()"
-                                          class="btn" value="下一步"/></li>
-        </ul>
-      </div>
-      <div id="tab3" class="tabson">&lt;%&ndash;其中：小麦&ndash;%&gt;
-        <ul class="forminfo">
-          <li>
-            <div class="formbody">
-              <div class="formtitle"><span>播种面积（亩）</span></div>
-              <ul class="forminfo">
-                <li><label>上年实际<b>*</b></label><form:input path="food_xiaomai_food_item.seededarea_lastyear" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>本年预计<b>*</b></label><form:input path="food_xiaomai_food_item.seededarea_thisyear" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>绝对数<b>*</b></label><form:input path="food_xiaomai_food_item.seededarea_Increasedecrease_absolute" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>相对数<b>*</b></label><form:input path="food_xiaomai_food_item.seededarea_Increasedecrease_relative" name="" type="text" class="dfinput" value=""/></li>
-              </ul>
-            </div>
-          </li>
-            &lt;%&ndash;
-                        <li>
-                          <div class="formbody">
-                            <div class="formtitle"><span>单产（公斤/亩）</span></div>
-                            <ul class="forminfo">
-                              <li><label>上年实际<b>*</b></label><form:input path="food_xiaomai_food_item.perunit_lastyear" name="" type="text" class="dfinput" value=""/></li>
-                              <li><label>本年预计<b>*</b></label><form:input path="food_xiaomai_food_item.perunit_thisyear" name="" type="text" class="dfinput" value=""/></li>
-                              <li><label>绝对数<b>*</b></label><form:input path="food_xiaomai_food_item.perunit_Increasedecrease_absolute" name="" type="text" class="dfinput" value=""/></li>
-                              <li><label>相对数<b>*</b></label><form:input path="food_xiaomai_food_item.perunit_Increasedecrease_relative" name="" type="text" class="dfinput" value=""/></li>
-                            </ul>
-                          </div>
-                        </li>
-              &ndash;%&gt;
-          <li>
-            <div class="formbody">
-              <div class="formtitle"><span>总产量（吨）</span></div>
-              <ul class="forminfo">
-                <li><label>上年实际<b>*</b></label><form:input path="food_xiaomai_food_item.total_lastyear" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>本年预计<b>*</b></label><form:input path="food_xiaomai_food_item.total_thisyear" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>绝对数<b>*</b></label><form:input path="food_xiaomai_food_item.total_Increasedecrease_absolute" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>相对数<b>*</b></label><form:input path="food_xiaomai_food_item.total_Increasedecrease_relative" name="" type="text" class="dfinput" value=""/></li>
-              </ul>
-            </div>
-          </li>
-          <li><label>&nbsp;</label><input name="" type="button" onclick="$('.itab a:eq(3)').click()"
-                                          class="btn" value="下一步"/></li>
-        </ul>
-      </div>
-
-      <div id="tab4" class="tabson">&lt;%&ndash;油菜籽&ndash;%&gt;
-        <ul class="forminfo">
-          <li>
-            <div class="formbody">
-              <div class="formtitle"><span>播种面积（亩）</span></div>
-              <ul class="forminfo">
-                <li><label>上年实际<b>*</b></label><form:input path="rapeseed_food_item.seededarea_lastyear" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>本年预计<b>*</b></label><form:input path="rapeseed_food_item.seededarea_thisyear" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>绝对数<b>*</b></label><form:input path="rapeseed_food_item.seededarea_Increasedecrease_absolute" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>相对数<b>*</b></label><form:input path="rapeseed_food_item.seededarea_Increasedecrease_relative" name="" type="text" class="dfinput" value=""/></li>
-              </ul>
-            </div>
-          </li>
-            &lt;%&ndash;
-                <li>
-                  <div class="formbody">
-                    <div class="formtitle"><span>单产（公斤/亩）</span></div>
-                    <ul class="forminfo">
-                      <li><label>上年实际<b>*</b></label><form:input path="rapeseed_food_item.perunit_lastyear" name="" type="text" class="dfinput" value=""/></li>
-                      <li><label>本年预计<b>*</b></label><form:input path="rapeseed_food_item.perunit_thisyear" name="" type="text" class="dfinput" value=""/></li>
-                      <li><label>绝对数<b>*</b></label><form:input path="rapeseed_food_item.perunit_Increasedecrease_absolute" name="" type="text" class="dfinput" value=""/></li>
-                      <li><label>相对数<b>*</b></label><form:input path="rapeseed_food_item.perunit_Increasedecrease_relative" name="" type="text" class="dfinput" value=""/></li>
-                    </ul>
-                  </div>
-                </li>
-            &ndash;%&gt;
-          <li>
-            <div class="formbody">
-              <div class="formtitle"><span>总产量（吨）</span></div>
-              <ul class="forminfo">
-                <li><label>上年实际<b>*</b></label><form:input path="rapeseed_food_item.total_lastyear" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>本年预计<b>*</b></label><form:input path="rapeseed_food_item.total_thisyear" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>绝对数<b>*</b></label><form:input path="rapeseed_food_item.total_Increasedecrease_absolute" name="" type="text" class="dfinput" value=""/></li>
-                <li><label>相对数<b>*</b></label><form:input path="rapeseed_food_item.total_Increasedecrease_relative" name="" type="text" class="dfinput" value=""/></li>
-              </ul>
-            </div>
-          </li>
-          <li><label>&nbsp;</label><input name="" type="button" id="submit_button" class="btn" value="提交"/></li>
-        </ul>
-      </div>
-
-    </div>--%>
   </form:form>
 
   <%--此乃登陆代码--%>
