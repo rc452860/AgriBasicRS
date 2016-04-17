@@ -245,4 +245,10 @@ public class RegionMobileController {
         return region;
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/getRegionParentByCode",method = RequestMethod.GET)
+    public Object getRegionParentByCode(@RequestParam("code") String code){
+        Region region = regionService.getParent(code);
+        return region;
+    }
 }

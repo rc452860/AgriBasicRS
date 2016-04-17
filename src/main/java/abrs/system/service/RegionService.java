@@ -137,6 +137,41 @@ public class RegionService {
         return regionDao.queryList(query);
     }
 
+    public Region getParent(String id){
+        String[] regexs = {
+                "([0-9]{2})0{13}",
+                "([0-9]{4})0{11}",
+                "([0-9]{6})0{9}",
+                "([0-9]{9})0{6}",
+                "([0-9]{12})0{3}",
+                "([0-9]{15})",
+        };
+        int[] next = {
+                2,4,6,9,11,13
+        };
+        int i = 0;
+        Pattern pattern = null;
+        String precode;
+        for (;i<regexs.length;i++){
+            pattern = Pattern.compile(regexs[i]);
+            if (pattern.matcher(id).find())
+                break;
+        }
+        if (i>1 && pattern != null){
+            Matcher matcher = pattern.matcher(id);
+            if (matcher.matches()) {
+                id = id.substring(0,next[i-1]);
+                while(id.length()<15){
+                    id+='0';
+                }
+            }
+        }
+        Query query = new Query();
+        query.addCriteria(Criteria.where("no").is(id));
+        return regionDao.queryOne(query);
+
+    }
+
     public Region getByCode(String code) {
         Query query = new Query();
         query.addCriteria(Criteria.where("no").is(code));
