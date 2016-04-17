@@ -15,7 +15,50 @@
     <title>无标题文档</title>
     <c:import url="references.jsp"></c:import>
 </head>
+<script type="text/javascript">
+    /*计算代码*/
+    $(function () {
+        function calc(name, field, func) {
+            this.name = name;
+            this.field = field;
+            if (typeof func == 'function')
+                this.func = func;
+        }
 
+        calc.prototype.func = function () {
+            var total = 0;
+            for (var i = 0; i < this.field.length; i++) {
+                total += parseFloat($("[id='" + this.field[i] + "']").numberbox("getValue"));
+            }
+            return total;
+        }
+        var calcarr = [
+            new calc(
+                    'autumnWinterPlantsIntention.food_total', [
+                        'autumnWinterPlantsIntention.food_grain',
+                        'autumnWinterPlantsIntention.food_legume',
+                        'autumnWinterPlantsIntention.food_potato'
+                    ]
+            ),
+            new calc(
+                    'autumnWinterPlantsIntention.plant_total', [
+                        'autumnWinterPlantsIntention.food_total',
+                        'autumnWinterPlantsIntention.oilplant_total',
+                        'autumnWinterPlantsIntention.vegetables_total',
+                        'autumnWinterPlantsIntention.otherplant_total'
+                    ]
+            )
+        ]
+        for (var i = 0; i < calcarr.length; i++) {
+            $("[id='" + calcarr[i].name + "']").numberbox("disable");
+        }
+        $("#AutumnWinterPlantsIntentionForm input").blur(function () {
+            for (var i = 0; i < calcarr.length; i++) {
+                $("[id='" + calcarr[i].name + "']").numberbox("setValue", calcarr[i].func());
+            }
+        })
+    })
+</script>
 <body>
 
 
@@ -46,50 +89,66 @@
             </tr>
             <tr>
                 <td>播种总面积</td>
-                <td><form:input path="autumnWinterPlantsIntention.plant_total"/></td>
+                <td><form:input path="autumnWinterPlantsIntention.plant_total" class="easyui-numberbox"
+                                data-options="precision:2"/></td>
             </tr>
             <tr>
                 <td>粮食合计</td>
-                <td><form:input path="autumnWinterPlantsIntention.food_total"/></td>
+                <td><form:input path="autumnWinterPlantsIntention.food_total" class="easyui-numberbox"
+                                data-options="precision:2"/></td>
             </tr>
             <tr>
                 <td>谷物</td>
-                <td><form:input path="autumnWinterPlantsIntention.food_grain"/></td>
+                <td><form:input validType="gte['autumnWinterPlantsIntention.food_grain_dongxiaomai']"
+                                path="autumnWinterPlantsIntention.food_grain" class="easyui-numberbox"
+                                data-options="precision:2"/></td>
             </tr>
             <tr>
                 <td>其中：冬小麦</td>
-                <td><form:input path="autumnWinterPlantsIntention.food_grain_dongxiaomai"/></td>
+                <td><form:input path="autumnWinterPlantsIntention.food_grain_dongxiaomai" class="easyui-numberbox"
+                                data-options="precision:2"/></td>
             </tr>
             <tr>
                 <td>豆类 合计</td>
-                <td><form:input path="autumnWinterPlantsIntention.food_legume"/></td>
+                <td><form:input path="autumnWinterPlantsIntention.food_legume" class="easyui-numberbox"
+                                data-options="precision:2"/></td>
             </tr>
             <tr>
                 <td>薯类 合计</td>
-                <td><form:input path="autumnWinterPlantsIntention.food_potato"/></td>
+                <td><form:input path="autumnWinterPlantsIntention.food_potato" class="easyui-numberbox"
+                                data-options="precision:2"/></td>
             </tr>
             <tr>
                 <td>油料作物</td>
-                <td><form:input path="autumnWinterPlantsIntention.oilplant_total"/></td>
+                <td><form:input validType="gte['autumnWinterPlantsIntention.oilplant_youcaizi']"
+                                path="autumnWinterPlantsIntention.oilplant_total" class="easyui-numberbox"
+                                data-options="precision:2"/></td>
             </tr>
             <tr>
                 <td>其中：油菜籽</td>
-                <td><form:input path="autumnWinterPlantsIntention.oilplant_youcaizi"/></td>
+                <td><form:input path="autumnWinterPlantsIntention.oilplant_youcaizi" class="easyui-numberbox"
+                                data-options="precision:2"/></td>
             </tr>
             <tr>
                 <td>蔬菜</td>
-                <td><form:input path="autumnWinterPlantsIntention.vegetables_total"/></td>
+                <td><form:input path="autumnWinterPlantsIntention.vegetables_total" class="easyui-numberbox"
+                                data-options="precision:2"/></td>
             </tr>
             <tr>
                 <td>其他作物</td>
-                <td><form:input path="autumnWinterPlantsIntention.otherplant_total"/></td>
+                <td><form:input validType="gte['autumnWinterPlantsIntention.otherplant_qingsiliaol']"
+                                path="autumnWinterPlantsIntention.otherplant_total" class="easyui-numberbox"
+                                data-options="precision:2"/></td>
             </tr>
             <tr>
                 <td>其中：青饲料</td>
-                <td><form:input path="autumnWinterPlantsIntention.otherplant_qingsiliaol"/></td>
+                <td><form:input path="autumnWinterPlantsIntention.otherplant_qingsiliaol" class="easyui-numberbox"
+                                data-options="precision:2"/></td>
             </tr>
             <tr>
-                <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
+                <td align="center" colspan="4"><input name="" type="button" id="submit_button"
+                                                      value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/>
+                </td>
             </tr>
         </table>
     </form:form>
@@ -98,20 +157,22 @@
     <script type="text/javascript">
         $(function () {
             $('#submit_button').click(function () {
-                $.ajax({
-                    cache: false,
-                    type: "POST",
-                    url: "/mobile/autumnWinterPlantsIntention/add",
-                    data: $('#AutumnWinterPlantsIntentionForm').serialize(),
-                    async: false,
-                    error: function (XMLHttpRequest) {
-                        alert("error:" + XMLHttpRequest.status);
-                    },
-                    success: function (data) {
-                        if (data.message != null) alert(data.message);
-                        if (data.url != null) window.location.href = data.url;
-                    }
-                });
+                if ($("#AutumnWinterPlantsIntentionForm").form("validate")) {
+                    $.ajax({
+                        cache: false,
+                        type: "POST",
+                        url: "/mobile/autumnWinterPlantsIntention/add",
+                        data: $('#AutumnWinterPlantsIntentionForm').serialize(),
+                        async: false,
+                        error: function (XMLHttpRequest) {
+                            alert("error:" + XMLHttpRequest.status);
+                        },
+                        success: function (data) {
+                            if (data.message != null) alert(data.message);
+                            if (data.url != null) window.location.href = data.url;
+                        }
+                    });
+                }
             });
         });
     </script>

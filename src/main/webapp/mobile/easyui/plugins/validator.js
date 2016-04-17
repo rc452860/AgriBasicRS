@@ -43,5 +43,16 @@ $.extend($.fn.validatebox.defaults.rules, {
             }
         }, message: ''
     },
-    equalTo: { validator: function (value, param) { return $(param[0]).val() == value; }, message: '字段不匹配' }
+    equalTo: { validator: function (value, param) { return $(param[0]).val() == value; }, message: '字段不匹配' },
+    gte: {
+        validator: function (value, param) {
+            var total = 0;
+            for(var i = 0;i<param.length;i++){
+                var item = "[id='"+param[i]+"']";
+                total += parseFloat($("[id='"+param[i]+"']").val());
+            }
+            return value>=total;
+        }, message: '超出合计'
+    }
+
 })
