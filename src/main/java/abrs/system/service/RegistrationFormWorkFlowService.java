@@ -22,7 +22,7 @@ public class RegistrationFormWorkFlowService {
     private static Logger logger = LoggerFactory.getLogger(RegistrationFormWorkFlowService.class);
 
     @Autowired
-    private RegistrationFormWorkFlowDao productsAndMeansMarketPriceDao;
+    RegistrationFormWorkFlowDao productsAndMeansMarketPriceDao;
 
     public boolean addItem(RegistrationFormWorkFlow productsAndMeansMarketPrice)
     {
@@ -75,7 +75,19 @@ public class RegistrationFormWorkFlowService {
         Query query = new Query();
         query.addCriteria(Criteria.where("aggregation_id").is(aggregation_id));
         query.addCriteria(Criteria.where("no").is(no));
-        boolean result = productsAndMeansMarketPriceDao.getCount(query) == 1;
+
+        boolean result = false;
+        try {
+            RegistrationFormWorkFlow one = productsAndMeansMarketPriceDao.queryOne(query);
+            if(one!=null)
+            {
+                result = true;
+            }
+        }catch (Exception ex)
+        {
+            ex.toString();
+        }
+
         logger.info("Check Next " +  "/" + aggregation_id +"-"+ no + " Exist: " + result);
         return result;
     }

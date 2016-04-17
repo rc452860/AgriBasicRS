@@ -145,6 +145,9 @@
     </bean>
     <!-- task -->
 
+    <bean id="BaseWorkFlow" class="abrs.system.web.mobile.workflow.BaseWorkFlow"></bean>
+    <context:component-scan base-package="abrs.system.web.mobile.workflow" />
+
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
 </beans>

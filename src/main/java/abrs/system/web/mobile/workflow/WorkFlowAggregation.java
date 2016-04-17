@@ -9,14 +9,9 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class WorkFlowAggregation {
 
-    public static HashMap<String,Queue<BaseWorkFlow>> WorkFlowQueues;
+    public static HashMap<String,Queue<BaseWorkFlow>> WorkFlowQueues = null;
 
-    public WorkFlowAggregation()
-    {
-        Init();
-    }
-
-    private void Init()
+    private static void Init()
     {
         WorkFlowQueues = new HashMap<String,Queue<BaseWorkFlow>>();
         Queue<BaseWorkFlow> workFlows = new LinkedBlockingQueue<BaseWorkFlow>();
@@ -31,6 +26,10 @@ public class WorkFlowAggregation {
 
     public static BaseWorkFlow GetWorkFlow(String QueueName,String ClassName)
     {
+        if(WorkFlowQueues == null)
+        {
+            Init();
+        }
         Queue<BaseWorkFlow> workFlowQueue =  WorkFlowQueues.get(QueueName);
         for (BaseWorkFlow x : workFlowQueue) {
             if(x.getClass().getName().equals(ClassName))
@@ -43,6 +42,11 @@ public class WorkFlowAggregation {
 
     public static BaseWorkFlow GetPreWorkFlow(String QueueName,String ClassName)
     {
+        if(WorkFlowQueues == null)
+        {
+            Init();
+        }
+
         BaseWorkFlow pre = null;
         Queue<BaseWorkFlow> workFlowQueue =  WorkFlowQueues.get(QueueName);
         for (BaseWorkFlow x : workFlowQueue) {
@@ -57,6 +61,11 @@ public class WorkFlowAggregation {
 
     public static BaseWorkFlow GetNextWorkFlow(String QueueName,String ClassName)
     {
+        if(WorkFlowQueues == null)
+        {
+            Init();
+        }
+
         boolean is_need_record = false;
         Queue<BaseWorkFlow> workFlowQueue =  WorkFlowQueues.get(QueueName);
         for (BaseWorkFlow x : workFlowQueue) {

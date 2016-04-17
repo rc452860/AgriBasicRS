@@ -3,9 +3,17 @@ package abrs.system.web.mobile;
 import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.Region;
 import abrs.system.dao.Entity.RegistrationForm;
+import abrs.system.dao.Entity.RegistrationFormWorkFlow;
+import abrs.system.dao.Entity.User;
 import abrs.system.service.RegionService;
 import abrs.system.service.RegistrationFormService;
+import abrs.system.service.RegistrationFormWorkFlowService;
+import abrs.system.web.context.SessionContext;
 import abrs.system.web.mobile.form.RegistrationFormForm;
+import abrs.system.web.mobile.workflow.BaseWorkFlow;
+import abrs.system.web.mobile.workflow.BaseWorkFlowContext;
+import abrs.system.web.mobile.workflow.StartWorkFlow;
+import abrs.system.web.mobile.workflow.WorkFlowAggregation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +22,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by Edifi_000 on 2016-03-29.
@@ -32,6 +42,11 @@ public class RegistrationFormMobileController {
     RegistrationFormService service;
     @Autowired
     RegionService regionService;
+    @Autowired
+    RegistrationFormWorkFlowService workFlowService;
+    @Autowired
+    private HttpSession session;
+
     @Auth(role = Auth.Role.ADMIN)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String Add(ModelMap modelMap){
@@ -48,7 +63,20 @@ public class RegistrationFormMobileController {
             map.put("message", errors.getFieldError().getDefaultMessage());
         }else{
             try {
-                service.addItem(form.getEntity());
+                User currentUser =  (User)session.getAttribute(SessionContext.CURRENT_USER);
+                RegistrationForm registrationForm = form.getEntity();
+                StartWorkFlow startWorkFlow = new StartWorkFlow();
+                RegistrationFormWorkFlow startRegistrationWorkFlow = new RegistrationFormWorkFlow();
+                startRegistrationWorkFlow.setName(startWorkFlow.getWorkFlowName());
+                startRegistrationWorkFlow.setClass_name(startWorkFlow.getClass().getName());
+                startRegistrationWorkFlow.setNo(0);
+                startRegistrationWorkFlow.setAggregation_id(UUID.randomUUID().toString());
+                startRegistrationWorkFlow.setRegion_id(registrationForm.getRegion_id());
+                startRegistrationWorkFlow.setUser_id(currentUser.getId());
+                workFlowService.addItem(startRegistrationWorkFlow);
+
+                registrationForm.setWorkflow_id(startRegistrationWorkFlow.getId());
+                service.addItem(registrationForm);
                 map.put("message","添加成功");
             }catch (Exception e){
                 e.printStackTrace();
@@ -96,7 +124,7 @@ public class RegistrationFormMobileController {
         try {
             RegistrationForm entity = form.getEntity();
             service.updateItem(entity);
-            map.put("message","修改成功");
+            map.put("message", "修改成功");
         }catch (Exception e){
             e.printStackTrace();
             map.put("message", e.getMessage());
@@ -184,7 +212,7 @@ public class RegistrationFormMobileController {
         List<RegistrationForm> registrationForms =  service.getAvailableRegister();
         List<Object> result = new ArrayList<Object>();
         for (final RegistrationForm item : registrationForms){
-            result.add(new Object(){
+            result.add(new Object() {
                 String id;
 
                 public String getText() {
@@ -212,5 +240,104 @@ public class RegistrationFormMobileController {
             });
         }
         return result;
+    }
+
+    @Auth(role = Auth.Role.ADMIN)
+    @RequestMapping(value = "/workflowlist",method = RequestMethod.GET)
+    public String WorkFlowList(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
+        List<RegistrationForm> list = service.getItems((index - 1) * size, size);
+        long count = service.getCount();
+        modelMap.addAttribute("list",list);
+        modelMap.addAttribute("count",count);
+        modelMap.addAttribute("index",index);
+        modelMap.addAttribute("size",size);
+        modelMap.addAttribute("countpage",Math.floor(count/size));
+
+        return "mobile/registration_form_work_flow_list";
+    }
+
+    @Auth(role = Auth.Role.ADMIN)
+    @ResponseBody
+    @RequestMapping(value = "/accpet",method = RequestMethod.POST)
+    public Object Accpet(@RequestParam("ids[]") String[] ids){
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            for(int i=0;i<ids.length;i++)
+            {
+                String id = ids[i];
+                RegistrationForm registrationForm =  service.getItem(id);
+                RegistrationFormWorkFlow registrationFormWorkFlow = workFlowService.getItem(registrationForm.getWorkflow_id());
+                //BaseWorkFlow currentWorkFlow = WorkFlowAggregation.GetWorkFlow("登记上报", registrationFormWorkFlow.getClass_name());
+                BaseWorkFlow currentWorkFlow = new StartWorkFlow();
+                BaseWorkFlowContext context = new BaseWorkFlowContext();
+                context.setCurrent_workflow(registrationFormWorkFlow);
+                context.setWorkflow_queue_name("登记上报");
+                context.setRegion_service(regionService);
+                context.setWork_flow_service(workFlowService);
+                context.setRegistration_form_service(service);
+                context.setCurrntUser((User)session.getAttribute(SessionContext.CURRENT_USER));
+                currentWorkFlow.Accept(context);
+            }
+            map.put("message","上报成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            map.put("message", e.getMessage());
+        }
+        return map;
+    }
+
+    @Auth(role = Auth.Role.ADMIN)
+    @ResponseBody
+    @RequestMapping(value = "/reject",method = RequestMethod.POST)
+    public Object Reject(@RequestParam("ids[]") String[] ids){
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            for(int i=0;i<ids.length;i++)
+            {
+                String id = ids[i];
+                RegistrationForm registrationForm =  service.getItem(id);
+                RegistrationFormWorkFlow registrationFormWorkFlow = workFlowService.getItem(registrationForm.getWorkflow_id());
+                BaseWorkFlow currentWorkFlow = WorkFlowAggregation.GetWorkFlow("登记上报", registrationFormWorkFlow.getClass_name());
+                BaseWorkFlowContext context = new BaseWorkFlowContext();
+                context.setCurrent_workflow(registrationFormWorkFlow);
+                context.setWorkflow_queue_name("登记上报");
+                context.setRegion_service(regionService);
+                context.setWork_flow_service(workFlowService);
+                context.setRegistration_form_service(service);
+                context.setCurrntUser((User) session.getAttribute(SessionContext.CURRENT_USER));
+                currentWorkFlow.Reject(context);
+            }
+            map.put("message","打回成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            map.put("message", e.getMessage());
+        }
+        return map;
+    }
+
+    @Auth(role = Auth.Role.ADMIN)
+    @RequestMapping(value = "/info",method = RequestMethod.GET)
+    public String Info(@RequestParam(value = "id") String id,ModelMap modelMap){
+        RegistrationForm entity =  service.getItem(id);
+        try {
+            modelMap.addAttribute("RegistrationFormForm",RegistrationFormForm.EntityToForm(entity));
+            modelMap.addAttribute("region", regionService.getByCode(entity.getRegion_id()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "mobile/registration_form_edit";
+    }
+
+    @Auth(role = Auth.Role.ADMIN)
+    @RequestMapping(value = "/process",method = RequestMethod.GET)
+    public String Process(@RequestParam(value = "id") String id,ModelMap modelMap){
+        RegistrationForm entity =  service.getItem(id);
+        try {
+            modelMap.addAttribute("RegistrationFormForm",RegistrationFormForm.EntityToForm(entity));
+            modelMap.addAttribute("region",regionService.getByCode(entity.getRegion_id()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "mobile/registration_form_edit";
     }
 }

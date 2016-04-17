@@ -63,6 +63,14 @@ public class RegistrationFormService {
         return registrationForm;
     }
 
+    public RegistrationForm getItemByWorkFlowId(String workFlowId)
+    {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("workflow_id").is(workFlowId));
+        RegistrationForm registrationForm = registrationFormDao.queryOne(query);
+        return registrationForm;
+    }
+
     public long getCount() {
         return registrationFormDao.getCount(new Query());
     }
