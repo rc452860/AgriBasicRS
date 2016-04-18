@@ -76,7 +76,19 @@
         <td>区域单位编号</td>
         <td><form:input path="region_id"  class="easyui-combotree tree-city" data-options="url:'/mobile/region/getRoot',method:'get',required:true" style="width:152px;height:26px;" type="text"/></td>
         <td>表格类型</td>
-        <td><form:input path="form_type" style="width:150px;height:24px;" type="text"/></td>
+        <td>
+          <form:select class="easyui-combobox" style="width:150px;height:24px;"  path="form_type" >
+            <form:option value="autumnFoodExpecPro">秋收作物产量预计</form:option>
+            <form:option value="autumnWinterPlantsIntention">秋冬作物播种面积意向调查</form:option>
+            <form:option value="costBenefitOfPig">种植业产品生产成本、收益与劳动生产率</form:option>
+            <form:option value="cropYieldSummary">农作物产量调查汇总</form:option>
+            <form:option value="manage">农户基本信息</form:option>
+            <form:option value="productsAndMeansFarmerPrice">主要农产品和农业生产资料价格监测旬报表(农户售价)</form:option>
+            <form:option value="productsAndMeansMarketPrice">主要农产品和农业生产资料价格监测旬报表(市场价格)</form:option>
+            <form:option value="summerFoodAndRapeseedExpecPro">夏粮、夏收油菜籽产量预计</form:option>
+            <form:option value="WholeYearPlantArea">全年农作物播种面积意向（预计）调查</form:option>
+          </form:select>
+        </td>
       </tr>
       <tr>
         <td>填表时间</td>
