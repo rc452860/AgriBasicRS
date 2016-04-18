@@ -73,6 +73,7 @@
 
   <form:form commandName="RegistrationFormForm">
     <form:hidden path="id"/>
+    <form:hidden path="workflow_id"/>
         <table class="form-add" cellpadding="0" cellspacing="0">
           <tr>
             <td>序号</td>
