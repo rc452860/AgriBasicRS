@@ -47,8 +47,8 @@ public class BaseWorkFlow {
         next.setClass_name(nextWorkFlow.getClass().getName());
         next.setNo(current.getNo() + 1);//序号+1
         next.setAggregation_id(current.getAggregation_id());//聚合id
-        next.setRegion_id(context.getRegion_service().getParent(current.getRegion_id()).getNo());//获取上一级区域
-        context.getWork_flow_service().addItem(next);//上报上级单位
+        next.setRegion_id(current.getRegion_id());//设置为当前区域
+        context.getWork_flow_service().addItem(next);//进入下一流程
 
         //Update RegistrationFor WorkFlow ID
         RegistrationForm registrationForm = context.getRegistration_form_service().getItemByWorkFlowId(current.getId());
@@ -84,7 +84,18 @@ public class BaseWorkFlow {
         next.setClass_name(preWorkFlow.getClass().getName());
         next.setNo(current.getNo() + 1);//序号+1
         next.setAggregation_id(current.getAggregation_id());//聚合id
-        next.setRegion_id(context.getWork_flow_service().getItem(current.getAggregation_id(), current.getNo() - 1).getRegion_id());//获取提交单位所在区域单位
+
+        String last_region_id = "";
+        for(int i = 1;i <= current.getNo();i++)
+        {
+            RegistrationFormWorkFlow workFlow = context.getWork_flow_service().getItem(current.getAggregation_id(), current.getNo() - i);
+            if(workFlow.getResult()!=-1&&workFlow.getClass_name().equals(preWorkFlow.getClass().getName()))
+            {
+                last_region_id = workFlow.getRegion_id();
+                break;
+            }
+        }
+        next.setRegion_id(last_region_id);//获取提交单位所在区域单位
         context.getWork_flow_service().addItem(next);//打回提交单位
 
         //Update RegistrationFor WorkFlow ID

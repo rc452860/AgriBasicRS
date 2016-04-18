@@ -267,8 +267,7 @@ public class RegistrationFormMobileController {
                 String id = ids[i];
                 RegistrationForm registrationForm =  service.getItem(id);
                 RegistrationFormWorkFlow registrationFormWorkFlow = workFlowService.getItem(registrationForm.getWorkflow_id());
-                //BaseWorkFlow currentWorkFlow = WorkFlowAggregation.GetWorkFlow("登记上报", registrationFormWorkFlow.getClass_name());
-                BaseWorkFlow currentWorkFlow = new StartWorkFlow();
+                BaseWorkFlow currentWorkFlow = WorkFlowAggregation.GetWorkFlow("登记上报", registrationFormWorkFlow.getClass_name());
                 BaseWorkFlowContext context = new BaseWorkFlowContext();
                 context.setCurrent_workflow(registrationFormWorkFlow);
                 context.setWorkflow_queue_name("登记上报");
