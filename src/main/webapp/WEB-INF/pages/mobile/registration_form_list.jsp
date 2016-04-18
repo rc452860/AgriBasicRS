@@ -101,7 +101,6 @@
       <th>编号</th>
       <th>名称</th>
       <th>单位区域编号</th>
-      <th>表格类型</th>
       <th>创建时间</th>
       <th>填表时间</th>
       <th>截止时间</th>
@@ -118,7 +117,6 @@
         <td>${item.no}</td>
         <td>${item.name}</td>
         <td>${item.region_id}</td>
-        <td>${item.form_type}</td>
         <td>${item.record_date}</td>
         <td>${item.end_date}</td>
         <td>${item.record_entity}</td>
