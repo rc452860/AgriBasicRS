@@ -33,7 +33,7 @@
             }
             var calcarr = [
                 new calc(
-                        'food_grain_daogu', [
+                        'food_grain_daogu',[
                             'food_grain_daogu_zaodao',
                             'food_grain_daogu_zhongdao',
                             'food_grain_daogu_wandao'
@@ -79,11 +79,11 @@
 
             ]
             for (var i = 0; i < calcarr.length; i++) {
-                $("[id='" + calcarr[i].name + "']").numberbox("disable");
+                $("[id='" + calcarr[i].name+"']").numberbox("disable");
             }
-            $("#AutumnWinterPlantsIntentionForm input").blur(function () {
+            $("#WholeYearPlantAreaForm input").blur(function () {
                 for (var i = 0; i < calcarr.length; i++) {
-                    $("[id='" + calcarr[i].name + "']").numberbox("setValue", calcarr[i].func());
+                    $("[id='" + calcarr[i].name+"']").numberbox("setValue", calcarr[i].func());
                 }
 
             })

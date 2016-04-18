@@ -27,7 +27,7 @@ public class CostBenefitOfPig {
     private double costbenefit_perhead_main_product_output;//主产品产量
     private double costbenefit_perhead_by_product_output;//副产品产量
 
-    private double costbenefit_perhead_total_product_output_value;//总产值合计(costbenefit_perhead_main_product_output_value + costbenefit_perhead_by_product_output_value)
+        private double costbenefit_perhead_total_product_output_value;//总产值合计(costbenefit_perhead_main_product_output_value + costbenefit_perhead_by_product_output_value)
     private double costbenefit_perhead_main_product_output_value;//主产品产值(costbenefit_perhead_by_product_output * costbenefit_percentummainproduct_average_sale_price / 100)
     private double costbenefit_perhead_by_product_output_value;//副产品产值
 

@@ -82,7 +82,7 @@
             for (var i = 0; i < calcarr.length; i++) {
                 $("[id='" + calcarr[i].name+"']").numberbox("disable");
             }
-            $("#AutumnWinterPlantsIntentionForm input").blur(function () {
+            $("#WholeYearPlantAreaForm input").blur(function () {
                 for (var i = 0; i < calcarr.length; i++) {
                     $("[id='" + calcarr[i].name+"']").numberbox("setValue", calcarr[i].func());
                 }
@@ -175,13 +175,13 @@
             </tr>
             <tr>
                 <td>马铃薯</td>
-                <td><form:input path="food_potato_malingshu" class="easyui-numberbox" validType="gte['food_potato']" data-options="precision:2"/></td>
+                <td><form:input path="food_potato_malingshu" class="easyui-numberbox"  data-options="precision:2"/></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td>薯类合计</td>
-                <td colspan="3"><form:input path="food_potato" class="easyui-numberbox" data-options="precision:2"/></td>
+                <td colspan="3"><form:input path="food_potato" validType="gte['food_potato_malingshu']" class="easyui-numberbox" data-options="precision:2"/></td>
             </tr>
             <tr>
                 <td>花生</td>

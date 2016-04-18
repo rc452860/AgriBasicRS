@@ -33,7 +33,7 @@
                 }
                 return total;
             }
-            var calcarr = [
+            var temp = [
                 new calc(//夏良
                         'food_item.seededarea_Increasedecrease_absolute',[
                             'food_item.seededarea_thisyear',
@@ -87,9 +87,12 @@
                             'food_item.total_thisyear',
                             'food_item.seededarea_thisyear',
                         ],function(){
-                            var result;
-                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            var result = 0;
+                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
+                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))
+                                        *1000;
+                            }
                             return result;
                         }
                 ),
@@ -98,9 +101,12 @@
                             'food_item.total_lastyear',
                             'food_item.seededarea_lastyear',
                         ],function(){
-                            var result;
-                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
+                            var result = 0;
+                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
+                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
+                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))
+                                        *1000;
+                            }
                             return result;
                         }
                 ),
@@ -128,196 +134,28 @@
                             return result;
                         }
                 ),
-                new calc(//其中小麦
-                        'food_xiaomai_food_item.seededarea_Increasedecrease_absolute',[
-                            'food_xiaomai_food_item.seededarea_thisyear',
-                            'food_xiaomai_food_item.seededarea_lastyear',
-                        ],function(){
-                            var result;
-                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            return result;
-                        }
-                ),
-                new calc(
-                        'food_xiaomai_food_item.seededarea_Increasedecrease_relative',[
-                            'food_xiaomai_food_item.seededarea_Increasedecrease_absolute',
-                            'food_xiaomai_food_item.seededarea_lastyear',
-                        ],function(){
-                            var result = 0;
-                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
-                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            }
-                            return result;
-                        }
-                ),
-                new calc(
-                        'food_xiaomai_food_item.total_Increasedecrease_absolute',[
-                            'food_xiaomai_food_item.total_thisyear',
-                            'food_xiaomai_food_item.total_lastyear',
-                        ],function(){
-                            var result;
-                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            return result;
-                        }
-                ),
-                new calc(
-                        'food_xiaomai_food_item.total_Increasedecrease_relative',[
-                            'food_xiaomai_food_item.total_Increasedecrease_absolute',
-                            'food_xiaomai_food_item.total_lastyear',
-                        ],function(){
-                            var result = 0;
-                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
-                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            }
-                            return result;
-                        }
-                ),
-                new calc(
-                        'food_xiaomai_food_item.perunit_thisyear',[
-                            'food_xiaomai_food_item.total_thisyear',
-                            'food_xiaomai_food_item.seededarea_thisyear',
-                        ],function(){
-                            var result;
-                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            return result;
-                        }
-                ),
-                new calc(
-                        'food_xiaomai_food_item.perunit_lastyear',[
-                            'food_xiaomai_food_item.total_lastyear',
-                            'food_xiaomai_food_item.seededarea_lastyear',
-                        ],function(){
-                            var result;
-                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            return result;
-                        }
-                ),
-                new calc(
-                        'food_xiaomai_food_item.perunit_Increasedecrease_absolute',[
-                            'food_xiaomai_food_item.perunit_thisyear',
-                            'food_xiaomai_food_item.perunit_lastyear',
-                        ],function(){
-                            var result;
-                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            return result;
-                        }
-                ),
-                new calc(
-                        'food_xiaomai_food_item.perunit_Increasedecrease_relative',[
-                            'food_xiaomai_food_item.perunit_Increasedecrease_absolute',
-                            'food_xiaomai_food_item.perunit_lastyear',
-                        ],function(){
-                            var result = 0;
-                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
-                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            }
-                            return result;
-                        }
-                ),
-                new calc(//其中：油菜籽
-                        'rapeseed_food_item.seededarea_Increasedecrease_absolute',[
-                            'rapeseed_food_item.seededarea_thisyear',
-                            'rapeseed_food_item.seededarea_lastyear',
-                        ],function(){
-                            var result;
-                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            return result;
-                        }
-                ),
-                new calc(
-                        'rapeseed_food_item.seededarea_Increasedecrease_relative',[
-                            'rapeseed_food_item.seededarea_Increasedecrease_absolute',
-                            'rapeseed_food_item.seededarea_lastyear',
-                        ],function(){
-                            var result = 0;
-                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
-                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            }
-                            return result;
-                        }
-                ),
-                new calc(
-                        'rapeseed_food_item.total_Increasedecrease_absolute',[
-                            'rapeseed_food_item.total_thisyear',
-                            'rapeseed_food_item.total_lastyear',
-                        ],function(){
-                            var result;
-                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            return result;
-                        }
-                ),
-                new calc(
-                        'rapeseed_food_item.total_Increasedecrease_relative',[
-                            'rapeseed_food_item.total_Increasedecrease_absolute',
-                            'rapeseed_food_item.total_lastyear',
-                        ],function(){
-                            var result = 0;
-                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
-                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            }
-                            return result;
-                        }
-                ),
-                new calc(
-                        'rapeseed_food_item.perunit_thisyear',[
-                            'rapeseed_food_item.total_thisyear',
-                            'rapeseed_food_item.seededarea_thisyear',
-                        ],function(){
-                            var result;
-                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            return result;
-                        }
-                ),
-                new calc(
-                        'rapeseed_food_item.perunit_lastyear',[
-                            'rapeseed_food_item.total_lastyear',
-                            'rapeseed_food_item.seededarea_lastyear',
-                        ],function(){
-                            var result;
-                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            return result;
-                        }
-                ),
-                new calc(
-                        'rapeseed_food_item.perunit_Increasedecrease_absolute',[
-                            'rapeseed_food_item.perunit_thisyear',
-                            'rapeseed_food_item.perunit_lastyear',
-                        ],function(){
-                            var result;
-                            result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                    - parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            return result;
-                        }
-                ),
-                new calc(
-                        'rapeseed_food_item.perunit_Increasedecrease_relative',[
-                            'rapeseed_food_item.perunit_Increasedecrease_absolute',
-                            'rapeseed_food_item.perunit_lastyear',
-                        ],function(){
-                            var result = 0;
-                            if(parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"))!=0){
-                                result = parseFloat($("[id='" + this.field[0] + "']").numberbox("getValue"))
-                                        / parseFloat($("[id='" + this.field[1] + "']").numberbox("getValue"));
-                            }
-                            return result;
-                        }
-                ),
 
             ]
+            //重复模式 替换方法
+            var pattern = [
+                "food_item",
+                "food_xiaomai_food_item",
+                "rapeseed_food_item",
+            ]
+            var calcarr = [];
+            for(var i = 0;i<pattern.length;i++){
+                for (var j = 0; j < temp.length; j++) {
+                    var obj = new calc("",[]);
+                    obj.name = temp[j].name.replace("food_item",pattern[i]);
+                    for(var k = 0;k<temp[j].field.length;k++){
+                        obj.field.push(temp[j].field[k].replace("food_item",pattern[i]));
+                    }
+                    obj.func = temp[j].func;
+                    console.log(temp)
+                    calcarr.push(obj);
+                }
+            }
+            console.log(calcarr)
             for (var i = 0; i < calcarr.length; i++) {
                 $("[id='" + calcarr[i].name+"']").numberbox("disable");
             }
