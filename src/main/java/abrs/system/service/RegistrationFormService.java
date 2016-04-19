@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -93,6 +94,35 @@ public class RegistrationFormService {
 
     public List<RegistrationForm> getItems(int start, int size){
         return registrationFormDao.getPage(new Query(), start, size);
+    }
+
+    public List<RegistrationForm> getItems(RegistrationForm conditions,int start, int size){
+        Query query = new Query();
+        Criteria cr = new Criteria();
+        List<Criteria> querylist = new ArrayList<Criteria>();
+        if(conditions!=null)
+        {
+            if(conditions.getRegion_id()!=null)
+            {
+                querylist.add(Criteria.where("region_id").is(conditions.getRegion_id()));
+            }
+            if(querylist.size()>1){
+                query.addCriteria(cr.andOperator(querylist.toArray(new Criteria[querylist.size()])));
+            }
+            if (querylist.size() == 1){
+                query.addCriteria(querylist.get(0));
+            }
+        }
+        return registrationFormDao.getPage(query, start, size);
+    }
+
+    public List<RegistrationForm> getItemsInWorkFlowIds(List<String> workflowids,int start, int size){
+        Query query = new Query();
+        if(workflowids!=null)
+        {
+            query.addCriteria(Criteria.where("workflow_id").in(workflowids));
+        }
+        return registrationFormDao.getPage(query, start, size);
     }
 
     public List<RegistrationForm> getAvailableRegister() {

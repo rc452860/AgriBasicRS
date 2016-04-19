@@ -17,6 +17,16 @@
         </attribute>
     </tag>
     <tag>
+        <name>num2WorkFlowResultChar</name>
+        <tag-class>abrs.system.web.tag.Num2WorkFlowResultCharTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>num</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
         <name>ctp</name>
         <tag-class>abrs.system.web.tag.CTP</tag-class>
         <body-content>empty</body-content>
@@ -42,6 +52,26 @@
         <body-content>empty</body-content>
         <attribute>
             <name>point</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>user</name>
+        <tag-class>abrs.system.web.tag.UserTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>id</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>formType</name>
+        <tag-class>abrs.system.web.tag.FormTypeTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>formtype</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

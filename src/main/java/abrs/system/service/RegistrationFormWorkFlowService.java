@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -71,6 +72,34 @@ public class RegistrationFormWorkFlowService {
         return productsAndMeansMarketPriceDao.getPage(new Query(), start, size);
     }
 
+    public List<RegistrationFormWorkFlow> getItems(RegistrationFormWorkFlow conditions,int start, int size){
+        Query query = new Query();
+        Criteria cr = new Criteria();
+        List<Criteria> querylist = new ArrayList<Criteria>();
+        if(conditions!=null)
+        {
+            if(conditions.getRegion_id()!=null)
+            {
+                querylist.add(Criteria.where("region_id").is(conditions.getRegion_id()));
+            }
+            if(conditions.getUser_id()!=null)
+            {
+                querylist.add(Criteria.where("user_id").is(conditions.getUser_id()));
+            }
+            if(conditions.getResult()!=3)//当为3则无此条件
+            {
+                querylist.add(Criteria.where("result").is(conditions.getResult()));
+            }
+            if(querylist.size()>1){
+                query.addCriteria(cr.andOperator(querylist.toArray(new Criteria[querylist.size()])));
+            }
+            if (querylist.size() == 1){
+                query.addCriteria(querylist.get(0));
+            }
+        }
+        return productsAndMeansMarketPriceDao.getPage(query, start, size);
+    }
+
     public boolean checkNextExist(String aggregation_id,int no) {
         Query query = new Query();
         query.addCriteria(Criteria.where("aggregation_id").is(aggregation_id));
@@ -90,5 +119,12 @@ public class RegistrationFormWorkFlowService {
 
         logger.info("Check Next " +  "/" + aggregation_id +"-"+ no + " Exist: " + result);
         return result;
+    }
+
+    public List<RegistrationFormWorkFlow> getItemsByAggregation(String aggregation_id)
+    {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("aggregation_id").is(aggregation_id));
+        return productsAndMeansMarketPriceDao.queryList(query);
     }
 }

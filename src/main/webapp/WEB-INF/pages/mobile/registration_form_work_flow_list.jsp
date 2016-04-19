@@ -9,6 +9,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="my" uri="exam" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -35,7 +36,7 @@
         success: function (data) {
           if (data.message != null) alert(data.message);
           /*if(data.url != null) window.location.href = data.url;*/
-          if (data.message == "通过(上报)成功")
+          if (data.message == "通过成功")
             window.location.reload();
         }
       });
@@ -58,7 +59,7 @@
         success: function (data) {
           if (data.message != null) alert(data.message);
           /*if(data.url != null) window.location.href = data.url;*/
-          if (data.message == "拒绝(打回)成功")
+          if (data.message == "拒绝成功")
             window.location.reload();
         }
       });
@@ -82,7 +83,7 @@
   <ul class="placeul">
     <li><a href="#">首页</a></li>
     <li><a href="#">调查表信息</a></li>
-    <li><a href="#">调查表上报审核</a></li>
+    <li><a href="#">调查表审核</a></li>
   </ul>
 </div>
 
@@ -92,9 +93,9 @@
 
     <ul class="toolbar">
       <li onclick="Accpet()" class="click"><span><img
-              src="/mobile/img/t01.png"/></span>通过(上报)
+              src="/mobile/img/t01.png"/></span>通 过
       </li>
-      <li onclick="Reject()"><span><img src="/mobile/img/t03.png"/></span>拒绝(打回)</li>
+      <li onclick="Reject()"><span><img src="/mobile/img/t03.png"/></span>拒 绝</li>
     </ul>
   </div>
 
@@ -122,9 +123,9 @@
         <td><input class="ctr" name="" type="checkbox" value="${item.id}"/></td>
         <td>${item.no}</td>
         <td>${item.name}</td>
-        <td>${item.form_type}</td>
-        <td>${item.record_date}</td>
-        <td>${item.end_date}</td>
+        <td><my:formType formtype="${item.form_type}"/></td>
+        <td><fmt:formatDate value="${item.record_date}" pattern="yyyy-MM-dd"/></td>
+        <td><fmt:formatDate value="${item.end_date}" pattern="yyyy-MM-dd"/></td>
         <td>${item.record_entity}</td>
         <td>${item.record_person_name}</td>
         <td>${item.record_person_phone}</td>

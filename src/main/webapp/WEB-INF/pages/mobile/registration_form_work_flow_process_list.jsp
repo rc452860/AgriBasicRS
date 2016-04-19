@@ -9,60 +9,27 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="my" uri="exam" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>无标题文档</title>
-  <link href="/mobile/css/style.css" rel="stylesheet" />
-  <script type="text/javascript" src="/mobile/js/jquery.js"></script>
+  <c:import url="references.jsp"></c:import>
   <script type="text/javascript">
-    function Accpet() {/*通过脚本*/
-      var arr = new Array();
-      $(".ctr:checked").each(function () {
-        arr.push($(this).val())
-      });
-      console.log(arr)
-      $.ajax({
+
+    function ProcessShowDia(id) {/*通过脚本*/
+      $('#dd').dialog({
+        title: '流程情况',
+        width: 600,
+        height: 400,
+        closed: false,
         cache: false,
-        type: "POST",
-        url: "/mobile/registrationForm/accpet", /*此处需修改*/
-        data: {ids: arr},
-        async: false,
-        error: function (XMLHttpRequest) {
-          alert("error:" + XMLHttpRequest.status);
-        },
-        success: function (data) {
-          if (data.message != null) alert(data.message);
-          /*if(data.url != null) window.location.href = data.url;*/
-          if (data.message == "通过(上报)成功")
-            window.location.reload();
-        }
+        href: '/mobile/registrationForm/process?id='+id,
+        modal: true
       });
     }
-    function Reject() {/*拒绝脚本*/
-      var arr = new Array();
-      $(".ctr:checked").each(function () {
-        arr.push($(this).val())
-      });
-      console.log(arr)
-      $.ajax({
-        cache: false,
-        type: "POST",
-        url: "/mobile/registrationForm/reject", /*此处需修改*/
-        data: {ids: arr},
-        async: false,
-        error: function (XMLHttpRequest) {
-          alert("error:" + XMLHttpRequest.status);
-        },
-        success: function (data) {
-          if (data.message != null) alert(data.message);
-          /*if(data.url != null) window.location.href = data.url;*/
-          if (data.message == "拒绝(打回)成功")
-            window.location.reload();
-        }
-      });
-    }
+
     $(function () {
       $("#ctrall").click(function () {
         $(".ctr").attr("checked", $(this).attr("checked") != null);
@@ -76,6 +43,7 @@
 
 
 <body>
+<div id="dd" ></div>
 
 <div class="place">
   <span>位置：</span>
@@ -87,21 +55,13 @@
 </div>
 
 <div class="rightinfo">
-
-  <div class="tools">
-
-    <ul class="toolbar">
-
-    </ul>
-  </div>
-
-
   <table class="tablelist">
     <thead>
     <tr>
       <th><input name="" type="checkbox" id="ctrall" value=""/></th>
       <th>编号</th>
       <th>名称</th>
+      <th>表格类型</th>
       <th>填表时间</th>
       <th>截止时间</th>
       <th>填报单位</th>
@@ -118,13 +78,14 @@
         <td><input class="ctr" name="" type="checkbox" value="${item.id}"/></td>
         <td>${item.no}</td>
         <td>${item.name}</td>
-        <td>${item.record_date}</td>
-        <td>${item.end_date}</td>
+        <td><my:formType formtype="${item.form_type}"/></td>
+        <td><fmt:formatDate value="${item.record_date}" pattern="yyyy-MM-dd"/></td>
+        <td><fmt:formatDate value="${item.end_date}" pattern="yyyy-MM-dd"/></td>
         <td>${item.record_entity}</td>
         <td>${item.record_person_name}</td>
         <td>${item.record_person_phone}</td>
         <td><a href="/mobile/${item.form_type}/list?registrationid=${item.id}" class="tablelink">详情</a></td>
-        <td><a href="/mobile/registrationForm/process?id=${item.id}" class="tablelink">进度</a></td>
+        <td><a onclick="ProcessShowDia('${item.workflow_id}')" class="tablelink">进度</a></td>
 
       </tr>
     </c:forEach>

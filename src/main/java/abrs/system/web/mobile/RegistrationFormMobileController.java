@@ -245,7 +245,18 @@ public class RegistrationFormMobileController {
     @Auth(role = Auth.Role.ADMIN)
      @RequestMapping(value = "/workflowlist",method = RequestMethod.GET)
      public String WorkFlowList(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
-        List<RegistrationForm> list = service.getItems((index - 1) * size, size);
+        List<String> workflowids = new ArrayList<String>();
+        RegistrationFormWorkFlow conditions = new RegistrationFormWorkFlow();
+        conditions.setRegion_id(((User)session.getAttribute(SessionContext.CURRENT_USER)).getRegionCode());
+        conditions.setResult(0);
+        List<RegistrationFormWorkFlow>  listWorkFlow =  workFlowService.getItems(conditions, 0, (int) workFlowService.getCount());
+        for(int i=0;i<listWorkFlow.size();i++)
+        {
+            workflowids.add(listWorkFlow.get(i).getId());
+        }
+
+        List<RegistrationForm> list = service.getItemsInWorkFlowIds(workflowids, (index - 1) * size, size);
+
         long count = service.getCount();
         modelMap.addAttribute("list",list);
         modelMap.addAttribute("count",count);
@@ -259,8 +270,11 @@ public class RegistrationFormMobileController {
     @Auth(role = Auth.Role.ADMIN)
     @RequestMapping(value = "/workflowprocesslist",method = RequestMethod.GET)
     public String WorkFlowProcessList(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
-        List<RegistrationForm> list = service.getItems((index - 1) * size, size);
-        long count = service.getCount();
+        RegistrationForm conditions = new RegistrationForm();
+        conditions.setRegion_id(((User)session.getAttribute(SessionContext.CURRENT_USER)).getRegionCode());
+        List<RegistrationForm> list = service.getItems(conditions,(index - 1) * size, size);
+        long count = list.size();
+
         modelMap.addAttribute("list",list);
         modelMap.addAttribute("count",count);
         modelMap.addAttribute("index",index);
@@ -291,7 +305,7 @@ public class RegistrationFormMobileController {
                 context.setCurrntUser((User)session.getAttribute(SessionContext.CURRENT_USER));
                 currentWorkFlow.Accept(context);
             }
-            map.put("message","上报成功");
+            map.put("message","通过成功");
         }catch (Exception e){
             e.printStackTrace();
             map.put("message", e.getMessage());
@@ -320,7 +334,7 @@ public class RegistrationFormMobileController {
                 context.setCurrntUser((User) session.getAttribute(SessionContext.CURRENT_USER));
                 currentWorkFlow.Reject(context);
             }
-            map.put("message","打回成功");
+            map.put("message","拒绝成功");
         }catch (Exception e){
             e.printStackTrace();
             map.put("message", e.getMessage());
@@ -344,13 +358,9 @@ public class RegistrationFormMobileController {
     @Auth(role = Auth.Role.ADMIN)
     @RequestMapping(value = "/process",method = RequestMethod.GET)
     public String Process(@RequestParam(value = "id") String id,ModelMap modelMap){
-        RegistrationForm entity =  service.getItem(id);
-        try {
-            modelMap.addAttribute("RegistrationFormForm",RegistrationFormForm.EntityToForm(entity));
-            modelMap.addAttribute("region",regionService.getByCode(entity.getRegion_id()));
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return "mobile/registration_form_edit";
+        RegistrationFormWorkFlow currentWorkFlow = workFlowService.getItem(id);
+        List<RegistrationFormWorkFlow> list = workFlowService.getItemsByAggregation(currentWorkFlow.getAggregation_id());
+        modelMap.addAttribute("list",list);
+        return "mobile/registration_form_work_flow_item_list";
     }
 }
