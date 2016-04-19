@@ -76,4 +76,14 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+    <tag>
+        <name>investigation</name>
+        <tag-class>abrs.system.web.tag.InvestigationFormTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>num</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>
