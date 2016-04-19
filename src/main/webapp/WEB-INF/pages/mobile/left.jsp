@@ -117,6 +117,7 @@
                     <li><a href="/mobile/registrationForm/add" target="rightFrame">添加调查表信息</a></li>
                     <li><a href="/mobile/registrationForm/list" target="rightFrame">调查表信息列表</a></li>
                     <li><a href="/mobile/registrationForm/workflowlist" target="rightFrame">调查表上报审核</a></li>
+                    <li><a href="/mobile/registrationForm/workflowprocesslist" target="rightFrame">工作进度</a></li>
                 </ul>
             </li>
             <li>

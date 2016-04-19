@@ -243,8 +243,8 @@ public class RegistrationFormMobileController {
     }
 
     @Auth(role = Auth.Role.ADMIN)
-    @RequestMapping(value = "/workflowlist",method = RequestMethod.GET)
-    public String WorkFlowList(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
+     @RequestMapping(value = "/workflowlist",method = RequestMethod.GET)
+     public String WorkFlowList(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
         List<RegistrationForm> list = service.getItems((index - 1) * size, size);
         long count = service.getCount();
         modelMap.addAttribute("list",list);
@@ -254,6 +254,20 @@ public class RegistrationFormMobileController {
         modelMap.addAttribute("countpage",Math.floor(count/size));
 
         return "mobile/registration_form_work_flow_list";
+    }
+
+    @Auth(role = Auth.Role.ADMIN)
+    @RequestMapping(value = "/workflowprocesslist",method = RequestMethod.GET)
+    public String WorkFlowProcessList(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
+        List<RegistrationForm> list = service.getItems((index - 1) * size, size);
+        long count = service.getCount();
+        modelMap.addAttribute("list",list);
+        modelMap.addAttribute("count",count);
+        modelMap.addAttribute("index",index);
+        modelMap.addAttribute("size",size);
+        modelMap.addAttribute("countpage",Math.floor(count/size));
+
+        return "mobile/registration_form_work_flow_process_list";
     }
 
     @Auth(role = Auth.Role.ADMIN)
