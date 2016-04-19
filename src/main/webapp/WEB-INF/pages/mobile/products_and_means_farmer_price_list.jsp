@@ -9,6 +9,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="my" uri="/exam" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -98,7 +99,7 @@
     <thead>
     <tr>
       <th><input name="" type="checkbox" id="ctrall" value=""/></th>
-      <th>调查表编号</th>
+      <th>调查表</th>
       <th>乡镇名称</th>
       <th>早籼稻</th>
       <th>中籼稻</th>
@@ -115,7 +116,7 @@
 
       <tr>
         <td><input class="ctr" name="" type="checkbox" value="${item.id}"/></td>
-        <td>${item.registration_form_id}</td>
+        <td><my:ctr code="${item.registration_form_id}"/></td>
         <td>${item.townships}</td>
         <td>${item.raw_grain_zaoxiandao}</td>
         <td>${item.raw_grain_zhongxiandao}</td>

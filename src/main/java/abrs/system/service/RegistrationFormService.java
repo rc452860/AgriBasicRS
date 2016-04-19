@@ -100,4 +100,10 @@ public class RegistrationFormService {
         query.addCriteria(Criteria.where("end_date").gte(new Date()));
         return registrationFormDao.queryList(query);
     }
+
+    public RegistrationForm getByCode(String code){
+        Query query = new Query();
+        query.addCriteria(Criteria.where("no").is(code));
+        return registrationFormDao.queryOne(query);
+    }
 }

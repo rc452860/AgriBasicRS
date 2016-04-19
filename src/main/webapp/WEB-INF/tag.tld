@@ -27,6 +27,16 @@
         </attribute>
     </tag>
     <tag>
+        <name>ctr</name>
+        <tag-class>abrs.system.web.tag.CTR</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>code</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
         <name>map</name>
         <tag-class>abrs.system.web.tag.MapTag</tag-class>
         <body-content>empty</body-content>

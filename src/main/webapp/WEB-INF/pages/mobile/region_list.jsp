@@ -100,7 +100,8 @@
       <th><input name="" type="checkbox" id="ctrall" value=""/></th>
       <th>编号</th>
       <th>名称</th>
-     <%--<th>全称</th>
+      <th></th>
+    <%--<th>全称</th>
       <th>父区域单位编号</th>
       <th>短码1</th>
       <th>短码2</th>--%>
