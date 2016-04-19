@@ -9,6 +9,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="my" uri="exam" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -100,7 +101,7 @@
       <th><input name="" type="checkbox" id="ctrall" value=""/></th>
       <th>编号</th>
       <th>名称</th>
-      <th>单位区域编号</th>
+      <th>单位区域</th>
       <th>创建时间</th>
       <th>填表时间</th>
       <th>截止时间</th>
@@ -116,9 +117,9 @@
         <td><input class="ctr" name="" type="checkbox" value="${item.id}"/></td>
         <td>${item.no}</td>
         <td>${item.name}</td>
-        <td>${item.region_id}</td>
-        <td>${item.record_date}</td>
-        <td>${item.end_date}</td>
+        <td><my:ctp code="${item.region_id}"/></td>
+        <td><fmt:formatDate value="${item.record_date}" pattern="yyyy-MM-dd"/></td>
+        <td><fmt:formatDate value="${item.end_date}" pattern="yyyy-MM-dd"/></td>
         <td>${item.record_entity}</td>
         <td>${item.record_person_name}</td>
         <td>${item.record_person_phone}</td>

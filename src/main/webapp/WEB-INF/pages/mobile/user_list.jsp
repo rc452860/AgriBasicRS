@@ -2,6 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="my" uri="exam" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -102,7 +103,7 @@
 
             <tr>
                 <td><input class="ctr" name="" type="checkbox" value="${item.id}"/></td>
-                <td>${item.regionCode}</td>
+                <td><my:ctp code="${item.regionCode}"/></td>
                 <td>${item.name}</td>
                 <td>${item.username}</td>
                 <td><a href="/mobile/user/edit?id=${item.id}" class="tablelink">修改/查看</a> <a
