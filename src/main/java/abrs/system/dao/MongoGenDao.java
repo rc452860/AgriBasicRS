@@ -3,8 +3,10 @@ package abrs.system.dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Order;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
@@ -47,8 +49,9 @@ public abstract class MongoGenDao<T> {
      * 根据条件查询集合
      */
     public List<T> queryList(Query query){
+        query.with(new Sort(new Sort.Order(Sort.Direction.DESC,"_id")));
         log.info("[Mongo Dao] queryList:" + query);
-        return this.mongoTemplate.find(query, this.getEntityClass());
+        return this.mongoTemplate.find(query,this.getEntityClass());
     }
 
     /**
@@ -65,6 +68,7 @@ public abstract class MongoGenDao<T> {
     public List<T> getPage(Query query, int start, int size){
         query.skip(start);
         query.limit(size);
+        query.with(new Sort(new Sort.Order(Sort.Direction.DESC,"_id")));
         log.info("[Mongo Dao] queryPage:" + query + "(" + start +"," + size +")");
         List<T> lists = this.mongoTemplate.find(query, this.getEntityClass());
         return lists;
