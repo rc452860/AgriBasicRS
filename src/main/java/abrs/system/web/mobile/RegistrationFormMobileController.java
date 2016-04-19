@@ -207,9 +207,9 @@ public class RegistrationFormMobileController {
     }
     @Auth(role = Auth.Role.ADMIN)
     @ResponseBody
-    @RequestMapping(value = "/selectJsonB",method = RequestMethod.GET)
-    public Object selectJsonB(){
-        List<RegistrationForm> registrationForms =  service.getAvailableRegister();
+    @RequestMapping(value = "/selectJsonB/{form_type}",method = RequestMethod.GET)
+    public Object selectJsonB(@PathVariable("form_type") String form_type){
+        List<RegistrationForm> registrationForms =  service.getAvailableRegister(form_type);
         List<Object> result = new ArrayList<Object>();
         for (final RegistrationForm item : registrationForms){
             result.add(new Object() {

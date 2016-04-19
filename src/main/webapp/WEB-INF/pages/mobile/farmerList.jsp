@@ -118,65 +118,13 @@
         <li><label>电话:</label><input name="telphone" type="text" class="scinput1"/></li>
         <li><label>村子:</label><input name="village" type="text" class="scinput1"/></li>
     </ul>
-
-    <%--<ul class="seachform2 clearfix">
-
-        <li><label>项目编号</label><input name="" type="text" class="scinput1" /></li>
-        <li><label>项目类型</label>
-            <div class="vocation">
-                <div class='diy_select'>
-                    <input type='hidden' name='flag' class='diy_select_input'/>
-                    <div class='diy_select_txt'>--请选择--</div>
-                    <div class='diy_select_btn'></div>
-                    <ul class='diy_select_list'>
-                        <li value="10">在线</li>
-                        <li value="21">死亡注销</li>
-                        <li value="22">资格取消</li>
-                    </ul>
-                </div>
-            </div>
-        </li>
-
-        <li><label>项目领域</label>
-            <div class="vocation">
-                <div class='diy_select'>
-                    <input type='hidden' name='flag' class='diy_select_input'/>
-                    <div class='diy_select_txt'>--请选择--</div>
-                    <div class='diy_select_btn'></div>
-                    <ul class='diy_select_list'>
-                        <li value="10">在线</li>
-                        <li value="21">死亡注销</li>
-                        <li value="22">资格取消</li>
-                    </ul>
-                </div>
-            </div>
-        </li>
-
-        <li><label>立项部门</label><input name="" type="text" class="scinput1" /></li>
-        <li><label>经费范围</label><input name="" type="text" class="scinput1" /></li>
-        <li><label>一</label><input name="" type="text" class="scinput1" /></li>
-        <li><label>负责人</label><input name="" type="text" class="scinput1" /></li>
-        <li><label>立项时间</label><input name="" type="text" class="scinput1" /></li>
-        <li><label>一</label><input name="" type="text" class="scinput1" /></li>
-
-
-    </ul>--%>
-
     <ul class="seachform1 clearfix">
         <li class="sarchbtn">
             <label>&nbsp;</label>
             <input name="" type="button" onclick="search()" id="search-button" class="scbtn" value="查询"/>
-            <%--<input name=""  type="button" class="scbtn1" value="更多条件"/>--%>
             <input name="" type="button" class="scbtn2" value="导出"/></li>
     </ul>
-<%--
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".scbtn1").click(function () {
-                $(".seachform2").toggle(200);
-            });
-        });--%>
-    </script>
+
     <div class="formtitle clearfix"><span>农户基本信息列表</span></div>
     <table class="tablelist">
         <thead>

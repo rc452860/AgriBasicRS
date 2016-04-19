@@ -98,9 +98,7 @@ public class WholeYearPlantAreaController {
     public String farmerList(
             @RequestParam(value = "index",defaultValue = "1") int index ,
             @RequestParam(value = "size",defaultValue = "20") int size,
-            @RequestParam(value = "name",required = false) String name,
-            @RequestParam(value = "telphone",required = false) String telphone,
-            @RequestParam(value = "village",required = false) String village,
+            @RequestParam(value = "registration_form_id",required = false) String registration_form_id,
             ModelMap modelMap){
         List<WholeYearPlantArea> list = wholeYearPlantAreaService.getItems((index-1)*size,size);
         long count = wholeYearPlantAreaService.getCount();

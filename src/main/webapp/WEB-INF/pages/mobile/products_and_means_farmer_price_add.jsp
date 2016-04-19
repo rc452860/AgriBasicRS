@@ -57,7 +57,7 @@
   <form:form commandName="ProductsAndMeansFarmerPriceForm">
     <table class="form-add" cellpadding="0" cellspacing="0">
       <tr>
-        <td>调查表编号</td><td colspan="5"><form:input class="easyui-combobox" required="true" data-options="url:'/mobile/registrationForm/selectJsonB',
+        <td>调查表编号</td><td colspan="5"><form:input class="easyui-combobox" required="true" data-options="url:'/mobile/registrationForm/selectJsonB/productsAndMeansFarmerPrice',
 					method:'get',
 					valueField:'id',
 					textField:'text',
