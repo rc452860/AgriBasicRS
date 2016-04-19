@@ -195,7 +195,7 @@
     <table class="form-add" cellpadding="0" cellspacing="0">
       <tr>
         <td>调查表</td>
-        <td><form:input class="easyui-combobox" required="true" data-options="url:'/mobile/registrationForm/selectJsonB',
+        <td><form:input class="easyui-combobox" required="true" data-options="url:'/mobile/registrationForm/selectJsonB/summerFoodAndRapeseedExpecPro',
 					method:'get',
 					valueField:'id',
 					textField:'text',

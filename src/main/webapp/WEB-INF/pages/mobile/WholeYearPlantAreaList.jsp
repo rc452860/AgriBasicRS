@@ -9,7 +9,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="my" uri="/exam" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -93,7 +92,15 @@
             <li onclick="DeleteMulit()"><span><img src="/mobile/img/t03.png"/></span>删除</li>
         </ul>
     </div>
-
+    <ul class="seachform1 clearfix">
+        <li><label>姓名:</label><input name="name" type="text" class="scinput1"/></li>
+    </ul>
+    <ul class="seachform1 clearfix">
+        <li class="sarchbtn">
+            <label>&nbsp;</label>
+            <input name="" type="button" onclick="search()" id="search-button" class="scbtn" value="查询"/>
+            <input name="" type="button" class="scbtn2" value="导出"/></li>
+    </ul>
 
     <table class="tablelist">
         <thead>
@@ -110,7 +117,7 @@
         <c:forEach var="item" items="${list}">
             <tr>
                 <td><input class="ctr" name="" type="checkbox" value="${item.id}"/></td>
-                <td><my:ctr code="${item.registration_form_id}"/></td>
+                <td>${item.registration_form_id}</td>
                 <td>${item.farmer_id}</td>
                 <td>${item.form_tag}</td>
                 <td>${item.plant_total}</td>

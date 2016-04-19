@@ -95,9 +95,11 @@ public class RegistrationFormService {
         return registrationFormDao.getPage(new Query(), start, size);
     }
 
-    public List<RegistrationForm> getAvailableRegister() {
+    public List<RegistrationForm> getAvailableRegister(String form_type) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("end_date").gte(new Date()));
+        Criteria cr = new Criteria();
+        cr.andOperator(Criteria.where("end_date").gte(new Date()),Criteria.where("form_type").is(form_type));
+        query.addCriteria(cr);
         return registrationFormDao.queryList(query);
     }
 
