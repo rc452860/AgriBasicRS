@@ -89,7 +89,8 @@
               <form:select class="easyui-combobox" style="width:150px;height:24px;"  path="form_type" >
                 <form:option value="autumnFoodExpecPro">秋收作物产量预计</form:option>
                 <form:option value="autumnWinterPlantsIntention">秋冬作物播种面积意向调查</form:option>
-                <form:option value="costBenefitOfPig">种植业产品生产成本、收益与劳动生产率</form:option>
+                <form:option value="costBenefitOfPig">出栏肥猪生产成本、收益</form:option>
+				<form:option value="costBenefitProductivityOfPlant">种植业产品生产成本、收益与劳动生产率</form:option>
                 <form:option value="cropYieldSummary">农作物产量调查汇总</form:option>
                 <form:option value="manage">农户基本信息</form:option>
                 <form:option value="productsAndMeansFarmerPrice">主要农产品和农业生产资料价格监测旬报表(农户售价)</form:option>
