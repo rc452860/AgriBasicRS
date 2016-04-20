@@ -122,7 +122,7 @@
         <li class="sarchbtn">
             <label>&nbsp;</label>
             <input name="" type="button" onclick="search()" id="search-button" class="scbtn" value="查询"/>
-            <input name="" type="button" class="scbtn2" value="导出"/></li>
+            <input name="" type="button" onclick="window.location.href='/mobile/manage/export'" class="scbtn2" value="导出"/></li>
     </ul>
 
     <div class="formtitle clearfix"><span>农户基本信息列表</span></div>
