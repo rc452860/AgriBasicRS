@@ -4,6 +4,8 @@ import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.Farmer;
 import abrs.system.service.FarmerService;
 import abrs.system.service.RegistrationFormService;
+import abrs.system.web.mobile.excel.FarmerExport;
+import abrs.system.web.mobile.excel.ResponseUtils;
 import abrs.system.web.mobile.form.FarmerForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +16,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -137,5 +142,30 @@ public class ManageMobileContorller {
         return map;
     }
 
+    @Auth(role = Auth.Role.ADMIN)
+    @RequestMapping(value = "/export",method = RequestMethod.GET)
+    public String Export(HttpServletRequest request,HttpServletResponse response)
+    {
+        List<Farmer> list =farmerService.getItems(0, (int)farmerService.getCount("","",""),"","","");
+        final int size =  list.size();
+
+        FarmerExport needExport = new FarmerExport();
+        needExport.setRealPath(request.getRealPath("mobile/exceltemplate"));
+        needExport.setIncreaseType(1);
+        needExport.setIncreaseCount(size);
+        Farmer[] add = list.toArray(new Farmer[size]);
+        needExport.setList_Farmer(add);
+
+        try{
+            byte[] content = needExport.Export();
+            ResponseUtils.MakeDownLoadFile(content, response, needExport.getTemplateFileName());
+            return null;
+        }
+        catch (Exception ex){
+            System.out.print(ex.toString());
+        }
+
+        return null;
+    }
 
 }

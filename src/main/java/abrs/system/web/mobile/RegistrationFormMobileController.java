@@ -359,8 +359,10 @@ public class RegistrationFormMobileController {
     @Auth(role = Auth.Role.ADMIN)
     @RequestMapping(value = "/process",method = RequestMethod.GET)
     public String Process(@RequestParam(value = "id") String id,ModelMap modelMap){
+        RegistrationForm registrationForm = service.getItemByWorkFlowId(id);
         RegistrationFormWorkFlow currentWorkFlow = workFlowService.getItem(id);
         List<RegistrationFormWorkFlow> list = workFlowService.getItemsByAggregation(currentWorkFlow.getAggregation_id());
+        modelMap.addAttribute("registration",registrationForm);
         modelMap.addAttribute("list",list);
         return "mobile/registration_form_work_flow_item_list";
     }

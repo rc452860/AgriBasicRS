@@ -327,6 +327,8 @@ public class AutumnFoodExpecProMobileController {
         {
             Farmer aa= new Farmer();
             aa.setNo(i);
+            aa.setName(i+""+i);
+            aa.setAge(i+1);
             list.add(aa);
         }
         final int size =  list.size();
