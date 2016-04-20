@@ -12,6 +12,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,6 +28,8 @@ public class RegionService {
 
     @Autowired
     private RegionDao regionDao;
+    @Autowired
+    HttpSession session;
 
     public boolean addItem(Region region)
     {
@@ -176,6 +180,7 @@ public class RegionService {
         }
         return pattern;
     }
+
     public Pattern getParentPattern(String code){
 
         int[] next = {

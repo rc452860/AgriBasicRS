@@ -151,11 +151,11 @@
                         obj.field.push(temp[j].field[k].replace("food_item",pattern[i]));
                     }
                     obj.func = temp[j].func;
-                    console.log(temp)
+
                     calcarr.push(obj);
                 }
             }
-            console.log(calcarr)
+
             for (var i = 0; i < calcarr.length; i++) {
                 $("[id='" + calcarr[i].name+"']").numberbox("disable");
             }

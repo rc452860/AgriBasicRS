@@ -1,8 +1,14 @@
 package abrs.system.service;
 
 import abrs.system.aspect.Auth;
+import abrs.system.dao.Entity.FormType;
+import abrs.system.dao.Entity.RegistrationForm;
+import abrs.system.dao.Entity.User;
 import abrs.system.dao.Entity.WholeYearPlantArea;
+import abrs.system.dao.RegistrationFormDao;
 import abrs.system.dao.WholeYearPlantAreaDao;
+import abrs.system.web.context.SessionContext;
+import abrs.system.web.mobile.form.CommonParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +17,11 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by Edifi_000 on 2016-03-24.
@@ -23,7 +33,12 @@ public class WholeYearPlantAreaService {
 
     @Autowired
     private WholeYearPlantAreaDao wholeYearPlantAreaDao;
-
+    @Autowired
+    private RegistrationFormDao registrationFormDao;
+    @Autowired
+    private HttpSession session;
+    @Autowired
+    private RegionService regionService;
     public boolean addItem(WholeYearPlantArea wholeYearPlantArea)
     {
         wholeYearPlantAreaDao.save(wholeYearPlantArea);
@@ -135,8 +150,28 @@ public class WholeYearPlantAreaService {
         wholeYearPlantAreaDao.deleteById(id);
     }
 
-    public List<WholeYearPlantArea> getItems(int start, int size){
-        return wholeYearPlantAreaDao.getPage(new Query(), start, size);
+    public List<WholeYearPlantArea> getItems(int start, int size, CommonParam commonParam){
+        //return wholeYearPlantAreaDao.getPage(new Query(), start, size);
+        User user = (User) session.getAttribute(SessionContext.CURRENT_USER);
+        Query query = new Query();
+        Criteria cr = new Criteria();
+        List<Criteria> criterias = new ArrayList<Criteria>();
+        criterias.add(Criteria.where("form_type").is(FormType.type.WholeYearPlantArea.name()));
+        Pattern pattern = regionService.getDescendantsPattern(user.getRegionCode());
+        criterias.add(Criteria.where("region_id").regex(pattern));
+        if (commonParam!=null&&commonParam.getName()!=null&&!commonParam.getName().equals("")){
+            criterias.add(Criteria.where("name").regex(commonParam.getName()));
+        }
+        cr.andOperator(criterias.toArray(new Criteria[criterias.size()]));
+        query.addCriteria(cr);
+        List<RegistrationForm> registrationForms = registrationFormDao.queryList(query);
+        List<String> registration_form_ids = new ArrayList<String>();
+        for (RegistrationForm item : registrationForms){
+            registration_form_ids.add(item.getNo());
+        }
+        query = new Query();
+        query.addCriteria(Criteria.where("registration_form_id").in(registration_form_ids));
+        return wholeYearPlantAreaDao.queryList(query);
     }
 
     public void removeMulit(String[] ids) {

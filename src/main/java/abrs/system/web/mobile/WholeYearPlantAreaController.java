@@ -6,6 +6,7 @@ import abrs.system.dao.Entity.RegistrationForm;
 import abrs.system.dao.Entity.WholeYearPlantArea;
 import abrs.system.service.RegistrationFormService;
 import abrs.system.service.WholeYearPlantAreaService;
+import abrs.system.web.mobile.form.CommonParam;
 import abrs.system.web.mobile.form.FarmerForm;
 import abrs.system.web.mobile.form.RegistrationFormForm;
 import abrs.system.web.mobile.form.WholeYearPlantAreaForm;
@@ -98,9 +99,10 @@ public class WholeYearPlantAreaController {
     public String farmerList(
             @RequestParam(value = "index",defaultValue = "1") int index ,
             @RequestParam(value = "size",defaultValue = "20") int size,
-            @RequestParam(value = "registration_form_id",required = false) String registration_form_id,
+            CommonParam commonParam,
             ModelMap modelMap){
-        List<WholeYearPlantArea> list = wholeYearPlantAreaService.getItems((index-1)*size,size);
+
+        List<WholeYearPlantArea> list = wholeYearPlantAreaService.getItems((index-1)*size,size,commonParam);
         long count = wholeYearPlantAreaService.getCount();
         modelMap.addAttribute("list",list);
         modelMap.addAttribute("count",count);

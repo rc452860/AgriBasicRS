@@ -9,14 +9,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="my" uri="exam" %>
+<%@ taglib prefix="my" uri="/exam" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>无标题文档</title>
-    <link href="/mobile/css/style.css" rel="stylesheet" />
-    <script type="text/javascript" src="/mobile/js/jquery.js"></script>
+    <c:import url="references.jsp"></c:import>
     <script type="text/javascript">
         function Delete(id) {/*删除脚本*/
             $.ajax({
@@ -41,7 +40,7 @@
             $(".ctr:checked").each(function () {
                 arr.push($(this).val())
             });
-            console.log(arr)
+
             $.ajax({
                 cache: false,
                 type: "POST",
@@ -64,6 +63,24 @@
                 $(".ctr").attr("checked", $(this).attr("checked") != null);
             })
         })
+        function search(){
+
+            var url = window.location.pathname;
+            url = $("input[name=name]").val() == ''?url:addParam(url,'name',$('input[name=name]').val());
+            window.location.href = url;
+        }
+        function addParam(url,key,value){
+            if(url.search(/\?/) == -1)
+                url+='?';
+            var patternTemp = "var re = /("+key+"=)(.*?)(&)/";
+            eval(patternTemp);
+            if(re.test(url))
+                url.replace(re,"$1"+patternTemp+"&");
+            else
+                url += (url[url.length-1] == '&' || url[url.length-1] == "?")?key+"="+value+"&":"&"+key+"="+value+"&";
+
+            return url;
+        }
     </script>
     <%--分页插件--%>
     <link rel="stylesheet" href="/mobile/css/pagination.css">
@@ -77,8 +94,8 @@
     <span>位置：</span>
     <ul class="placeul">
         <li><a href="#">首页</a></li>
-        <li><a href="#">区域单位基本信息</a></li>
-        <li><a href="#">区域单位列表</a></li>
+        <li><a href="#">全年农作物播种面积意向（预计）调查</a></li>
+        <li><a href="#">全全年农作物播种面积意向（预计）调查列表</a></li>
     </ul>
 </div>
 
@@ -93,8 +110,9 @@
             <li onclick="DeleteMulit()"><span><img src="/mobile/img/t03.png"/></span>删除</li>
         </ul>
     </div>
+
     <ul class="seachform1 clearfix">
-        <li><label>姓名:</label><input name="name" type="text" class="scinput1"/></li>
+        <li><label>调查表:</label><input name="name" type="text" class="scinput1 choose"/></li>
     </ul>
     <ul class="seachform1 clearfix">
         <li class="sarchbtn">
@@ -103,11 +121,13 @@
             <input name="" type="button" class="scbtn2" value="导出"/></li>
     </ul>
 
+    <div class="formtitle clearfix"><span>全全年农作物播种面积意向（预计）调查列表</span></div>
+
     <table class="tablelist">
         <thead>
         <tr>
             <th><input name="" type="checkbox" id="ctrall" value=""/></th>
-            <th>编号</th>
+            <th>调查表</th>
             <th>农户id</th>
             <th>调查形式</th>
             <th>农作物总面积</th>
@@ -121,7 +141,6 @@
                 <td>${item.registration_form_id}</td>
                 <td>${item.farmer_id}</td>
                 <td><my:investigation num="${item.form_tag}"/></td>
-                <td>${item.form_tag}</td>
                 <td>${item.plant_total}</td>
                 <td><a href="/mobile/WholeYearPlantArea/edit?id=${item.id}" class="tablelink">修改/查看</a> <a
                         href="javascript:Delete('${item.id}')" class="tablelink"> 删除</a></td>

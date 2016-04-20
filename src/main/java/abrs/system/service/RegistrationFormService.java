@@ -138,7 +138,7 @@ public class RegistrationFormService {
         Query query = new Query();
         Criteria cr = new Criteria();
         String regionCode = user.getRegionCode();
-        Pattern pattern = regionService.getChildsPattern(regionCode);
+        Pattern pattern = regionService.getDescendantsPattern(regionCode);
         cr.andOperator(Criteria.where("end_date").gte(new Date()),Criteria.where("form_type").is(form_type),Criteria.where("region_id").regex(pattern));
         query.addCriteria(cr);
         return registrationFormDao.queryList(query);

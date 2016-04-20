@@ -33,8 +33,8 @@
             return total;
         }
         calc.prototype.getFValue = function(key){
-            console.log(this.field)
-            console.log(key)
+
+
                 return parseFloat($("[id='" + this.field[key] + "']").numberbox("getValue"));
         }
         var calcarr = [

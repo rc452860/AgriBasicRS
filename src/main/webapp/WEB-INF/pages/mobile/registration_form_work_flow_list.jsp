@@ -23,7 +23,7 @@
       $(".ctr:checked").each(function () {
         arr.push($(this).val())
       });
-      console.log(arr)
+
       $.ajax({
         cache: false,
         type: "POST",
@@ -46,7 +46,7 @@
       $(".ctr:checked").each(function () {
         arr.push($(this).val())
       });
-      console.log(arr)
+
       $.ajax({
         cache: false,
         type: "POST",

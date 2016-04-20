@@ -9,14 +9,6 @@
     <title>无标题文档</title>
     <link href="/mobile/css/style.css" rel="stylesheet"/>
     <script type="text/javascript" src="/mobile/js/jquery.js"></script>
-    <style>
-        .seachform1 .diy_select, .seachform2 .diy_select, .diy_select_txt {
-            width: 150px;
-            margin: 0;
-            height: 34px;;
-        }
-
-    </style>
     <script type="text/javascript">
         function Delete(id) {/*删除脚本*/
             $.ajax({
@@ -41,7 +33,7 @@
             $(".ctr:checked").each(function () {
                 arr.push($(this).val())
             });
-            console.log(arr)
+
             $.ajax({
                 cache: false,
                 type: "POST",
