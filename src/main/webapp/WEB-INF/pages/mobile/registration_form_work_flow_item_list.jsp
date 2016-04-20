@@ -30,6 +30,12 @@
 
 
 <div class="rightinfo">
+  
+  <div class="tools">
+    <ul class="toolbar">
+      <li onclick="window.location.href='/mobile/${registration.form_type}/export'" class="click"> <span><img src="/mobile/img/t04.png"/></span>导出</li>
+    </ul>
+  </div>
 
   <table class="tablelist">
     <thead>
@@ -47,7 +53,6 @@
     </thead>
     <tbody>
     <c:forEach var="item" items="${list}">
-
       <tr>
         <td><input class="ctr" name="" type="checkbox" value="${item.id}"/></td>
         <td>${item.name}</td>
