@@ -67,6 +67,7 @@ public class IndexMobileController {
             user.setName("管理员");
             user.setUsername("admin");
             user.setPassword("admin");
+            user.setRegionCode("000000000000000");
             user.setRole(Auth.Role.SUPERADMIN.name());
             userService.addItem(user);
             String root = request.getSession().getServletContext().getRealPath("/");

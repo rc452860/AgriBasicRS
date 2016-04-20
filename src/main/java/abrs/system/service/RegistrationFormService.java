@@ -2,6 +2,7 @@ package abrs.system.service;
 
 import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.RegistrationForm;
+import abrs.system.dao.Entity.User;
 import abrs.system.dao.RegistrationFormDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by Edifi_000 on 2016-03-24.
@@ -25,6 +27,8 @@ public class RegistrationFormService {
 
     @Autowired
     private RegistrationFormDao registrationFormDao;
+    @Autowired
+    private RegionService regionService;
 
     public boolean addItem(RegistrationForm registrationForm)
     {
@@ -130,11 +134,12 @@ public class RegistrationFormService {
         query.addCriteria(Criteria.where("end_date").gte(new Date()));
         return registrationFormDao.queryList(query);
     }
-    public List<RegistrationForm> getAvailableRegister(String form_type) {
+    public List<RegistrationForm> getAvailableRegister(String form_type,User user) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("end_date").gte(new Date()));
         Criteria cr = new Criteria();
-        cr.andOperator(Criteria.where("end_date").gte(new Date()),Criteria.where("form_type").is(form_type));
+        String regionCode = user.getRegionCode();
+        Pattern pattern = regionService.getChildsPattern(regionCode);
+        cr.andOperator(Criteria.where("end_date").gte(new Date()),Criteria.where("form_type").is(form_type),Criteria.where("region_id").regex(pattern));
         query.addCriteria(cr);
         return registrationFormDao.queryList(query);
     }

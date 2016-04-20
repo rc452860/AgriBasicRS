@@ -101,71 +101,14 @@ public class RegionService {
     }
 
     public List<Region> getChild(String id) {
-        String[] regexs = {
-                "([0-9]{2})0{13}",
-                "([0-9]{4})0{11}",
-                "([0-9]{6})0{9}",
-                "([0-9]{9})0{6}",
-                "([0-9]{12})0{3}",
-                "([0-9]{15})",
-        };
-        String[] next = {
-                "${precode}[0-9]{2}0{11}",
-                "${precode}[0-9]{2}0{9}",
-                "${precode}[0-9]{3}0{6}",
-                "${precode}[0-9]{3}0{3}",
-                "${precode}[0-9]{3}",
-        };
-        int i = 0;
-        Pattern pattern = null;
-        String precode;
-        for (;i<regexs.length;i++){
-            pattern = Pattern.compile(regexs[i]);
-            if (pattern.matcher(id).find())
-                break;
-        }
-        if (i<regexs.length-1 && pattern != null){
-            Matcher matcher = pattern.matcher(id);
-            if (matcher.matches()) {
-                precode = matcher.group(1);
-                pattern = Pattern.compile("\\([\\s\\S]*?\\)");
-                pattern = Pattern.compile(next[i].replace("${precode}",precode));
-            }
-        }
+        Pattern pattern = this.getChildsPattern(id);
         Query query = new Query();
         query.addCriteria(Criteria.where("no").regex(pattern));
         return regionDao.queryList(query);
     }
 
     public Region getParent(String id){
-        String[] regexs = {
-                "([0-9]{2})0{13}",
-                "([0-9]{4})0{11}",
-                "([0-9]{6})0{9}",
-                "([0-9]{9})0{6}",
-                "([0-9]{12})0{3}",
-                "([0-9]{15})",
-        };
-        int[] next = {
-                2,4,6,9,11,13
-        };
-        int i = 0;
-        Pattern pattern = null;
-        String precode;
-        for (;i<regexs.length;i++){
-            pattern = Pattern.compile(regexs[i]);
-            if (pattern.matcher(id).find())
-                break;
-        }
-        if (i>1 && pattern != null){
-            Matcher matcher = pattern.matcher(id);
-            if (matcher.matches()) {
-                id = id.substring(0,next[i-1]);
-                while(id.length()<15){
-                    id+='0';
-                }
-            }
-        }
+        Pattern pattern = this.getParentPattern(id);
         Query query = new Query();
         query.addCriteria(Criteria.where("no").is(id));
         return regionDao.queryOne(query);
@@ -176,5 +119,85 @@ public class RegionService {
         Query query = new Query();
         query.addCriteria(Criteria.where("no").is(code));
         return regionDao.queryOne(query);
+    }
+
+    private String[] regexs = {
+            "000{13}",
+            "([0-9]{2})0{13}",
+            "([0-9]{4})0{11}",
+            "([0-9]{6})0{9}",
+            "([0-9]{9})0{6}",
+            "([0-9]{12})0{3}",
+            "([0-9]{15})",
+    };
+    private String[] next = {
+            "([0-9]{2})0{13}",
+            "${precode}[0-9]{2}0{11}",
+            "${precode}[0-9]{2}0{9}",
+            "${precode}[0-9]{3}0{6}",
+            "${precode}[0-9]{3}0{3}",
+            "${precode}[0-9]{3}",
+    };
+    public Pattern getChildsPattern(String code){
+
+        int i = 0;
+        Pattern pattern = null;
+        String precode;
+        for (;i<regexs.length;i++){
+            pattern = Pattern.compile(regexs[i]);
+            if (pattern.matcher(code).find())
+                break;
+        }
+        if (i<regexs.length-1 && pattern != null){
+            Matcher matcher = pattern.matcher(code);
+            if (matcher.matches()) {
+                precode = matcher.group(1);
+                pattern = Pattern.compile(next[i].replace("${precode}",precode));
+            }
+        }
+        return pattern;
+    }
+    public Pattern getDescendantsPattern(String code){
+
+        int i = 0;
+        Pattern pattern = null;
+        String precode;
+        for (;i<regexs.length;i++){
+            pattern = Pattern.compile(regexs[i]);
+            if (pattern.matcher(code).find())
+                break;
+        }
+        if (i<regexs.length-1 && pattern != null){
+            Matcher matcher = pattern.matcher(code);
+            if (matcher.matches()) {
+                precode = matcher.group(1);
+                pattern = Pattern.compile("^"+precode);
+            }
+        }
+        return pattern;
+    }
+    public Pattern getParentPattern(String code){
+
+        int[] next = {
+                2,4,6,9,11,13
+        };
+        int i = 0;
+        Pattern pattern = null;
+        String precode;
+        for (;i<regexs.length;i++){
+            pattern = Pattern.compile(regexs[i]);
+            if (pattern.matcher(code).find())
+                break;
+        }
+        if (i>1 && pattern != null){
+            Matcher matcher = pattern.matcher(code);
+            if (matcher.matches()) {
+                code = code.substring(0,next[i-1]);
+                while(code.length()<15){
+                    code+='0';
+                }
+            }
+        }
+        return pattern;
     }
 }
