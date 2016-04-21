@@ -2,7 +2,9 @@ package abrs.system.service;
 
 import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.Region;
+import abrs.system.dao.Entity.User;
 import abrs.system.dao.RegionDao;
+import abrs.system.web.context.SessionContext;
 import org.docx4j.wml.P;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -99,9 +101,17 @@ public class RegionService {
     }
 
     public List<Region> getRoot() {
+        User user = (User)session.getAttribute(SessionContext.CURRENT_USER);
+
         Query query = new Query();
-        query.addCriteria(Criteria.where("no").regex("[0-9]{2}0{13}"));
-        return regionDao.queryList(query);
+        query.addCriteria(Criteria.where("no").is(user.getRegionCode()));
+        List<Region>  result = regionDao.queryList(query);
+        if(result==null||result.size()==0){
+            query=new Query();
+            query.addCriteria(Criteria.where("no").regex("[0-9]{2}0{13}"));
+            result = regionDao.queryList(query);
+        }
+        return result;
     }
 
     public List<Region> getChild(String id) {
