@@ -16,6 +16,8 @@ public class AutumnFoodExpecPro {
 
     private String registration_form_id;//调查表编号
 
+    private String farmer_id;//农户id
+
     private int survey_village_num; //调查村数
 
     private int survey_family_num;//调查户数
@@ -33,6 +35,8 @@ public class AutumnFoodExpecPro {
 
     private String sugar_itemid;//糖料（甘蔗）
 
+
+
     public String getId() {
         return id;
     }
@@ -47,6 +51,14 @@ public class AutumnFoodExpecPro {
 
     public void setRegistration_form_id(String registration_form_id) {
         this.registration_form_id = registration_form_id;
+    }
+
+    public String getFarmer_id() {
+        return farmer_id;
+    }
+
+    public void setFarmer_id(String farmer_id) {
+        this.farmer_id = farmer_id;
     }
 
     public int getSurvey_village_num() {

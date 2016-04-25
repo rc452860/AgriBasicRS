@@ -24,6 +24,8 @@ public class User {
 
     private String salt = "";
 
+    private String farmer_id;//农户id
+
     public String getRegionCode() {
         return regionCode;
     }
@@ -92,9 +94,14 @@ public class User {
         this.salt = salt;
     }
 
+    public String getFarmer_id() {
+        return farmer_id;
+    }
 
-
-
+    public void setFarmer_id(String farmer_id) {
+        this.farmer_id = farmer_id;
+    }
+    
 
     /**
      *

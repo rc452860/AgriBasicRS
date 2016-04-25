@@ -16,6 +16,8 @@ public class CostBenefitOfPig {
 
     private String registration_form_id;//调查表编号
 
+    private String farmer_id;//农户id
+
     private int county_num;//调查县数
     private int family_num;//调查户数
     private double head_num;//调查头数
@@ -125,6 +127,15 @@ public class CostBenefitOfPig {
     public void setRegistration_form_id(String registration_form_id) {
         this.registration_form_id = registration_form_id;
     }
+
+    public String getFarmer_id() {
+        return farmer_id;
+    }
+
+    public void setFarmer_id(String farmer_id) {
+        this.farmer_id = farmer_id;
+    }
+
 
     public int getCounty_num() {
         return county_num;
