@@ -29,14 +29,14 @@ public class CostBenefitOfPigMobileController {
     @Autowired
     CostBenefitOfPigService service;
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String Add(ModelMap modelMap){
         modelMap.addAttribute("CostBenefitOfPigForm",new CostBenefitOfPigForm());
         return "mobile/cost_benefit_of_pig_add";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public Object Add(@Valid @ModelAttribute("CostBenefitOfPigForm") CostBenefitOfPigForm form, Errors errors, ModelMap model){
@@ -57,7 +57,7 @@ public class CostBenefitOfPigMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String List(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
         List<CostBenefitOfPig> list = service.getItems((index-1)*size,size);
@@ -71,7 +71,7 @@ public class CostBenefitOfPigMobileController {
         return "mobile/cost_benefit_of_pig_list";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
     public String Edit(@RequestParam(value = "id") String id,ModelMap modelMap){
 
@@ -86,7 +86,7 @@ public class CostBenefitOfPigMobileController {
     }
 
     @ResponseBody
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/edit",method = RequestMethod.POST)
     public Object Edit(@Valid @ModelAttribute("CostBenefitOfPigForm") CostBenefitOfPigForm form, Errors errors, ModelMap model){
         Map<String,Object> map = new HashMap<String, Object>();
@@ -106,7 +106,7 @@ public class CostBenefitOfPigMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public Object Delete(@RequestParam("id") String id){
@@ -120,7 +120,7 @@ public class CostBenefitOfPigMobileController {
         }
         return map;
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/deleteMulit",method = RequestMethod.POST)
     public Object DeleteMulit(@RequestParam("ids[]") String[] ids){

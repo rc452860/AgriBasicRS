@@ -1,18 +1,13 @@
 package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
-import abrs.system.dao.Entity.Farmer;
-import abrs.system.dao.Entity.RegistrationForm;
 import abrs.system.dao.Entity.WholeYearPlantArea;
 import abrs.system.service.RegistrationFormService;
 import abrs.system.service.WholeYearPlantAreaService;
 import abrs.system.web.mobile.form.CommonParam;
-import abrs.system.web.mobile.form.FarmerForm;
-import abrs.system.web.mobile.form.RegistrationFormForm;
 import abrs.system.web.mobile.form.WholeYearPlantAreaForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -37,14 +32,14 @@ public class WholeYearPlantAreaController {
     @Autowired
     WholeYearPlantAreaService wholeYearPlantAreaService;
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String add(ModelMap modelMap){
         WholeYearPlantAreaForm wholeYearPlantArea = new WholeYearPlantAreaForm();
         modelMap.addAttribute("WholeYearPlantAreaForm",wholeYearPlantArea);
         return "/mobile/WholeYearPlantAreaAdd";
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public Object add(@Valid @ModelAttribute("WholeYearPlantAreaForm") WholeYearPlantAreaForm form, Errors errors, ModelMap model){
@@ -63,7 +58,7 @@ public class WholeYearPlantAreaController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
     public String edit(@RequestParam("id") String id, ModelMap modelMap){
         WholeYearPlantArea wholeYearPlantArea =  wholeYearPlantAreaService.getItem(id);
@@ -76,7 +71,7 @@ public class WholeYearPlantAreaController {
         return "/mobile/WholeYearPlantAreaEdit";
     }
     @ResponseBody
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/edit",method = RequestMethod.POST)
     public Object farmerEdit(@Valid @ModelAttribute("WholeYearPlantAreaForm") WholeYearPlantAreaForm form, Errors errors, ModelMap model){
         Map<String,Object> map = new HashMap<String, Object>();
@@ -94,7 +89,7 @@ public class WholeYearPlantAreaController {
         return map;
 
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String farmerList(
             @RequestParam(value = "index",defaultValue = "1") int index ,
@@ -112,7 +107,7 @@ public class WholeYearPlantAreaController {
         return "mobile/WholeYearPlantAreaList";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "delete",method = RequestMethod.POST)
     public Object farmerDelete(@RequestParam("id") String id){
@@ -126,7 +121,7 @@ public class WholeYearPlantAreaController {
         }
         return map;
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "deleteMulit",method = RequestMethod.POST)
     public Object farmerDeleteMulit(@RequestParam("ids[]") String[] ids){

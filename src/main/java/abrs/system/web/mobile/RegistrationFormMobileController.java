@@ -47,14 +47,14 @@ public class RegistrationFormMobileController {
     @Autowired
     private HttpSession session;
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String Add(ModelMap modelMap){
         modelMap.addAttribute("RegistrationFormForm",new RegistrationFormForm());
         return "mobile/registration_form_add";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public Object Add(@Valid @ModelAttribute("RegistrationFormForm") RegistrationFormForm form, Errors errors, ModelMap model){
@@ -86,7 +86,7 @@ public class RegistrationFormMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String List(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
         List<RegistrationForm> list = service.getItems((index-1)*size,size);
@@ -100,7 +100,7 @@ public class RegistrationFormMobileController {
         return "mobile/registration_form_list";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
     public String Edit(@RequestParam(value = "id") String id,ModelMap modelMap){
         RegistrationForm entity =  service.getItem(id);
@@ -114,7 +114,7 @@ public class RegistrationFormMobileController {
     }
 
     @ResponseBody
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/edit",method = RequestMethod.POST)
     public Object Edit(@Valid @ModelAttribute("RegistrationFormForm") RegistrationFormForm form, Errors errors, ModelMap model){
         Map<String,Object> map = new HashMap<String, Object>();
@@ -132,7 +132,7 @@ public class RegistrationFormMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public Object Delete(@RequestParam("id") String id){
@@ -146,7 +146,7 @@ public class RegistrationFormMobileController {
         }
         return map;
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/deleteMulit",method = RequestMethod.POST)
     public Object DeleteMulit(@RequestParam("ids[]") String[] ids){
@@ -161,13 +161,13 @@ public class RegistrationFormMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/select",method = RequestMethod.GET)
     public String select(){
 
         return "mobile/registration_form_select";
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/selectJson",method = RequestMethod.GET)
     public Object selectJson(@RequestParam(value = "page",required = false) Integer page,
@@ -205,7 +205,7 @@ public class RegistrationFormMobileController {
             }
         };
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/selectJsonB/{form_type}",method = RequestMethod.GET)
     public Object selectJsonB(@PathVariable("form_type") String form_type){
@@ -243,7 +243,7 @@ public class RegistrationFormMobileController {
         return result;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
      @RequestMapping(value = "/workflowlist",method = RequestMethod.GET)
      public String WorkFlowList(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
         List<String> workflowids = new ArrayList<String>();
@@ -268,7 +268,7 @@ public class RegistrationFormMobileController {
         return "mobile/registration_form_work_flow_list";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/workflowprocesslist",method = RequestMethod.GET)
     public String WorkFlowProcessList(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
         RegistrationForm conditions = new RegistrationForm();
@@ -285,7 +285,7 @@ public class RegistrationFormMobileController {
         return "mobile/registration_form_work_flow_process_list";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/accpet",method = RequestMethod.POST)
     public Object Accpet(@RequestParam("ids[]") String[] ids){
@@ -314,7 +314,7 @@ public class RegistrationFormMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/reject",method = RequestMethod.POST)
     public Object Reject(@RequestParam("ids[]") String[] ids){
@@ -343,7 +343,7 @@ public class RegistrationFormMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/info",method = RequestMethod.GET)
     public String Info(@RequestParam(value = "id") String id,ModelMap modelMap){
         RegistrationForm entity =  service.getItem(id);
@@ -356,7 +356,7 @@ public class RegistrationFormMobileController {
         return "mobile/registration_form_edit";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/process",method = RequestMethod.GET)
     public String Process(@RequestParam(value = "id") String id,ModelMap modelMap){
         RegistrationForm registrationForm = service.getItemByWorkFlowId(id);

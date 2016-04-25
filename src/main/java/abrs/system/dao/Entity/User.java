@@ -26,6 +26,16 @@ public class User {
 
     private String farmer_id;//农户id
 
+    private String department;//部门
+
+    private String phone;//手机
+
+    private String qq;//QQ
+
+    private String Email;//Email
+
+    private String flag;//状态
+
     public String getRegionCode() {
         return regionCode;
     }
@@ -113,5 +123,45 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
     }
 }

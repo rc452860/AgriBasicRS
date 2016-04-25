@@ -10,7 +10,6 @@ import abrs.system.web.mobile.form.FarmerForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,13 +38,13 @@ public class ManageMobileContorller {
     RegistrationFormService registrationFormService;
 
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/farmerAdd",method = RequestMethod.GET)
     public String farmerManage(ModelMap modelMap){
         modelMap.addAttribute("FarmerForm",new FarmerForm());
         return "mobile/farmerAdd";
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/farmerAdd",method = RequestMethod.POST)
     public Object farmerManage(@Valid @ModelAttribute("FarmerForm") FarmerForm form, Errors errors, ModelMap model){
@@ -64,7 +62,7 @@ public class ManageMobileContorller {
         }
         return map;
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/farmerList",method = RequestMethod.GET)
     public String farmerList(
             @RequestParam(value = "index",defaultValue = "1") int index ,
@@ -82,7 +80,7 @@ public class ManageMobileContorller {
         modelMap.addAttribute("countpage",Math.floor(count/size));
         return "mobile/farmerList";
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/farmerEdit",method = RequestMethod.GET)
     public String farmerEdit(@RequestParam(value = "id") String id,ModelMap modelMap){
         Farmer farmer =  farmerService.getItem(id);
@@ -94,7 +92,7 @@ public class ManageMobileContorller {
         return "mobile/farmerEdit";
     }
     @ResponseBody
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/farmerEdit",method = RequestMethod.POST)
     public Object farmerEdit(@Valid @ModelAttribute("FarmerForm") FarmerForm form, Errors errors, ModelMap model){
         Map<String,Object> map = new HashMap<String, Object>();
@@ -113,7 +111,7 @@ public class ManageMobileContorller {
 
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "farmerDelete",method = RequestMethod.POST)
     public Object farmerDelete(@RequestParam("id") String id){
@@ -127,7 +125,7 @@ public class ManageMobileContorller {
         }
         return map;
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "farmerDeleteMulit",method = RequestMethod.POST)
     public Object farmerDeleteMulit(@RequestParam("ids[]") String[] ids){
@@ -142,7 +140,7 @@ public class ManageMobileContorller {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/export",method = RequestMethod.GET)
     public String Export(HttpServletRequest request,HttpServletResponse response)
     {

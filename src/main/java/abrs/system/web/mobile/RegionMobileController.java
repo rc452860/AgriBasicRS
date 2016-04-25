@@ -30,14 +30,14 @@ public class RegionMobileController {
     @Autowired
     RegionService regionService;
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.SUPERADMIN)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String regionAdd(ModelMap modelMap){
         modelMap.addAttribute("RegionForm",new RegionForm());
         return "mobile/region_add";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.SUPERADMIN)
     @ResponseBody
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public Object regionAdd(@Valid @ModelAttribute("RegionForm") RegionForm form, Errors errors, ModelMap model){
@@ -56,7 +56,7 @@ public class RegionMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.SUPERADMIN)
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String regionList(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
         List<Region> list = regionService.getItems((index-1)*size,size);
@@ -70,7 +70,7 @@ public class RegionMobileController {
         return "mobile/region_list";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.SUPERADMIN)
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
     public String farmerEdit(@RequestParam(value = "id") String id,ModelMap modelMap){
         Region region =  regionService.getItem(id);
@@ -83,7 +83,7 @@ public class RegionMobileController {
     }
 
     @ResponseBody
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.SUPERADMIN)
     @RequestMapping(value = "/edit",method = RequestMethod.POST)
     public Object farmerEdit(@Valid @ModelAttribute("RegionForm") RegionForm form, Errors errors, ModelMap model){
         Map<String,Object> map = new HashMap<String, Object>();
@@ -101,7 +101,7 @@ public class RegionMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.SUPERADMIN)
     @ResponseBody
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public Object farmerDelete(@RequestParam("id") String id){
@@ -115,7 +115,7 @@ public class RegionMobileController {
         }
         return map;
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.SUPERADMIN)
     @ResponseBody
     @RequestMapping(value = "/deleteMulit",method = RequestMethod.POST)
     public Object farmerDeleteMulit(@RequestParam("ids[]") String[] ids){
@@ -129,7 +129,7 @@ public class RegionMobileController {
         }
         return map;
     }
-    //@Auth(role = Auth.Role.ADMIN)
+    //@Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/getRoot",method = RequestMethod.GET)
     public Object getRoot(){

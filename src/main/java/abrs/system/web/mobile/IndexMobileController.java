@@ -8,19 +8,14 @@ import abrs.system.util.Util;
 import abrs.system.web.mobile.form.LoginForm;
 import abrs.system.dao.Entity.User;
 import abrs.system.web.context.SessionContext;
-import org.mozilla.universalchardet.UniversalDetector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.EncodedResource;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.support.ServletContextResource;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -126,12 +121,12 @@ public class IndexMobileController {
         session.removeAttribute(SessionContext.CURRENT_USER);
         return "redirect:/mobile/";
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(){
         return "mobile/admin";
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/left", method = RequestMethod.GET)
     public String left(){
         return "mobile/left";
@@ -142,7 +137,7 @@ public class IndexMobileController {
         return "mobile/footer";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(){
         return "mobile/index";

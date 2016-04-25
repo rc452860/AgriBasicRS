@@ -14,6 +14,13 @@ public class UserForm {
     private String role = "";
     private String regionCode = "";
 
+    private String farmer_id="";//农户id
+    private String department="";//部门
+    private String phone="";//手机
+    private String qq="";//QQ
+    private String Email="";//Email
+    private String flag="";//状态
+
     public User GetUser(){
         User user = new User();
         try{
@@ -93,5 +100,53 @@ public class UserForm {
 
     public void setRegionCode(String regionCode) {
         this.regionCode = regionCode;
+    }
+
+    public String getFarmer_id() {
+        return farmer_id;
+    }
+
+    public void setFarmer_id(String farmer_id) {
+        this.farmer_id = farmer_id;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
     }
 }

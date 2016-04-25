@@ -1,15 +1,12 @@
 package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
-import abrs.system.dao.Entity.SummerFoodAndRapeseedExpecPro;
 import abrs.system.dao.Entity.User;
 import abrs.system.service.UserService;
-import abrs.system.web.mobile.form.SummerFoodAndRapeseedExpecProForm;
 import abrs.system.web.mobile.form.UserForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Role;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +46,23 @@ public class UserController {
             map.put("message", errors.getFieldError().getDefaultMessage());
         }else {
             User user = form.GetUser();
-            user.setRole(Auth.Role.ADMIN.name());
+            if(form.getRole().equals("SUPERADMIN"))
+            {
+                user.setRole(Auth.Role.SUPERADMIN.name());
+            }
+            else if(form.getRole().equals("INFOADMIN"))
+            {
+                user.setRole(Auth.Role.INFOADMIN.name());
+            }
+            else if(form.getRole().equals("ADMIN"))
+            {
+                user.setRole(Auth.Role.ADMIN.name());
+            }
+            else
+            {
+                user.setRole(Auth.Role.USER.name());
+            }
+
             userService.addItem(user);
             map.put("message", "添加成功");
         }
@@ -75,7 +87,8 @@ public class UserController {
     public String edit(@RequestParam(value = "id") String id,ModelMap modelMap){
         User user = userService.getItem(id);
         user.setPassword("");
-        modelMap.addAttribute("UserForm",UserForm.GetUserForm(user));
+        UserForm userForm = UserForm.GetUserForm(user);
+        modelMap.addAttribute("UserForm",userForm);
         return "mobile/user_edit";
     }
 
@@ -88,6 +101,7 @@ public class UserController {
             map.put("message", errors.getFieldError().getDefaultMessage());
         }else {
             User user = form.GetUser();
+
             userService.update(user);
             map.put("message", "修改成功");
         }

@@ -1,7 +1,6 @@
 package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
-import abrs.system.dao.Entity.AutumnWinterPlantsIntention;
 import abrs.system.dao.Entity.ExpectedProductionItem;
 import abrs.system.dao.Entity.AutumnFoodExpecPro;
 import abrs.system.dao.Entity.Farmer;
@@ -17,11 +16,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,14 +39,14 @@ public class AutumnFoodExpecProMobileController {
     @Autowired
     ExpectedProductionItemService itemService;
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String Add(ModelMap modelMap){
         modelMap.addAttribute("AutumnFoodExpecProForm",new AutumnFoodExpecProForm());
         return "mobile/autumn_food_expec_pro_add";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public Object Add(@Valid @ModelAttribute("AutumnFoodExpecProForm") AutumnFoodExpecProForm form, Errors errors, ModelMap model){
@@ -110,7 +107,7 @@ public class AutumnFoodExpecProMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String List(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
         List<AutumnFoodExpecPro> list = service.getItems((index-1)*size,size);
@@ -124,7 +121,7 @@ public class AutumnFoodExpecProMobileController {
         return "mobile/autumn_food_expec_pro_list";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
     public String Edit(@RequestParam(value = "id") String id,ModelMap modelMap){
 
@@ -165,7 +162,7 @@ public class AutumnFoodExpecProMobileController {
     }
 
     @ResponseBody
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/edit",method = RequestMethod.POST)
     public Object Edit(@Valid @ModelAttribute("AutumnFoodExpecProForm") AutumnFoodExpecProForm form, Errors errors, ModelMap model){
         Map<String,Object> map = new HashMap<String, Object>();
@@ -223,7 +220,7 @@ public class AutumnFoodExpecProMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public Object Delete(@RequestParam("id") String id){
@@ -252,7 +249,7 @@ public class AutumnFoodExpecProMobileController {
         }
         return map;
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/deleteMulit",method = RequestMethod.POST)
     public Object DeleteMulit(@RequestParam("ids[]") String[] ids){
@@ -285,7 +282,7 @@ public class AutumnFoodExpecProMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/export",method = RequestMethod.GET)
     public String Export(HttpServletRequest request,HttpServletResponse response){
 
@@ -328,7 +325,7 @@ public class AutumnFoodExpecProMobileController {
             Farmer aa= new Farmer();
             aa.setNo(i);
             aa.setName(i+""+i);
-            aa.setAge(i+1);
+            aa.setAge(i + 1);
             list.add(aa);
         }
         final int size =  list.size();

@@ -70,6 +70,38 @@
                 <td><form:input path="password"/></td>
             </tr>
             <tr>
+                <td>部门</td>
+                <td><form:input path="department"/></td>
+                <td>手机</td>
+                <td><form:input path="phone"/></td>
+            </tr>
+            <tr>
+                <td>QQ</td>
+                <td><form:input path="qq"/></td>
+                <td>Email</td>
+                <td><form:input path="Email"/></td>
+            </tr>
+            <tr>
+                <td>状态</td>
+                <td>
+                    <form:select class="easyui-combobox" style="width:150px"  path="role" >
+                    <form:option value="1">启用</form:option>
+                    <form:option value="2">注销</form:option>
+                    </form:select>
+                </td>
+            </tr>
+            <tr>
+                <td>类型</td>
+                <td>
+                <form:select class="easyui-combobox" style="width:150px"  path="role" >
+                    <form:option value="USER">农户调查对象</form:option>
+                    <form:option value="ADMIN">基层调查员</form:option>
+                    <form:option value="INFOADMIN">信息审核员</form:option>
+                    <form:option value="SUPERADMIN">管理员</form:option>
+                </form:select>
+                </td>
+            </tr>
+            <tr>
                 <td align="center" colspan="4"><input name="" type="button" id="submit_button" value="提交"/>&nbsp;&nbsp;<input name="" type="reset" value="重置"/></td>
             </tr>
         </table>

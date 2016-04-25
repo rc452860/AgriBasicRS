@@ -34,14 +34,14 @@ public class SummerFoodAndRapeseedExpecProMobileController {
     @Autowired
     ExpectedProductionItemService itemService;
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String Add(ModelMap modelMap){
         modelMap.addAttribute("SummerFoodAndRapeseedExpecProForm",new SummerFoodAndRapeseedExpecProForm());
         return "mobile/summer_food_and_rapeseed_expec_pro_add";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public Object Add(@Valid @ModelAttribute("SummerFoodAndRapeseedExpecProForm") SummerFoodAndRapeseedExpecProForm form, Errors errors, ModelMap model){
@@ -73,7 +73,7 @@ public class SummerFoodAndRapeseedExpecProMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String List(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
         List<SummerFoodAndRapeseedExpecPro> list = service.getItems((index-1)*size,size);
@@ -87,7 +87,7 @@ public class SummerFoodAndRapeseedExpecProMobileController {
         return "mobile/summer_food_and_rapeseed_expec_pro_list";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
     public String Edit(@RequestParam(value = "id") String id,ModelMap modelMap){
 
@@ -110,7 +110,7 @@ public class SummerFoodAndRapeseedExpecProMobileController {
     }
 
     @ResponseBody
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/edit",method = RequestMethod.POST)
     public Object Edit(@Valid @ModelAttribute("SummerFoodAndRapeseedExpecProForm") SummerFoodAndRapeseedExpecProForm form, Errors errors, ModelMap model){
         Map<String,Object> map = new HashMap<String, Object>();
@@ -145,7 +145,7 @@ public class SummerFoodAndRapeseedExpecProMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public Object Delete(@RequestParam("id") String id){
@@ -163,7 +163,7 @@ public class SummerFoodAndRapeseedExpecProMobileController {
         }
         return map;
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/deleteMulit",method = RequestMethod.POST)
     public Object DeleteMulit(@RequestParam("ids[]") String[] ids){

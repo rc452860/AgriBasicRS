@@ -28,14 +28,14 @@ public class CostBenefitProductivityOfPlantMobileController {
     @Autowired
     CostBenefitProductivityOfPlantService service;
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String Add(ModelMap modelMap){
         modelMap.addAttribute("CostBenefitProductivityOfPlantForm",new CostBenefitProductivityOfPlantForm());
         return "mobile/cost_benefit_productivity_of_plant_add";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public Object Add(@Valid @ModelAttribute("CostBenefitProductivityOfPlantForm") CostBenefitProductivityOfPlantForm form, Errors errors, ModelMap model){
@@ -56,7 +56,7 @@ public class CostBenefitProductivityOfPlantMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String List(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
         List<CostBenefitProductivityOfPlant> list = service.getItems((index-1)*size,size);
@@ -70,7 +70,7 @@ public class CostBenefitProductivityOfPlantMobileController {
         return "mobile/cost_benefit_productivity_of_plant_list";
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
     public String Edit(@RequestParam(value = "id") String id,ModelMap modelMap){
 
@@ -85,7 +85,7 @@ public class CostBenefitProductivityOfPlantMobileController {
     }
 
     @ResponseBody
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/edit",method = RequestMethod.POST)
     public Object Edit(@Valid @ModelAttribute("CostBenefitProductivityOfPlantForm") CostBenefitProductivityOfPlantForm form, Errors errors, ModelMap model){
         Map<String,Object> map = new HashMap<String, Object>();
@@ -105,7 +105,7 @@ public class CostBenefitProductivityOfPlantMobileController {
         return map;
     }
 
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public Object Delete(@RequestParam("id") String id){
@@ -119,7 +119,7 @@ public class CostBenefitProductivityOfPlantMobileController {
         }
         return map;
     }
-    @Auth(role = Auth.Role.ADMIN)
+    @Auth(role = Auth.Role.USER)
     @ResponseBody
     @RequestMapping(value = "/deleteMulit",method = RequestMethod.POST)
     public Object DeleteMulit(@RequestParam("ids[]") String[] ids){
