@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>TST 360</title>
+    <title>襄州区农业基点调查信息系统</title>
     <link href="/mobile/css/application.css" rel="stylesheet">
     <link rel="shortcut icon" href="/mobile/img/favicon.png">
     <link rel="stylesheet" href="/mobile/css/tree.css">

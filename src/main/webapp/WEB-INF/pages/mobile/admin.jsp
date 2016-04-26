@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>信息管理系统</title>
+    <title>襄州区农业基点调查信息系统</title>
 
 </head>
 <frameset rows="88,*,31" cols="*" frameborder="no" border="0" framespacing="0">

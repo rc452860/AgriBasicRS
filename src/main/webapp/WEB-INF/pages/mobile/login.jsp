@@ -12,7 +12,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="src/main/webapp/mobile/css/css.css"/>
-    <title>Title</title>
+    <title>襄州区农业基点调查信息系统</title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width"/>
@@ -85,8 +85,8 @@
         </ul>
     </div>
 </div>
-<div class="g-ft0 png f-fs2">
+<%--<div class="g-ft0 png f-fs2">
     版权所有  2014 <a href="#">blog.crysis.xyz</a> 若尘
-</div>
+</div>--%>
 </body>
 </html>
