@@ -41,13 +41,12 @@ public class UserForm {
     public static UserForm GetUserForm(User user){
         UserForm userForm = new UserForm();
         try{
-            Field[] fields = user.getClass().getDeclaredFields();
+            Field[] fields = userForm.getClass().getDeclaredFields();
             for (Field item : fields){
                 item.setAccessible(true);
-                Field userFormField = userForm.getClass().getDeclaredField(item.getName());
-                userFormField.setAccessible(true);
-                userFormField.setAccessible(true);
-                userFormField.set(userForm,item.get(user));
+                Field userField = user.getClass().getDeclaredField(item.getName());
+                userField.setAccessible(true);
+                item.set(userForm,userField.get(user));
             }
         }catch (Exception e){
             e.printStackTrace();
