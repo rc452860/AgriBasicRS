@@ -85,7 +85,7 @@
 
 <body>
 <div id="tt" class="easyui-tabs" style="">
-    <div title="Home">
+    <div title="首页">
         <div class="place">
             <span>位置：</span>
             <ul class="placeul">
@@ -121,7 +121,7 @@
 
             <div class="welinfo">
                 <span><img src="img/dp.png" alt="提醒" /></span>
-                <b>Uimaker信息管理系统使用指南</b>
+                <b>襄州区农业基点调查信息系统使用指南</b>
             </div>
 
             <ul class="infolist">

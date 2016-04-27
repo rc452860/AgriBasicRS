@@ -104,9 +104,11 @@ public class RegionService {
         User user = (User)session.getAttribute(SessionContext.CURRENT_USER);
 
         Query query = new Query();
+        Auth.Role role = (Auth.Role) session.getAttribute(SessionContext.CURRENT_USER_ROLE);
+
         query.addCriteria(Criteria.where("no").is(user.getRegionCode()));
         List<Region>  result = regionDao.queryList(query);
-        if(result==null||result.size()==0){
+        if((result==null||result.size()==0)&&role == Auth.Role.SUPERADMIN){
             query=new Query();
             query.addCriteria(Criteria.where("no").regex("[0-9]{2}0{13}"));
             result = regionDao.queryList(query);
@@ -136,7 +138,6 @@ public class RegionService {
     }
 
     private String[] regexs = {
-            "000{13}",
             "([0-9]{2})0{13}",
             "([0-9]{4})0{11}",
             "([0-9]{6})0{9}",
@@ -145,7 +146,6 @@ public class RegionService {
             "([0-9]{15})",
     };
     private String[] next = {
-            "([0-9]{2})0{13}",
             "${precode}[0-9]{2}0{11}",
             "${precode}[0-9]{2}0{9}",
             "${precode}[0-9]{3}0{6}",
@@ -185,7 +185,11 @@ public class RegionService {
             Matcher matcher = pattern.matcher(code);
             if (matcher.matches()) {
                 precode = matcher.group(1);
-                pattern = Pattern.compile("^"+precode);
+                if (!precode.equals("00"))
+                    pattern = Pattern.compile("^"+precode);
+                else
+                    pattern = Pattern.compile("^[0-9]{2}");
+
             }
         }
         return pattern;

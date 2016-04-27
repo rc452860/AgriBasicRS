@@ -25,53 +25,10 @@
   <link href="/mobile/css/style.css" rel="stylesheet" />
   <script type="text/javascript" src="/mobile/js/jquery.js"></script>
   <script type="text/javascript">
-    function Delete(id) {/*删除脚本*/
-      $.ajax({
-        cache: false,
-        type: "POST",
-        url: "/mobile/cropYieldSummary/delete", /*此处需修改*/
-        data: {'id': id},
-        async: false,
-        error: function (XMLHttpRequest) {
-          alert("error:" + XMLHttpRequest.status);
-        },
-        success: function (data) {
-          if (data.message != null) alert(data.message);
-          /*if(data.url != null) window.location.href = data.url;*/
-          if (data.message == "删除成功")
-            window.location.reload();
-        }
-      });
-    }
-    function DeleteMulit() {
-      var arr = new Array();
-      $(".ctr:checked").each(function () {
-        arr.push($(this).val())
-      });
-
-      $.ajax({
-        cache: false,
-        type: "POST",
-        url: "/mobile/cropYieldSummary/deleteMulit", /*此处需修改*/
-        data: {ids: arr},
-        async: false,
-        error: function (XMLHttpRequest) {
-          alert("error:" + XMLHttpRequest.status);
-        },
-        success: function (data) {
-          if (data.message != null) alert(data.message);
-          /*if(data.url != null) window.location.href = data.url;*/
-          if (data.message == "删除成功")
-            window.location.reload();
-        }
-      });
-    }
-    $(function () {
-      $("#ctrall").click(function () {
-        $(".ctr").attr("checked", $(this).attr("checked") != null);
-      })
-    })
+    window.deleteUrl = "/mobile/cropYieldSummary/delete";
+    window.deleteMulUrl = "/mobile/cropYieldSummary/deleteMulit";
   </script>
+  <script type="text/javascript" src="/mobile/js/list.js"></script>
   <%--分页插件--%>
   <link rel="stylesheet" href="/mobile/css/pagination.css">
   <script type="text/javascript" src="/mobile/js/jquery.pagination.min.js"></script>

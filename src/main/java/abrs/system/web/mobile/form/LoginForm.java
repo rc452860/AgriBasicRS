@@ -6,10 +6,10 @@ import javax.validation.constraints.Pattern;
 
 public class LoginForm {
     @Pattern(regexp = "^[a-zA-Z_]\\w*$", message = "用户名格式不合法")
-    @Size(min=5, max=20, message="请输入用户名")
+    @Size(min=5, max=20, message="请输入用户名和密码")
     private String username;
 
-    @Size(min=5, max=20, message="请输入密码")
+    @Size(min=5, max=20, message="请输入用户名和密码")
     private String password;
 
     public String getUsername() {

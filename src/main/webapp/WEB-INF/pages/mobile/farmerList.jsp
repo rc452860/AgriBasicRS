@@ -10,73 +10,10 @@
     <link href="/mobile/css/style.css" rel="stylesheet"/>
     <script type="text/javascript" src="/mobile/js/jquery.js"></script>
     <script type="text/javascript">
-        function Delete(id) {/*删除脚本*/
-            $.ajax({
-                cache: false,
-                type: "POST",
-                url: "/mobile/manage/farmerDelete", /*此处需修改*/
-                data: {'id': id},
-                async: false,
-                error: function (XMLHttpRequest) {
-                    alert("error:" + XMLHttpRequest.status);
-                },
-                success: function (data) {
-                    if (data.message != null) alert(data.message);
-                    /*if(data.url != null) window.location.href = data.url;*/
-                    if (data.message == "删除成功")
-                        window.location.reload();
-                }
-            });
-        }
-        function DeleteMulit() {
-            var arr = new Array();
-            $(".ctr:checked").each(function () {
-                arr.push($(this).val())
-            });
-
-            $.ajax({
-                cache: false,
-                type: "POST",
-                url: "/mobile/manage/farmerDeleteMulit", /*此处需修改*/
-                data: {ids: arr},
-                async: false,
-                error: function (XMLHttpRequest) {
-                    alert("error:" + XMLHttpRequest.status);
-                },
-                success: function (data) {
-                    if (data.message != null) alert(data.message);
-                    /*if(data.url != null) window.location.href = data.url;*/
-                    if (data.message == "删除成功")
-                        window.location.reload();
-                }
-            });
-        }
-        $(function () {
-            $("#ctrall").click(function () {
-                $(".ctr").attr("checked", $(this).attr("checked") != null);
-            })
-        })
-        function search(){
-
-            var url = window.location.pathname;
-            url = $("input[name=name]").val() == ''?url:addParam(url,'name',$('input[name=name]').val());
-            url = $("input[name=telphone]").val() == ''?url:addParam(url,'telphone',$('input[name=telphone]').val());
-            url = $("input[name=village]").val() == ''?url:addParam(url,'village',$('input[name=village]').val());
-            window.location.href = url;
-        }
-        function addParam(url,key,value){
-            if(url.search(/\?/) == -1)
-                    url+='?';
-            var patternTemp = "var re = /("+key+"=)(.*?)(&)/";
-            eval(patternTemp);
-            if(re.test(url))
-                    url.replace(re,"$1"+patternTemp+"&");
-            else
-                   url += (url[url.length-1] == '&' || url[url.length-1] == "?")?key+"="+value+"&":"&"+key+"="+value+"&";
-
-            return url;
-        }
+        window.deleteUrl = "/mobile/manage/farmerDelete";
+        window.deleteMulUrl = "/mobile/manage/farmerDeleteMulit";
     </script>
+    <script type="text/javascript" src="/mobile/js/list.js"></script>
     <%--分页插件--%>
     <link rel="stylesheet" href="/mobile/css/pagination.css">
     <script type="text/javascript" src="/mobile/js/jquery.pagination.min.js"></script>
