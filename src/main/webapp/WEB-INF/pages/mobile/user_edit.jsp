@@ -23,9 +23,9 @@
                 },
                 onSelect: function (node) {
                     $("#region_no").val(node.id);
-                    setTimeout(function () {
-                        $("input[name=region]").val(node.text);
-                    }, 50);
+//                    setTimeout(function () {
+//                        $("input[name=region]").val(node.text);
+//                    }, 50);
                 }
             })
         }

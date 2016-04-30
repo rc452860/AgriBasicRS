@@ -30,11 +30,11 @@
           $('.tree-city').combotree("tree").tree("options").url = "/mobile/region/getChild";
         }
       })
-      setTimeout(function(){
-        $(".tree-city").each(function(){
-          $(this).next().find(".combo-text").val($(this).attr("displaytext"));
-        })
-      },200);
+//      setTimeout(function(){
+//        $(".tree-city").each(function(){
+//          $(this).next().find(".combo-text").val($(this).attr("displaytext"));
+//        })
+//      },200);
     }
   </script>
   <%--<link href="/mobile/css/style.css" rel="stylesheet" type="text/css"/>

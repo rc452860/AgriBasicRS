@@ -2,8 +2,10 @@ package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.Farmer;
+import abrs.system.dao.Entity.User;
 import abrs.system.service.FarmerService;
 import abrs.system.service.RegistrationFormService;
+import abrs.system.web.context.SessionContext;
 import abrs.system.web.mobile.excel.FarmerExport;
 import abrs.system.web.mobile.excel.ResponseUtils;
 import abrs.system.web.mobile.form.FarmerForm;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -37,11 +40,18 @@ public class ManageMobileContorller {
     @Autowired
     RegistrationFormService registrationFormService;
 
+    @Autowired
+    HttpSession session;
+
 
     @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/farmerAdd",method = RequestMethod.GET)
     public String farmerManage(ModelMap modelMap){
-        modelMap.addAttribute("FarmerForm",new FarmerForm());
+        FarmerForm farmerForm = new FarmerForm();
+        User user = (User)session.getAttribute(SessionContext.CURRENT_USER);
+        farmerForm.setRecord_person(user.getName());
+        farmerForm.setUpdate_person(user.getName());
+        modelMap.addAttribute("FarmerForm",farmerForm);
         return "mobile/farmerAdd";
     }
     @Auth(role = Auth.Role.USER)
@@ -85,7 +95,10 @@ public class ManageMobileContorller {
     public String farmerEdit(@RequestParam(value = "id") String id,ModelMap modelMap){
         Farmer farmer =  farmerService.getItem(id);
         try {
-            modelMap.addAttribute("FarmerForm",FarmerForm.FarmerToForm(farmer));
+            FarmerForm farmerForm = FarmerForm.FarmerToForm(farmer);
+            User user = (User)session.getAttribute(SessionContext.CURRENT_USER);
+            farmerForm.setUpdate_person(user.getName());
+            modelMap.addAttribute("FarmerForm",farmerForm);
         }catch (Exception e){
             e.printStackTrace();
         }

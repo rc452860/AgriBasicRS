@@ -88,6 +88,21 @@
             <li>
                 <div class="header">
                     <cite></cite>
+                    <a href="javascript:void(0)" target="rightFrame">系统设置</a>
+                    <i class ="png"></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="/mobile/region/add" target="rightFrame">添加区域单位</a></li>
+                    <li><a href="/mobile/region/list" target="rightFrame">区域单位列表</a></li>
+                    <li><a href="/mobile/user/list" target="rightFrame">用户列表</a></li>
+                    <li><a href="javascript:void(0)">权限设置</a></li>
+                    <li><a href="javascript:void(0)">数据备份</a></li>
+                    <li><a href="javascript:void(0)">系统日志</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="header">
+                    <cite></cite>
                     <a href="javascript:void(0)" target="rightFrame">农户基本信息</a>
                     <i class ="png"></i>
                 </div>
@@ -96,17 +111,7 @@
                     <li><a href="/mobile/manage/farmerList" target="rightFrame">农户基本信息列表</a></li>
                 </ul>
             </li>
-            <li>
-                <div class="header">
-                    <cite></cite>
-                    <a href="javascript:void(0)" target="rightFrame">区域单位基本信息</a>
-                    <i class ="png"></i>
-                </div>
-                <ul class="sub-menus">
-                    <li><a href="/mobile/region/add" target="rightFrame">添加区域单位</a></li>
-                    <li><a href="/mobile/region/list" target="rightFrame">区域单位列表</a></li>
-                </ul>
-            </li>
+
             <li>
                 <div class="header">
                     <cite></cite>
@@ -219,17 +224,17 @@
                     <li><a href="/mobile/cropYieldSummary/list" target="rightFrame">调查表信息列表</a></li>
                 </ul>
             </li>
-            <li>
+           <%-- <li>
                 <div class="header">
                     <cite></cite>
                     <a href="javascript:void(0)" target="rightFrame">用户管理</a>
                     <i class ="png"></i>
                 </div>
                 <ul class="sub-menus">
-                    <li><a href="/mobile/user/add" target="rightFrame">添加用户</a></li>
+                    &lt;%&ndash;<li><a href="/mobile/user/add" target="rightFrame">添加用户</a></li>&ndash;%&gt;
                     <li><a href="/mobile/user/list" target="rightFrame">用户列表</a></li>
                 </ul>
-            </li>
+            </li>--%>
             <%--<li>
                 <div class="header">
                     <cite></cite>
