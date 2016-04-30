@@ -20,10 +20,7 @@
         window.deleteUrl = "/mobile/WholeYearPlantArea/delete";
         window.deleteMulUrl = "/mobile/WholeYearPlantArea/deleteMulit";
     </script>
-    <script type="text/javascript" src="/mobile/js/list.js"></script>
-    <%--分页插件--%>
-    <link rel="stylesheet" href="/mobile/css/pagination.css">
-    <script type="text/javascript" src="/mobile/js/jquery.pagination.min.js"></script>
+
 </head>
 
 

@@ -18,6 +18,8 @@
 <script type="text/javascript" src="/mobile/easyui/locale/easyui-lang-zh_CN.js"></script>
 
 <script type="text/javascript" src="/mobile/easyui/plugins/validator.js"></script>
+<script type="text/javascript" src="/mobile/js/list.js"></script>
+
 <script type="text/javascript">
     $(function(){
         if(typeof(inittree) != "undefined"){

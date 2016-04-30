@@ -7,16 +7,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>无标题文档</title>
-    <link href="/mobile/css/style.css" rel="stylesheet"/>
-    <script type="text/javascript" src="/mobile/js/jquery.js"></script>
     <script type="text/javascript">
         window.deleteUrl = "/mobile/manage/farmerDelete";
         window.deleteMulUrl = "/mobile/manage/farmerDeleteMulit";
     </script>
-    <script type="text/javascript" src="/mobile/js/list.js"></script>
-    <%--分页插件--%>
-    <link rel="stylesheet" href="/mobile/css/pagination.css">
-    <script type="text/javascript" src="/mobile/js/jquery.pagination.min.js"></script>
+    <c:import url="references.jsp"></c:import>
+
 </head>
 
 

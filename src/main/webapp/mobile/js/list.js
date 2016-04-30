@@ -1,8 +1,8 @@
 /**
  * Created by rc452 on 2016/4/27.
  */
-
 $(function () {
+
     $("#ctrall").click(function () {
         $(".ctr").attr("checked", $(this).attr("checked") != null);
     })
@@ -35,7 +35,7 @@ $(function () {
             $.ajax({
                 cache: false,
                 type: "POST",
-                url: window.deleteMulUrl, /*此处需修改*/
+                url: window.deleteMulUrl, /*此BV处需修改*/
                 data: {ids: arr},
                 async: false,
                 error: function (XMLHttpRequest) {
@@ -53,5 +53,16 @@ $(function () {
 
     window.dialog = function(url){
         //弹窗添加原型带写
+        if($("#dd").length<=0)
+            $("body").append("<div id='dd'><iframe width='100%' height='100%' id='df' src=''></iframe> </div>");
+        $("#df").attr("src",url);
+        $("#dd").dialog({
+            title: '添加',
+            width: 800,
+            height: 600,
+            closed: false,
+            cache: false,
+            modal: true
+        })
     }
 })

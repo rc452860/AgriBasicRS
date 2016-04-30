@@ -15,8 +15,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>无标题文档</title>
-  <link href="/mobile/css/style.css" rel="stylesheet" />
-  <script type="text/javascript" src="/mobile/js/jquery.js"></script>
+  <c:import url="references.jsp"></c:import>
   <script type="text/javascript">
     function Accpet() {/*通过脚本*/
       var arr = new Array();
@@ -70,9 +69,6 @@
       })
     })
   </script>
-  <%--分页插件--%>
-  <link rel="stylesheet" href="/mobile/css/pagination.css">
-  <script type="text/javascript" src="/mobile/js/jquery.pagination.min.js"></script>
 </head>
 
 

@@ -15,16 +15,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>无标题文档</title>
-    <link href="/mobile/css/style.css" rel="stylesheet"/>
-    <script type="text/javascript" src="/mobile/js/jquery.js"></script>
+
     <script type="text/javascript">
         window.deleteUrl = "/mobile/autumnFoodExpecPro/delete";
         window.deleteMulUrl = "/mobile/autumnFoodExpecPro/deleteMulit";
     </script>
-    <script type="text/javascript" src="/mobile/js/list.js"></script>
-    <%--分页插件--%>
-    <link rel="stylesheet" href="/mobile/css/pagination.css">
-    <script type="text/javascript" src="/mobile/js/jquery.pagination.min.js"></script>
+    <c:import url="references.jsp"></c:import>
 </head>
 
 
@@ -44,7 +40,7 @@
     <div class="tools">
 
         <ul class="toolbar">
-            <li onclick="window.location.href='/mobile/autumnFoodExpecPro/add'" class="click"><span><img
+            <li onclick="window.dialog('/mobile/autumnFoodExpecPro/add')" class="click"><span><img
                     src="/mobile/img/t01.png"/></span>添加
             </li>
             <li onclick="DeleteMulit()"><span><img src="/mobile/img/t03.png"/></span>删除</li>
