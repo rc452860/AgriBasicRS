@@ -85,21 +85,27 @@
             <span><img src="img/leftico01.png" /></span>管理信息
         </div>
         <ul class="menuson">
-            <li>
-                <div class="header">
-                    <cite></cite>
-                    <a href="javascript:void(0)" target="rightFrame">系统设置</a>
-                    <i class ="png"></i>
-                </div>
-                <ul class="sub-menus">
-                    <li><a href="/mobile/region/add" target="rightFrame">添加区域单位</a></li>
-                    <li><a href="/mobile/region/list" target="rightFrame">区域单位列表</a></li>
-                    <li><a href="/mobile/user/list" target="rightFrame">用户列表</a></li>
-                    <li><a href="javascript:void(0)">权限设置</a></li>
-                    <li><a href="javascript:void(0)">数据备份</a></li>
-                    <li><a href="javascript:void(0)">系统日志</a></li>
-                </ul>
-            </li>
+            <c:if test="${RoleAuth > 1}">
+                <li>
+                    <div class="header">
+                        <cite></cite>
+                        <a href="javascript:void(0)" target="rightFrame">系统设置</a>
+                        <i class ="png"></i>
+                    </div>
+                    <ul class="sub-menus">
+                        <li><a href="/mobile/user/list" target="rightFrame">用户列表</a></li>
+                        <c:if test="${RoleAuth > 2}">
+                            <li><a href="/mobile/region/add" target="rightFrame">添加区域单位</a></li>
+                            <li><a href="/mobile/region/list" target="rightFrame">区域单位列表</a></li>
+                        </c:if>
+                        <c:if test="${RoleAuth > 3}">
+                            <li><a href="javascript:void(0)">权限设置</a></li>
+                            <li><a href="javascript:void(0)">数据备份</a></li>
+                            <li><a href="javascript:void(0)">系统日志</a></li>
+                        </c:if>
+                    </ul>
+                </li>
+            </c:if>
             <li>
                 <div class="header">
                     <cite></cite>
@@ -112,19 +118,22 @@
                 </ul>
             </li>
 
-            <li>
-                <div class="header">
-                    <cite></cite>
-                    <a href="javascript:void(0)" target="rightFrame">调查表信息</a>
-                    <i class ="png"></i>
-                </div>
-                <ul class="sub-menus">
-                    <li><a href="/mobile/registrationForm/add" target="rightFrame">添加调查表信息</a></li>
-                    <li><a href="/mobile/registrationForm/list" target="rightFrame">调查表信息列表</a></li>
-                    <li><a href="/mobile/registrationForm/workflowlist" target="rightFrame">调查表上报审核</a></li>
-                    <li><a href="/mobile/registrationForm/workflowprocesslist" target="rightFrame">工作进度</a></li>
-                </ul>
-            </li>
+            <c:if test="${RoleAuth > 1}">
+                <li>
+                    <div class="header">
+                        <cite></cite>
+                        <a href="javascript:void(0)" target="rightFrame">调查表信息</a>
+                        <i class ="png"></i>
+                    </div>
+                    <ul class="sub-menus">
+                        <li><a href="/mobile/registrationForm/add" target="rightFrame">添加调查表信息</a></li>
+                        <li><a href="/mobile/registrationForm/list" target="rightFrame">调查表信息列表</a></li>
+                        <li><a href="/mobile/registrationForm/workflowlist" target="rightFrame">调查表上报审核</a></li>
+                        <li><a href="/mobile/registrationForm/workflowprocesslist" target="rightFrame">工作进度</a></li>
+                    </ul>
+                </li>
+            </c:if>
+
             <li>
                 <div class="header">
                     <cite></cite>
@@ -191,39 +200,42 @@
                     <li><a href="/mobile/costBenefitProductivityOfPlant/list" target="rightFrame">调查表信息列表</a></li>
                 </ul>
             </li>
-            <li>
-                <div class="header">
-                    <cite></cite>
-                    <a href="javascript:void(0)" target="rightFrame">主要农产品和农业生产资料价格监测旬报表(农民售价)</a>
-                    <i class ="png"></i>
-                </div>
-                <ul class="sub-menus">
-                    <li><a href="/mobile/productsAndMeansFarmerPrice/add" target="rightFrame">添加调查表信息</a></li>
-                    <li><a href="/mobile/productsAndMeansFarmerPrice/list" target="rightFrame">调查表信息列表</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="header">
-                    <cite></cite>
-                    <a href="javascript:void(0)" target="rightFrame">主要农产品和农业生产资料价格监测旬报表(市场价格)</a>
-                    <i class ="png"></i>
-                </div>
-                <ul class="sub-menus">
-                    <li><a href="/mobile/productsAndMeansMarketPrice/add" target="rightFrame">添加调查表信息</a></li>
-                    <li><a href="/mobile/productsAndMeansMarketPrice/list" target="rightFrame">调查表信息列表</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="header">
-                    <cite></cite>
-                    <a href="javascript:void(0)" target="rightFrame">农作物产量调查汇总表</a>
-                    <i class ="png"></i>
-                </div>
-                <ul class="sub-menus">
-                    <li><a href="/mobile/cropYieldSummary/add" target="rightFrame">添加调查表信息</a></li>
-                    <li><a href="/mobile/cropYieldSummary/list" target="rightFrame">调查表信息列表</a></li>
-                </ul>
-            </li>
+            <c:if test="${RoleAuth > 1}">
+                <li>
+                    <div class="header">
+                        <cite></cite>
+                        <a href="javascript:void(0)" target="rightFrame">主要农产品和农业生产资料价格监测旬报表(农民售价)</a>
+                        <i class ="png"></i>
+                    </div>
+                    <ul class="sub-menus">
+                        <li><a href="/mobile/productsAndMeansFarmerPrice/add" target="rightFrame">添加调查表信息</a></li>
+                        <li><a href="/mobile/productsAndMeansFarmerPrice/list" target="rightFrame">调查表信息列表</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="header">
+                        <cite></cite>
+                        <a href="javascript:void(0)" target="rightFrame">主要农产品和农业生产资料价格监测旬报表(市场价格)</a>
+                        <i class ="png"></i>
+                    </div>
+                    <ul class="sub-menus">
+                        <li><a href="/mobile/productsAndMeansMarketPrice/add" target="rightFrame">添加调查表信息</a></li>
+                        <li><a href="/mobile/productsAndMeansMarketPrice/list" target="rightFrame">调查表信息列表</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div class="header">
+                        <cite></cite>
+                        <a href="javascript:void(0)" target="rightFrame">农作物产量调查汇总表</a>
+                        <i class ="png"></i>
+                    </div>
+                    <ul class="sub-menus">
+                        <li><a href="/mobile/cropYieldSummary/add" target="rightFrame">添加调查表信息</a></li>
+                        <li><a href="/mobile/cropYieldSummary/list" target="rightFrame">调查表信息列表</a></li>
+                    </ul>
+                </li>
+            </c:if>
            <%-- <li>
                 <div class="header">
                     <cite></cite>
