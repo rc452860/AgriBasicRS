@@ -33,7 +33,7 @@
   
   <div class="tools">
     <ul class="toolbar">
-      <li onclick="window.location.href='/mobile/${registration.form_type}/export'" class="click"> <span><img src="/mobile/img/t04.png"/></span>导出</li>
+      <li onclick="window.dialog('/mobile/${registration.form_type}/export')" class="click"> <span><img src="/mobile/img/t04.png"/></span>导出</li>
     </ul>
   </div>
 

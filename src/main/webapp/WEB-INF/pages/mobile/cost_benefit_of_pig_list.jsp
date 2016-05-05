@@ -41,7 +41,7 @@
     <div class="tools">
 
         <ul class="toolbar">
-            <li onclick="window.location.href='/mobile/costBenefitOfPig/add'" class="click"><span><img
+            <li onclick="window.dialog('/mobile/costBenefitOfPig/add')" class="click"><span><img
                     src="/mobile/img/t01.png"/></span>添加
             </li>
             <li onclick="DeleteMulit()"><span><img src="/mobile/img/t03.png"/></span>删除</li>
