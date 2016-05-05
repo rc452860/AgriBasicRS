@@ -209,8 +209,7 @@ public class RegistrationFormMobileController {
     @ResponseBody
     @RequestMapping(value = "/selectJsonB/{form_type}",method = RequestMethod.GET)
     public Object selectJsonB(@PathVariable("form_type") String form_type){
-        User user = (User)session.getAttribute(SessionContext.CURRENT_USER);
-        List<RegistrationForm> registrationForms =  service.getAvailableRegister(form_type,user);
+        List<RegistrationForm> registrationForms =  service.getAvailableRegister(form_type);
         List<Object> result = new ArrayList<Object>();
         for (final RegistrationForm item : registrationForms){
             result.add(new Object() {

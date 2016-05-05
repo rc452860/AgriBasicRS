@@ -4,6 +4,7 @@ import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.RegistrationForm;
 import abrs.system.dao.Entity.User;
 import abrs.system.dao.RegistrationFormDao;
+import abrs.system.web.context.SessionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,13 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import static abrs.system.aspect.Auth.*;
 
 /**
  * Created by Edifi_000 on 2016-03-24.
@@ -29,6 +33,9 @@ public class RegistrationFormService {
     private RegistrationFormDao registrationFormDao;
     @Autowired
     private RegionService regionService;
+
+    @Autowired
+    private HttpSession session;
 
     public boolean addItem(RegistrationForm registrationForm)
     {
@@ -134,11 +141,20 @@ public class RegistrationFormService {
         query.addCriteria(Criteria.where("end_date").gte(new Date()));
         return registrationFormDao.queryList(query);
     }
-    public List<RegistrationForm> getAvailableRegister(String form_type,User user) {
+    public List<RegistrationForm> getAvailableRegister(String form_type) {
+        User user = (User)session.getAttribute(SessionContext.CURRENT_USER);
+        Role role  = (Role) session.getAttribute(SessionContext.CURRENT_USER_ROLE);
+
         Query query = new Query();
         Criteria cr = new Criteria();
         String regionCode = user.getRegionCode();
-        Pattern pattern = regionService.getDescendantsPattern(regionCode);
+        Pattern pattern;
+        //如果权限为farmer就只能看到自己区域的调查表
+        if(role.ordinal()> Role.USER.ordinal()){
+            pattern = regionService.getDescendantsPattern(regionCode);
+        }else{
+            pattern = Pattern.compile(regionCode);
+        }
         cr.andOperator(Criteria.where("end_date").gte(new Date()),Criteria.where("form_type").is(form_type),Criteria.where("region_id").regex(pattern));
         query.addCriteria(cr);
         return registrationFormDao.queryList(query);
