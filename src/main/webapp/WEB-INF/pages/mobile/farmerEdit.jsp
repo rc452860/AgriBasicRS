@@ -62,16 +62,20 @@
     <form:form commandName="FarmerForm">
         <form:hidden path="id"/>
         <table class="form-add" cellpadding="0" cellspacing="0">
-
             <tr>
-                <td>序号</td><td><form:input class="easyui-validatebox" style="width:150px;height:24px;" required="required" path="no"/></td>
+                <td>调查表编号</td>
+                <td><form:input class="easyui-combobox" required="true" data-options="url:'/mobile/registrationForm/selectJsonB/manage',
+					method:'get',
+					valueField:'id',
+					textField:'text',
+					panelHeight:'auto'" path="registration_form_id"/></td>
+            </tr>
+            <tr>
                 <td>所在镇村组编号</td><td><form:input readonly="true" style="width:150px;height:24px;" path="region_no"/></td>
-            </tr>
-            <tr>
                 <td>所在镇村组</td><td><form:input path="region" class="easyui-combotree tree-city" style="width:150px;height:24px;" data-options="url:'/mobile/region/getRoot',method:'get',required:true" /></td>
-                <td>姓名</td><td><form:input class="easyui-validatebox" validType="CHS" style="width:150px;height:24px;" required="required" path="name"/></td>
             </tr>
             <tr>
+                <td>姓名</td><td><form:input class="easyui-validatebox" validType="CHS" style="width:150px;height:24px;" required="required" path="name"/></td>
                 <td>性别</td>
                 <td>
                     <form:select class="easyui-combobox" style="width:150px;height:24px;"  path="sex" >
@@ -79,6 +83,9 @@
                         <form:option value="女">女</form:option>
                     </form:select>
                 </td>
+            </tr>
+            <tr>
+                <td>年龄</td><td><form:input class="easyui-numberbox" required="required" data-options="min:0" path="age"/></td>
                 <td>家庭人口</td><td><form:input class="easyui-numberbox" required="required" data-options="min:0" path="familypopulation"/></td>
             </tr>
             <tr>

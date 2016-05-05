@@ -128,7 +128,20 @@ public class IndexMobileController {
     }
     @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/left", method = RequestMethod.GET)
-    public String left(){
+    public String left(ModelMap model){
+        User user = (User) session.getAttribute(SessionContext.CURRENT_USER);
+        Auth.Role role = userService.getUserRole(user.getId());
+        int nAuth = 0;
+        if (role == Auth.Role.USER) {
+            nAuth = 1;
+        } else if (role == Auth.Role.ADMIN){
+            nAuth = 2;
+        }else if (role == Auth.Role.INFOADMIN){
+            nAuth = 3;
+        }else if (role == Auth.Role.SUPERADMIN){
+            nAuth = 4;
+        }
+        model.addAttribute("RoleAuth", nAuth);
         return "mobile/left";
     }
 
