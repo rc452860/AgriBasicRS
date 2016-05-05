@@ -3,6 +3,7 @@ package abrs.system.service;
 import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.Farmer;
 import abrs.system.dao.FarmerDao;
+import abrs.system.dao.MongoGenDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,16 @@ import java.util.List;
  */
 
 @Service
-public class FarmerService {
+public class FarmerService extends BaseService{
     private static Logger logger = LoggerFactory.getLogger(FarmerService.class);
 
     @Autowired
     private FarmerDao farmerDao;
+
+    public Object getDao()
+    {
+        return farmerDao;
+    }
 
     public boolean addItem(Farmer farmer)
     {
