@@ -234,7 +234,7 @@ public class RegistrationFormMobileController {
                 }
 
                 {
-                    id = item.getNo();
+                    id = item.getId();
                     text = item.getName();
                 }
             });
