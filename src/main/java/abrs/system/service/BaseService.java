@@ -56,7 +56,12 @@ public class BaseService {
         return t;
     }
 
-    public <T> List<T> getCommonList(T condition) {
+    public <T> List<T> getCommonList(T condition)
+    {
+        return getCommonList(condition,null);
+    }
+
+    public <T> List<T> getCommonList(T condition,List<Criteria> extCondition) {
         //TODO 反射判断将有作为条件值的对象进行设置条件
         Query query = new Query();
         Criteria cr = new Criteria();
@@ -65,6 +70,7 @@ public class BaseService {
 
         boolean isHasConditionForRegistrationForm = false;
 
+        //根据条件实体构建基本查询条件
         for (Field field : fields){
             field.setAccessible(true);
             String type = field.getType().toString();
@@ -91,6 +97,7 @@ public class BaseService {
             }
         }
 
+        //补偿用户权限的条件(农户补偿id 其他用户补偿所在区域的调查表编号集合)
         User user = (User)extsession.getAttribute(SessionContext.CURRENT_USER);
         if(user.getUserRole().equals(Auth.Role.USER)){
             querylist.add(Criteria.where("farmer_id").is(user.getFarmer_id()));
@@ -107,6 +114,13 @@ public class BaseService {
             }
         }
 
+        //补充条件增加
+        if(extCondition!=null&&extCondition.size()>0)
+        {
+            querylist.addAll(extCondition);
+        }
+
+        //条件列表转换为查询条件
         if(querylist.size()>1){
             query.addCriteria(cr.andOperator(querylist.toArray(new Criteria[querylist.size()])));
         }
