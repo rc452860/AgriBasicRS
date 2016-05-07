@@ -1,17 +1,29 @@
 package abrs.system.service;
 
+import abrs.system.aspect.Auth;
+import abrs.system.dao.Entity.RegistrationForm;
+import abrs.system.dao.Entity.User;
 import abrs.system.dao.MongoGenDao;
+import abrs.system.web.context.SessionContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
+import javax.servlet.http.HttpSession;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Edifi_000 on 2016-05-06.
  */
 public class BaseService {
+
+    @Autowired
+    private RegistrationFormService extRegistrationFormService;
+    @Autowired
+    HttpSession extsession;
 
     public Object getDao()
     {
@@ -51,6 +63,8 @@ public class BaseService {
         List<Criteria> querylist = new ArrayList<Criteria>();
         Field[] fields=condition.getClass().getDeclaredFields();
 
+        boolean isHasConditionForRegistrationForm = false;
+
         for (Field field : fields){
             field.setAccessible(true);
             String type = field.getType().toString();
@@ -66,10 +80,30 @@ public class BaseService {
                     if(field.get(condition)!=null)
                     {
                         querylist.add(Criteria.where(name).regex(field.get(condition).toString()));
+                        if(name.equals("registration_form_id"))
+                        {
+                            isHasConditionForRegistrationForm = true;
+                        }
                     }
                 }
             }catch (IllegalAccessException ex){
                 ex.printStackTrace();
+            }
+        }
+
+        User user = (User)extsession.getAttribute(SessionContext.CURRENT_USER);
+        if(user.getUserRole().equals(Auth.Role.USER)){
+            querylist.add(Criteria.where("farmer_id").is(user.getFarmer_id()));
+        }else{
+            if(!isHasConditionForRegistrationForm)
+            {
+                List<RegistrationForm> list = extRegistrationFormService.getAvailableRegister(new Date(0));
+                List<String> listRegistrationFormId = new ArrayList<String>();
+                for(RegistrationForm form : list)
+                {
+                    listRegistrationFormId.add(form.getId());
+                }
+                querylist.add(Criteria.where("registration_form_id").in(listRegistrationFormId));
             }
         }
 

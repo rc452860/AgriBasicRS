@@ -1,5 +1,7 @@
 package abrs.system.dao.Entity;
 
+import abrs.system.aspect.Auth;
+import abrs.system.util.AES;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -163,5 +165,10 @@ public class User {
 
     public void setFlag(String flag) {
         this.flag = flag;
+    }
+
+    public Auth.Role getUserRole(){
+        String value = AES.decrypt(getRole()).substring(6);
+        return Auth.Role.valueOf(value);
     }
 }

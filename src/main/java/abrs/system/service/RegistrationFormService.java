@@ -141,6 +141,25 @@ public class RegistrationFormService {
         query.addCriteria(Criteria.where("end_date").gte(new Date()));
         return registrationFormDao.queryList(query);
     }
+    public List<RegistrationForm> getAvailableRegister(Date end_date) {
+        User user = (User)session.getAttribute(SessionContext.CURRENT_USER);
+        Role role  = (Role) session.getAttribute(SessionContext.CURRENT_USER_ROLE);
+
+        Query query = new Query();
+        Criteria cr = new Criteria();
+        String regionCode = user.getRegionCode();
+        Pattern pattern;
+        //如果权限为farmer就只能看到自己区域的调查表
+        if(role.ordinal()> Role.USER.ordinal()){
+            pattern = regionService.getDescendantsPattern(regionCode);
+        }else{
+            pattern = Pattern.compile(regionCode);
+        }
+        cr.andOperator(Criteria.where("end_date").gte(end_date),Criteria.where("region_id").regex(pattern));
+        query.addCriteria(cr);
+
+        return registrationFormDao.queryList(query);
+    }
     public List<RegistrationForm> getAvailableRegister(String form_type) {
         User user = (User)session.getAttribute(SessionContext.CURRENT_USER);
         Role role  = (Role) session.getAttribute(SessionContext.CURRENT_USER_ROLE);
@@ -156,6 +175,25 @@ public class RegistrationFormService {
             pattern = Pattern.compile(regionCode);
         }
         cr.andOperator(Criteria.where("end_date").gte(new Date()),Criteria.where("form_type").is(form_type),Criteria.where("region_id").regex(pattern));
+        query.addCriteria(cr);
+        return registrationFormDao.queryList(query);
+    }
+
+    public List<RegistrationForm> getAvailableRegister(String form_type,Date end_date) {
+        User user = (User)session.getAttribute(SessionContext.CURRENT_USER);
+        Role role  = (Role) session.getAttribute(SessionContext.CURRENT_USER_ROLE);
+
+        Query query = new Query();
+        Criteria cr = new Criteria();
+        String regionCode = user.getRegionCode();
+        Pattern pattern;
+        //如果权限为farmer就只能看到自己区域的调查表
+        if(role.ordinal()> Role.USER.ordinal()){
+            pattern = regionService.getDescendantsPattern(regionCode);
+        }else{
+            pattern = Pattern.compile(regionCode);
+        }
+        cr.andOperator(Criteria.where("end_date").gte(end_date),Criteria.where("form_type").is(form_type),Criteria.where("region_id").regex(pattern));
         query.addCriteria(cr);
         return registrationFormDao.queryList(query);
     }
