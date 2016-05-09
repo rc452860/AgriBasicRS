@@ -18,6 +18,20 @@
   <script type="text/javascript">
     window.deleteUrl = "/mobile/summerFoodAndRapeseedExpecPro/delete";
     window.deleteMulUrl = "/mobile/summerFoodAndRapeseedExpecPro/deleteMulit";
+    window.search = function(){
+
+      var url = window.location.pathname;
+      url = $("input[name=registration_form_id]").val() == ''?url:addParam(url,'registration_form_id',$('input[name=registration_form_id]').val());
+      url = $("input[name=farmer_id]").val() == ''?url:addParam(url,'farmer_id',$('input[name=farmer_id]').val());
+      window.location.href = url;
+    }
+    window.exportexcel = function(){
+
+      var url = "/mobile/summerFoodAndRapeseedExpecPro/export";
+      url = $("input[name=registration_form_id]").val() == ''?url:addParam(url,'registration_form_id',$('input[name=registration_form_id]').val());
+      url = $("input[name=farmer_id]").val() == ''?url:addParam(url,'farmer_id',$('input[name=farmer_id]').val());
+      window.location.href = url;
+    }
   </script>
   <c:import url="references.jsp"></c:import>
 
@@ -46,8 +60,26 @@
       <li onclick="DeleteMulit()"><span><img src="/mobile/img/t03.png"/></span>删除</li>
     </ul>
   </div>
+  <ul class="seachform1 clearfix">
+    <li><label>调查表:</label><input name="registration_form_id" class="easyui-combobox"  data-options="url:'/mobile/registrationForm/selectJsonB/summerFoodAndRapeseedExpecPro',
+					method:'get',
+					valueField:'id',
+					textField:'text',
+					panelHeight:'auto'"/></li>
+    <li><label>农户:</label><input name="farmer_id" class="easyui-combobox" data-options="url:'/mobile/registrationForm/selectJsonB/summerFoodAndRapeseedExpecPro',
+					method:'get',
+					valueField:'id',
+					textField:'text',
+					panelHeight:'auto'"/></li>
+  </ul>
+  <ul class="seachform1 clearfix">
+    <li class="sarchbtn">
+      <label>&nbsp;</label>
+      <input name="" type="button" onclick="search()" id="search-button" class="scbtn" value="查询"/>
+      <input name="" type="button" onclick="exportexcel()" class="scbtn2" value="导出"/></li>
+  </ul>
 
-
+  <div class="formtitle clearfix"><span>夏粮、夏收油菜籽产量预计列表</span></div>
   <table class="tablelist">
     <thead>
     <tr>

@@ -5,6 +5,8 @@ import abrs.system.dao.Entity.SummerFoodAndRapeseedExpecPro;
 import abrs.system.dao.Entity.ExpectedProductionItem;
 import abrs.system.service.SummerFoodAndRapeseedExpecProService;
 import abrs.system.service.ExpectedProductionItemService;
+import abrs.system.web.mobile.excel.ResponseUtils;
+import abrs.system.web.mobile.excel.SummerFoodAndRapeseedExpecProExport;
 import abrs.system.web.mobile.form.SummerFoodAndRapeseedExpecProForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -75,14 +79,27 @@ public class SummerFoodAndRapeseedExpecProMobileController {
 
     @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public String List(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
-        List<SummerFoodAndRapeseedExpecPro> list = service.getItems((index-1)*size,size);
+    public String List(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size,
+                       @RequestParam(value = "registration_form_id",required = false) String registration_form_id,
+                       @RequestParam(value = "farmer_id",required = false) String farmer_id, ModelMap modelMap){
+//        List<SummerFoodAndRapeseedExpecPro> list = service.getItems((index-1)*size,size);
+//        long count = service.getCount();
+//        modelMap.addAttribute("list",list);
+//        modelMap.addAttribute("count",count);
+//        modelMap.addAttribute("index", index);
+//        modelMap.addAttribute("size", size);
+//        modelMap.addAttribute("countpage", Math.floor(count / size));
+
+        SummerFoodAndRapeseedExpecPro condition = service.defautConditionEntity(new SummerFoodAndRapeseedExpecPro());
+        condition.setRegistration_form_id(registration_form_id);
+        condition.setFarmer_id(farmer_id);
+        List<SummerFoodAndRapeseedExpecPro> list = service.getCommonList(condition, (index - 1) * size, size);
         long count = service.getCount();
         modelMap.addAttribute("list",list);
         modelMap.addAttribute("count",count);
-        modelMap.addAttribute("index",index);
-        modelMap.addAttribute("size",size);
-        modelMap.addAttribute("countpage",Math.floor(count/size));
+        modelMap.addAttribute("index", index);
+        modelMap.addAttribute("size", size);
+        modelMap.addAttribute("countpage", Math.floor(count / size));
 
         return "mobile/summer_food_and_rapeseed_expec_pro_list";
     }
@@ -185,5 +202,44 @@ public class SummerFoodAndRapeseedExpecProMobileController {
             map.put("message", e.getMessage());
         }
         return map;
+    }
+
+    @Auth(role = Auth.Role.USER)
+    @RequestMapping(value = "/export",method = RequestMethod.GET)
+    public String Export(HttpServletRequest request,HttpServletResponse response,
+                         @RequestParam(value = "registration_form_id",required = false) String registration_form_id,
+                         @RequestParam(value = "farmer_id",required = false) String farmer_id)
+    {
+        SummerFoodAndRapeseedExpecPro condition = service.defautConditionEntity(new SummerFoodAndRapeseedExpecPro());
+        condition.setRegistration_form_id(registration_form_id);
+        condition.setFarmer_id(farmer_id);
+        List<SummerFoodAndRapeseedExpecPro> list = service.getCommonList(condition);
+
+        final int size =  list.size();
+
+        SummerFoodAndRapeseedExpecProExport needExport = new SummerFoodAndRapeseedExpecProExport();
+        needExport.setRealPath(request.getRealPath("mobile/exceltemplate"));
+        needExport.setIncreaseType(1);
+        needExport.setIncreaseCount(size);
+
+        if(size>0)
+        {
+            SummerFoodAndRapeseedExpecPro summerFoodAndRapeseedExpecPro = list.get(0);
+            needExport.setFood_item(itemService.getItem(summerFoodAndRapeseedExpecPro.getFood_itemid()));
+            needExport.setRapeseed_food_item(itemService.getItem(summerFoodAndRapeseedExpecPro.getRapeseed_youcaizi_itemid()));
+            needExport.setFood_xiaomai_food_item(itemService.getItem(summerFoodAndRapeseedExpecPro.getFood_xiaomai_food_itemid()));
+            needExport.setSummerFoodAndRapeseedExpecPro(summerFoodAndRapeseedExpecPro);
+        }
+
+        try{
+            byte[] content = needExport.Export();
+            ResponseUtils.MakeDownLoadFile(content, response, needExport.getTemplateFileName());
+            return null;
+        }
+        catch (Exception ex){
+            System.out.print(ex.toString());
+        }
+
+        return null;
     }
 }

@@ -19,11 +19,16 @@ import java.util.List;
  */
 
 @Service
-public class SummerFoodAndRapeseedExpecProService {
+public class SummerFoodAndRapeseedExpecProService extends BaseService{
     private static Logger logger = LoggerFactory.getLogger(SummerFoodAndRapeseedExpecProService.class);
 
     @Autowired
     private SummerFoodAndRapeseedExpecProDao summerFoodAndRapeseedDao;
+
+    public Object getDao()
+    {
+        return summerFoodAndRapeseedDao;
+    }
 
     private int survey_village_num; //�������
 
