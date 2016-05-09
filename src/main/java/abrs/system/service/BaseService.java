@@ -56,12 +56,17 @@ public class BaseService {
         return t;
     }
 
-    public <T> List<T> getCommonList(T condition)
+    public <T> List<T> getCommonList(T condition,int start, int size)
     {
-        return getCommonList(condition,null);
+        return getCommonList(condition,null,start,size);
     }
 
-    public <T> List<T> getCommonList(T condition,List<Criteria> extCondition) {
+    public <T> List<T> getCommonList(T condition)
+    {
+        return getCommonList(condition,null,-1,-1);
+    }
+
+    public <T> List<T> getCommonList(T condition,List<Criteria> extCondition,int start, int size) {
         //TODO 反射判断将有作为条件值的对象进行设置条件
         Query query = new Query();
         Criteria cr = new Criteria();
@@ -127,6 +132,13 @@ public class BaseService {
         if (querylist.size() == 1){
             query.addCriteria(querylist.get(0));
         }
-        return ((MongoGenDao<T>)getDao()).queryList(query);
+        if(start==-1&&size==-1)
+        {
+            return ((MongoGenDao<T>)getDao()).queryList(query);
+        }
+        else
+        {
+            return ((MongoGenDao<T>)getDao()).getPage(query,start,size);
+        }
     }
 }
