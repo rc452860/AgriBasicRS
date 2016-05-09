@@ -10,6 +10,14 @@
     <script type="text/javascript">
         window.deleteUrl = "/mobile/manage/farmerDelete";
         window.deleteMulUrl = "/mobile/manage/farmerDeleteMulit";
+        window.search = function(){
+
+            var url = window.location.pathname;
+            url = $("input[name=name]").val() == ''?url:addParam(url,'name',$('input[name=name]').val());
+            url = $("input[name=telphone]").val() == ''?url:addParam(url,'telphone',$('input[name=telphone]').val());
+            url = $("input[name=village]").val() == ''?url:addParam(url,'village',$('input[name=village]').val());
+            window.location.href = url;
+        }
     </script>
     <c:import url="references.jsp"></c:import>
 
