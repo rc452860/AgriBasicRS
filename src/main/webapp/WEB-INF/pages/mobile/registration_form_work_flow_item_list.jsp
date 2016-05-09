@@ -15,10 +15,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>无标题文档</title>
-  <link href="/mobile/css/style.css" rel="stylesheet" />
-  <script type="text/javascript" src="/mobile/js/jquery.js"></script>
+  <c:import url="references.jsp"></c:import>
   <script type="text/javascript">
-
   </script>
   <%--分页插件--%>
   <link rel="stylesheet" href="/mobile/css/pagination.css">
@@ -33,7 +31,7 @@
   
   <div class="tools">
     <ul class="toolbar">
-      <li onclick="window.dialog('/mobile/${registration.form_type}/export')" class="click"> <span><img src="/mobile/img/t04.png"/></span>导出</li>
+      <a href="/mobile/${registration.form_type}/export?registration_form_id=${registration.id}">导出</a>
     </ul>
   </div>
 

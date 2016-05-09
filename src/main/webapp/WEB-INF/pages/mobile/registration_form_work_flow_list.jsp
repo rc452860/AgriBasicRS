@@ -125,7 +125,7 @@
         <td>${item.record_entity}</td>
         <td>${item.record_person_name}</td>
         <td>${item.record_person_phone}</td>
-        <td><a href="/mobile/${item.form_type}/list?registrationid=${item.id}" class="tablelink">详情</a></td>
+        <td><a href="/mobile/${item.form_type}/list?registration_form_id=${item.id}" class="tablelink">详情</a></td>
 
       </tr>
     </c:forEach>
