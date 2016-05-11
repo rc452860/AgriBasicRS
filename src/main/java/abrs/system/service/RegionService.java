@@ -166,6 +166,7 @@ public class RegionService {
             Matcher matcher = pattern.matcher(code);
             if (matcher.matches()) {
                 precode = matcher.group(1);
+                precode = precode.equals("00")?"[0-9]{2}":precode;
                 pattern = Pattern.compile(next[i].replace("${precode}",precode));
             }
         }

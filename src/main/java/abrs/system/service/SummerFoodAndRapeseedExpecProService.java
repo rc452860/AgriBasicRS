@@ -4,6 +4,7 @@ import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.SummerFoodAndRapeseedExpecPro;
 import abrs.system.dao.Entity.ExpectedProductionItem;
 import abrs.system.dao.SummerFoodAndRapeseedExpecProDao;
+import abrs.system.web.context.SessionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -22,6 +24,8 @@ import java.util.List;
 public class SummerFoodAndRapeseedExpecProService extends BaseService{
     private static Logger logger = LoggerFactory.getLogger(SummerFoodAndRapeseedExpecProService.class);
 
+    @Autowired
+    HttpSession session;
     @Autowired
     private SummerFoodAndRapeseedExpecProDao summerFoodAndRapeseedDao;
 
@@ -42,6 +46,8 @@ public class SummerFoodAndRapeseedExpecProService extends BaseService{
 
     public boolean addItem(SummerFoodAndRapeseedExpecPro summerFoodAndRapeseed)
     {
+        String farmerId = (String) session.getAttribute(SessionContext.CURRENT_FARMER_ID);
+        summerFoodAndRapeseed.setFarmer_id(farmerId);
         summerFoodAndRapeseedDao.save(summerFoodAndRapeseed);
         logger.info("Add SummerFoodAndRapeseed");
         return true;

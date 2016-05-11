@@ -1,6 +1,7 @@
 package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
+import abrs.system.aspect.CFAspect;
 import abrs.system.dao.Entity.ProductsAndMeansMarketPrice;
 import abrs.system.service.ProductsAndMeansMarketPriceService;
 import abrs.system.web.mobile.form.ProductsAndMeansMarketPriceForm;
@@ -29,6 +30,7 @@ public class ProductsAndMeansMarketPriceMobileController {
     @Autowired
     ProductsAndMeansMarketPriceService service;
 
+    @CFAspect
     @Auth(role = Auth.Role.ADMIN)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String Add(ModelMap modelMap){

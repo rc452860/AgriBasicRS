@@ -3,6 +3,7 @@ package abrs.system.service;
 import abrs.system.dao.Entity.AutumnFoodExpecPro;
 import abrs.system.dao.Entity.ExpectedProductionItem;
 import abrs.system.dao.AutumnFoodExpecProDao;
+import abrs.system.web.context.SessionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -23,8 +25,12 @@ public class AutumnFoodExpecProService {
     @Autowired
     private AutumnFoodExpecProDao autumnFoodExpecProDao;
 
+    @Autowired
+    HttpSession session;
     public boolean addItem(AutumnFoodExpecPro autumnFoodExpecPro)
     {
+        String farmerId = (String) session.getAttribute(SessionContext.CURRENT_FARMER_ID);
+        autumnFoodExpecPro.setFarmer_id(farmerId);
         autumnFoodExpecProDao.save(autumnFoodExpecPro);
         return true;
     }

@@ -3,6 +3,7 @@ package abrs.system.service;
 import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.CostBenefitProductivityOfPlant;
 import abrs.system.dao.CostBenefitProductivityOfPlantDao;
+import abrs.system.web.context.SessionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -24,8 +26,12 @@ public class CostBenefitProductivityOfPlantService {
     @Autowired
     private CostBenefitProductivityOfPlantDao costBenefitProductivityOfPlantDao;
 
+    @Autowired
+    HttpSession session;
     public boolean addItem(CostBenefitProductivityOfPlant costBenefitProductivityOfPlant)
     {
+        String farmerId = (String) session.getAttribute(SessionContext.CURRENT_FARMER_ID);
+        costBenefitProductivityOfPlant.setFarmer_id(farmerId);
         costBenefitProductivityOfPlantDao.save(costBenefitProductivityOfPlant);
         logger.info("Add CostBenefitProductivityOfPlant");
         return true;

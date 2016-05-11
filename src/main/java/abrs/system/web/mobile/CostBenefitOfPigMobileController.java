@@ -1,6 +1,7 @@
 package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
+import abrs.system.aspect.CFAspect;
 import abrs.system.dao.Entity.CostBenefitOfPig;
 import abrs.system.service.CostBenefitOfPigService;
 import abrs.system.web.mobile.form.CostBenefitOfPigForm;
@@ -29,6 +30,7 @@ public class CostBenefitOfPigMobileController {
     @Autowired
     CostBenefitOfPigService service;
 
+    @CFAspect
     @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String Add(ModelMap modelMap){

@@ -41,6 +41,8 @@ public class WholeYearPlantAreaService {
     private RegionService regionService;
     public boolean addItem(WholeYearPlantArea wholeYearPlantArea)
     {
+        String farmerId = (String) session.getAttribute(SessionContext.CURRENT_FARMER_ID);
+        wholeYearPlantArea.setFarmer_id(farmerId);
         wholeYearPlantAreaDao.save(wholeYearPlantArea);
         logger.info("Add WholeYearPlantArea");
         return true;

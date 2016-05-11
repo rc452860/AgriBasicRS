@@ -8,6 +8,7 @@ import abrs.system.dao.Entity.User;
 import abrs.system.service.RegionService;
 import abrs.system.service.RegistrationFormService;
 import abrs.system.service.RegistrationFormWorkFlowService;
+import abrs.system.service.UserService;
 import abrs.system.web.context.SessionContext;
 import abrs.system.web.mobile.form.RegistrationFormForm;
 import abrs.system.web.mobile.workflow.BaseWorkFlow;
@@ -40,6 +41,8 @@ public class RegistrationFormMobileController {
 
     @Autowired
     RegistrationFormService service;
+    @Autowired
+    UserService userService;
     @Autowired
     RegionService regionService;
     @Autowired
@@ -365,4 +368,5 @@ public class RegistrationFormMobileController {
         modelMap.addAttribute("list",list);
         return "mobile/registration_form_work_flow_item_list";
     }
+
 }

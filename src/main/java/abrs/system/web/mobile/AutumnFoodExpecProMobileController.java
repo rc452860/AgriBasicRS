@@ -1,6 +1,7 @@
 package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
+import abrs.system.aspect.CFAspect;
 import abrs.system.dao.Entity.ExpectedProductionItem;
 import abrs.system.dao.Entity.AutumnFoodExpecPro;
 import abrs.system.dao.Entity.Farmer;
@@ -39,6 +40,7 @@ public class AutumnFoodExpecProMobileController {
     @Autowired
     ExpectedProductionItemService itemService;
 
+    @CFAspect
     @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String Add(ModelMap modelMap){

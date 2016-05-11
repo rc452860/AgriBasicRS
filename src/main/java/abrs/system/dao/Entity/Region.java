@@ -15,7 +15,7 @@ public class Region {
     @Id
     private String id;
 
-    @Indexed(unique = true)
+    @Indexed(unique = true,dropDups=true)
     private String no;//编号
 
     private String name;//名称

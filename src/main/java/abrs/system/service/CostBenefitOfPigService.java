@@ -3,14 +3,17 @@ package abrs.system.service;
 import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.CostBenefitOfPig;
 import abrs.system.dao.CostBenefitOfPigDao;
+import abrs.system.web.context.SessionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.http.client.support.HttpAccessor;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -24,8 +27,12 @@ public class CostBenefitOfPigService {
     @Autowired
     private CostBenefitOfPigDao costBenefitOfPigDao;
 
+    @Autowired
+    HttpSession session;
     public boolean addItem(CostBenefitOfPig costBenefitOfPig)
     {
+        String farmerId = (String) session.getAttribute(SessionContext.CURRENT_FARMER_ID);
+        costBenefitOfPig.setFarmer_id(farmerId);
         costBenefitOfPigDao.save(costBenefitOfPig);
         logger.info("Add CostBenefitOfPig");
         return true;

@@ -1,6 +1,7 @@
 package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
+import abrs.system.aspect.CFAspect;
 import abrs.system.dao.Entity.CostBenefitProductivityOfPlant;
 import abrs.system.service.CostBenefitProductivityOfPlantService;
 import abrs.system.web.mobile.form.CostBenefitProductivityOfPlantForm;
@@ -28,6 +29,7 @@ public class CostBenefitProductivityOfPlantMobileController {
     @Autowired
     CostBenefitProductivityOfPlantService service;
 
+    @CFAspect
     @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String Add(ModelMap modelMap){

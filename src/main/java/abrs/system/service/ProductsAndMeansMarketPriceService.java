@@ -3,6 +3,7 @@ package abrs.system.service;
 import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.ProductsAndMeansMarketPrice;
 import abrs.system.dao.ProductsAndMeansMarketPriceDao;
+import abrs.system.web.context.SessionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -24,6 +26,8 @@ public class ProductsAndMeansMarketPriceService {
     @Autowired
     private ProductsAndMeansMarketPriceDao productsAndMeansMarketPriceDao;
 
+    @Autowired
+    HttpSession session;
     public boolean addItem(ProductsAndMeansMarketPrice productsAndMeansMarketPrice)
     {
         productsAndMeansMarketPriceDao.save(productsAndMeansMarketPrice);

@@ -2,7 +2,10 @@ package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.Region;
+import abrs.system.dao.Entity.User;
 import abrs.system.service.RegionService;
+import abrs.system.service.UserService;
+import abrs.system.web.context.SessionContext;
 import abrs.system.web.mobile.form.RegionForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +15,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +34,11 @@ public class RegionMobileController {
 
     @Autowired
     RegionService regionService;
+    @Autowired
+    UserService userService;
 
+    @Autowired
+    HttpSession session;
     @Auth(role = Auth.Role.SUPERADMIN)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String regionAdd(ModelMap modelMap){
@@ -251,4 +260,51 @@ public class RegionMobileController {
         Region region = regionService.getParent(code);
         return region;
     }
+
+    @Auth(role = Auth.Role.INFOADMIN)
+    @ResponseBody
+    @RequestMapping(value = "/getUnderRegionFarmer",method = RequestMethod.GET)
+    public Object getRegionFarmer(@RequestParam(value = "name",required = false) String name,ModelMap modelMap){
+
+        final List<User> users = userService.getUnderRegionFarmer(name);
+        final int count = (int) userService.getCount();
+        return new Object(){
+            int total;
+            List<User> rows;
+            public void setTotal(int total) {
+                total = total;
+            }
+
+            public int getTotal() {
+                return total;
+            }
+            public void setRows(List<User> rows) {
+                rows = rows;
+            }
+
+            public List<User> getRows() {
+                return rows;
+            }
+            {
+                total =count;
+                rows = users;
+            }
+        };
+    }
+
+    @Auth(role = Auth.Role.INFOADMIN)
+    @RequestMapping(value = "/getUnderRegionFarmerPage",method = RequestMethod.GET)
+    public String getReionFarmerPage(){
+        return "mobile/getUnderRegionFarmer";
+    }
+
+    @Auth(role = Auth.Role.INFOADMIN)
+    @RequestMapping(value = "/redirect",method = RequestMethod.GET)
+    public String redirect(@RequestParam("id")String code){
+        session.setAttribute(SessionContext.ACCESS_COUNT,1);
+        session.setAttribute(SessionContext.CURRENT_FARMER_ID,code);
+        String url = session.getAttribute(SessionContext.ACCESS_LINK).toString();
+        return "redirect:"+url;
+    }
+
 }

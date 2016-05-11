@@ -22,6 +22,7 @@ public class User {
     private String username = "";
     private String password = "";
     private String role = "";
+    private String role_true = "";
     private String regionCode = "";
 
     private String salt = "";
@@ -170,5 +171,13 @@ public class User {
     public Auth.Role getUserRole(){
         String value = AES.decrypt(getRole()).substring(6);
         return Auth.Role.valueOf(value);
+    }
+
+    public String getRole_true() {
+        return role_true;
+    }
+
+    public void setRole_true(String role_true) {
+        this.role_true = role_true;
     }
 }

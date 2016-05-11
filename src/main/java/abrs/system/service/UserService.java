@@ -5,6 +5,7 @@ import abrs.system.dao.Entity.User;
 import abrs.system.dao.UserDao;
 import abrs.system.util.AES;
 import abrs.system.util.MD5;
+import abrs.system.web.context.SessionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,9 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Pattern;
@@ -26,6 +29,11 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private RegionService regionService;
+
+    @Autowired
+    private HttpSession session;
     /**
      * 增加新用户
      *
@@ -35,7 +43,7 @@ public class UserService {
         if (checkUserExist(user.getUsername()))
             return false;
 
-
+        user.setRole_true(user.getRole());
         user.setSalt(getRandomString(6));
         user.setPassword(this.getUserPasswordMd5(user.getSalt(), user.getPassword()));
         user.setRole(this.getUserRoleEncrypt(user.getSalt(),user.getRole()));
@@ -240,5 +248,20 @@ public class UserService {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public List<User> getUnderRegionFarmer(String name) {
+        User user = (User)session.getAttribute(SessionContext.CURRENT_USER);
+        Pattern pattern = regionService.getChildsPattern(user.getRegionCode());
+        Query query = new Query();
+        Criteria cr = new Criteria();
+        List<Criteria> conditions = new ArrayList<Criteria>();
+        conditions.add(Criteria.where("role_true").is(Auth.Role.USER.name()));
+        conditions.add(Criteria.where("regionCode").regex(pattern));
+        if (name!=null && !name.trim().equals(""))
+            conditions.add(Criteria.where("name").regex(name));
+        cr = cr.andOperator(conditions.toArray(new Criteria[conditions.size()]));
+        query.addCriteria(cr);
+        return userDao.queryList(query);
     }
 }

@@ -1,6 +1,7 @@
 package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
+import abrs.system.aspect.CFAspect;
 import abrs.system.dao.Entity.WholeYearPlantArea;
 import abrs.system.service.RegistrationFormService;
 import abrs.system.service.WholeYearPlantAreaService;
@@ -32,6 +33,7 @@ public class WholeYearPlantAreaController {
     @Autowired
     WholeYearPlantAreaService wholeYearPlantAreaService;
 
+    @CFAspect
     @Auth(role = Auth.Role.USER)
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String add(ModelMap modelMap){
