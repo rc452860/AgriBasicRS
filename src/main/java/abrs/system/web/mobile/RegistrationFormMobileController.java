@@ -246,6 +246,43 @@ public class RegistrationFormMobileController {
     }
 
     @Auth(role = Auth.Role.USER)
+    @ResponseBody
+    @RequestMapping(value = "/selectJsonB",method = RequestMethod.GET)
+    public Object selectJsonB(){
+        List<RegistrationForm> registrationForms =  service.getAvailableRegister();
+        List<Object> result = new ArrayList<Object>();
+        for (final RegistrationForm item : registrationForms){
+            result.add(new Object() {
+                String id;
+
+                public String getText() {
+                    return text;
+                }
+
+                public void setText(String text) {
+                    this.text = text;
+                }
+
+                String text;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                {
+                    id = item.getId();
+                    text = item.getName();
+                }
+            });
+        }
+        return result;
+    }
+
+    @Auth(role = Auth.Role.USER)
      @RequestMapping(value = "/workflowlist",method = RequestMethod.GET)
      public String WorkFlowList(@RequestParam(value = "index",defaultValue = "1") int index ,@RequestParam(value = "size",defaultValue = "20") int size, ModelMap modelMap){
         List<String> workflowids = new ArrayList<String>();

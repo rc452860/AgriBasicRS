@@ -38,6 +38,7 @@ public class FarmerService extends BaseService{
         return true;
     }
 
+
     public Farmer getItem(String id)
     {
         return farmerDao.queryById(id);

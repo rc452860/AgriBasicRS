@@ -5,6 +5,7 @@ import abrs.system.dao.Entity.Farmer;
 import abrs.system.dao.Entity.User;
 import abrs.system.service.FarmerService;
 import abrs.system.service.RegistrationFormService;
+import abrs.system.service.UserService;
 import abrs.system.web.context.SessionContext;
 import abrs.system.web.mobile.excel.FarmerExport;
 import abrs.system.web.mobile.excel.ResponseUtils;
@@ -41,6 +42,9 @@ public class ManageMobileContorller {
     RegistrationFormService registrationFormService;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     HttpSession session;
 
 
@@ -63,7 +67,12 @@ public class ManageMobileContorller {
             map.put("message", errors.getFieldError().getDefaultMessage());
         }else{
             try {
-                farmerService.addItem(form.getFarmer());
+                Farmer farmer = form.getFarmer();
+                farmerService.addItem(farmer);
+                User tempUser = (User) session.getAttribute(SessionContext.TEMP_FARMER);
+                if (tempUser!=null){
+                    tempUser.setFarmer_id(farmer.getId());
+                }
                 map.put("message","添加成功");
             }catch (Exception e){
                 e.printStackTrace();

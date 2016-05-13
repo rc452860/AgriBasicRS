@@ -25,6 +25,11 @@ public class MobileAuth {
 
     @Around("execution(String *.*(..)) && @annotation(auth)")
     public Object checkAuth(ProceedingJoinPoint point, Auth auth) throws Throwable {
+        /*Integer count = (Integer) session.getAttribute(SessionContext.ACCESS_COUNT);
+        if (count>-1){
+            count--;
+            session.setAttribute(SessionContext.ACCESS_COUNT,count);
+        }*/
         if (auth.role() != Auth.Role.NONE) {
             if (session.getAttribute(SessionContext.CURRENT_USER) == null) {
                 return "redirect:/mobile/login";

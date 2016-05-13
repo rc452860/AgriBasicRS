@@ -84,7 +84,7 @@
             <tr>
                 <td>状态</td>
                 <td>
-                    <form:select class="easyui-combobox" style="width:150px"  path="role" >
+                    <form:select class="easyui-combobox" style="width:150px"  path="flag" >
                     <form:option value="1">启用</form:option>
                     <form:option value="2">注销</form:option>
                     </form:select>

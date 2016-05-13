@@ -3,6 +3,7 @@ package abrs.system.web.mobile;
 import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.User;
 import abrs.system.service.UserService;
+import abrs.system.web.context.SessionContext;
 import abrs.system.web.mobile.form.UserForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +29,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    HttpSession session;
 
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -61,6 +65,11 @@ public class UserController {
             else
             {
                 user.setRole(Auth.Role.USER.name());
+                session.setAttribute(SessionContext.TEMP_FARMER,user);
+                //session.setAttribute(SessionContext.ACCESS_COUNT,1);
+                map.put("mesage","请填写农户信息");
+                map.put("url","/mobile/manage/farmerAdd");
+                return map;
             }
 
             userService.addItem(user);

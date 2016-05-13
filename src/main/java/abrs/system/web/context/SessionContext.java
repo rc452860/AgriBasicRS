@@ -7,5 +7,5 @@ public class SessionContext {
     public final static String CURRENT_FARMER_ID = "CURRENT_FARMER_ID";
     public final static String ACCESS_LINK = "ACCESS_LINK";
     public final static String ACCESS_COUNT = "ACCESS_COUNT";
-
+    public final static String TEMP_FARMER = "TEMP_FARMER";
 }
