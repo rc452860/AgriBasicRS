@@ -32,8 +32,8 @@
             method:'get',
             columns:[[
                 {field:'name',title:'姓名',width:'100px',align:"center",halign:"center"},
-                {field:'username',title:'用户名',width:'100px',align:"center",halign:"center"},
-                {field:'regionCode',title:'区域代码',width:'100px',align:"center",halign:"center"},
+                {field:'region',title:'所在村组',width:'100px',align:"center",halign:"center"},
+                {field:'region_no',title:'区域代码',width:'100px',align:"center",halign:"center"},
                 {field:'id',title:'操作',width:'100px',align:"center",halign:"center",
                     formatter: function(value,row,index){
                         return "<a href='/mobile/region/redirect?id="+value+"'>选择</a>";
