@@ -72,6 +72,7 @@ public class ManageMobileContorller {
                 User tempUser = (User) session.getAttribute(SessionContext.TEMP_FARMER);
                 if (tempUser!=null){
                     tempUser.setFarmer_id(farmer.getId());
+                    userService.addItem(tempUser);
                 }
                 map.put("message","添加成功");
             }catch (Exception e){
