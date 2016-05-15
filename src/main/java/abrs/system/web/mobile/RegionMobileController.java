@@ -1,8 +1,10 @@
 package abrs.system.web.mobile;
 
 import abrs.system.aspect.Auth;
+import abrs.system.dao.Entity.Farmer;
 import abrs.system.dao.Entity.Region;
 import abrs.system.dao.Entity.User;
+import abrs.system.service.FarmerService;
 import abrs.system.service.RegionService;
 import abrs.system.service.UserService;
 import abrs.system.web.context.SessionContext;
@@ -37,6 +39,8 @@ public class RegionMobileController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    FarmerService farmerService;
     @Autowired
     HttpSession session;
     @Auth(role = Auth.Role.SUPERADMIN)
@@ -266,11 +270,11 @@ public class RegionMobileController {
     @RequestMapping(value = "/getUnderRegionFarmer",method = RequestMethod.GET)
     public Object getRegionFarmer(@RequestParam(value = "name",required = false) String name,ModelMap modelMap){
 
-        final List<User> users = userService.getUnderRegionFarmer(name);
+        final List<Farmer> farmers = farmerService.getUnderRegionFarmer(name);
         final int count = (int) userService.getCount();
         return new Object(){
             int total;
-            List<User> rows;
+            List<Farmer> rows;
             public void setTotal(int total) {
                 total = total;
             }
@@ -282,12 +286,12 @@ public class RegionMobileController {
                 rows = rows;
             }
 
-            public List<User> getRows() {
+            public List<Farmer> getRows() {
                 return rows;
             }
             {
                 total =count;
-                rows = users;
+                rows = farmers;
             }
         };
     }

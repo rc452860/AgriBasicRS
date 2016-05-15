@@ -250,18 +250,5 @@ public class UserService {
         }
     }
 
-    public List<User> getUnderRegionFarmer(String name) {
-        User user = (User)session.getAttribute(SessionContext.CURRENT_USER);
-        Pattern pattern = regionService.getChildsPattern(user.getRegionCode());
-        Query query = new Query();
-        Criteria cr = new Criteria();
-        List<Criteria> conditions = new ArrayList<Criteria>();
-        conditions.add(Criteria.where("role_true").is(Auth.Role.USER.name()));
-        conditions.add(Criteria.where("regionCode").regex(pattern));
-        if (name!=null && !name.trim().equals(""))
-            conditions.add(Criteria.where("name").regex(name));
-        cr = cr.andOperator(conditions.toArray(new Criteria[conditions.size()]));
-        query.addCriteria(cr);
-        return userDao.queryList(query);
-    }
+
 }
