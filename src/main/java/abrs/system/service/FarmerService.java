@@ -123,7 +123,7 @@ public class FarmerService extends BaseService{
 
     public List<Farmer> getUnderRegionFarmer(String name) {
         User user = (User)session.getAttribute(SessionContext.CURRENT_USER);
-        Pattern pattern = regionService.getChildsPattern(user.getRegionCode());
+        Pattern pattern = regionService.getDescendantsPattern(user.getRegionCode());
         Query query = new Query();
         Criteria cr = new Criteria();
         List<Criteria> conditions = new ArrayList<Criteria>();
@@ -136,7 +136,7 @@ public class FarmerService extends BaseService{
     }
     public Long getUnderRegionFarmerCount(String name) {
         User user = (User)session.getAttribute(SessionContext.CURRENT_USER);
-        Pattern pattern = regionService.getChildsPattern(user.getRegionCode());
+        Pattern pattern = regionService.getDescendantsPattern(user.getRegionCode());
         Query query = new Query();
         Criteria cr = new Criteria();
         List<Criteria> conditions = new ArrayList<Criteria>();
