@@ -271,15 +271,15 @@ public class RegionMobileController {
     public Object getRegionFarmer(@RequestParam(value = "name",required = false) String name,ModelMap modelMap){
 
         final List<Farmer> farmers = farmerService.getUnderRegionFarmer(name);
-        final int count = (int) userService.getCount();
+        final long count =  farmerService.getUnderRegionFarmerCount(name);
         return new Object(){
-            int total;
+            long total;
             List<Farmer> rows;
             public void setTotal(int total) {
                 total = total;
             }
 
-            public int getTotal() {
+            public long getTotal() {
                 return total;
             }
             public void setRows(List<User> rows) {

@@ -1,18 +1,14 @@
 package abrs.system.service;
 
-import abrs.system.aspect.Auth;
 import abrs.system.dao.Entity.Farmer;
 import abrs.system.dao.Entity.User;
 import abrs.system.dao.FarmerDao;
-import abrs.system.dao.MongoGenDao;
 import abrs.system.web.context.SessionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.http.client.support.HttpAccessor;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -138,4 +134,18 @@ public class FarmerService extends BaseService{
         query.addCriteria(cr);
         return farmerDao.queryList(query);
     }
+    public Long getUnderRegionFarmerCount(String name) {
+        User user = (User)session.getAttribute(SessionContext.CURRENT_USER);
+        Pattern pattern = regionService.getChildsPattern(user.getRegionCode());
+        Query query = new Query();
+        Criteria cr = new Criteria();
+        List<Criteria> conditions = new ArrayList<Criteria>();
+        conditions.add(Criteria.where("region_no").regex(pattern));
+        if (name!=null && !name.trim().equals(""))
+            conditions.add(Criteria.where("name").regex(name));
+        cr = cr.andOperator(conditions.toArray(new Criteria[conditions.size()]));
+        query.addCriteria(cr);
+        return farmerDao.getCount(query);
+    }
+
 }
